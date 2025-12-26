@@ -1,0 +1,156 @@
+// This is your Prisma schema file
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Disorder {
+  id                  String   @id @default(cuid())
+  slug                String   @unique
+  name                String
+  category            String
+  description         String
+  symptoms            String   // JSON string array
+  biologicalCauses    String   // JSON string array
+  psychologicalCauses String   // JSON string array
+  socialCauses        String   // JSON string array
+  prevalence          String
+  ageOfOnset          String
+  courseOfIllness     String
+  riskFactors         String   // JSON string array
+  protectiveFactors   String   // JSON string array
+  comorbidities       String   // JSON string array
+  naturalSolutions    String   // JSON string array
+  nutritionalRecs     String   // JSON string array
+  therapyApproaches   String   // JSON string array
+  whenToSeekHelp      String   // JSON string array
+  crisisResources     String   // JSON string array
+  researchLinks       String   // JSON string array
+  dsmCriteria         String   // JSON string array
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
+
+model Assessment {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  description     String
+  questions       String   // JSON: array of question objects
+  scoringGuide    String   // JSON: scoring information
+  interpretations String   // JSON: score ranges and meanings
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model AssessmentResult {
+  id           String   @id @default(cuid())
+  assessmentId String
+  userId       String?  // Optional if we add user auth later
+  answers      String   // JSON: array of answers
+  score        Int
+  severity     String
+  date         DateTime @default(now())
+}
+
+model Meditation {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  duration    Int      // in minutes
+  script      String   // Full guided meditation script
+  category    String
+  benefits    String   // JSON string array
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TherapyTechnique {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  category    String   // CBT, DBT, ACT, ERP, MBCT, IPT
+  description String
+  steps       String   // JSON string array
+  examples    String   // JSON string array
+  when        String   // When to use this technique
+  benefits    String   // JSON string array
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CrisisResource {
+  id          String   @id @default(cuid())
+  name        String
+  country     String
+  phone       String?
+  textLine    String?
+  website     String?
+  description String
+  available   String   // e.g., "24/7", "Mon-Fri 9-5"
+  category    String   // General, Youth, LGBTQ+, Veterans, etc.
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CommunityPost {
+  id          String            @id @default(cuid())
+  title       String
+  content     String
+  category    String
+  anonymous   Boolean           @default(true)
+  username    String            @default("Anonymous")
+  likes       Int               @default(0)
+  hasWarning  Boolean           @default(false)
+  warningText String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  replies     CommunityReply[]
+}
+
+model CommunityReply {
+  id         String        @id @default(cuid())
+  postId     String
+  post       CommunityPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  content    String
+  username   String        @default("Anonymous")
+  likes      Int           @default(0)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+model MoodEntry {
+  id        String   @id @default(cuid())
+  userId    String?
+  mood      Int      // 1-10 scale
+  notes     String?
+  activities String? // JSON string array
+  date      DateTime @default(now())
+}
+
+model GratitudeEntry {
+  id        String   @id @default(cuid())
+  userId    String?
+  entry     String
+  date      DateTime @default(now())
+}
+
+model SafetyPlan {
+  id                  String   @id @default(cuid())
+  userId              String?
+  warningSigns        String   // JSON string array
+  copingStrategies    String   // JSON string array
+  distractions        String   // JSON string array
+  supportContacts     String   // JSON: array of {name, phone}
+  professionalContacts String  // JSON: array of {name, phone, role}
+  environmentSafety   String   // JSON string array
+  reasonsForLiving    String   // JSON string array
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
