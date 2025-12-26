@@ -16,8 +16,17 @@ import {
   AlertCircle,
   Sparkles
 } from "lucide-react"
+import { DisordersModal } from "@/components/DisordersModal"
+import { AssessmentModal } from "@/components/AssessmentModal"
+import { GamesModal } from "@/components/GamesModal"
+import { CrisisModal } from "@/components/CrisisModal"
 
 export default function HomePage() {
+  const [disordersOpen, setDisordersOpen] = useState(false)
+  const [assessmentOpen, setAssessmentOpen] = useState(false)
+  const [gamesOpen, setGamesOpen] = useState(false)
+  const [crisisOpen, setCrisisOpen] = useState(false)
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       {/* Crisis Banner */}
@@ -82,7 +91,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Comprehensive DSM-5 information including symptoms, causes, treatments, and research-backed solutions for all major mental health disorders.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setDisordersOpen(true)}>
               Explore Disorders
             </Button>
           </CardContent>
@@ -103,7 +112,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Clinically validated questionnaires including PHQ-9 (Depression), GAD-7 (Anxiety), PCL-5 (PTSD), and more with proper scoring.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setAssessmentOpen(true)}>
               Take Assessment
             </Button>
           </CardContent>
@@ -124,7 +133,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Evidence-based activities including breathing exercises, grounding techniques, mood tracking, gratitude journaling, and CBT tools.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setGamesOpen(true)}>
               Play Games
             </Button>
           </CardContent>
@@ -229,7 +238,7 @@ export default function HomePage() {
             <p className="text-sm text-red-800 mb-4">
               Worldwide crisis hotlines, text lines, and emergency resources. Includes safety planning tool for managing suicidal thoughts.
             </p>
-            <Button className="w-full bg-red-600 hover:bg-red-700 text-white">
+            <Button className="w-full bg-red-600 hover:bg-red-700 text-white" onClick={() => setCrisisOpen(true)}>
               Get Help Now
             </Button>
           </CardContent>
@@ -297,6 +306,12 @@ export default function HomePage() {
           Open Source (MIT License) • Not a substitute for professional care
         </p>
       </footer>
+
+      {/* Modals */}
+      <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
+      <AssessmentModal open={assessmentOpen} onOpenChange={setAssessmentOpen} />
+      <GamesModal open={gamesOpen} onOpenChange={setGamesOpen} />
+      <CrisisModal open={crisisOpen} onOpenChange={setCrisisOpen} />
     </div>
   )
 }
