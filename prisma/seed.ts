@@ -1513,6 +1513,275 @@ When you're ready, begin to deepen your breath. Gently wiggle your fingers and t
 Carry this sense of peaceful awareness with you into your day.
 
 Thank you for practicing.`
+    },
+    {
+      slug: 'box-breathing',
+      title: 'Box Breathing',
+      description: 'A powerful stress-relief technique used by Navy SEALs, athletes, and professionals to calm the nervous system and improve focus.',
+      duration: 5,
+      script: `Welcome to Box Breathing, also known as Square Breathing. This technique is used by Navy SEALs and first responders to stay calm under extreme pressure.
+
+Find a comfortable seated position. Sit up tall but relaxed. Close your eyes or soften your gaze.
+
+We'll breathe in a square pattern: breathe in for 4, hold for 4, breathe out for 4, hold for 4. Like drawing the sides of a box.
+
+Let's begin.
+
+Breathe IN through your nose for 4... 2... 3... 4.
+
+HOLD your breath for 4... 2... 3... 4.
+
+Breathe OUT through your mouth for 4... 2... 3... 4.
+
+HOLD your breath out for 4... 2... 3... 4.
+
+Again. IN for 4... 2... 3... 4.
+
+HOLD for 4... 2... 3... 4.
+
+OUT for 4... 2... 3... 4.
+
+HOLD for 4... 2... 3... 4.
+
+Continue this pattern at your own pace for a few more cycles.
+
+IN... HOLD... OUT... HOLD...
+
+IN... HOLD... OUT... HOLD...
+
+Feel your nervous system calming. Your mind becoming clearer. Your body relaxing.
+
+Notice how centered and grounded you feel.
+
+When you're ready, return to your natural breath. Open your eyes.
+
+You can use Box Breathing anytime you need to center yourself—before a presentation, during stress, or when you need focus.
+
+Thank you for practicing.`,
+      category: 'Breathing',
+      benefits: JSON.stringify([
+        'Reduces stress and anxiety',
+        'Activates parasympathetic nervous system',
+        'Improves focus and concentration',
+        'Lowers blood pressure',
+        'Used by military and first responders',
+        'Can be done anywhere, anytime',
+        'Helps manage panic symptoms'
+      ])
+    },
+    {
+      slug: 'loving-kindness-meditation',
+      title: 'Loving-Kindness Meditation (Metta)',
+      description: 'A traditional Buddhist practice that cultivates compassion for yourself and others. Research shows it increases positive emotions and decreases negative ones.',
+      duration: 15,
+      script: `Welcome to Loving-Kindness Meditation, also called Metta. This ancient practice helps us develop compassion—first for ourselves, then extending outward to all beings.
+
+Find a comfortable position. Close your eyes. Take a few deep breaths to settle in.
+
+Begin by bringing to mind an image of yourself. Picture yourself as you are now. See your face, notice your presence.
+
+Now, silently repeat these phrases to yourself:
+
+May I be safe.
+May I be healthy.
+May I be happy.
+May I live with ease.
+
+Let these words wash over you. If you notice resistance, that's okay. Just gently return to the phrases.
+
+May I be safe.
+May I be healthy.
+May I be happy.
+May I live with ease.
+
+Now, bring to mind someone you love dearly. A family member, friend, pet. Someone who brings you joy. See their face clearly.
+
+Direct the loving-kindness toward them:
+
+May you be safe.
+May you be healthy.
+May you be happy.
+May you live with ease.
+
+Feel your heart opening toward this loved one. Send them your warmest wishes.
+
+Next, bring to mind a neutral person. Someone you see regularly but don't know well. Perhaps a neighbor, a barista, someone you pass on the street.
+
+May you be safe.
+May you be healthy.
+May you be happy.
+May you live with ease.
+
+Recognize their humanity. They, too, want to be happy and free from suffering.
+
+Now, if you're ready, bring to mind someone difficult. Someone you've had conflict with. You don't need to force this. But if you can, hold them in your awareness.
+
+May you be safe.
+May you be healthy.
+May you be happy.
+May you live with ease.
+
+This doesn't mean condoning harmful actions. It means recognizing the shared humanity, the shared wish to be free from suffering.
+
+Finally, expand your awareness to include all beings everywhere:
+
+May all beings be safe.
+May all beings be healthy.
+May all beings be happy.
+May all beings live with ease.
+
+Imagine your loving-kindness radiating outward like light, touching every living being on the planet.
+
+May all beings be safe.
+May all beings be healthy.
+May all beings be happy.
+May all beings live with ease.
+
+Rest here for a few moments, bathing in the warmth of loving-kindness.
+
+When you're ready, take a deep breath. Gently open your eyes.
+
+Carry this compassion with you throughout your day.`,
+      category: 'Compassion',
+      benefits: JSON.stringify([
+        'Increases positive emotions',
+        'Decreases self-criticism',
+        'Improves relationships',
+        'Reduces symptoms of depression',
+        'Increases empathy and compassion',
+        'Activates brain regions associated with empathy',
+        'Reduces chronic pain',
+        'Decreases anger and conflict'
+      ])
+    },
+    {
+      slug: 'anxiety-relief-meditation',
+      title: 'Anxiety Relief Meditation',
+      description: 'A targeted meditation designed to calm racing thoughts, soothe worry, and activate the relaxation response.',
+      duration: 10,
+      script: `Welcome. If you're feeling anxious right now, you're in the right place. This meditation will help calm your nervous system.
+
+Find a comfortable position, either sitting or lying down. Place one hand on your heart and one on your belly.
+
+Take a deep breath in... and a long breath out.
+
+As you breathe, feel your hands rising and falling. This simple touch is calming to your nervous system.
+
+Anxiety lives in the future—worrying about what might happen. Let's bring you back to now.
+
+Notice five things you can see. Just notice them, don't judge them.
+
+Notice four things you can hear. Sounds near and far.
+
+Notice three things you can physically feel. The chair beneath you, your clothes on your skin, the temperature of the air.
+
+Notice two things you can smell. Even if it's just the air, notice it.
+
+Notice one thing you can taste.
+
+Now return to your breath. With each exhale, imagine releasing worry like letting go of a balloon. Watch it float away.
+
+Breathe in calm... breathe out tension.
+
+Breathe in peace... breathe out fear.
+
+Remind yourself: "I am safe right now, in this moment."
+
+"My anxiety is uncomfortable, but it will pass. It always does."
+
+"I can handle this. I've handled hard things before."
+
+Continue breathing slowly and deeply.
+
+If anxious thoughts come, that's okay. Don't fight them. Imagine them as clouds passing across the sky of your mind. They come... they go. You don't have to grab onto them.
+
+Just breathe. Just be here now.
+
+You're not broken. You're not weak. Anxiety is your body trying to protect you, even though there's no real danger right now.
+
+Thank your anxiety for trying to help, then gently tell it: "I've got this. We're safe."
+
+Stay here, breathing, for as long as you need.
+
+When you're ready, take one more deep breath. Open your eyes if they're closed.
+
+You are safe. You are okay. This moment, right now, you are okay.`,
+      category: 'Specialized',
+      benefits: JSON.stringify([
+        'Immediately reduces anxiety symptoms',
+        'Activates parasympathetic nervous system',
+        'Interrupts panic cycle',
+        'Grounds you in the present moment',
+        'Reduces racing thoughts',
+        'Lowers heart rate and blood pressure',
+        'Can be used during anxiety or panic',
+        'Provides compassionate self-talk framework'
+      ])
+    },
+    {
+      slug: 'sleep-meditation',
+      title: 'Deep Sleep Meditation',
+      description: 'A gentle meditation designed to help you fall asleep naturally by relaxing body and mind.',
+      duration: 20,
+      script: `Welcome to this sleep meditation. Find a comfortable position in your bed. This will help you drift into deep, restful sleep.
+
+Take a deep breath in... and release.
+
+Let your body sink into the mattress. Allow yourself to be fully supported.
+
+Close your eyes. You don't need to do anything. Just listen to my voice and let go.
+
+Imagine a warm, golden light above your head. This light represents peace, safety, and deep rest.
+
+The light begins to slowly pour down, like warm honey, flowing over the crown of your head.
+
+It flows over your forehead, smoothing away any tension. Your forehead is smooth and relaxed.
+
+The golden light flows over your eyes, which gently close. Your eyes are tired from the day. Let them rest completely.
+
+It flows over your cheeks, your jaw. Your jaw releases. Your face softens.
+
+The warm light flows down your neck and shoulders. Your shoulders drop away from your ears. All the weight you've been carrying can be released now.
+
+The light flows down your arms, to your fingertips. Your arms are heavy and relaxed.
+
+It flows over your chest and upper back. With each breath, you're sinking deeper into relaxation.
+
+The light flows over your belly, your lower back. Your whole torso is warm and peaceful.
+
+It flows down your hips, your thighs. Heavy and relaxed.
+
+Down your legs, your calves, your ankles, your feet, all the way to your toes.
+
+Your entire body is now filled with golden, peaceful light. You are completely relaxed. Heavy. Warm. Safe.
+
+Begin to count backwards from 10 to 1. With each number, you're drifting deeper into sleep.
+
+10... deeper and deeper...
+9... letting go more and more...
+8... peaceful and calm...
+7... safe and relaxed...
+6... drifting... drifting...
+5... so peaceful...
+4... almost asleep...
+3... letting go completely...
+2... deep rest...
+1... sleep now... sleep...
+
+(Soft silence)
+
+Good night. Sweet dreams.`,
+      category: 'Specialized',
+      benefits: JSON.stringify([
+        'Helps you fall asleep faster',
+        'Reduces racing thoughts at bedtime',
+        'Activates sleep mechanisms',
+        'Reduces nighttime anxiety',
+        'Improves sleep quality',
+        'Natural alternative to sleep aids',
+        'Can be used every night',
+        'Creates healthy sleep association'
+      ])
     }
   ]
 
@@ -1754,6 +2023,138 @@ Thank you for practicing.`
         'Reduces impulsivity',
         'Integrates thinking and feeling',
         'Improves relationships'
+      ])
+    },
+    {
+      slug: 'grounding-5-4-3-2-1',
+      name: '5-4-3-2-1 Grounding Technique',
+      category: 'Mindfulness',
+      description: 'A sensory awareness technique to ground you in the present moment, especially helpful for anxiety, panic, dissociation, or flashbacks.',
+      steps: JSON.stringify([
+        'Pause and take a deep breath',
+        'Look around and name 5 things you can SEE',
+        'Notice 4 things you can TOUCH (describe the texture)',
+        'Listen for 3 things you can HEAR',
+        'Identify 2 things you can SMELL (or 2 smells you like)',
+        'Notice 1 thing you can TASTE',
+        'Take another deep breath',
+        'Notice how you feel now compared to when you started'
+      ]),
+      examples: JSON.stringify([
+        'See: door, window, tree, phone, cup',
+        'Touch: soft fabric, cool table, rough carpet, smooth phone',
+        'Hear: birds chirping, traffic, refrigerator humming',
+        'Smell: coffee, fresh air',
+        'Taste: mint from toothpaste'
+      ]),
+      when: 'Use during panic attacks, anxiety, dissociation, flashbacks, or feeling disconnected',
+      benefits: JSON.stringify([
+        'Immediately grounds you in present',
+        'Interrupts panic and anxiety',
+        'Reduces dissociation',
+        'Can be done anywhere',
+        'No equipment needed',
+        'Works for PTSD flashbacks',
+        'Helps with intrusive thoughts'
+      ])
+    },
+    {
+      slug: 'radical-acceptance',
+      name: 'Radical Acceptance',
+      category: 'DBT',
+      description: 'A DBT skill for accepting reality as it is, even when painful, to reduce suffering and create space for change.',
+      steps: JSON.stringify([
+        'Notice what you\'re resisting',
+        'Acknowledge: "This is the situation right now"',
+        'Observe your body\'s reaction to non-acceptance',
+        'Remember: Acceptance ≠ approval',
+        'Choose to accept with your whole self',
+        'Return to acceptance if you start fighting',
+        'Ask: "What can I do now that I\'ve accepted this?"',
+        'Practice with breath: "I accept this moment"'
+      ]),
+      examples: JSON.stringify([
+        'Chronic illness: "This is my reality. Fighting it causes more suffering."',
+        'Past trauma: "It happened. I can\'t change the past."',
+        'Rejection: "They said no. Fighting won\'t change it."',
+        'Mistake: "I messed up. Beating myself up won\'t undo it."'
+      ]),
+      when: 'When fighting unchangeable reality, "should" thinking causes suffering, or stuck in rumination',
+      benefits: JSON.stringify([
+        'Reduces suffering',
+        'Frees energy for action',
+        'Reduces depression and rumination',
+        'Helps process grief',
+        'Reduces physical tension',
+        'Opens path to change',
+        'Essential for trauma recovery'
+      ])
+    },
+    {
+      slug: 'opposite-action',
+      name: 'Opposite Action',
+      category: 'DBT',
+      description: 'When emotion doesn\'t fit facts, doing opposite of emotional urge can change the emotion.',
+      steps: JSON.stringify([
+        'Identify emotion and intensity (0-100)',
+        'Name the action urge',
+        'Check facts: Does emotion fit situation?',
+        'If not, commit to opposite action',
+        'Do COMPLETE opposite',
+        'Include opposite body language',
+        'Repeat until emotion changes',
+        'Track emotion intensity after'
+      ]),
+      examples: JSON.stringify([
+        'Fear: Avoid → Opposite: Approach',
+        'Anger: Attack → Opposite: Be kind',
+        'Shame: Hide → Opposite: Share openly',
+        'Sadness: Isolate → Opposite: Reach out',
+        'Guilt: Apologize → Opposite: Act confidently'
+      ]),
+      when: 'When emotion doesn\'t fit facts, too intense, or action urge would worsen situation',
+      benefits: JSON.stringify([
+        'Changes emotions from outside-in',
+        'Breaks unhelpful patterns',
+        'Builds emotional flexibility',
+        'Reduces depression and anxiety',
+        'Increases mastery over emotions',
+        'Backed by science',
+        'Empowering'
+      ])
+    },
+    {
+      slug: 'safety-planning',
+      name: 'Safety Planning',
+      category: 'Crisis Intervention',
+      description: 'A crisis tool to help you stay safe when experiencing suicidal thoughts or self-harm urges.',
+      steps: JSON.stringify([
+        'Warning signs: Identify crisis-triggering thoughts/moods',
+        'Internal coping: Things you can do alone',
+        'People/places: Social settings for distraction',
+        'Support contacts: People to call',
+        'Professional contacts: Therapist, crisis line, hospital',
+        'Means safety: Remove lethal means',
+        'Reasons for living: What makes life worth living',
+        'Keep plan accessible: Phone, wallet, visible'
+      ]),
+      examples: JSON.stringify([
+        'Warning signs: "Everything is hopeless", self-harm images, numbness',
+        'Internal coping: Music, shower, comfort show, pet, breathing',
+        'Social settings: Coffee shop, library, friend\'s house',
+        'Support contacts: Best friend, family, sponsor',
+        'Professionals: Therapist, 988 Lifeline, hospital',
+        'Reasons: My kids, my dog, travel dreams, recovery goals'
+      ]),
+      when: 'Create when stable. Review regularly. Use when warning signs appear or in crisis.',
+      benefits: JSON.stringify([
+        'Reduces suicide risk',
+        'Provides concrete steps',
+        'Interrupts crisis escalation',
+        'Reminds you of coping skills',
+        'Connects to support',
+        'Evidence-based',
+        'Can be life-saving'
       ])
     }
   ]
