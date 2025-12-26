@@ -20,12 +20,20 @@ import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
 import { GamesModal } from "@/components/GamesModal"
 import { CrisisModal } from "@/components/CrisisModal"
+import { ChatbotModal } from "@/components/ChatbotModal"
+import { CommunityModal } from "@/components/CommunityModal"
+import { MeditationModal } from "@/components/MeditationModal"
+import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
   const [assessmentOpen, setAssessmentOpen] = useState(false)
   const [gamesOpen, setGamesOpen] = useState(false)
   const [crisisOpen, setCrisisOpen] = useState(false)
+  const [chatbotOpen, setChatbotOpen] = useState(false)
+  const [communityOpen, setCommunityOpen] = useState(false)
+  const [meditationOpen, setMeditationOpen] = useState(false)
+  const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -154,7 +162,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Compassionate AI trained in mental health support, crisis detection, coping strategies, and psychoeducation. Available anytime.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setChatbotOpen(true)}>
               Chat Now
             </Button>
           </CardContent>
@@ -175,7 +183,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Anonymous peer support with categories for Depression, Anxiety, Trauma, Recovery, and more. Moderated for safety.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setCommunityOpen(true)}>
               Join Community
             </Button>
           </CardContent>
@@ -196,7 +204,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Learn CBT, DBT, ACT, ERP, MBCT, and IPT techniques with step-by-step guides, examples, and practical applications.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setTherapyTechniquesOpen(true)}>
               Learn Techniques
             </Button>
           </CardContent>
@@ -217,7 +225,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-600 mb-4">
               Full guided meditation scripts including body scan, loving-kindness, breath work, progressive relaxation, and sleep meditation.
             </p>
-            <Button className="w-full" variant="outline">
+            <Button className="w-full" variant="outline" onClick={() => setMeditationOpen(true)}>
               Meditate Now
             </Button>
           </CardContent>
@@ -312,6 +320,10 @@ export default function HomePage() {
       <AssessmentModal open={assessmentOpen} onOpenChange={setAssessmentOpen} />
       <GamesModal open={gamesOpen} onOpenChange={setGamesOpen} />
       <CrisisModal open={crisisOpen} onOpenChange={setCrisisOpen} />
+      <ChatbotModal open={chatbotOpen} onOpenChange={setChatbotOpen} />
+      <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
+      <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
+      <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
     </div>
   )
 }
