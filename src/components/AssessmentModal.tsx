@@ -59,8 +59,13 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   const getInterpretation = (score: number, assessment: Assessment) => {
     const interpretations = JSON.parse(assessment.interpretations)
     for (const interp of interpretations) {
-      const [min, max] = interp.range.split('-').map(Number)
-      if (score >= min && score <= max) {
+      const rangeParts = interp.range.split('-').map(Number)
+      if (rangeParts.length === 2) {
+        const [min, max] = rangeParts
+        if (score >= min && score <= max) {
+          return interp
+        }
+      } else if (rangeParts.length === 1 && score === rangeParts[0]) {
         return interp
       }
     }

@@ -20,7 +20,7 @@ export function BreathingCircle({ open, onOpenChange }: { open: boolean; onOpenC
     }
 
     const phases = ['inhale', 'hold', 'exhale'] as const
-    const currentIndex = phases.indexOf(phase as any)
+    const currentIndex = phases.indexOf(phase as 'inhale' | 'hold' | 'exhale')
     const duration = durations[phase as keyof typeof durations]
 
     const interval = setInterval(() => {
