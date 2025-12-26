@@ -1,33 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-
-// Generate anonymous username
-function generateAnonymousUsername(): string {
-  const adjectives = [
-    'Hopeful', 'Brave', 'Kind', 'Strong', 'Gentle', 'Wise', 'Calm', 'Bright',
-    'Caring', 'Patient', 'Peaceful', 'Resilient', 'Mindful', 'Courageous'
-  ]
-  const nouns = [
-    'Phoenix', 'Dove', 'Eagle', 'Butterfly', 'Owl', 'Swan', 'Robin', 'Hawk',
-    'Sparrow', 'Falcon', 'Crane', 'Raven', 'Hummingbird', 'Bluebird'
-  ]
-  const number = Math.floor(Math.random() * 100)
-  
-  const adj = adjectives[Math.floor(Math.random() * adjectives.length)]
-  const noun = nouns[Math.floor(Math.random() * nouns.length)]
-  
-  return `${adj}${noun}${number}`
-}
-
-// Detect crisis language in posts
-function detectCrisisLanguage(text: string): boolean {
-  const crisisKeywords = [
-    'suicide', 'suicidal', 'kill myself', 'end my life', 'want to die',
-    'self-harm', 'self harm', 'hurt myself', 'overdose', 'end it all'
-  ]
-  const lowerText = text.toLowerCase()
-  return crisisKeywords.some(keyword => lowerText.includes(keyword))
-}
+import { generateAnonymousUsername, detectCrisisLanguage } from '@/lib/community'
 
 // GET: List posts
 export async function GET(request: Request) {

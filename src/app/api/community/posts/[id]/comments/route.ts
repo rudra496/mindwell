@@ -1,23 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
-
-// Generate anonymous username
-function generateAnonymousUsername(): string {
-  const adjectives = [
-    'Hopeful', 'Brave', 'Kind', 'Strong', 'Gentle', 'Wise', 'Calm', 'Bright',
-    'Caring', 'Patient', 'Peaceful', 'Resilient', 'Mindful', 'Courageous'
-  ]
-  const nouns = [
-    'Phoenix', 'Dove', 'Eagle', 'Butterfly', 'Owl', 'Swan', 'Robin', 'Hawk',
-    'Sparrow', 'Falcon', 'Crane', 'Raven', 'Hummingbird', 'Bluebird'
-  ]
-  const number = Math.floor(Math.random() * 100)
-  
-  const adj = adjectives[Math.floor(Math.random() * adjectives.length)]
-  const noun = nouns[Math.floor(Math.random() * nouns.length)]
-  
-  return `${adj}${noun}${number}`
-}
+import { generateAnonymousUsername } from '@/lib/community'
 
 // POST: Add comment/reply
 export async function POST(
