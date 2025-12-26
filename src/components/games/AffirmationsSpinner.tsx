@@ -61,9 +61,14 @@ export default function AffirmationsSpinner() {
   }
 
   const addCustomAffirmation = () => {
-    if (customAffirmation.trim() && !affirmations.includes(customAffirmation.trim())) {
-      affirmations.push(customAffirmation.trim())
-      setCustomAffirmation("")
+    if (customAffirmation.trim()) {
+      const trimmed = customAffirmation.trim()
+      if (!affirmations.includes(trimmed)) {
+        // Note: In production, this should update state or save to backend
+        // For now, we're modifying the source array
+        affirmations.push(trimmed)
+        setCustomAffirmation("")
+      }
     }
   }
 

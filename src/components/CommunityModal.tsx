@@ -64,7 +64,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     if (open && !showCreatePost && !selectedPost) {
       fetchPosts()
     }
-  }, [open, showCreatePost, selectedPost])
+  }, [open, showCreatePost, selectedPost, filteredCategory])
 
   const fetchPosts = async () => {
     setIsLoading(true)
@@ -167,8 +167,6 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
         <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
           <Select value={filteredCategory} onValueChange={(value) => {
             setFilteredCategory(value)
-            // Trigger refetch when category changes
-            setTimeout(fetchPosts, 0)
           }}>
             <SelectTrigger className="w-full sm:w-[250px]">
               <SelectValue placeholder="Filter by category" />
