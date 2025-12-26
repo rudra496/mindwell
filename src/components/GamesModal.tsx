@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button"
 import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
+import { GroundingGame } from "./games/GroundingGame"
 
 const games = [
   {
@@ -53,6 +54,16 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
 
   if (selectedGame === 'breathing') {
     return <BreathingCircle open={true} onOpenChange={(open) => !open && closeGame()} />
+  }
+
+  if (selectedGame === 'grounding') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <GroundingGame />
+        </DialogContent>
+      </Dialog>
+    )
   }
 
   return (
