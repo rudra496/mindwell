@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -8,36 +8,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ThumbsUp, MessageCircle, AlertTriangle, ArrowLeft, Loader2, Send } from "lucide-react"
-
-interface Reply {
-  id: string
-  content: string
-  username: string
-  likes: number
-  createdAt: string
-}
-
-interface Post {
-  id: string
-  title: string
-  content: string
-  category: string
-  username: string
-  likes: number
-  hasWarning: boolean
-  warningText: string | null
-  createdAt: string
-}
+import { Community, type CommunityPost, type CommunityReply } from "@/lib/indexeddb"
+import { generateAnonymousUsername } from "@/lib/community"
 
 interface CommunityPostDetailProps {
   open: boolean
   onOpenChange: (open: boolean) => void
-  post: Post
+  post: CommunityPost
   onBack: () => void
+  onPostUpdate?: () => void
 }
 
-export function CommunityPostDetail({ open, onOpenChange, post, onBack }: CommunityPostDetailProps) {
-  const [replies, setReplies] = useState<Reply[]>([])
+export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUpdate }: CommunityPostDetailProps) {
+  const [replies, setReplies] = useState<CommunityReply[]>([])
   const [newReply, setNewReply] = useState("")
   const [isLoadingReplies, setIsLoadingReplies] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -45,26 +28,27 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack }: Commun
   const [hasLiked, setHasLiked] = useState(false)
   const [currentLikes, setCurrentLikes] = useState(post.likes)
 
-  useEffect(() => {
-    if (open) {
-      fetchReplies()
-    }
-  }, [open, post.id])
-
-  const fetchReplies = async () => {
+  const fetchReplies = useCallback(async () => {
     setIsLoadingReplies(true)
     setError(null)
     try {
-      const response = await fetch(`/api/community/posts/${post.id}/comments`)
-      if (!response.ok) throw new Error("Failed to fetch replies")
-      const data = await response.json()
-      setReplies(data.replies)
+      const loadedReplies = await Community.getReplies(post.id)
+      // Sort by date (oldest first for replies)
+      loadedReplies.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+      setReplies(loadedReplies)
     } catch (err) {
+      console.error('Error loading replies:', err)
       setError("Failed to load replies. Please try again.")
     } finally {
       setIsLoadingReplies(false)
     }
-  }
+  }, [post.id])
+
+  useEffect(() => {
+    if (open) {
+      fetchReplies()
+    }
+  }, [open, fetchReplies])
 
   const handleSubmitReply = async () => {
     if (!newReply.trim()) return
@@ -73,32 +57,52 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack }: Commun
     setError(null)
 
     try {
-      const response = await fetch(`/api/community/posts/${post.id}/comments`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: newReply.trim() })
-      })
-
-      if (!response.ok) throw new Error("Failed to post reply")
-
+      const username = generateAnonymousUsername()
+      
+      const reply: CommunityReply = {
+        id: `reply-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        postId: post.id,
+        content: newReply.trim(),
+        username,
+        likes: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      
+      await Community.addReply(reply)
       setNewReply("")
       await fetchReplies()
+      
+      // Update post reply count if callback provided
+      if (onPostUpdate) {
+        onPostUpdate()
+      }
     } catch (err) {
+      console.error('Error posting reply:', err)
       setError("Failed to post reply. Please try again.")
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  const handleLike = () => {
+  const handleLike = async () => {
     if (!hasLiked) {
-      setCurrentLikes(prev => prev + 1)
-      setHasLiked(true)
-      // In a real app, this would call an API to persist the like
+      try {
+        const updatedPost = { ...post, likes: post.likes + 1 }
+        await Community.updatePost(updatedPost)
+        setCurrentLikes(prev => prev + 1)
+        setHasLiked(true)
+        
+        if (onPostUpdate) {
+          onPostUpdate()
+        }
+      } catch (err) {
+        console.error('Error liking post:', err)
+      }
     }
   }
 
-  const formatDate = (dateString: string) => {
+  const formatDate = (dateString: string | Date) => {
     const date = new Date(dateString)
     const now = new Date()
     const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))

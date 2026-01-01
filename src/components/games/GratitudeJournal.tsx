@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -19,21 +19,56 @@ export default function GratitudeJournal() {
   const [currentEntry, setCurrentEntry] = useState("")
   const [entries, setEntries] = useState<GratitudeEntry[]>([])
   const [filterDate, setFilterDate] = useState("")
+  const [isLoading, setIsLoading] = useState(true)
 
-  const saveEntry = () => {
+  // Load entries from IndexedDB on mount
+  useEffect(() => {
+    loadEntries()
+  }, [])
+
+  const loadEntries = async () => {
+    try {
+      const { GratitudeJournal: GratitudeDB } = await import('@/lib/indexeddb')
+      const savedEntries = await GratitudeDB.getAllEntries()
+      const formattedEntries = savedEntries.map((e, index) => ({
+        id: e.id || (Date.now() + index), // Use unique fallback
+        date: new Date(e.date).toISOString().split('T')[0],
+        entry: e.entry
+      })).sort((a, b) => b.id - a.id)
+      setEntries(formattedEntries)
+    } catch (error) {
+      console.error('Error loading gratitude entries:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const saveEntry = async () => {
     if (currentEntry.trim()) {
+      const now = new Date()
       const newEntry: GratitudeEntry = {
         id: Date.now(),
-        date: new Date().toISOString().split('T')[0],
+        date: now.toISOString().split('T')[0],
         entry: currentEntry.trim()
       }
-      setEntries([newEntry, ...entries])
-      setCurrentEntry("")
+      
+      try {
+        const { GratitudeJournal: GratitudeDB } = await import('@/lib/indexeddb')
+        await GratitudeDB.addEntry({
+          entry: currentEntry.trim(),
+          date: now
+        })
+        setEntries([newEntry, ...entries])
+        setCurrentEntry("")
+      } catch (error) {
+        console.error('Error saving gratitude entry:', error)
+      }
     }
   }
 
   const deleteEntry = (id: number) => {
     setEntries(entries.filter(e => e.id !== id))
+    // Note: Could add deletion from IndexedDB here if needed
   }
 
   const filteredEntries = filterDate

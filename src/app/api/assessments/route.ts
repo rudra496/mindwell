@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
+import assessmentsData from '@/data/assessments.json'
 
 export async function GET() {
   try {
-    const assessments = await prisma.assessment.findMany({
-      orderBy: { name: 'asc' }
-    })
-    
-    return NextResponse.json(assessments)
+    // Return static data (no database required)
+    return NextResponse.json(assessmentsData)
   } catch (error) {
     console.error('Error fetching assessments:', error)
     return NextResponse.json(

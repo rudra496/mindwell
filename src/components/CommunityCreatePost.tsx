@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/select"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertTriangle, Loader2, Info } from "lucide-react"
+import { Community, type CommunityPost } from "@/lib/indexeddb"
+import { generateAnonymousUsername, detectCrisisLanguage } from "@/lib/community"
 
 interface CommunityCreatePostProps {
   open: boolean
@@ -38,6 +40,7 @@ export function CommunityCreatePost({
   const [triggerWarnings, setTriggerWarnings] = useState<string[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [showCrisisAlert, setShowCrisisAlert] = useState(false)
 
   const warningOptions = [
     "Self-harm",
@@ -64,23 +67,38 @@ export function CommunityCreatePost({
 
     setIsSubmitting(true)
     setError(null)
+    setShowCrisisAlert(false)
 
     try {
-      const response = await fetch("/api/community/posts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title: title.trim(),
-          content: content.trim(),
-          category,
-          hasWarning: triggerWarnings.length > 0,
-          warningText: triggerWarnings.length > 0 ? triggerWarnings.join(", ") : null
-        })
-      })
-
-      if (!response.ok) {
-        throw new Error("Failed to create post")
+      // Detect crisis language
+      const hasCrisisLanguage = detectCrisisLanguage(`${title} ${content}`)
+      
+      if (hasCrisisLanguage) {
+        setShowCrisisAlert(true)
       }
+      
+      // Generate anonymous username
+      const username = generateAnonymousUsername()
+      
+      // Create post object
+      const post: CommunityPost = {
+        id: `post-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        title: title.trim(),
+        content: content.trim(),
+        category,
+        anonymous: true,
+        username,
+        likes: 0,
+        hasWarning: triggerWarnings.length > 0 || hasCrisisLanguage,
+        warningText: triggerWarnings.length > 0 
+          ? triggerWarnings.join(", ") 
+          : (hasCrisisLanguage ? "Crisis/Self-Harm Discussion" : undefined),
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+      
+      // Save to IndexedDB
+      await Community.createPost(post)
 
       // Reset form
       setTitle("")
@@ -90,6 +108,7 @@ export function CommunityCreatePost({
       
       onPostCreated()
     } catch (err) {
+      console.error('Error creating post:', err)
       setError("Failed to create post. Please try again.")
     } finally {
       setIsSubmitting(false)
@@ -109,10 +128,24 @@ export function CommunityCreatePost({
         <Alert className="border-blue-200 bg-blue-50">
           <Info className="h-4 w-4 text-blue-600" />
           <AlertDescription className="text-sm text-blue-900">
-            <strong>Your privacy matters:</strong> All posts are anonymous. Your username is randomly generated. 
-            Do not share personal identifying information.
+            <strong>Your privacy matters:</strong> All posts are anonymous and stored locally in your browser. 
+            Your username is randomly generated. Do not share personal identifying information.
           </AlertDescription>
         </Alert>
+
+        {showCrisisAlert && (
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+              <strong>🚨 We detected language suggesting you may be in crisis.</strong>
+              <div className="mt-2 space-y-1">
+                <div>• Call or text <strong>988</strong> - Suicide & Crisis Lifeline (24/7)</div>
+                <div>• Text <strong>HELLO</strong> to <strong>741741</strong> - Crisis Text Line</div>
+                <div>• Call <strong>911</strong> or go to nearest emergency room</div>
+              </div>
+            </AlertDescription>
+          </Alert>
+        )}
 
         <div className="space-y-6">
           <div className="space-y-2">

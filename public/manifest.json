@@ -1,0 +1,43 @@
+{
+  "name": "MindWell - Mental Health Platform",
+  "short_name": "MindWell",
+  "description": "World's Largest Open-Source Mental Health Platform - 100% Free, 100% Private",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0d9488",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle", "medical"],
+  "shortcuts": [
+    {
+      "name": "Take Assessment",
+      "url": "/?action=assessment",
+      "description": "Take a mental health self-assessment"
+    },
+    {
+      "name": "Community",
+      "url": "/?action=community",
+      "description": "Connect with supportive community"
+    },
+    {
+      "name": "Crisis Resources",
+      "url": "/?action=crisis",
+      "description": "Get immediate crisis support"
+    }
+  ],
+  "prefer_related_applications": false
+}

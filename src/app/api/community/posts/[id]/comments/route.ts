@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
-import { generateAnonymousUsername } from '@/lib/community'
 
-// POST: Add comment/reply
+// This API route is for demonstration/compatibility only
+// The community feature uses client-side IndexedDB storage
+// See /src/lib/indexeddb.ts for implementation
+
 export async function POST(
   request: Request,
   context: { params: Promise<{ id: string }> }
@@ -19,36 +20,16 @@ export async function POST(
       )
     }
     
-    // Verify post exists
-    const post = await prisma.communityPost.findUnique({
-      where: { id: params.id }
+    return NextResponse.json({
+      success: true,
+      note: 'Comments are stored client-side via IndexedDB',
+      postId: params.id
     })
-    
-    if (!post) {
-      return NextResponse.json(
-        { error: 'Post not found' },
-        { status: 404 }
-      )
-    }
-    
-    // Generate anonymous username for commenter
-    const username = generateAnonymousUsername()
-    
-    // Create reply
-    const reply = await prisma.communityReply.create({
-      data: {
-        postId: params.id,
-        content,
-        username
-      }
-    })
-    
-    return NextResponse.json({ reply })
   } catch (error) {
-    console.error('Error creating comment:', error)
+    console.error('Error in community comments:', error)
     return NextResponse.json(
-      { error: 'Failed to create comment' },
-      { status: 500 }
+      { error: 'Invalid request' },
+      { status: 400 }
     )
   }
 }
