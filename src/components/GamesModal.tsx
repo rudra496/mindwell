@@ -3,12 +3,16 @@
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Smile } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Smile, Clock, Zap } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"
 import MoodTracker from "./games/MoodTracker"
 import GratitudeJournal from "./games/GratitudeJournal"
+import MemoryMatch from "./games/MemoryMatch"
+import ThoughtChallenger from "./games/ThoughtChallenger"
+import EmotionWheel from "./games/EmotionWheel"
+import MindfulnessTimer from "./games/MindfulnessTimer"
 
 const games = [
   {
@@ -26,6 +30,34 @@ const games = [
     color: 'text-indigo-600',
   },
   {
+    id: 'thought-challenger',
+    name: 'Thought Challenger',
+    description: 'CBT tool to challenge negative thoughts',
+    icon: Brain,
+    color: 'text-purple-600',
+  },
+  {
+    id: 'emotion-wheel',
+    name: 'Emotion Wheel',
+    description: 'Identify and name emotions with precision',
+    icon: Heart,
+    color: 'text-pink-600',
+  },
+  {
+    id: 'mindfulness-timer',
+    name: 'Mindfulness Timer',
+    description: 'Simple timer for meditation practice',
+    icon: Clock,
+    color: 'text-teal-600',
+  },
+  {
+    id: 'memory-match',
+    name: 'Memory Match',
+    description: 'Card matching for cognitive training',
+    icon: Zap,
+    color: 'text-orange-600',
+  },
+  {
     id: 'affirmations',
     name: 'Affirmations Spinner',
     description: 'Random positive affirmations to boost mood',
@@ -36,7 +68,7 @@ const games = [
     id: 'mood-tracker',
     name: 'Mood Tracker',
     description: 'Track your daily emotions and patterns',
-    icon: Heart,
+    icon: Smile,
     color: 'text-rose-600',
   },
   {
@@ -45,13 +77,6 @@ const games = [
     description: 'Daily gratitude practice for wellbeing',
     icon: BookHeart,
     color: 'text-pink-600',
-  },
-  {
-    id: 'thought-challenger',
-    name: 'Thought Challenger',
-    description: 'CBT tool to challenge negative thoughts (Coming Soon)',
-    icon: Brain,
-    color: 'text-purple-600',
   },
 ]
 
@@ -106,6 +131,46 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
     )
   }
 
+  if (selectedGame === 'memory-match') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <MemoryMatch />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'thought-challenger') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <ThoughtChallenger />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'emotion-wheel') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <EmotionWheel />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'mindfulness-timer') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <MindfulnessTimer />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
@@ -122,14 +187,12 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
         <div className="grid md:grid-cols-2 gap-4 py-4">
           {games.map((game) => {
             const Icon = game.icon
-            const isComingSoon = game.description.includes('Coming Soon')
             return (
               <Button
                 key={game.id}
                 variant="outline"
                 className="h-auto p-6 flex-col items-start gap-3 hover:border-primary"
-                onClick={() => !isComingSoon && setSelectedGame(game.id)}
-                disabled={isComingSoon}
+                onClick={() => setSelectedGame(game.id)}
               >
                 <Icon className={`h-8 w-8 ${game.color}`} />
                 <div className="text-left">
@@ -142,7 +205,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
         </div>
 
         <div className="text-sm text-gray-600 text-center">
-          More games coming soon! These tools are designed to help you practice mental wellness techniques.
+          These evidence-based tools help you practice mental wellness techniques interactively.
         </div>
       </DialogContent>
     </Dialog>
