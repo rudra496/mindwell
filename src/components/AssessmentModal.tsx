@@ -72,6 +72,51 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     return interpretations[0]
   }
 
+  const saveResults = async (score: number, interpretation: any) => {
+    if (!selectedAssessment) return
+    
+    try {
+      const { Assessments } = await import('@/lib/indexeddb')
+      await Assessments.saveResult({
+        assessmentId: selectedAssessment.id,
+        assessmentName: selectedAssessment.name,
+        answers,
+        score,
+        severity: interpretation.severity,
+        date: new Date()
+      })
+    } catch (error) {
+      console.error('Error saving assessment results:', error)
+    }
+  }
+
+  const exportResults = async () => {
+    if (!selectedAssessment) return
+    
+    const score = calculateScore()
+    const interpretation = getInterpretation(score, selectedAssessment)
+    
+    const exportData = {
+      assessment: selectedAssessment.name,
+      date: new Date().toISOString(),
+      score,
+      maxScore: JSON.parse(selectedAssessment.scoringGuide).maxScore,
+      severity: interpretation.severity,
+      description: interpretation.description,
+      recommendation: interpretation.recommendation
+    }
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${selectedAssessment.slug}-results-${new Date().toISOString().split('T')[0]}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
   if (!selectedAssessment) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -124,6 +169,9 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     const score = calculateScore()
     const interpretation = getInterpretation(score, selectedAssessment)
     const isCrisis = interpretation.severity === 'Severe'
+    
+    // Save results to IndexedDB
+    saveResults(score, interpretation)
 
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
@@ -164,6 +212,9 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             </div>
 
             <div className="space-y-2">
+              <Button onClick={exportResults} variant="outline" className="w-full">
+                📥 Export Results
+              </Button>
               <Button onClick={() => setSelectedAssessment(null)} variant="outline" className="w-full">
                 Take Another Assessment
               </Button>
@@ -173,7 +224,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             </div>
 
             <div className="text-xs text-gray-500 text-center">
-              Save or print these results to discuss with your healthcare provider
+              Results are automatically saved locally. Export to share with your healthcare provider.
             </div>
           </div>
         </DialogContent>

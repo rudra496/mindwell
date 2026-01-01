@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Smile, Meh, Frown, ThumbsUp, ThumbsDown, Heart } from "lucide-react"
@@ -27,8 +27,34 @@ export default function MoodTracker() {
   const [selectedMood, setSelectedMood] = useState<number | null>(null)
   const [note, setNote] = useState("")
   const [entries, setEntries] = useState<MoodEntry[]>([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  const saveMood = () => {
+  // Load entries from IndexedDB on mount
+  useEffect(() => {
+    loadEntries()
+  }, [])
+
+  const loadEntries = async () => {
+    try {
+      const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
+      const savedEntries = await MoodTrackerDB.getAllEntries()
+      // Convert dates and sort
+      const formattedEntries = savedEntries.map(e => ({
+        id: e.id || 0,
+        date: new Date(e.date).toISOString().split('T')[0],
+        time: new Date(e.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+        mood: e.mood,
+        note: e.notes || ''
+      })).sort((a, b) => b.id - a.id)
+      setEntries(formattedEntries)
+    } catch (error) {
+      console.error('Error loading mood entries:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const saveMood = async () => {
     if (selectedMood) {
       const now = new Date()
       const newEntry: MoodEntry = {
@@ -38,9 +64,20 @@ export default function MoodTracker() {
         mood: selectedMood,
         note: note.trim()
       }
-      setEntries([newEntry, ...entries])
-      setSelectedMood(null)
-      setNote("")
+      
+      try {
+        const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
+        await MoodTrackerDB.addEntry({
+          mood: selectedMood,
+          notes: note.trim(),
+          date: now
+        })
+        setEntries([newEntry, ...entries])
+        setSelectedMood(null)
+        setNote("")
+      } catch (error) {
+        console.error('Error saving mood entry:', error)
+      }
     }
   }
 
