@@ -9,10 +9,10 @@
     "start": "next start",
     "lint": "next lint",
     "export-data": "tsx scripts/export-data.ts",
-    "postinstall": "PRISMA_HIDE_UPDATE_MESSAGE=true PRISMA_DISABLE_UPDATE_CHECK=true prisma generate",
-    "prisma:generate": "prisma generate",
-    "prisma:push": "prisma db push",
-    "prisma:seed": "tsx prisma/seed.ts",
+    "postinstall": "CHECKPOINT_DISABLE=1 PRISMA_HIDE_UPDATE_MESSAGE=true PRISMA_DISABLE_UPDATE_CHECK=true prisma generate",
+    "prisma:generate": "CHECKPOINT_DISABLE=1 prisma generate",
+    "prisma:push": "CHECKPOINT_DISABLE=1 prisma db push",
+    "prisma:seed": "CHECKPOINT_DISABLE=1 tsx prisma/seed.ts",
     "prisma:studio": "prisma studio"
   },
   "dependencies": {

@@ -15,8 +15,8 @@ Create the most comprehensive, scientifically-backed mental health support platf
 
 ## ✨ Complete Features
 
-### 📚 Mental Health Disorders Database (63+)
-- **Comprehensive Coverage**: 63+ mental health conditions with detailed information
+### 📚 Mental Health Disorders Database (68+)
+- **Comprehensive Coverage**: 68+ mental health conditions with detailed information
 - **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Personality Disorders, Eating Disorders, Psychotic Disorders, and more
 - Each disorder includes:
   - 15-20 symptoms
