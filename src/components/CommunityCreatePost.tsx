@@ -106,11 +106,6 @@ export function CommunityCreatePost({
       setCategory("")
       setTriggerWarnings([])
       
-      // Small delay if crisis alert is shown
-      if (hasCrisisLanguage) {
-        await new Promise(resolve => setTimeout(resolve, 2000))
-      }
-      
       onPostCreated()
     } catch (err) {
       console.error('Error creating post:', err)

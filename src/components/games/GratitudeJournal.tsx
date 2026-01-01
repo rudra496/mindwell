@@ -30,8 +30,8 @@ export default function GratitudeJournal() {
     try {
       const { GratitudeJournal: GratitudeDB } = await import('@/lib/indexeddb')
       const savedEntries = await GratitudeDB.getAllEntries()
-      const formattedEntries = savedEntries.map(e => ({
-        id: e.id || Date.now(),
+      const formattedEntries = savedEntries.map((e, index) => ({
+        id: e.id || (Date.now() + index), // Use unique fallback
         date: new Date(e.date).toISOString().split('T')[0],
         entry: e.entry
       })).sort((a, b) => b.id - a.id)

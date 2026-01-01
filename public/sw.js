@@ -1,7 +1,6 @@
 // Service Worker for MindWell PWA
 // Enables offline functionality and caching
 
-const CACHE_NAME = 'mindwell-v1'
 const STATIC_CACHE = 'mindwell-static-v1'
 const DYNAMIC_CACHE = 'mindwell-dynamic-v1'
 

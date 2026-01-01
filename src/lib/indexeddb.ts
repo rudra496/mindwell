@@ -108,7 +108,10 @@ class IndexedDBManager {
     if (!this.db) {
       await this.init()
     }
-    return this.db!
+    if (!this.db) {
+      throw new Error('Failed to initialize IndexedDB. Database connection is not available.')
+    }
+    return this.db
   }
 
   // Generic CRUD operations

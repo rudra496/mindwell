@@ -39,8 +39,8 @@ export default function MoodTracker() {
       const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
       const savedEntries = await MoodTrackerDB.getAllEntries()
       // Convert dates and sort
-      const formattedEntries = savedEntries.map(e => ({
-        id: e.id || 0,
+      const formattedEntries = savedEntries.map((e, index) => ({
+        id: e.id || Date.now() + index, // Use unique fallback to prevent duplicate keys
         date: new Date(e.date).toISOString().split('T')[0],
         time: new Date(e.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
         mood: e.mood,
