@@ -66,7 +66,7 @@ export default function HomePage() {
           World's Largest Open-Source Mental Health Platform
         </p>
         <p className="text-md text-gray-600 max-w-3xl mx-auto">
-          Comprehensive, scientifically-backed, free mental health support with 40+ disorders, 
+          Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
           validated assessments, therapeutic games, meditation, and crisis resources.
         </p>
       </header>
@@ -92,7 +92,7 @@ export default function HomePage() {
               <CardTitle>Disorders Database</CardTitle>
             </div>
             <CardDescription>
-              40+ Mental Health Conditions
+              63+ Mental Health Conditions
             </CardDescription>
           </CardHeader>
           <CardContent>
