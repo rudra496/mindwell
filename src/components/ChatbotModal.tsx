@@ -25,6 +25,30 @@ export function ChatbotModal({ open, onOpenChange }: ChatbotModalProps) {
   const [showDisclaimer, setShowDisclaimer] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
+  // Load conversation history from IndexedDB on mount
+  useEffect(() => {
+    if (open) {
+      loadConversationHistory()
+    }
+  }, [open])
+
+  const loadConversationHistory = async () => {
+    try {
+      const { ChatHistory } = await import('@/lib/indexeddb')
+      const history = await ChatHistory.getAllMessages()
+      if (history.length > 0) {
+        const formattedMessages = history.flatMap(h => [
+          { role: "user" as const, content: h.message },
+          { role: "assistant" as const, content: h.response, showCrisis: h.crisisLevel === 'crisis' }
+        ])
+        setMessages(formattedMessages)
+        setShowDisclaimer(false)
+      }
+    } catch (error) {
+      console.error('Error loading chat history:', error)
+    }
+  }
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }
@@ -58,11 +82,26 @@ export function ChatbotModal({ open, onOpenChange }: ChatbotModalProps) {
 
       const data = await response.json()
       
-      setMessages(prev => [...prev, {
-        role: "assistant",
+      const assistantMessage = {
+        role: "assistant" as const,
         content: data.response,
-        showCrisis: data.crisisDetected
-      }])
+        showCrisis: data.crisisLevel === 'crisis'
+      }
+      
+      setMessages(prev => [...prev, assistantMessage])
+      
+      // Save to IndexedDB
+      try {
+        const { ChatHistory } = await import('@/lib/indexeddb')
+        await ChatHistory.addMessage({
+          message: userMessage,
+          response: data.response,
+          crisisLevel: data.crisisLevel,
+          timestamp: new Date()
+        })
+      } catch (error) {
+        console.error('Error saving chat message:', error)
+      }
     } catch (error) {
       setMessages(prev => [...prev, {
         role: "assistant",
@@ -77,9 +116,18 @@ export function ChatbotModal({ open, onOpenChange }: ChatbotModalProps) {
     setInput(prompt)
   }
 
-  const clearConversation = () => {
-    setMessages([])
-    setShowDisclaimer(true)
+  const clearConversation = async () => {
+    try {
+      const { ChatHistory } = await import('@/lib/indexeddb')
+      await ChatHistory.clearAll()
+      setMessages([])
+      setShowDisclaimer(true)
+    } catch (error) {
+      console.error('Error clearing chat history:', error)
+      // Still clear local state even if DB clear fails
+      setMessages([])
+      setShowDisclaimer(true)
+    }
   }
 
   return (
