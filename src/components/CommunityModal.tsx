@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -16,21 +16,7 @@ import { Plus, MessageCircle, ThumbsUp, AlertTriangle, Loader2, Users } from "lu
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { CommunityCreatePost } from "./CommunityCreatePost"
 import { CommunityPostDetail } from "./CommunityPostDetail"
-
-interface Post {
-  id: string
-  title: string
-  content: string
-  category: string
-  username: string
-  likes: number
-  hasWarning: boolean
-  warningText: string | null
-  createdAt: string
-  _count?: {
-    replies: number
-  }
-}
+import { Community, type CommunityPost } from "@/lib/indexeddb"
 
 interface CommunityModalProps {
   open: boolean
@@ -38,12 +24,12 @@ interface CommunityModalProps {
 }
 
 export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
-  const [posts, setPosts] = useState<Post[]>([])
+  const [posts, setPosts] = useState<CommunityPost[]>([])
   const [filteredCategory, setFilteredCategory] = useState<string>("all")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showCreatePost, setShowCreatePost] = useState(false)
-  const [selectedPost, setSelectedPost] = useState<Post | null>(null)
+  const [selectedPost, setSelectedPost] = useState<CommunityPost | null>(null)
 
   const categories = [
     "General Support",
@@ -60,32 +46,64 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     "Coping Strategies"
   ]
 
-  useEffect(() => {
-    if (open && !showCreatePost && !selectedPost) {
-      fetchPosts()
-    }
-  }, [open, showCreatePost, selectedPost, filteredCategory])
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setIsLoading(true)
     setError(null)
     try {
-      const url = filteredCategory && filteredCategory !== "all"
-        ? `/api/community/posts?category=${encodeURIComponent(filteredCategory)}`
-        : "/api/community/posts"
+      // Load posts from IndexedDB
+      let allPosts = await Community.getAllPosts()
       
-      const response = await fetch(url)
-      if (!response.ok) throw new Error("Failed to fetch posts")
-      const data = await response.json()
-      setPosts(data.posts)
+      // If no posts, load initial welcome post from API
+      if (allPosts.length === 0) {
+        try {
+          const response = await fetch('/api/community/posts')
+          const data = await response.json()
+          if (data.posts && data.posts.length > 0) {
+            // Save initial posts to IndexedDB
+            for (const post of data.posts) {
+              await Community.createPost({
+                ...post,
+                createdAt: new Date(post.createdAt),
+                updatedAt: new Date(post.updatedAt)
+              })
+            }
+            allPosts = await Community.getAllPosts()
+          }
+        } catch (apiError) {
+          console.log('API fetch failed, using empty posts')
+        }
+      }
+      
+      // Filter by category if needed
+      const filtered = filteredCategory && filteredCategory !== "all"
+        ? allPosts.filter(p => p.category === filteredCategory)
+        : allPosts
+      
+      // Sort by date (newest first)
+      filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      
+      // Add reply count
+      for (const post of filtered) {
+        const replies = await Community.getReplies(post.id)
+        post._count = { replies: replies.length }
+      }
+      
+      setPosts(filtered)
     } catch (err) {
+      console.error('Error loading posts:', err)
       setError("Failed to load community posts. Please try again.")
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [filteredCategory])
 
-  const formatDate = (dateString: string) => {
+  useEffect(() => {
+    if (open && !showCreatePost && !selectedPost) {
+      fetchPosts()
+    }
+  }, [open, showCreatePost, selectedPost, fetchPosts])
+
+  const formatDate = (dateString: string | Date) => {
     const date = new Date(dateString)
     const now = new Date()
     const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
@@ -139,6 +157,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
         onOpenChange={onOpenChange}
         post={selectedPost}
         onBack={() => setSelectedPost(null)}
+        onPostUpdate={fetchPosts}
       />
     )
   }
