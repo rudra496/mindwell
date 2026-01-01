@@ -15,11 +15,9 @@ Create the most comprehensive, scientifically-backed mental health support platf
 
 ## ✨ Complete Features
 
-### 📚 Mental Health Disorders Database (10+)
-- **5 Anxiety Disorders**: Panic Disorder, Social Anxiety, Agoraphobia, Specific Phobias, Selective Mutism, GAD
-- **Mood Disorders**: Major Depression, Bipolar I
-- **Trauma & Stress**: PTSD
-- **OCD-Related**: OCD
+### 📚 Mental Health Disorders Database (63+)
+- **Comprehensive Coverage**: 63+ mental health conditions with detailed information
+- **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Personality Disorders, Eating Disorders, Psychotic Disorders, and more
 - Each disorder includes:
   - 15-20 symptoms
   - Biological, psychological, and social causes
@@ -57,14 +55,14 @@ Create the most comprehensive, scientifically-backed mental health support platf
 8. **Mood Tracker** - Daily mood logging with statistics and patterns
 9. **Gratitude Journal** - Daily gratitude practice with prompts
 
-### 🤖 AI Support Chatbot (Enhanced with Puter.js)
-- **FREE AI integration** using Puter.js (no API key needed!)
-- 24/7 empathetic AI companion with intelligent responses
-- Advanced pattern matching fallback with 500+ responses
+### 🤖 AI Support Chatbot
+- **FREE Rule-Based Engine** - 500+ intelligent responses
+- **No API Key Required** - Works 100% offline
+- Advanced pattern matching for mental health support
 - Crisis keyword detection and immediate resources
-- Covers: depression, anxiety, stress, trauma, coping strategies, therapy guidance
+- Covers: depression, anxiety, stress, trauma, PTSD, OCD, bipolar, eating disorders, ADHD, relationships, grief, substance use
 - Coping strategies and psychoeducation
-- Suggested conversation prompts
+- Therapy and medication information
 - Immediate 988 crisis resource display
 
 ### 👥 Anonymous Community Forum

@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "export-data": "tsx scripts/export-data.ts",
+    "postinstall": "PRISMA_HIDE_UPDATE_MESSAGE=true PRISMA_DISABLE_UPDATE_CHECK=true prisma generate",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "prisma:seed": "tsx prisma/seed.ts",
