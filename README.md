@@ -46,16 +46,23 @@ Create the most comprehensive, scientifically-backed mental health support platf
 - Crisis detection for severe scores
 - Professional recommendations
 
-### 🎮 Therapeutic Games & Activities (5)
+### 🎮 Therapeutic Games & Activities (9)
 1. **Breathing Circle** - 4-7-8 breathing technique for instant calm
 2. **5-4-3-2-1 Grounding** - Sensory grounding for anxiety and panic
-3. **Affirmations Spinner** - Random positive affirmations with save feature
-4. **Mood Tracker** - Daily mood logging with statistics and patterns
-5. **Gratitude Journal** - Daily gratitude practice with prompts
+3. **Thought Challenger** - CBT tool to challenge negative automatic thoughts
+4. **Emotion Wheel** - Identify and name emotions with greater precision
+5. **Mindfulness Timer** - Customizable meditation timer with visual progress
+6. **Memory Match** - Card matching game for cognitive training
+7. **Affirmations Spinner** - Random positive affirmations with save feature
+8. **Mood Tracker** - Daily mood logging with statistics and patterns
+9. **Gratitude Journal** - Daily gratitude practice with prompts
 
-### 🤖 AI Support Chatbot
-- 24/7 empathetic AI companion
-- Crisis keyword detection
+### 🤖 AI Support Chatbot (Enhanced with Puter.js)
+- **FREE AI integration** using Puter.js (no API key needed!)
+- 24/7 empathetic AI companion with intelligent responses
+- Advanced pattern matching fallback with 500+ responses
+- Crisis keyword detection and immediate resources
+- Covers: depression, anxiety, stress, trauma, coping strategies, therapy guidance
 - Coping strategies and psychoeducation
 - Suggested conversation prompts
 - Immediate 988 crisis resource display

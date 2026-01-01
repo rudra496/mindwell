@@ -74,18 +74,56 @@ export function ChatbotModal({ open, onOpenChange }: ChatbotModalProps) {
     setShowDisclaimer(false)
 
     try {
-      const response = await fetch("/api/chatbot", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage })
-      })
+      // Try Puter.js AI first (client-side)
+      let response
+      let crisisLevel = 'low'
+      
+      if (typeof window !== 'undefined' && (window as any).puter?.ai?.chat) {
+        try {
+          const aiResponse = await (window as any).puter.ai.chat(userMessage, {
+            model: 'gpt-4o-mini',
+            systemPrompt: `You are MindWell, a compassionate mental health support assistant. 
+You provide evidence-based information, emotional support, and coping strategies.
+You NEVER diagnose. You ALWAYS recommend professional help for serious concerns.
+You detect crisis situations and provide immediate resources (988 Suicide & Crisis Lifeline).
+You are warm, empathetic, and non-judgmental.`,
+            temperature: 0.7
+          })
+          
+          response = aiResponse
+          
+          // Detect crisis level from user message
+          const lowerMsg = userMessage.toLowerCase()
+          if (/suicide|suicidal|kill myself|want to die|self-harm|end my life/.test(lowerMsg)) {
+            crisisLevel = 'crisis'
+          } else if (/hopeless|worthless|can't go on/.test(lowerMsg)) {
+            crisisLevel = 'high-risk'
+          } else if (/anxious|anxiety|panic|stressed/.test(lowerMsg)) {
+            crisisLevel = 'moderate'
+          }
+        } catch (aiError) {
+          console.log('Puter.js AI not available, using fallback')
+          // Fall through to API fallback
+        }
+      }
+      
+      // If Puter.js didn't work, use API fallback
+      if (!response) {
+        const apiResponse = await fetch("/api/chatbot", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userMessage })
+        })
 
-      const data = await response.json()
+        const data = await apiResponse.json()
+        response = data.response
+        crisisLevel = data.crisisLevel
+      }
       
       const assistantMessage = {
         role: "assistant" as const,
-        content: data.response,
-        showCrisis: data.crisisLevel === 'crisis'
+        content: response,
+        showCrisis: crisisLevel === 'crisis'
       }
       
       setMessages(prev => [...prev, assistantMessage])
@@ -95,8 +133,8 @@ export function ChatbotModal({ open, onOpenChange }: ChatbotModalProps) {
         const { ChatHistory } = await import('@/lib/indexeddb')
         await ChatHistory.addMessage({
           message: userMessage,
-          response: data.response,
-          crisisLevel: data.crisisLevel,
+          response: response,
+          crisisLevel: crisisLevel,
           timestamp: new Date()
         })
       } catch (error) {

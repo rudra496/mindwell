@@ -35,6 +35,12 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body className="font-sans antialiased">
+        {/* Puter.js for free AI chatbot */}
+        <Script 
+          src="https://js.puter.com/v2/" 
+          strategy="beforeInteractive"
+        />
+        
         <div className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
           {children}
         </div>
