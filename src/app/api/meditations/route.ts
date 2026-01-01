@@ -3,8 +3,8 @@ import meditationsData from '@/data/meditations.json'
 
 export async function GET() {
   try {
-    // Return static data (no database required)
-    return NextResponse.json(meditationsData)
+    // Return static data wrapped in expected format
+    return NextResponse.json({ meditations: meditationsData })
   } catch (error) {
     console.error('Error fetching meditations:', error)
     return NextResponse.json(
