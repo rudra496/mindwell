@@ -41,9 +41,9 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
         
-        <div className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
+        <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
           {children}
-        </div>
+        </main>
         
         {/* Service Worker Registration */}
         <Script id="register-sw" strategy="afterInteractive">
