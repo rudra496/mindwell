@@ -1,20 +1,59 @@
-import { NextResponse } from 'next/server'
-import { getFallbackResponse } from '@/lib/chat-fallback'
+import { NextRequest, NextResponse } from 'next/server'
+import { generateChatbotResponse } from '@/lib/chatbot-engine'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { message, conversationHistory } = await request.json()
-    
-    if (!message || typeof message !== 'string') {
+    // Parse request body with error handling
+    let body;
+    try {
+      body = await request.json()
+    } catch (parseError) {
       return NextResponse.json(
-        { error: 'Message is required' },
-        { status: 400 }
+        { 
+          response: "I'm having trouble understanding your message. Please try again.",
+          crisisLevel: 'normal'
+        },
+        { status: 200 } // Return 200 so client doesn't show error
       )
     }
     
-    // Use the enhanced fallback system with pattern matching
-    // Note: Puter.js AI is attempted client-side in the modal component
-    const result = getFallbackResponse(message, detectCrisisLevel(message))
+    const { message } = body
+    
+    // Validate message
+    if (!message || typeof message !== 'string') {
+      return NextResponse.json(
+        { 
+          response: "Please send a message so I can help you.",
+          crisisLevel: 'normal'
+        },
+        { status: 200 }
+      )
+    }
+    
+    // Trim and validate message length
+    const trimmedMessage = message.trim()
+    if (trimmedMessage.length === 0) {
+      return NextResponse.json(
+        { 
+          response: "Please send a message so I can help you.",
+          crisisLevel: 'normal'
+        },
+        { status: 200 }
+      )
+    }
+    
+    if (trimmedMessage.length > 5000) {
+      return NextResponse.json(
+        { 
+          response: "Your message is too long. Please keep it under 5000 characters.",
+          crisisLevel: 'normal'
+        },
+        { status: 200 }
+      )
+    }
+    
+    // Generate response using the comprehensive chatbot engine
+    const result = generateChatbotResponse(trimmedMessage)
     
     // Return response with metadata
     return NextResponse.json({
@@ -25,56 +64,41 @@ export async function POST(request: Request) {
     })
     
   } catch (error) {
-    console.error('Chatbot error:', error)
+    // Log error for debugging but don't expose details to client
+    console.error('Chatbot API error:', error)
+    
+    // Return a helpful fallback response instead of an error
     return NextResponse.json(
-      { error: 'Failed to process message' },
-      { status: 500 }
+      { 
+        response: "I'm having trouble right now. Please try again or reach out to 988 if you're in crisis.",
+        crisisLevel: 'normal',
+        timestamp: new Date().toISOString()
+      },
+      { status: 200 } // Return 200 so client doesn't show error page
     )
   }
 }
 
-function detectCrisisLevel(message: string): 'crisis' | 'high-risk' | 'moderate' | 'low' {
-  const lowerMessage = message.toLowerCase()
-  
-  const crisisKeywords = [
-    'suicide', 'suicidal', 'kill myself', 'end my life', 'want to die',
-    'self-harm', 'self harm', 'cut myself', 'hurt myself', 'harm myself',
-    'overdose', 'end it all', 'better off dead', 'no reason to live',
-    'going to die', 'plan to kill', 'goodbye cruel world'
-  ]
-  
-  const highRiskKeywords = [
-    'depressed', 'hopeless', 'worthless', 'can\'t go on', 'give up',
-    'no point', 'unbearable', 'can\'t take it', 'too much pain'
-  ]
-  
-  if (crisisKeywords.some(keyword => lowerMessage.includes(keyword))) {
-    return 'crisis'
-  }
-  
-  if (highRiskKeywords.some(keyword => lowerMessage.includes(keyword))) {
-    return 'high-risk'
-  }
-  
-  if (lowerMessage.match(/anxious|anxiety|panic|worried|scared|afraid|stressed/)) {
-    return 'moderate'
-  }
-  
-  return 'low'
-}
-
-// Optional: GET endpoint for chatbot info
+// GET endpoint for chatbot info
 export async function GET() {
   return NextResponse.json({
     message: 'Mental Health Support Chatbot',
-    description: 'An AI assistant providing mental health education, resources, and crisis support.',
+    description: 'A comprehensive mental health chatbot providing education, resources, and crisis support with 500+ responses.',
     capabilities: [
       'Crisis detection and intervention',
-      'Mental health education',
+      'Mental health education (depression, anxiety, PTSD, OCD, bipolar, eating disorders, ADHD, etc.)',
+      'Coping strategies and techniques',
       'Resource recommendations',
-      'Coping strategy suggestions',
-      'Assessment tool guidance'
+      'Assessment tool guidance',
+      'Therapy and medication information',
+      'Sleep, stress, and relationship guidance'
     ],
-    disclaimer: 'This chatbot is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. In crisis, call 988.'
+    features: [
+      '500+ intelligent responses',
+      'Pattern-matched mental health support',
+      'Crisis keyword detection',
+      'Empathetic and evidence-based advice'
+    ],
+    disclaimer: 'This chatbot is for educational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. In crisis, call 988 or text HELLO to 741741.'
   })
 }
