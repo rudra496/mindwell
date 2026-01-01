@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
+import disordersData from '@/data/disorders.json'
 
 export async function GET(
   request: Request,
@@ -7,9 +7,8 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
-    const disorder = await prisma.disorder.findUnique({
-      where: { slug }
-    })
+    // Find disorder in static data
+    const disorder = disordersData.find((d: any) => d.slug === slug)
     
     if (!disorder) {
       return NextResponse.json(

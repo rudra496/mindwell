@@ -1,0 +1,93 @@
+[
+  {
+    "id": "cmjuzxu1i0010h67nar2nvn2t",
+    "slug": "grounding-5-4-3-2-1",
+    "name": "5-4-3-2-1 Grounding Technique",
+    "category": "Mindfulness",
+    "description": "A sensory awareness technique to ground you in the present moment, especially helpful for anxiety, panic, dissociation, or flashbacks.",
+    "steps": "[\"Pause and take a deep breath\",\"Look around and name 5 things you can SEE\",\"Notice 4 things you can TOUCH (describe the texture)\",\"Listen for 3 things you can HEAR\",\"Identify 2 things you can SMELL (or 2 smells you like)\",\"Notice 1 thing you can TASTE\",\"Take another deep breath\",\"Notice how you feel now compared to when you started\"]",
+    "examples": "[\"See: door, window, tree, phone, cup\",\"Touch: soft fabric, cool table, rough carpet, smooth phone\",\"Hear: birds chirping, traffic, refrigerator humming\",\"Smell: coffee, fresh air\",\"Taste: mint from toothpaste\"]",
+    "when": "Use during panic attacks, anxiety, dissociation, flashbacks, or feeling disconnected",
+    "benefits": "[\"Immediately grounds you in present\",\"Interrupts panic and anxiety\",\"Reduces dissociation\",\"Can be done anywhere\",\"No equipment needed\",\"Works for PTSD flashbacks\",\"Helps with intrusive thoughts\"]",
+    "createdAt": "2026-01-01T05:20:24.919Z",
+    "updatedAt": "2026-01-01T05:20:24.919Z"
+  },
+  {
+    "id": "cmjuzxu1f000yh67nlg04ru2v",
+    "slug": "behavioral-activation",
+    "name": "Behavioral Activation",
+    "category": "CBT",
+    "description": "A therapeutic approach that helps overcome depression by increasing engagement in meaningful, value-driven activities.",
+    "steps": "[\"Monitor current activities and mood\",\"Identify values and meaningful activities\",\"Set specific, achievable goals\",\"Schedule activities on calendar\",\"Start with small, manageable steps\",\"Track completion and mood changes\",\"Gradually increase difficulty and frequency\",\"Reflect on progress and adjust plan\"]",
+    "examples": "[\"Schedule a 10-minute walk daily\",\"Call a friend once per week\",\"Cook a healthy meal\",\"Work on a hobby for 20 minutes\",\"Complete one household task\",\"Attend a social event\"]",
+    "when": "When experiencing depression, low motivation, social withdrawal, or loss of interest",
+    "benefits": "[\"Reduces depressive symptoms\",\"Increases positive emotions\",\"Improves sense of accomplishment\",\"Combats avoidance\",\"Increases social connection\",\"Evidence-based for depression\"]",
+    "createdAt": "2026-01-01T05:20:24.915Z",
+    "updatedAt": "2026-01-01T05:20:24.915Z"
+  },
+  {
+    "id": "cmjuzxu1d000xh67nktryv1p7",
+    "slug": "cognitive-restructuring",
+    "name": "Cognitive Restructuring",
+    "category": "CBT",
+    "description": "A core CBT technique for identifying and challenging negative thought patterns and replacing them with more balanced, realistic thoughts.",
+    "steps": "[\"Identify the situation that triggered negative emotions\",\"Notice your automatic thoughts (what went through your mind)\",\"Identify the emotions and rate their intensity (0-100)\",\"Examine the evidence for and against the thought\",\"Look for cognitive distortions (all-or-nothing, catastrophizing, etc.)\",\"Generate alternative, more balanced thoughts\",\"Re-rate the emotion intensity\",\"Plan behavioral response based on new perspective\"]",
+    "examples": "[\"Thought: \\\"I'm a complete failure\\\" → Balanced: \\\"I made a mistake, but I've succeeded at many things\\\"\",\"Thought: \\\"Everyone thinks I'm stupid\\\" → Balanced: \\\"I don't actually know what others think. Some people appreciate my contributions\\\"\",\"Thought: \\\"This is a disaster\\\" → Balanced: \\\"This is difficult, but I can handle it. It's not the end of the world\\\"\"]",
+    "when": "When experiencing distressing emotions, negative self-talk, or cognitive distortions",
+    "benefits": "[\"Reduces depression and anxiety\",\"Increases emotional regulation\",\"Improves self-esteem\",\"Enhances problem-solving\",\"Reduces rumination\",\"Evidence-based and well-researched\"]",
+    "createdAt": "2026-01-01T05:20:24.914Z",
+    "updatedAt": "2026-01-01T05:20:24.914Z"
+  },
+  {
+    "id": "cmjuzxu1q0012h67nvrz0xqsj",
+    "slug": "opposite-action",
+    "name": "Opposite Action",
+    "category": "DBT",
+    "description": "When emotion doesn't fit facts, doing opposite of emotional urge can change the emotion.",
+    "steps": "[\"Identify emotion and intensity (0-100)\",\"Name the action urge\",\"Check facts: Does emotion fit situation?\",\"If not, commit to opposite action\",\"Do COMPLETE opposite\",\"Include opposite body language\",\"Repeat until emotion changes\",\"Track emotion intensity after\"]",
+    "examples": "[\"Fear: Avoid → Opposite: Approach\",\"Anger: Attack → Opposite: Be kind\",\"Shame: Hide → Opposite: Share openly\",\"Sadness: Isolate → Opposite: Reach out\",\"Guilt: Apologize → Opposite: Act confidently\"]",
+    "when": "When emotion doesn't fit facts, too intense, or action urge would worsen situation",
+    "benefits": "[\"Changes emotions from outside-in\",\"Breaks unhelpful patterns\",\"Builds emotional flexibility\",\"Reduces depression and anxiety\",\"Increases mastery over emotions\",\"Backed by science\",\"Empowering\"]",
+    "createdAt": "2026-01-01T05:20:24.926Z",
+    "updatedAt": "2026-01-01T05:20:24.926Z"
+  },
+  {
+    "id": "cmjuzxu1k0011h67nh6kifidu",
+    "slug": "radical-acceptance",
+    "name": "Radical Acceptance",
+    "category": "DBT",
+    "description": "A DBT skill for accepting reality as it is, even when painful, to reduce suffering and create space for change.",
+    "steps": "[\"Notice what you're resisting\",\"Acknowledge: \\\"This is the situation right now\\\"\",\"Observe your body's reaction to non-acceptance\",\"Remember: Acceptance ≠ approval\",\"Choose to accept with your whole self\",\"Return to acceptance if you start fighting\",\"Ask: \\\"What can I do now that I've accepted this?\\\"\",\"Practice with breath: \\\"I accept this moment\\\"\"]",
+    "examples": "[\"Chronic illness: \\\"This is my reality. Fighting it causes more suffering.\\\"\",\"Past trauma: \\\"It happened. I can't change the past.\\\"\",\"Rejection: \\\"They said no. Fighting won't change it.\\\"\",\"Mistake: \\\"I messed up. Beating myself up won't undo it.\\\"\"]",
+    "when": "When fighting unchangeable reality, \"should\" thinking causes suffering, or stuck in rumination",
+    "benefits": "[\"Reduces suffering\",\"Frees energy for action\",\"Reduces depression and rumination\",\"Helps process grief\",\"Reduces physical tension\",\"Opens path to change\",\"Essential for trauma recovery\"]",
+    "createdAt": "2026-01-01T05:20:24.920Z",
+    "updatedAt": "2026-01-01T05:20:24.920Z"
+  },
+  {
+    "id": "cmjuzxu1s0013h67nd9b48rrh",
+    "slug": "safety-planning",
+    "name": "Safety Planning",
+    "category": "Crisis Intervention",
+    "description": "A crisis tool to help you stay safe when experiencing suicidal thoughts or self-harm urges.",
+    "steps": "[\"Warning signs: Identify crisis-triggering thoughts/moods\",\"Internal coping: Things you can do alone\",\"People/places: Social settings for distraction\",\"Support contacts: People to call\",\"Professional contacts: Therapist, crisis line, hospital\",\"Means safety: Remove lethal means\",\"Reasons for living: What makes life worth living\",\"Keep plan accessible: Phone, wallet, visible\"]",
+    "examples": "[\"Warning signs: \\\"Everything is hopeless\\\", self-harm images, numbness\",\"Internal coping: Music, shower, comfort show, pet, breathing\",\"Social settings: Coffee shop, library, friend's house\",\"Support contacts: Best friend, family, sponsor\",\"Professionals: Therapist, 988 Lifeline, hospital\",\"Reasons: My kids, my dog, travel dreams, recovery goals\"]",
+    "when": "Create when stable. Review regularly. Use when warning signs appear or in crisis.",
+    "benefits": "[\"Reduces suicide risk\",\"Provides concrete steps\",\"Interrupts crisis escalation\",\"Reminds you of coping skills\",\"Connects to support\",\"Evidence-based\",\"Can be life-saving\"]",
+    "createdAt": "2026-01-01T05:20:24.928Z",
+    "updatedAt": "2026-01-01T05:20:24.928Z"
+  },
+  {
+    "id": "cmjuzxu1g000zh67njumbk5rr",
+    "slug": "dbt-wise-mind",
+    "name": "Wise Mind",
+    "category": "DBT",
+    "description": "A DBT concept representing the balance between emotional mind and reasonable mind, where intuition and logic work together.",
+    "steps": "[\"Recognize when you're in emotion mind (all feelings, impulsive)\",\"Recognize when you're in reasonable mind (all logic, cold)\",\"Find a quiet space for reflection\",\"Practice mindfulness to center yourself\",\"Ask: \\\"What does my emotion mind say?\\\" Listen without judgment\",\"Ask: \\\"What does my reasonable mind say?\\\" Consider facts\",\"Seek the synthesis: \\\"What does my wise mind know?\\\" Intuitive knowing\",\"Trust the balanced answer that emerges\"]",
+    "examples": "[\"Emotion mind: \\\"I hate my job! I should quit right now!\\\" Reasonable: \\\"It's just a job, emotions don't matter\\\" Wise mind: \\\"I'm unhappy here. Let me explore options while maintaining stability\\\"\",\"Emotion mind: \\\"I love them! I should tell them immediately!\\\" Reasonable: \\\"Love is illogical\\\" Wise mind: \\\"These feelings are real and important. I'll express them when timing is right\\\"\"]",
+    "when": "When making important decisions, when emotions are overwhelming, or when being too logical",
+    "benefits": "[\"Better decision making\",\"Emotional balance\",\"Increased self-trust\",\"Reduces impulsivity\",\"Integrates thinking and feeling\",\"Improves relationships\"]",
+    "createdAt": "2026-01-01T05:20:24.917Z",
+    "updatedAt": "2026-01-01T05:20:24.917Z"
+  }
+]

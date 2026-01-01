@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '@/lib/db'
+import therapyTechniquesData from '@/data/therapy-techniques.json'
 
 export async function GET() {
   try {
-    const techniques = await prisma.therapyTechnique.findMany({
-      orderBy: { name: 'asc' }
-    })
-    
-    return NextResponse.json(techniques)
+    // Return static data (no database required)
+    return NextResponse.json(therapyTechniquesData)
   } catch (error) {
     console.error('Error fetching therapy techniques:', error)
     return NextResponse.json(
