@@ -3796,6 +3796,879 @@ async function main() {
         'Severity based on level of impairment and need for intervention'
       ])
     },
+    // SUBSTANCE USE DISORDERS
+    {
+      slug: 'alcohol-use-disorder',
+      name: 'Alcohol Use Disorder (AUD)',
+      category: 'Substance Use Disorders',
+      description: 'A chronic disease characterized by compulsive alcohol use, loss of control over alcohol intake, and negative emotional state when not drinking.',
+      symptoms: JSON.stringify([
+        'Drinking more or longer than intended',
+        'Unsuccessful attempts to cut down or stop',
+        'Spending significant time obtaining, using, or recovering from alcohol',
+        'Cravings or strong urges to drink',
+        'Failing to fulfill obligations due to drinking',
+        'Continuing despite social or relationship problems',
+        'Giving up activities for drinking',
+        'Drinking in hazardous situations (driving)',
+        'Continuing despite physical or psychological problems',
+        'Tolerance (need more to get same effect)',
+        'Withdrawal symptoms when stopping',
+        'Blackouts or memory loss',
+        'Drinking alone or hiding drinking',
+        'Neglecting hygiene or appearance',
+        'Personality changes when drinking'
+      ]),
+      biologicalCauses: JSON.stringify([
+        'Genetic predisposition (50-60% heritability)',
+        'Altered brain reward pathways',
+        'Changes in dopamine and GABA systems',
+        'Neuroplasticity changes with chronic use',
+        'Family history increases risk 4x',
+        'Acetaldehyde metabolism differences'
+      ]),
+      psychologicalCauses: JSON.stringify([
+        'Using alcohol to cope with stress or emotions',
+        'Low self-esteem',
+        'History of trauma',
+        'Impulsivity',
+        'Sensation-seeking personality',
+        'Depression or anxiety disorders',
+        'Poor coping skills'
+      ]),
+      socialCauses: JSON.stringify([
+        'Easy availability of alcohol',
+        'Social/cultural acceptance of drinking',
+        'Peer pressure',
+        'Stressful environment',
+        'Lack of support system',
+        'Early exposure to alcohol',
+        'Media glorification of drinking',
+        'Economic factors'
+      ]),
+      prevalence: '14.5 million Americans age 12+ had AUD in 2019 (NIAAA). 5.8% of adults.',
+      ageOfOnset: 'Can begin at any age. Highest rates of onset in late teens to early 20s.',
+      courseOfIllness: 'Progressive if untreated. Can lead to liver disease, brain damage, social problems. Recovery possible with treatment.',
+      riskFactors: JSON.stringify([
+        'Starting drinking at young age',
+        'Family history of alcoholism',
+        'Mental health disorders',
+        'History of trauma',
+        'High stress',
+        'Peer drinking',
+        'Low socioeconomic status',
+        'Male gender (higher rates)',
+        'Certain occupations'
+      ]),
+      protectiveFactors: JSON.stringify([
+        'Strong family bonds',
+        'Religious/spiritual involvement',
+        'Healthy coping skills',
+        'Supportive environment',
+        'Access to treatment',
+        'Education about risks',
+        'Delaying first drink',
+        'Involvement in positive activities'
+      ]),
+      comorbidities: JSON.stringify([
+        'Depression (30-40%)',
+        'Anxiety disorders (20-30%)',
+        'Bipolar disorder',
+        'PTSD',
+        'Other substance use disorders',
+        'Antisocial personality disorder',
+        'Liver disease',
+        'Cardiovascular disease'
+      ]),
+      naturalSolutions: JSON.stringify([
+        'Complete abstinence (most effective)',
+        'Attend AA or other support groups',
+        'Build sober support network',
+        'Identify and avoid triggers',
+        'Develop healthy coping mechanisms',
+        'Exercise regularly',
+        'Mindfulness and meditation',
+        'Therapy (CBT, motivational interviewing)',
+        'Address co-occurring mental health issues',
+        'Create structured daily routine',
+        'Find meaningful activities',
+        'Volunteer or help others in recovery',
+        'Practice self-care',
+        'Get adequate sleep',
+        'Manage stress',
+        'Celebrate milestones',
+        'Be patient with yourself',
+        'Plan for relapse prevention',
+        'Remove alcohol from home',
+        'Tell people about your goals'
+      ]),
+      nutritionalRecs: JSON.stringify([
+        'B-complex vitamins (depleted by alcohol)',
+        'Thiamine (B1) supplement to prevent Wernicke-Korsakoff',
+        'Magnesium for nervous system',
+        'Zinc for immune function',
+        'Vitamin C for liver support',
+        'Milk thistle for liver health',
+        'Omega-3 fatty acids for brain health',
+        'Protein for healing',
+        'Complex carbohydrates for energy',
+        'Stay well-hydrated',
+        'Avoid caffeine excess',
+        'L-glutamine to reduce cravings',
+        'Healthy fats',
+        'Antioxidant-rich foods',
+        'Regular balanced meals'
+      ]),
+      therapyApproaches: JSON.stringify([
+        'Medical detox (if physically dependent)',
+        'Cognitive-Behavioral Therapy (CBT)',
+        'Motivational Interviewing',
+        'Medication: Naltrexone, Acamprosate, Disulfiram',
+        '12-Step programs (AA)',
+        'SMART Recovery',
+        'Contingency management',
+        'Family therapy',
+        'Group therapy',
+        'Residential treatment (if severe)',
+        'Intensive outpatient programs',
+        'Relapse prevention training'
+      ]),
+      whenToSeekHelp: JSON.stringify([
+        'Unable to control drinking',
+        'Drinking causing problems in life',
+        'Withdrawal symptoms when stopping',
+        'Failed attempts to quit',
+        'Health problems from drinking',
+        'Relationship damage',
+        'Work or school problems',
+        'Legal issues',
+        'Hiding drinking or lying about it',
+        'Drinking in dangerous situations'
+      ]),
+      crisisResources: JSON.stringify([
+        'SAMHSA National Helpline: 1-800-662-4357 (24/7, free)',
+        'Alcoholics Anonymous: aa.org',
+        'SMART Recovery: smartrecovery.org',
+        'Local detox facilities',
+        'Emergency room if severe withdrawal'
+      ]),
+      researchLinks: JSON.stringify([
+        'https://www.niaaa.nih.gov/',
+        'https://www.samhsa.gov/find-help/national-helpline',
+        'https://pubmed.ncbi.nlm.nih.gov/32978715/ - AUD treatment',
+        'https://www.aa.org/'
+      ]),
+      dsmCriteria: JSON.stringify([
+        'Problematic pattern of alcohol use leading to impairment or distress',
+        '2+ of following in 12-month period:',
+        'Drinking more/longer than intended',
+        'Persistent desire or unsuccessful efforts to cut down',
+        'Great deal of time spent on alcohol-related activities',
+        'Craving or strong desire to drink',
+        'Failure to fulfill major obligations',
+        'Continued use despite social/interpersonal problems',
+        'Important activities given up',
+        'Recurrent use in hazardous situations',
+        'Continued despite physical/psychological problems',
+        'Tolerance',
+        'Withdrawal',
+        'Severity: Mild (2-3 criteria), Moderate (4-5), Severe (6+)'
+      ])
+    },
+    {
+      slug: 'adhd',
+      name: 'Attention-Deficit/Hyperactivity Disorder (ADHD)',
+      category: 'Neurodevelopmental Disorders',
+      description: 'A neurodevelopmental disorder characterized by persistent inattention, hyperactivity, and/or impulsivity that interferes with functioning.',
+      symptoms: JSON.stringify([
+        'Difficulty sustaining attention on tasks',
+        'Easily distracted by external stimuli',
+        'Difficulty organizing tasks and activities',
+        'Loses things necessary for tasks',
+        'Forgetful in daily activities',
+        'Fails to give close attention to details',
+        'Difficulty following through on instructions',
+        'Avoids tasks requiring sustained mental effort',
+        'Fidgets or squirms in seat',
+        'Leaves seat when remaining seated expected',
+        'Talks excessively',
+        'Blurts out answers',
+        'Difficulty waiting turn',
+        'Interrupts or intrudes on others',
+        'Feels restless internally (adults)'
+      ]),
+      biologicalCauses: JSON.stringify([
+        'Strong genetic component (70-80% heritability)',
+        'Differences in brain structure (prefrontal cortex, basal ganglia)',
+        'Dopamine and norepinephrine dysregulation',
+        'Delayed brain maturation',
+        'Prenatal exposure to toxins, alcohol, or nicotine',
+        'Low birth weight or premature birth'
+      ]),
+      psychologicalCauses: JSON.stringify([
+        'Executive function deficits',
+        'Difficulty with working memory',
+        'Impaired inhibitory control',
+        'Time perception difficulties',
+        'Emotional dysregulation',
+        'Motivational deficits'
+      ]),
+      socialCauses: JSON.stringify([
+        'Early childhood adversity',
+        'Chaotic or stressful environment',
+        'Inconsistent parenting',
+        'Limited structure and routine',
+        'Overstimulating environment',
+        'High-stress family dynamics',
+        'Lack of support'
+      ]),
+      prevalence: '9.4% of U.S. children ages 2-17 (6.1 million). 4.4% of adults. More common in males (ADHD.org).',
+      ageOfOnset: 'Symptoms must be present before age 12. Often diagnosed in elementary school years.',
+      courseOfIllness: 'Chronic, lifelong condition. Symptoms may change with age. Hyperactivity often decreases in adults.',
+      riskFactors: JSON.stringify([
+        'Family history of ADHD',
+        'Prenatal exposure to substances',
+        'Premature birth',
+        'Low birth weight',
+        'Brain injury',
+        'Environmental toxins (lead)',
+        'Male gender',
+        'Early childhood adversity'
+      ]),
+      protectiveFactors: JSON.stringify([
+        'Early diagnosis and treatment',
+        'Structured environment',
+        'Consistent routines',
+        'Supportive family',
+        'Accommodations at school/work',
+        'Exercise and physical activity',
+        'Medication when appropriate',
+        'Learning coping strategies'
+      ]),
+      comorbidities: JSON.stringify([
+        'Learning disabilities (30-50%)',
+        'Anxiety disorders (25-35%)',
+        'Depression (18%)',
+        'Oppositional defiant disorder',
+        'Conduct disorder',
+        'Substance use disorders (adults)',
+        'Sleep disorders',
+        'Autism spectrum disorder (overlap)'
+      ]),
+      naturalSolutions: JSON.stringify([
+        'Regular exercise (30+ min daily)',
+        'Structured daily routine',
+        'Break tasks into smaller steps',
+        'Use timers and reminders',
+        'Minimize distractions when working',
+        'Organization systems',
+        'Adequate sleep (consistent schedule)',
+        'Limit screen time',
+        'Mindfulness meditation',
+        'Cognitive-behavioral strategies',
+        'Dietary approaches (limit sugar, food dyes)',
+        'Omega-3 supplements',
+        'Time management tools',
+        'External motivation systems',
+        'Body doubling (work alongside others)',
+        'Fidget tools',
+        'Movement breaks',
+        'Visual schedules',
+        'Accountability partner',
+        'Celebrate small wins'
+      ]),
+      nutritionalRecs: JSON.stringify([
+        'Omega-3 fatty acids (EPA/DHA) 1000mg daily',
+        'Protein-rich breakfast',
+        'Complex carbohydrates',
+        'Iron (if deficient)',
+        'Zinc 15-30mg daily',
+        'Magnesium',
+        'Vitamin B6',
+        'Avoid excess sugar',
+        'Avoid artificial colors/flavors',
+        'Regular, balanced meals',
+        'Stay hydrated',
+        'Limit caffeine',
+        'Whole foods diet',
+        'Avoid food sensitivities',
+        'Consider elimination diet trial'
+      ]),
+      therapyApproaches: JSON.stringify([
+        'Stimulant medications (methylphenidate, amphetamines) - most effective',
+        'Non-stimulant medications (atomoxetine, guanfacine)',
+        'Cognitive-Behavioral Therapy (CBT)',
+        'Parent training for children',
+        'Behavioral interventions',
+        'Organizational skills training',
+        'Social skills training',
+        'Coaching',
+        'School accommodations (IEP/504 plan)',
+        'Workplace accommodations',
+        'Combination medication + therapy most effective',
+        'Support groups'
+      ]),
+      whenToSeekHelp: JSON.stringify([
+        'Symptoms interfering with school/work',
+        'Relationship problems due to ADHD',
+        'Chronic disorganization causing distress',
+        'Inability to complete tasks',
+        'Frequent job loss or academic failure',
+        'Low self-esteem',
+        'Risky behavior',
+        'Suspected ADHD in child',
+        'Co-occurring depression or anxiety',
+        'Wanting to try medication'
+      ]),
+      crisisResources: JSON.stringify([
+        'CHADD (Children and Adults with ADHD): chadd.org, 1-800-233-4050',
+        'ADHD Foundation: adhdfoundation.org',
+        'ADDitude Magazine: additudemag.com',
+        'Mental health professionals specializing in ADHD'
+      ]),
+      researchLinks: JSON.stringify([
+        'https://www.nimh.nih.gov/health/topics/attention-deficit-hyperactivity-disorder-adhd',
+        'https://chadd.org/',
+        'https://pubmed.ncbi.nlm.nih.gov/33316087/ - ADHD in adults',
+        'https://pubmed.ncbi.nlm.nih.gov/32045436/ - ADHD treatment'
+      ]),
+      dsmCriteria: JSON.stringify([
+        'Persistent pattern of inattention and/or hyperactivity-impulsivity',
+        '6+ symptoms of inattention and/or 6+ of hyperactivity-impulsivity (5+ for adults)',
+        'Symptoms present for at least 6 months',
+        'Symptoms present before age 12',
+        'Symptoms present in 2+ settings',
+        'Clear evidence of interference with functioning',
+        'Not better explained by another mental disorder',
+        'Three presentations: Predominantly Inattentive, Predominantly Hyperactive-Impulsive, Combined',
+        'Specify severity: Mild, Moderate, Severe',
+        'In children: 6+ symptoms; In adults/adolescents 17+: 5+ symptoms'
+      ])
+    },
+    {
+      slug: 'autism-spectrum-disorder',
+      name: 'Autism Spectrum Disorder (ASD)',
+      category: 'Neurodevelopmental Disorders',
+      description: 'A developmental disorder affecting communication, social interaction, and behavior, with a wide range of symptoms and severity.',
+      symptoms: JSON.stringify([
+        'Difficulty with social communication and interaction',
+        'Limited eye contact',
+        'Difficulty understanding social cues',
+        'Challenges with back-and-forth conversation',
+        'Difficulty understanding others\' perspectives',
+        'Restricted, repetitive behaviors or interests',
+        'Repetitive movements (hand flapping, rocking)',
+        'Insistence on sameness',
+        'Highly restricted interests',
+        'Sensory sensitivities (sound, touch, light)',
+        'Difficulty with transitions',
+        'Literal understanding of language',
+        'Unusual tone of voice or speech patterns',
+        'Preference for solitude',
+        'Difficulty making or keeping friends'
+      ]),
+      biologicalCauses: JSON.stringify([
+        'Strong genetic component (80-90% heritability)',
+        'Differences in brain structure and connectivity',
+        'Prenatal factors (advanced parental age)',
+        'Gene mutations',
+        'Not caused by vaccines (thoroughly debunked)',
+        'Possibly prenatal exposure to certain medications'
+      ]),
+      psychologicalCauses: JSON.stringify([
+        'Differences in information processing',
+        'Atypical sensory processing',
+        'Different social-emotional development',
+        'Differences in executive functioning',
+        'Unique cognitive profile',
+        'Theory of mind differences'
+      ]),
+      socialCauses: JSON.stringify([
+        'Not caused by parenting or environment',
+        'Social challenges can be exacerbated by lack of understanding',
+        'Bullying and social rejection common',
+        'Increased stress from navigating neurotypical world',
+        'Lack of appropriate support',
+        'Stigma and discrimination'
+      ]),
+      prevalence: '1 in 36 children in U.S. (CDC 2023). About 4x more common in boys than girls.',
+      ageOfOnset: 'Symptoms present in early childhood, typically by age 2-3. Diagnosed throughout life.',
+      courseOfIllness: 'Lifelong condition. Not a disease to cure, but neurodevelopmental difference. Appropriate support improves functioning.',
+      riskFactors: JSON.stringify([
+        'Having older parents',
+        'Having a sibling with ASD (10-20x risk)',
+        'Certain genetic conditions (Fragile X, Rett syndrome)',
+        'Very low birth weight',
+        'Prenatal medication exposure (valproic acid)',
+        'Male gender'
+      ]),
+      protectiveFactors: JSON.stringify([
+        'Early diagnosis and intervention',
+        'Family support and acceptance',
+        'Appropriate accommodations',
+        'Neurodiversity-affirming approach',
+        'Special education services',
+        'Speech and occupational therapy',
+        'Connection with autistic community',
+        'Strength-based perspective'
+      ]),
+      comorbidities: JSON.stringify([
+        'ADHD (50-70%)',
+        'Anxiety disorders (40-50%)',
+        'Depression',
+        'Epilepsy (20-30%)',
+        'Intellectual disability (30%)',
+        'Sleep disorders',
+        'GI issues',
+        'Sensory processing disorder'
+      ]),
+      naturalSolutions: JSON.stringify([
+        'Structured routines and predictability',
+        'Visual supports and schedules',
+        'Sensory accommodations',
+        'Clear, direct communication',
+        'Special interests as motivation',
+        'Social skills practice in safe environment',
+        'Occupational therapy for sensory issues',
+        'Speech therapy if needed',
+        'Noise-canceling headphones',
+        'Weighted blankets or compression',
+        'Safe spaces to decompress',
+        'Respect for need for alone time',
+        'Accommodations at school/work',
+        'Connect with autistic community',
+        'Neurodiversity-affirming therapy',
+        'Self-advocacy skills',
+        'Celebration of strengths',
+        'AAC (augmentative communication) if needed',
+        'Executive function supports',
+        'Respect stimming behaviors'
+      ]),
+      nutritionalRecs: JSON.stringify([
+        'Balanced, nutritious diet',
+        'Address any food sensitivities',
+        'Omega-3 fatty acids',
+        'Probiotics for gut health',
+        'Adequate protein',
+        'B vitamins',
+        'Magnesium',
+        'Zinc',
+        'Vitamin D',
+        'Iron if deficient',
+        'Stay hydrated',
+        'Respect food preferences/aversions',
+        'Consider texture sensitivities',
+        'No special "autism diet" proven effective',
+        'Consult dietitian if needed'
+      ]),
+      therapyApproaches: JSON.stringify([
+        'Early intensive behavioral intervention (controversial)',
+        'Speech and language therapy',
+        'Occupational therapy',
+        'Social skills training',
+        'CBT for anxiety/depression',
+        'Medication for co-occurring conditions only',
+        'Educational supports (IEP)',
+        'Family support and education',
+        'AAC if needed',
+        'Neurodiversity-affirming approaches preferred',
+        'Avoid ABA (controversial, focus on acceptance not compliance)',
+        'Sensory integration therapy',
+        'Support groups'
+      ]),
+      whenToSeekHelp: JSON.stringify([
+        'Developmental delays or differences noticed',
+        'Social communication challenges',
+        'Need for diagnosis for school accommodations',
+        'Co-occurring mental health issues',
+        'Need support services',
+        'Family needs guidance',
+        'Transitioning to adulthood',
+        'Employment support needed',
+        'Self-injurious behavior',
+        'Severe anxiety or depression'
+      ]),
+      crisisResources: JSON.stringify([
+        'Autism Society: autism-society.org, 1-800-328-8476',
+        'Autistic Self Advocacy Network (ASAN): autisticadvocacy.org',
+        'Autism Speaks: autismspeaks.org (note: controversial)',
+        'Local autism support groups',
+        'Special education advocacy'
+      ]),
+      researchLinks: JSON.stringify([
+        'https://www.nimh.nih.gov/health/topics/autism-spectrum-disorders-asd',
+        'https://www.cdc.gov/autism/',
+        'https://autisticadvocacy.org/',
+        'https://pubmed.ncbi.nlm.nih.gov/33914271/ - ASD research'
+      ]),
+      dsmCriteria: JSON.stringify([
+        'Persistent deficits in social communication and interaction across multiple contexts',
+        'Deficits in social-emotional reciprocity',
+        'Deficits in nonverbal communication',
+        'Deficits in developing/maintaining relationships',
+        'Restricted, repetitive patterns of behavior, interests, or activities (2+ of following):',
+        'Stereotyped or repetitive motor movements, speech, or object use',
+        'Insistence on sameness, inflexible routines, ritualized patterns',
+        'Highly restricted, fixated interests',
+        'Hyper- or hypo-reactivity to sensory input or unusual sensory interests',
+        'Symptoms present in early developmental period',
+        'Symptoms cause clinically significant impairment',
+        'Not better explained by intellectual disability',
+        'Specify severity level: 1 (requiring support), 2 (requiring substantial support), 3 (requiring very substantial support)'
+      ])
+    },
+    {
+      slug: 'insomnia-disorder',
+      name: 'Insomnia Disorder',
+      category: 'Sleep-Wake Disorders',
+      description: 'A persistent difficulty falling asleep, staying asleep, or waking too early, despite adequate opportunity to sleep, causing daytime impairment.',
+      symptoms: JSON.stringify([
+        'Difficulty initiating sleep',
+        'Difficulty maintaining sleep (frequent awakenings)',
+        'Early morning awakening',
+        'Daytime fatigue or sleepiness',
+        'Difficulty concentrating',
+        'Mood disturbances (irritability, dysphoria)',
+        'Decreased performance at work or school',
+        'Worry or distress about sleep',
+        'Physical tension',
+        'Daytime dysfunction',
+        'Headaches',
+        'Gastrointestinal symptoms',
+        'Ongoing concerns about sleep',
+        'Low energy',
+        'Behavioral problems from fatigue'
+      ]),
+      biologicalCauses: JSON.stringify([
+        'Hyperarousal of stress response system',
+        'Circadian rhythm disruptions',
+        'Genetic predisposition',
+        'Hormonal changes (menopause, thyroid)',
+        'Neurochemical imbalances',
+        'Medical conditions causing pain or discomfort',
+        'Medications with alerting effects'
+      ]),
+      psychologicalCauses: JSON.stringify([
+        'Anxiety and worry (especially about sleep)',
+        'Depression',
+        'Stress',
+        'Rumination',
+        'Perfectionism about sleep',
+        'Conditioned arousal in bed',
+        'Catastrophic thinking about sleeplessness',
+        'Hypervigilance'
+      ]),
+      socialCauses: JSON.stringify([
+        'Work stress',
+        'Shift work',
+        'Jet lag',
+        'Major life stressors',
+        'Noise in environment',
+        'Uncomfortable sleep environment',
+        'Irregular schedule',
+        'Screen use before bed',
+        'Caffeine or alcohol use',
+        'Lack of sleep hygiene'
+      ]),
+      prevalence: '10-30% of adults. More common in women, older adults. Chronic insomnia: 10% of population.',
+      ageOfOnset: 'Can begin at any age. Often starts during periods of stress. More common with aging.',
+      courseOfIllness: 'Can be acute (days-weeks) or chronic (3+ months). Without treatment, often becomes chronic.',
+      riskFactors: JSON.stringify([
+        'Female gender',
+        'Older age',
+        'Shift work',
+        'High stress',
+        'Mental health disorders',
+        'Medical conditions',
+        'Certain medications',
+        'Low socioeconomic status',
+        'Worry-prone personality'
+      ]),
+      protectiveFactors: JSON.stringify([
+        'Good sleep hygiene',
+        'Regular schedule',
+        'Stress management',
+        'Healthy lifestyle',
+        'Supportive environment',
+        'Treating underlying conditions',
+        'Exercise (not close to bedtime)',
+        'Relaxation skills'
+      ]),
+      comorbidities: JSON.stringify([
+        'Depression (40%)',
+        'Anxiety disorders (50-60%)',
+        'Chronic pain',
+        'PTSD',
+        'Substance use disorders',
+        'Cardiovascular disease',
+        'Diabetes',
+        'Obesity',
+        'Gastrointestinal disorders'
+      ]),
+      naturalSolutions: JSON.stringify([
+        'Cognitive Behavioral Therapy for Insomnia (CBT-I) - most effective',
+        'Sleep restriction therapy',
+        'Stimulus control (bed only for sleep)',
+        'Consistent sleep schedule',
+        'Relaxation techniques',
+        'Mindfulness meditation',
+        'No screens 1-2 hours before bed',
+        'Dark, cool, quiet bedroom',
+        'Avoid caffeine after noon',
+        'Avoid alcohol',
+        'Regular exercise (not close to bedtime)',
+        'Light exposure in morning',
+        'Limit naps (or 20-30 min only)',
+        'Get out of bed if can\'t sleep after 20 min',
+        'Address worries before bed',
+        'Relaxing bedtime routine',
+        'No clock-watching',
+        'Paradoxical intention (try to stay awake)',
+        'Progressive muscle relaxation',
+        '4-7-8 breathing'
+      ]),
+      nutritionalRecs: JSON.stringify([
+        'Avoid caffeine 6+ hours before bed',
+        'Avoid large meals before bed',
+        'Light snack if hungry',
+        'Foods with tryptophan (turkey, milk)',
+        'Complex carbohydrates',
+        'Magnesium-rich foods',
+        'Avoid alcohol (disrupts sleep)',
+        'Stay hydrated but limit fluids before bed',
+        'Herbal tea (chamomile, valerian)',
+        'Tart cherry juice (natural melatonin)',
+        'B vitamins',
+        'Vitamin D',
+        'Calcium',
+        'Avoid heavy, spicy, or acidic foods at night'
+      ]),
+      therapyApproaches: JSON.stringify([
+        'Cognitive Behavioral Therapy for Insomnia (CBT-I) - GOLD STANDARD',
+        'Sleep restriction',
+        'Stimulus control',
+        'Sleep hygiene education',
+        'Relaxation training',
+        'Cognitive restructuring of sleep beliefs',
+        'Mindfulness-based therapy',
+        'Medication (short-term only): benzodiazepines, Z-drugs, melatonin',
+        'Avoid long-term sleep medication',
+        'Treat underlying conditions',
+        'Light therapy for circadian issues',
+        'Online CBT-I programs available'
+      ]),
+      whenToSeekHelp: JSON.stringify([
+        'Insomnia lasting 3+ months',
+        'Significant daytime impairment',
+        'Affecting work, relationships, or health',
+        'Co-occurring depression or anxiety',
+        'Using alcohol or drugs to sleep',
+        'Possible sleep apnea (loud snoring, gasping)',
+        'Restless legs syndrome suspected',
+        'Medication causing insomnia',
+        'Self-help not working',
+        'Want CBT-I treatment'
+      ]),
+      crisisResources: JSON.stringify([
+        'National Sleep Foundation: sleepfoundation.org',
+        'American Academy of Sleep Medicine: aasm.org',
+        'Society of Behavioral Sleep Medicine: behavioralsleep.org',
+        'Primary care doctor',
+        'Sleep medicine specialist',
+        'CBT-I therapist'
+      ]),
+      researchLinks: JSON.stringify([
+        'https://www.nimh.nih.gov/health/topics/sleep-disorders',
+        'https://www.sleepfoundation.org/',
+        'https://pubmed.ncbi.nlm.nih.gov/33007045/ - CBT-I efficacy',
+        'https://pubmed.ncbi.nlm.nih.gov/32847525/ - Insomnia treatment'
+      ]),
+      dsmCriteria: JSON.stringify([
+        'Predominant complaint of dissatisfaction with sleep quantity or quality',
+        'One or more of: difficulty initiating sleep, maintaining sleep, or early-morning awakening',
+        'Causes clinically significant distress or impairment',
+        'Occurs at least 3 nights per week',
+        'Present for at least 3 months',
+        'Despite adequate opportunity for sleep',
+        'Not better explained by another sleep disorder',
+        'Not attributable to substance or medical condition',
+        'Not adequately explained by coexisting mental disorder',
+        'Specify: Episodic (1-3 months), Persistent (3+ months), Recurrent (2+ episodes within a year)'
+      ])
+    },
+    {
+      slug: 'body-dysmorphic-disorder',
+      name: 'Body Dysmorphic Disorder (BDD)',
+      category: 'Obsessive-Compulsive Disorders',
+      description: 'Preoccupation with perceived flaws in physical appearance that are not observable or appear slight to others, causing significant distress.',
+      symptoms: JSON.stringify([
+        'Preoccupation with perceived physical defect(s)',
+        'Repetitive behaviors (mirror checking, excessive grooming)',
+        'Skin picking to "fix" perceived flaws',
+        'Seeking reassurance about appearance',
+        'Comparing appearance with others',
+        'Camouflaging (makeup, clothing, posture)',
+        'Avoidance of social situations',
+        'Avoidance of mirrors or reflective surfaces',
+        'Belief that others notice and judge the "flaw"',
+        'Significant distress or impairment',
+        'Difficulty concentrating due to preoccupation',
+        'Seeking cosmetic procedures',
+        'Never satisfied with appearance',
+        'Suicidal thoughts (high rate)',
+        'Most commonly focused on: skin, hair, nose, weight'
+      ]),
+      biologicalCauses: JSON.stringify([
+        'Genetic vulnerability',
+        'Brain differences (visual processing, emotional regulation)',
+        'Serotonin dysregulation',
+        'Family history of OCD or BDD',
+        'Neurotransmitter imbalances',
+        'Differences in frontal-striatal circuits'
+      ]),
+      psychologicalCauses: JSON.stringify([
+        'Perfectionism',
+        'Low self-esteem',
+        'History of bullying or teasing about appearance',
+        'Trauma',
+        'Excessive emphasis on appearance in family',
+        'Personality traits (neuroticism, harm avoidance)',
+        'Negative body image',
+        'Cognitive biases about appearance'
+      ]),
+      socialCauses: JSON.stringify([
+        'Societal emphasis on physical appearance',
+        'Media portrayal of "ideal" bodies',
+        'Social media and filters',
+        'Bullying or teasing',
+        'Peer pressure',
+        'Cultural beauty standards',
+        'Comparison with others',
+        'Objectification'
+      ]),
+      prevalence: '2.4% of U.S. population. Underdiagnosed. Equal in males and females. Onset typically teens-20s.',
+      ageOfOnset: 'Usually begins in adolescence (12-13 years old). Can begin in childhood or adulthood.',
+      courseOfIllness: 'Chronic and severe if untreated. Usually affects multiple body areas. High suicide risk. Treatment can be effective.',
+      riskFactors: JSON.stringify([
+        'Family history of BDD or OCD',
+        'Bullying about appearance',
+        'Perfectionism',
+        'Low self-esteem',
+        'Social anxiety',
+        'History of trauma',
+        'Certain personality traits',
+        'Adolescence',
+        'Exposure to appearance-focused media'
+      ]),
+      protectiveFactors: JSON.stringify([
+        'Early treatment',
+        'Supportive relationships',
+        'Positive body image education',
+        'Reduced social media use',
+        'Media literacy',
+        'Strong self-esteem',
+        'Healthy coping skills',
+        'Access to mental health care'
+      ]),
+      comorbidities: JSON.stringify([
+        'Major Depression (75%)',
+        'Social Anxiety Disorder (40%)',
+        'OCD (30%)',
+        'Substance Use Disorders',
+        'Eating Disorders',
+        'Suicidal ideation (very high)',
+        'Skin picking disorder',
+        'Trichotillomania'
+      ]),
+      naturalSolutions: JSON.stringify([
+        'Cognitive-Behavioral Therapy (CBT) - MOST EFFECTIVE',
+        'Exposure and Response Prevention (ERP)',
+        'Limit mirror checking and reassurance-seeking',
+        'Challenge appearance-related thoughts',
+        'Reduce social media use',
+        'Avoid cosmetic procedures (often make BDD worse)',
+        'Mindfulness practices',
+        'Self-compassion exercises',
+        'Focus on functionality over appearance',
+        'Engage in valued activities',
+        'Reduce appearance-focused conversations',
+        'Support groups',
+        'Body neutrality approach',
+        'Avoid photo filters',
+        'Reduce time grooming',
+        'Practice exposure to avoided situations',
+        'Thought records',
+        'Behavioral experiments',
+        'Build life meaning beyond appearance',
+        'Journaling'
+      ]),
+      nutritionalRecs: JSON.stringify([
+        'Balanced, nutritious diet',
+        'Omega-3 fatty acids',
+        'B vitamins',
+        'Magnesium',
+        'Vitamin D',
+        'Zinc',
+        'Protein',
+        'Complex carbohydrates',
+        'Antioxidants',
+        'Stay hydrated',
+        'Limit caffeine',
+        'Avoid restrictive dieting',
+        'Intuitive eating',
+        'Don\'t use food to "fix" appearance',
+        'Focus on nourishment not appearance'
+      ]),
+      therapyApproaches: JSON.stringify([
+        'Cognitive-Behavioral Therapy (CBT) - FIRST LINE',
+        'Exposure and Response Prevention (ERP)',
+        'SSRIs (high doses): fluoxetine, escitalopram - often helpful',
+        'Group therapy',
+        'Family therapy',
+        'Avoid reassurance-giving',
+        'Address co-occurring disorders',
+        'Motivational interviewing',
+        'Acceptance and Commitment Therapy (ACT)',
+        'Avoid unnecessary cosmetic procedures',
+        'Inpatient if severe/suicidal',
+        'Long-term treatment usually needed'
+      ]),
+      whenToSeekHelp: JSON.stringify([
+        'Preoccupation causing significant distress',
+        'Avoiding social situations',
+        'Spending hours daily on appearance concerns',
+        'Unable to stop repetitive behaviors',
+        'Considering or seeking cosmetic surgery',
+        'Depression or suicidal thoughts',
+        'Relationship or work problems',
+        'Unable to function normally',
+        'Skin damage from picking',
+        'Substance use to cope'
+      ]),
+      crisisResources: JSON.stringify([
+        'International OCD Foundation BDD Program: bdd.iocdf.org',
+        'BDD Foundation: bddfoundation.org',
+        'Body Dysmorphic Disorder Program at MGH',
+        'IOCDF: iocdf.org',
+        'Mental health crisis line: 988',
+        'BDD specialist therapist'
+      ]),
+      researchLinks: JSON.stringify([
+        'https://iocdf.org/expert-opinions/body-dysmorphic-disorder/',
+        'https://www.nimh.nih.gov/health/topics/obsessive-compulsive-disorder-ocd',
+        'https://pubmed.ncbi.nlm.nih.gov/31145535/ - BDD treatment',
+        'https://pubmed.ncbi.nlm.nih.gov/28238207/ - CBT for BDD'
+      ]),
+      dsmCriteria: JSON.stringify([
+        'Preoccupation with one or more perceived defects/flaws in appearance not observable or appear slight to others',
+        'At some point, performed repetitive behaviors (mirror checking, excessive grooming, skin picking, reassurance seeking) or mental acts (comparing appearance)',
+        'Preoccupation causes clinically significant distress or impairment',
+        'Not better explained by eating disorder concerns',
+        'Specify if: With muscle dysmorphia (preoccupation that build is too small/insufficiently muscular)',
+        'Specify insight: Good/fair, Poor, Absent/delusional beliefs',
+        'Note: About 25% of people with BDD have delusional beliefs about their appearance'
+      ])
+    },
   ]
 
   for (const disorder of disorders) {
@@ -6241,6 +7114,536 @@ Good night. Sweet dreams.`,
         'Can be used every night',
         'Creates healthy sleep association'
       ])
+    },
+    {
+      slug: 'mountain-meditation',
+      title: 'Mountain Meditation',
+      description: 'Visualize yourself as a mountain - stable, grounded, and unshaken by passing storms. A powerful practice for cultivating inner strength and equanimity.',
+      duration: 15,
+      category: 'Visualization',
+      benefits: JSON.stringify([
+        'Builds inner stability',
+        'Enhances emotional resilience',
+        'Develops equanimity',
+        'Grounds scattered energy',
+        'Provides strength during difficult times',
+        'Improves sense of self'
+      ]),
+      script: `Welcome to Mountain Meditation. This practice helps you connect with your inner stability and strength.
+
+Find a comfortable seated position. Sit with dignity, spine straight but not rigid. Close your eyes or lower your gaze.
+
+Take a few deep breaths, arriving fully in this moment.
+
+Now, bring to mind the image of a mountain. Perhaps one you've seen, or an imaginary one. See its peak rising majestically into the sky.
+
+Notice the mountain's solid base, rooted deeply in the earth. Its strong flanks rising up on all sides. Its peak, open to the sky.
+
+The mountain just sits. Grounded. Stable. Majestic in its stillness.
+
+Now, imagine that you become this mountain. Your body is the body of the mountain. Your head is the lofty peak. Your shoulders and arms are the sides of the mountain. Your seat is the broad, stable base, rooted to the earth.
+
+Become the mountain. Sitting in perfect stillness.
+
+Now, imagine the sun crossing the sky. Morning comes - light touches the peak. The sun rises higher. Midday. The mountain sits unchanging as the sun arcs across the sky. Evening comes. Sunset. Darkness. Stars wheel overhead. Still the mountain sits.
+
+Imagine the seasons passing. Spring arrives with life and blossoms covering the mountain's flanks. The mountain remains unchanged. Summer brings warmth and tourists to the peak. The mountain remains as it is. Fall brings brilliant colors and cooling temperatures. Winter brings snow and ice, fierce storms. Through it all, the mountain just sits. Unmoved. Solid. Present.
+
+As you sit, being the mountain, you may notice thoughts and feelings arising. Like weather patterns moving across the mountain's surface. Clouds come and go. Storms blow through. The sun shines. All of this passes across the mountain, but the mountain remains.
+
+Your thoughts and emotions are like the weather - they come and go. But deep within, your core is like the mountain - stable, grounded, unchanged by passing storms.
+
+Surface appearances change constantly. But the deep nature of the mountain remains steadfast.
+
+This is true for you as well. External conditions change. Moods change. Thoughts change. But your essential nature - your awareness, your deep being - remains constant, like the mountain.
+
+Sit for a few moments, being the mountain. Solid. Grounded. Dignified. Present.
+
+When you're ready, thank the mountain for its teaching. Slowly wiggle your fingers and toes. Take a deep breath. Open your eyes.
+
+Carry the mountain's stability with you. When life brings storms, remember: you are the mountain.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'walking-meditation',
+      title: 'Walking Meditation',
+      description: 'A mindfulness practice that turns the simple act of walking into a meditation. Perfect for those who find sitting meditation challenging.',
+      duration: 10,
+      category: 'Mindfulness',
+      benefits: JSON.stringify([
+        'Combines movement with mindfulness',
+        'Grounds you in the present moment',
+        'Improves body awareness',
+        'Good for restless energy',
+        'Can be practiced anywhere',
+        'Reduces mental rumination'
+      ]),
+      script: `Welcome to Walking Meditation. This practice brings mindful awareness to the simple act of walking.
+
+Find a place where you can walk slowly for about 10 to 20 paces - perhaps a hallway, a quiet room, or outdoors.
+
+Stand still for a moment. Feel your feet on the ground. Notice your posture. Allow your arms to hang naturally or clasp your hands in front or behind you.
+
+Begin to walk very slowly. Much slower than your usual pace. Notice the movement.
+
+As you lift your right foot, notice the sensations. Lifting... Moving... Placing... Shifting weight.
+
+Then the left foot. Lifting... Moving... Placing... Shifting.
+
+Keep your gaze softly focused on the ground a few feet ahead. Not looking around, just walking.
+
+Notice the complex choreography of walking. The weight shifting. Muscles engaging. The foot rolling through its motion.
+
+Heel touches down. Weight shifts forward. Toes press and push off. The other foot swings forward.
+
+Walking is a miracle we often take for granted.
+
+If your mind wanders - and it will - gently bring your attention back to the sensations of walking. The feet. The legs. The movement through space.
+
+You can use silent mental noting if it helps: "Lifting... Moving... Placing... Shifting..."
+
+Or simply feel the sensations directly.
+
+Notice how your body balances. The intricate adjustments happening automatically.
+
+Continue walking at this slow, mindful pace. When you reach the end of your path, pause. Stand still. Notice the stopping.
+
+Then slowly turn around and walk back.
+
+Lifting... Moving... Placing... Shifting...
+
+Each step is a new moment. Each moment an opportunity to be fully present.
+
+Walking meditation shows us that we don't need to be still to be mindful. We can bring presence to any activity.
+
+Continue for a few more minutes at your own pace. 
+
+When you're finished, stand still for a moment. Notice how your body feels. Notice your state of mind.
+
+You can practice walking meditation anywhere - even in short bursts during your day. Walking to your car. Walking down a hallway. Mindful steps, present moment awareness.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'compassion-meditation',
+      title: 'Self-Compassion Meditation',
+      description: 'A gentle practice based on Dr. Kristin Neff\'s research on self-compassion. Learn to treat yourself with the same kindness you\'d offer a good friend.',
+      duration: 12,
+      category: 'Compassion',
+      benefits: JSON.stringify([
+        'Reduces self-criticism',
+        'Increases self-acceptance',
+        'Builds emotional resilience',
+        'Reduces anxiety and depression',
+        'Scientifically validated benefits',
+        'Helps with perfectionism'
+      ]),
+      script: `Welcome to Self-Compassion Meditation. This practice will help you develop a kinder, more accepting relationship with yourself.
+
+Find a comfortable position. Place one or both hands over your heart, feeling the warmth and gentle movement of your breath.
+
+Take a few deep breaths, arriving in the present moment.
+
+Think of a situation in your life that's causing you stress or difficulty. Nothing overwhelming - choose something moderately difficult.
+
+Notice how it feels in your body. Perhaps tension, heaviness, tightness. Just notice without trying to change it.
+
+This is a moment of suffering. Stress is part of being human. All people struggle sometimes.
+
+Now, bring to mind someone who naturally makes you feel loved and cared for. Perhaps a friend, family member, mentor, or even a pet. Imagine their presence with you now.
+
+What would they say to you about this difficult situation? How would they look at you? Feel their compassion for you.
+
+Now, speak to yourself the way they would speak to you. Use your own words, or try these phrases:
+
+"This is really hard right now."
+"I'm doing the best I can."
+"May I be kind to myself in this moment."
+"May I give myself the compassion I need."
+
+Let these words be genuine and heartfelt. You deserve your own compassion.
+
+Place your hands on your heart. Feel the warmth. Your body is responding to the kindness you're offering yourself.
+
+Everyone struggles. Everyone feels pain. You're not alone in this. Your struggle connects you to all of humanity.
+
+Offer yourself the kindness you would offer a good friend who was struggling.
+
+"May I be patient with myself."
+"May I remember that I'm only human."
+"May I be strong when I need to be, and gentle when I need to be."
+
+If you notice your inner critic arising, that's okay. Just notice it, and return to self-kindness.
+
+The practice is not about getting rid of difficult feelings. It's about holding them with kindness.
+
+You can be imperfect and still be worthy of love and belonging.
+
+Take a few more breaths, hands on your heart. Feel the warmth of self-compassion.
+
+This is always available to you. Whenever you're struggling, you can place your hands on your heart and speak to yourself with kindness.
+
+You are worthy of compassion - especially your own.
+
+When you're ready, take a deep breath and open your eyes.
+
+Remember: you don't have to be perfect to deserve kindness. You deserve it simply because you're human.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'gratitude-meditation',
+      title: 'Gratitude Meditation',
+      description: 'Research shows that regular gratitude practice increases happiness, reduces depression, and improves relationships. A simple but powerful practice.',
+      duration: 8,
+      category: 'Positive Psychology',
+      benefits: JSON.stringify([
+        'Increases positive emotions',
+        'Reduces depression symptoms',
+        'Improves sleep quality',
+        'Enhances relationships',
+        'Backed by scientific research',
+        'Shifts focus from lack to abundance'
+      ]),
+      script: `Welcome to Gratitude Meditation. This practice helps us notice and appreciate the good in our lives.
+
+Find a comfortable position. Close your eyes. Take a few deep breaths, letting go of any tension.
+
+Gratitude is not about denying difficulties. It's about also acknowledging what's good. Both can be true.
+
+Bring to mind something simple you're grateful for. Perhaps the bed you slept in last night. The roof over your head. The food you ate today. Clean water to drink.
+
+These things we often take for granted are luxuries many people lack. Take a moment to really feel appreciation for this basic good thing.
+
+Now, bring to mind a person you're grateful for. Someone who has helped you, supported you, or brought joy to your life. Picture their face. Recall a specific moment with them.
+
+Allow yourself to feel the warmth of gratitude for this person. Let it fill your heart.
+
+Silently or aloud, say "Thank you."
+
+Next, bring to mind something about your body you're grateful for. Perhaps your eyes that let you see beauty. Your ears that let you hear music. Your legs that carry you. Your breath that sustains you.
+
+Our bodies work tirelessly for us. Feel appreciation for this amazing vessel.
+
+Now think of a challenge you've faced that ultimately helped you grow. Something difficult that taught you something important, or made you stronger.
+
+Even our struggles can be teachers. Can you find gratitude for the lesson, even if the experience was hard?
+
+Think of a simple pleasure you experienced today or recently. Perhaps sunshine on your face. A good cup of coffee. A smile from a stranger. A moment of laughter. A song you love.
+
+Life offers small gifts constantly. We just need to notice them.
+
+Finally, take a moment to feel grateful for this moment right now. For your ability to pause. To breathe. To be present. For your willingness to practice and grow.
+
+Feel gratitude filling your heart like warm light. Let it expand through your chest, through your body.
+
+Gratitude is always available. Even on difficult days, there are things to appreciate. This practice strengthens our ability to notice them.
+
+Before you open your eyes, set an intention to notice three good things today. They don't need to be big. Small moments of goodness count.
+
+Take a deep breath. When you're ready, open your eyes.
+
+Carry gratitude with you. Let it brighten your day.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'yoga-nidra-sleep',
+      title: 'Yoga Nidra for Sleep',
+      description: 'Ancient yogic sleep technique that guides you into deep relaxation at the edge of sleep. Helps insomnia and promotes restorative rest.',
+      duration: 20,
+      category: 'Sleep',
+      benefits: JSON.stringify([
+        'Treats insomnia',
+        'Promotes deep rest',
+        'Reduces sleep anxiety',
+        'Resets nervous system',
+        'Ancient proven technique',
+        'Safe and natural',
+        'Works even if you don\'t fully sleep',
+        'Restorative for mind and body'
+      ]),
+      script: `Welcome to Yoga Nidra for sleep. Make yourself comfortable in bed. You're going to stay in this position for the entire practice, so adjust now.
+
+Lie on your back if comfortable. Let your feet fall open naturally. Arms by your sides, palms up. If you need support, place a pillow under your knees or head.
+
+Close your eyes. You will remain still and aware, riding the edge between waking and sleep.
+
+Take a deep breath in... and release with a sigh.
+
+Again, breathe in... and let go completely.
+
+Set your intention: "I am going to follow this practice and fall into deep, restorative sleep."
+
+Become aware of your body lying here. Feel the contact with the bed beneath you. Your body is safe, supported, held by the earth.
+
+Bring your awareness to your right hand. Right thumb. Index finger. Middle finger. Ring finger. Little finger. Palm of your right hand. Back of your right hand.
+
+Right wrist. Forearm. Elbow. Upper arm. Right shoulder.
+
+Right side of your chest. Right side of your waist. Right hip.
+
+Right thigh. Right knee. Right calf. Right ankle. Right heel. Sole of right foot. Top of right foot. Right toes. All the toes of the right foot together.
+
+Now bring awareness to the left hand. Left thumb. Index finger. Middle finger. Ring finger. Little finger. Palm of your left hand. Back of your left hand.
+
+Left wrist. Forearm. Elbow. Upper arm. Left shoulder.
+
+Left side of chest. Left side of waist. Left hip.
+
+Left thigh. Left knee. Left calf. Left ankle. Left heel. Sole of left foot. Top of left foot. Left toes. All the toes of the left foot together.
+
+Your whole back body. Shoulder blades. Entire length of your spine. Lower back. Buttocks. Back of both legs.
+
+Your whole front body. Throat. Chest. Abdomen. Front of legs.
+
+Your head. Back of head. Crown. Forehead. Both eyebrows. Space between the eyebrows. Right eyelid. Left eyelid. Right eye. Left eye. Right ear. Left ear. Right cheek. Left cheek. Nose. Tip of nose. Upper lip. Lower lip. Chin. Jaw. Entire face soft and relaxed.
+
+Whole body together. Completely relaxed.
+
+Now imagine you are lying on warm sand at the beach. The sun is setting. You are completely safe and relaxed. The sand is warm beneath you, gently holding your body.
+
+You hear waves in the distance. Soft, rhythmic, peaceful. The sound lulls you deeper into relaxation.
+
+A warm breeze touches your skin. So pleasant. So peaceful.
+
+You are safe. You are held. You can let go completely.
+
+With each breath, you're drifting deeper. Deeper into rest. Deeper toward sleep.
+
+Your body is so heavy. So relaxed. Sinking into the warm sand. Sinking into the bed.
+
+Your mind is becoming quiet. Peaceful. Still.
+
+The waves keep rolling. Breath by breath. Wave by wave. You're drifting. Drifting into sleep.
+
+Let go now. Allow sleep to come. Your body knows how to sleep. Trust it.
+
+Drifting... drifting... into deep, restorative sleep.
+
+[Long silence - allow natural sleep]
+
+Sleep well. Rest deeply. Good night.`
+    },
+    {
+      slug: 'pain-management-meditation',
+      title: 'Pain Management Meditation',
+      description: 'Evidence-based meditation for chronic pain. Helps change your relationship with pain, reducing suffering even when pain is present.',
+      duration: 15,
+      category: 'Specialized',
+      benefits: JSON.stringify([
+        'Reduces pain intensity',
+        'Decreases emotional suffering',
+        'Improves pain coping',
+        'Backed by research',
+        'Safe complement to medical treatment',
+        'Empowers self-management',
+        'Reduces pain catastrophizing'
+      ]),
+      script: `Welcome to Pain Management Meditation. This practice can help you change your relationship with physical pain.
+
+Note: This is a complement to medical treatment, not a replacement. Always work with healthcare providers for pain management.
+
+Find the most comfortable position possible. Use pillows, cushions, whatever helps.
+
+Take a few breaths. Acknowledge that you're here, with courage, to work with difficult sensations.
+
+Pain is a signal, not the enemy. It's your body communicating. Today we practice being with pain in a new way.
+
+Bring your awareness to your breath. Notice breathing in... breathing out. The breath can be your anchor.
+
+Now gently bring awareness to the area of pain or discomfort. Not to attack it or push it away, but simply to observe it with curiosity.
+
+What exactly do you feel? Is it sharp? Dull? Burning? Aching? Throbbing? Tingling?
+
+Notice that "pain" is actually made up of different sensations. Can you identify them?
+
+Is the sensation constant or does it change? Does it pulse? Does it move?
+
+Notice any thoughts about the pain. "This is terrible." "It will never end." These thoughts are separate from the sensation itself.
+
+The sensation is just sensation. The thoughts about it add an extra layer of suffering.
+
+See if you can separate physical sensation from mental story. Just for this moment.
+
+Notice any emotions arising with the pain. Fear? Anger? Frustration? Sadness? Just notice without judgment.
+
+Return to the breath. Breathing in... breathing out.
+
+Now imagine your breath flowing to the area of pain. Gentle, soft breath. Breathing into the pain with kindness. Breathing out, letting muscles soften around the pain.
+
+You're not trying to make pain disappear. You're changing your relationship with it. Meeting it with gentleness rather than resistance.
+
+Resistance creates tension. Tension increases pain. Softening, even slightly, can ease suffering.
+
+Breathe into pain... breathe out, softening.
+
+Expand awareness to include your whole body. Yes, there is pain in this area. And there is also the rest of your body. Your left hand. Your right foot. Your belly. Parts that don't hurt.
+
+Pain can fill our entire awareness. Practice making pain just one part of a larger field of sensation.
+
+Notice the spaces between pain pulses, if there are any. The brief moments of less pain. Can you notice those too?
+
+Bring compassion to yourself. Living with pain is hard. You're doing the best you can.
+
+Place your hand on your heart if comfortable. "This is hard. This is a moment of suffering. May I be kind to myself."
+
+You are more than your pain. Pain is an experience you're having. It's not who you are.
+
+Take a few more breaths. Thank yourself for practicing.
+
+When you're ready, slowly return your awareness to the room. Wiggle fingers and toes gently. Open your eyes.
+
+Practice this regularly. Over time, many people find that while pain may not disappear, their suffering decreases.
+
+You have more control than you might think - not over pain, but over your response to it.
+
+Be patient with yourself. Be kind to yourself.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'anger-release-meditation',
+      title: 'Anger Release Meditation',
+      description: 'A safe, healthy way to acknowledge and release anger without suppressing it or acting destructively. Based on emotion regulation research.',
+      duration: 10,
+      category: 'Emotion Regulation',
+      benefits: JSON.stringify([
+        'Safely processes anger',
+        'Prevents anger suppression',
+        'Reduces reactivity',
+        'Improves emotional regulation',
+        'Decreases rumination',
+        'Protects relationships'
+      ]),
+      script: `Welcome to Anger Release Meditation. This practice helps you acknowledge and release anger in a healthy way.
+
+Anger is a normal emotion. It's data. It tells us something matters to us, that a boundary was crossed. The problem isn't feeling anger - it's what we do with it.
+
+Find a comfortable seated position. Take a few deep breaths.
+
+Bring to mind a situation that's making you angry. Not the most intense anger - start with something moderate.
+
+Notice where you feel anger in your body. Jaw clenched? Chest tight? Stomach churning? Hands in fists? Heat rising?
+
+Just notice. Don't judge the anger or yourself for feeling it.
+
+Say to yourself: "I am angry. This is anger. Anger is present."
+
+Naming it gives you space from it. You're not saying "I AM anger" - you're saying "I'm experiencing anger."
+
+Anger is often a secondary emotion. What's underneath? Fear? Hurt? Feeling disrespected? Powerless? Scared?
+
+Take a breath and ask yourself: "What does this anger want me to know?"
+
+Maybe it's saying: "This isn't fair." "This hurts." "I deserve better." "This matters to me."
+
+Listen to your anger like it's a messenger. What's the message?
+
+Now, imagine the anger as energy in your body. What color is it? What shape? Where is it located?
+
+With each exhale, imagine releasing some of this energy. Not all of it - just a little bit at a time.
+
+Breathe in... and as you breathe out, let some anger energy release from your body.
+
+You might imagine it as red smoke leaving your body. Or dark clouds dispersing. Or hot steam releasing.
+
+Keep breathing. Releasing a little bit with each exhale.
+
+You're not suppressing anger - you're letting your body discharge the activation.
+
+Now, if you're ready, try this: Say out loud or silently, "I release you."
+
+"I release you. I don't need to carry this in my body anymore."
+
+You can be angry and not hold tension in your body. You can acknowledge the wrong and still let go of the grip.
+
+Clench your fists tight. Really tight. Hold that tension... hold it... now release. Let your hands open. Shake them out.
+
+This is what we're doing energetically. Holding... acknowledging... releasing.
+
+Roll your shoulders. Shake your head gently. Let your jaw release.
+
+Take five deep breaths. With each exhale, release more tension.
+
+If you need to take action about the situation that angered you, you can still do that from a calmer place. Releasing the physical activation helps you respond wisely instead of reacting impulsively.
+
+Feel your feet on the ground. You're here. You're safe. You have choices about how to respond.
+
+Place a hand on your heart. "This made me angry because I care. And I can take care of myself."
+
+Take one more deep breath. Shake out your whole body if that feels good.
+
+When you're ready, open your eyes.
+
+You can return to this practice whenever anger arises. Feel it. Name it. Understand its message. Release the physical activation. Then respond wisely.
+
+Thank you for practicing.`
+    },
+    {
+      slug: 'morning-energizing-meditation',
+      title: 'Morning Energizing Meditation',
+      description: 'Start your day with positive energy, intention, and vitality. A quick practice to wake up your body and mind.',
+      duration: 5,
+      category: 'Energy',
+      benefits: JSON.stringify([
+        'Increases morning energy',
+        'Sets positive intention for the day',
+        'Wakes up body and mind',
+        'Improves mood',
+        'Reduces morning anxiety',
+        'Quick and efficient'
+      ]),
+      script: `Good morning! Welcome to your Energizing Morning Meditation.
+
+Sit up tall or stand for this practice. We're waking up your body and mind.
+
+Take a deep breath in through your nose... hold it at the top... and exhale powerfully through your mouth with a "HA!" sound.
+
+Again! Big breath in... hold... "HA!" Push it all out.
+
+One more! Breathe in deeply... and "HA!" Feel the wake-up energy.
+
+Now, rub your palms together rapidly until they're warm. Place your warm palms over your closed eyes. Feel the warmth and energy.
+
+Gently release your hands. Blink your eyes open.
+
+Roll your shoulders back five times. Wake up your upper body.
+
+Roll your shoulders forward five times.
+
+Turn your head gently side to side. Left... right... left... right.
+
+Reach your arms up overhead. Stretch tall! Reach for the sky. Feel yourself lengthening.
+
+Now interlace your fingers and flip your palms toward the ceiling. Stretch! Hold... and release.
+
+Give yourself a big hug. Wrap your arms around yourself. Take a breath. You're here. New day. New possibilities.
+
+Release your arms and shake them out. Shake your whole body. Like a dog shaking off water. Shake! Wake up!
+
+Stop. Stand or sit still. Notice your energy now compared to when you started.
+
+Place your hand on your heart. Set an intention for your day. How do you want to feel today? How do you want to show up?
+
+Maybe: "I am energized and ready for this day."
+"I move through this day with ease and positivity."
+"I am capable and resilient."
+
+Choose your own words that resonate with you.
+
+Take a deep breath in. Hold it. Feel the energy, the potential of this new day.
+
+Exhale slowly.
+
+You're awake. You're alive. You're ready.
+
+Take this energy with you. If you slump during the day, take 30 seconds to stretch, breathe deeply, and shake it out. You can reset anytime.
+
+Thank you for starting your day with intention.
+
+Have a wonderful day!`
     }
   ]
 
@@ -6614,6 +8017,418 @@ Good night. Sweet dreams.`,
         'Connects to support',
         'Evidence-based',
         'Can be life-saving'
+      ])
+    },
+    {
+      slug: 'self-compassion-break',
+      name: 'Self-Compassion Break',
+      category: 'Self-Compassion',
+      description: 'Dr. Kristin Neff\'s quick practice for moments of difficulty. Combines mindfulness, common humanity, and self-kindness.',
+      steps: JSON.stringify([
+        'Notice you\'re suffering: "This is a moment of suffering"',
+        'Recognize common humanity: "Suffering is part of life" or "I\'m not alone"',
+        'Offer yourself kindness: "May I be kind to myself" or "May I give myself compassion"',
+        'Optional: Place hand(s) over your heart',
+        'Breathe and feel the warmth',
+        'Use your own words that feel genuine',
+        'Return to situation with more kindness'
+      ]),
+      examples: JSON.stringify([
+        'After mistake: "This is hard. Everyone makes mistakes. May I learn and grow from this."',
+        'During anxiety: "This is suffering. I\'m not alone in feeling anxious. May I be patient with myself."',
+        'After rejection: "This hurts. Rejection is part of being human. May I hold myself with kindness."'
+      ]),
+      when: 'During any difficult moment, failure, pain, or when being self-critical',
+      benefits: JSON.stringify([
+        'Reduces self-criticism',
+        'Increases resilience',
+        'Scientifically validated',
+        'Can be done in under a minute',
+        'Reduces anxiety and depression',
+        'Improves well-being'
+      ])
+    },
+    {
+      slug: 'worry-time',
+      name: 'Worry Time (Scheduled Worry)',
+      category: 'CBT',
+      description: 'Contain worry by scheduling a specific time to worry, freeing rest of day from rumination.',
+      steps: JSON.stringify([
+        'Choose a 15-30 minute worry time daily',
+        'Not close to bedtime',
+        'Same time and place each day',
+        'When worry arises outside this time: "Not now"',
+        'Write it down to address during worry time',
+        'During worry time: Review worries systematically',
+        'Problem-solve what you can',
+        'Accept uncertainty for what you can\'t control',
+        'End on time, regardless'
+      ]),
+      examples: JSON.stringify([
+        'Set 5:00-5:30pm as worry time',
+        'Morning worry arises: "I\'ll think about that at 5pm"',
+        'Write it down and return to present',
+        'At 5pm, review all worries',
+        'Action plan or practice acceptance'
+      ]),
+      when: 'For chronic worry, rumination, or when worry interferes with daily functioning',
+      benefits: JSON.stringify([
+        'Reduces overall worry time',
+        'Interrupts rumination',
+        'Frees up mental space',
+        'Improves concentration',
+        'Evidence-based for GAD',
+        'Gives sense of control'
+      ])
+    },
+    {
+      slug: 'thought-defusion',
+      name: 'Thought Defusion (ACT)',
+      category: 'ACT',
+      description: 'Change relationship with thoughts by seeing them as mental events, not facts. Creates distance from unhelpful thoughts.',
+      steps: JSON.stringify([
+        'Notice the thought: "I\'m having the thought that..."',
+        'Sing it to "Happy Birthday" tune',
+        'Say it in a cartoon voice',
+        'Visualize thought as words on screen',
+        'Watch thought like leaf floating down stream',
+        'Thank your mind: "Thanks mind, interesting thought"',
+        'Practice with many thoughts',
+        'Notice: You are not your thoughts'
+      ]),
+      examples: JSON.stringify([
+        'Thought: "I\'m a failure" → "I\'m having the thought that I\'m a failure"',
+        'Thought: "They hate me" → Sing it to Happy Birthday',
+        'Thought: "I can\'t do this" → Say in Mickey Mouse voice',
+        'Visualize anxious thoughts as passing clouds'
+      ]),
+      when: 'When stuck in negative thoughts, rumination, or when thoughts feel like absolute truth',
+      benefits: JSON.stringify([
+        'Reduces thought believability',
+        'Decreases rumination',
+        'Increases psychological flexibility',
+        'Reduces distress',
+        'Evidence-based for anxiety/depression',
+        'Quick and portable'
+      ])
+    },
+    {
+      slug: 'values-clarification',
+      name: 'Values Clarification',
+      category: 'ACT',
+      description: 'Identify your core values to guide meaningful action and life direction.',
+      steps: JSON.stringify([
+        'Reflect on life domains: relationships, work, health, leisure, spirituality',
+        'For each: "What matters most to me here?"',
+        'Distinguish values from goals (values never finished)',
+        'Ask: "At my funeral, what would I want said about how I lived?"',
+        'Identify 3-5 core values',
+        'Rate current alignment with each (1-10)',
+        'Choose one value-aligned action in each domain',
+        'Commit to values-based living'
+      ]),
+      examples: JSON.stringify([
+        'Value: Connection vs Goal: Have 5 friends',
+        'Value: Growth vs Goal: Read 50 books',
+        'Value: Compassion vs Goal: Volunteer monthly',
+        'Action: If I value adventure, I could try one new thing weekly'
+      ]),
+      when: 'When feeling lost, making big decisions, or when actions don\'t match what matters',
+      benefits: JSON.stringify([
+        'Increases life meaning',
+        'Guides decision-making',
+        'Increases motivation',
+        'Reduces depression',
+        'Improves life satisfaction',
+        'Creates direction'
+      ])
+    },
+    {
+      slug: 'behavioral-experiments',
+      name: 'Behavioral Experiments (CBT)',
+      category: 'CBT',
+      description: 'Test your negative predictions to discover if they\'re accurate. Gather real-world evidence.',
+      steps: JSON.stringify([
+        'Identify negative prediction: "If I do X, then Y will happen"',
+        'Rate belief strength (0-100%)',
+        'Design experiment to test it',
+        'Make specific, measurable prediction',
+        'Carry out experiment',
+        'Observe what actually happens',
+        'Record results objectively',
+        'Re-rate belief strength',
+        'Update belief based on evidence'
+      ]),
+      examples: JSON.stringify([
+        'Prediction: "If I speak up, everyone will think I\'m stupid" → Test: Speak up once → Result: Two people agreed with me',
+        'Prediction: "If I leave the house, I\'ll have a panic attack" → Test: Walk to mailbox → Result: Felt anxious but no panic attack',
+        'Prediction: "If I try, I\'ll fail" → Test: Try small task → Result: Succeeded'
+      ]),
+      when: 'When holding untested negative beliefs, avoiding situations, or stuck in anxiety',
+      benefits: JSON.stringify([
+        'Reality-tests negative thoughts',
+        'Reduces avoidance',
+        'Builds confidence',
+        'Evidence-based',
+        'Empowering',
+        'Reduces anxiety'
+      ])
+    },
+    {
+      slug: 'exposure-hierarchy',
+      name: 'Exposure Hierarchy Creation',
+      category: 'CBT/Exposure Therapy',
+      description: 'Create a ladder of feared situations to gradually face fears, starting with easier steps.',
+      steps: JSON.stringify([
+        'Identify the feared situation/object',
+        'List 10-15 related situations from least to most scary',
+        'Rate each situation\'s anxiety level (0-100 SUDS)',
+        'Ensure even spacing between steps',
+        'Add more steps if gaps are too large',
+        'Start with step rated 30-40 SUDS',
+        'Stay in situation until anxiety decreases 50%',
+        'Repeat until anxiety is low, then advance',
+        'Work up the hierarchy systematically'
+      ]),
+      examples: JSON.stringify([
+        'Social anxiety: (20) Email colleague → (40) Phone call → (60) Team meeting → (80) Presentation to 5 people → (100) Conference talk',
+        'Spider phobia: (15) Look at pictures → (30) Video of spider → (50) Spider in container across room → (70) Near container → (100) Touch container',
+        'Public transport: (25) Sit in parked bus → (45) One stop bus ride → (65) Three stops → (85) Train ride → (100) Rush hour train'
+      ]),
+      when: 'For phobias, OCD, PTSD, social anxiety, or any fear-based avoidance',
+      benefits: JSON.stringify([
+        'Systematic anxiety reduction',
+        'Evidence-based for phobias',
+        'Builds mastery gradually',
+        'Reduces avoidance',
+        'Long-lasting results',
+        'Gold standard for anxiety'
+      ])
+    },
+    {
+      slug: 'tipp-skills',
+      name: 'TIPP Skills (DBT Crisis)',
+      category: 'DBT',
+      description: 'Fast-acting DBT skills for crisis: Temperature, Intense exercise, Paced breathing, Paired muscle relaxation.',
+      steps: JSON.stringify([
+        'T - Temperature: Splash cold water on face or hold ice',
+        'Cold activates dive reflex, calms quickly',
+        'I - Intense Exercise: Run, jump, do burpees for several minutes',
+        'Burns off adrenaline',
+        'P - Paced Breathing: Breathe out longer than in (5 in, 7 out)',
+        'Activates calm response',
+        'P - Paired Muscle Relaxation: Tense and release muscle groups',
+        'Use what works for your crisis'
+      ]),
+      examples: JSON.stringify([
+        'Panic attack: Hold ice cubes while doing paced breathing',
+        'Rage: Do intense exercise until exhausted',
+        'Overwhelming emotion: Splash cold water on face',
+        'Can combine multiple: Cold water + paced breathing'
+      ]),
+      when: 'During emotional crisis, panic, rage, overwhelming urges, or high distress',
+      benefits: JSON.stringify([
+        'Works in minutes',
+        'Physiologically calming',
+        'Prevents destructive actions',
+        'Evidence-based',
+        'Can be done anywhere',
+        'No equipment needed (mostly)',
+        'Highly effective'
+      ])
+    },
+    {
+      slug: 'accepts-distraction',
+      name: 'ACCEPTS (DBT Distraction)',
+      category: 'DBT',
+      description: 'Seven DBT distraction strategies for tolerating crisis without making it worse.',
+      steps: JSON.stringify([
+        'A - Activities: Engage in absorbing activity',
+        'C - Contributing: Help someone else',
+        'C - Comparisons: Compare to worse times or others\' situations',
+        'E - Emotions: Generate opposite emotion (comedy if sad)',
+        'P - Pushing away: Mentally push situation away temporarily',
+        'T - Thoughts: Occupy mind with other thoughts (puzzles, counting)',
+        'S - Sensations: Use strong sensation (ice, hot shower, loud music)',
+        'Use when you can\'t solve problem right now'
+      ]),
+      examples: JSON.stringify([
+        'A: Clean, puzzle, video game, craft',
+        'C: Text supportive message, volunteer, help friend',
+        'C: "At least..." or "Others have it worse" (carefully)',
+        'E: Watch comedy, listen to upbeat music',
+        'P: Visualize boxing up problem until later',
+        'T: Count backwards by 7s, name countries alphabetically',
+        'S: Bite into lemon, take cold shower, hold ice'
+      ]),
+      when: 'During crisis you can\'t immediately solve, or when emotions are too high for problem-solving',
+      benefits: JSON.stringify([
+        'Prevents impulsive actions',
+        'Buys time for emotions to decrease',
+        'Gets through crisis safely',
+        'Multiple options',
+        'Evidence-based',
+        'Works for various situations'
+      ])
+    },
+    {
+      slug: 'self-soothe-five-senses',
+      name: 'Self-Soothing with 5 Senses (DBT)',
+      category: 'DBT',
+      description: 'Comfort yourself through each of the five senses during distress.',
+      steps: JSON.stringify([
+        'Vision: Look at beautiful images, art, nature, sunset',
+        'Hearing: Listen to favorite music, nature sounds, rain',
+        'Smell: Light candle, essential oils, bake cookies, flowers',
+        'Taste: Savor tea, chocolate, favorite food mindfully',
+        'Touch: Soft blanket, hot bath, pet your cat/dog, massage hands',
+        'Engage fully with each sense',
+        'Notice the pleasant sensation',
+        'Use multiple senses if helpful'
+      ]),
+      examples: JSON.stringify([
+        'Vision: Watch sunset, look at photos of loved ones',
+        'Hearing: Playlist of calming songs, ocean waves',
+        'Smell: Lavender oil, fresh coffee, baking bread',
+        'Taste: Slowly eat piece of dark chocolate',
+        'Touch: Warm bath with soft music and candle'
+      ]),
+      when: 'During distress, after crisis, when needing comfort, or for self-care',
+      benefits: JSON.stringify([
+        'Immediate comfort',
+        'Activates parasympathetic system',
+        'Grounds in present',
+        'Improves distress tolerance',
+        'Self-nurturing',
+        'Can be luxurious or simple'
+      ])
+    },
+    {
+      slug: 'pros-and-cons',
+      name: 'Pros and Cons (DBT)',
+      category: 'DBT',
+      description: 'Systematic comparison of pros and cons of tolerating vs not tolerating distress, or of acting vs not acting on urges.',
+      steps: JSON.stringify([
+        'Draw 2x2 grid',
+        'Label: Tolerate Distress | Don\'t Tolerate Distress',
+        'Top row: Pros of each',
+        'Bottom row: Cons of each',
+        'Or: Act on Urge | Resist Urge',
+        'Fill in all four boxes honestly',
+        'Think short-term AND long-term consequences',
+        'Review when struggling with decision',
+        'Make values-based choice'
+      ]),
+      examples: JSON.stringify([
+        'Urge to use substances: Pros of using (feel better now) vs Cons (hangover, shame, relapse)',
+        'Urge to self-harm: Pros of doing it (temporary relief) vs Pros of resisting (healing, pride, safety)',
+        'Tolerate breakup pain vs call ex repeatedly',
+        'Do exposure therapy vs avoid feared situation'
+      ]),
+      when: 'When torn between choices, before acting on destructive urge, or when needing motivation to tolerate distress',
+      benefits: JSON.stringify([
+        'Clarifies consequences',
+        'Increases motivation',
+        'Interrupts impulsivity',
+        'Reveals long-term vs short-term tradeoffs',
+        'Evidence-based',
+        'Empowering'
+      ])
+    },
+    {
+      slug: 'dear-man',
+      name: 'DEAR MAN (DBT Interpersonal Effectiveness)',
+      category: 'DBT',
+      description: 'DBT skill for asking for what you want or saying no effectively while maintaining relationships.',
+      steps: JSON.stringify([
+        'D - Describe situation objectively (just facts)',
+        'E - Express feelings and opinions clearly',
+        'A - Assert by asking clearly or saying no',
+        'R - Reinforce: Explain positive effects of getting what you want',
+        'M - Mindful: Stay focused, broken record if needed',
+        'A - Appear confident: Eye contact, posture, calm voice',
+        'N - Negotiate: Be willing to compromise',
+        'Practice before difficult conversation'
+      ]),
+      examples: JSON.stringify([
+        'D: "You borrowed my car and returned it with an empty gas tank" E: "I felt frustrated" A: "Please fill up the tank" R: "That way I can lend it again"',
+        'D: "You asked me to work this weekend" E: "I\'m exhausted" A: "I need to say no" R: "I\'ll be more productive after rest"',
+        'Stay Mindful: If they change subject, return to your point',
+        'Negotiate: "I can\'t work all weekend, but I could do Saturday morning"'
+      ]),
+      when: 'Before asking for something, saying no, resolving conflict, or setting boundaries',
+      benefits: JSON.stringify([
+        'Increases effectiveness',
+        'Maintains self-respect',
+        'Preserves relationships',
+        'Reduces anxiety about asking',
+        'Evidence-based',
+        'Improves communication'
+      ])
+    },
+    {
+      slug: 'give',
+      name: 'GIVE (DBT Relationship Skills)',
+      category: 'DBT',
+      description: 'DBT skill for maintaining and improving relationships while being interpersonally effective.',
+      steps: JSON.stringify([
+        'G - Gentle: Be courteous and nice, no attacks or threats',
+        'Avoid judgmental statements',
+        'I - Interested: Listen to other person, don\'t interrupt',
+        'Show genuine interest in their perspective',
+        'V - Validate: Acknowledge their feelings as understandable',
+        'You don\'t have to agree, just show you hear them',
+        'E - Easy manner: Use humor, smile, be light when possible',
+        'Don\'t take everything too seriously',
+        'Builds goodwill and connection'
+      ]),
+      examples: JSON.stringify([
+        'Gentle: "I\'d like to talk about..." vs "You always..."',
+        'Interested: "Tell me more about how you felt"',
+        'Validate: "It makes sense you\'d feel that way given..."',
+        'Easy: Smile, keep it light where appropriate',
+        'Example: "Hey, I know we see this differently. I really want to understand your side. Can we talk about it over coffee?"'
+      ]),
+      when: 'When relationship is priority, during conflict, or when you want to strengthen connection',
+      benefits: JSON.stringify([
+        'Strengthens relationships',
+        'Reduces conflict',
+        'Increases trust',
+        'Makes difficult conversations easier',
+        'Shows respect',
+        'Evidence-based'
+      ])
+    },
+    {
+      slug: 'fast',
+      name: 'FAST (DBT Self-Respect)',
+      category: 'DBT',
+      description: 'DBT skill for maintaining self-respect during interactions, especially conflicts.',
+      steps: JSON.stringify([
+        'F - Fair: Be fair to yourself AND others',
+        'Don\'t sacrifice yourself, but don\'t be selfish',
+        'A - Apologies (no excessive): Don\'t over-apologize',
+        'Apologize once if warranted, then stop',
+        'S - Stick to values: Act according to your values',
+        'Don\'t compromise your integrity',
+        'T - Truthful: Don\'t lie, don\'t exaggerate',
+        'Be honest while being kind',
+        'Walk away with self-respect intact'
+      ]),
+      examples: JSON.stringify([
+        'Fair: "I can help for an hour, but then I need to go" (not "I guess I\'ll cancel my plans...")',
+        'No excessive apologies: "I\'m sorry I was late" not "I\'m so sorry, I\'m terrible, I always..."',
+        'Stick to values: If honesty is your value, don\'t lie to avoid conflict',
+        'Truthful: "I\'m not available" not making up elaborate excuses'
+      ]),
+      when: 'When people-pleasing, over-apologizing, or when you might compromise values to avoid conflict',
+      benefits: JSON.stringify([
+        'Maintains self-respect',
+        'Prevents resentment',
+        'Builds integrity',
+        'Reduces people-pleasing',
+        'Strengthens boundaries',
+        'Evidence-based'
       ])
     }
   ]
