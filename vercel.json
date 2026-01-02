@@ -1,12 +1,13 @@
 {
   "$schema": "https://vercel.com/schema/project-configuration.json",
-  "buildCommand": "npm run build",
+  "buildCommand": "prisma generate && npm run build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": ".next",
   "regions": ["iad1"],
   "env": {
+    "DATABASE_URL": "@database_url",
     "POSTGRES_PRISMA_URL": "@postgres_prisma_url",
     "POSTGRES_URL_NON_POOLING": "@postgres_url_non_pooling"
   },
