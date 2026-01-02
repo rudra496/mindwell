@@ -25,11 +25,11 @@ Create the most comprehensive, scientifically-backed mental health support platf
 
 ## 📊 Platform Statistics
 
-- **22** Comprehensive Mental Health Disorders
+- **63** Comprehensive Mental Health Disorders
 - **20** Validated Assessment Tools
 - **12** Therapeutic Games & Activities
-- **6** Guided Meditations
-- **7** Evidence-Based Therapy Techniques
+- **14** Guided Meditations
+- **20** Evidence-Based Therapy Techniques
 - **500+** Chatbot Response Patterns
 - **12** Community Support Categories
 - **100%** Free & Open Source
@@ -37,8 +37,8 @@ Create the most comprehensive, scientifically-backed mental health support platf
 
 ## ✨ Complete Features
 
-### 📚 Mental Health Disorders Database (22 Comprehensive)
-- **Comprehensive Coverage**: 22 fully detailed mental health conditions with evidence-based information
+### 📚 Mental Health Disorders Database (63 Comprehensive)
+- **Comprehensive Coverage**: 63 fully detailed mental health conditions with evidence-based information
 - **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Eating Disorders, and more
 - Each disorder includes:
   - 15-20 detailed symptoms
@@ -129,24 +129,33 @@ Create the most comprehensive, scientifically-backed mental health support platf
 - Upvoting system
 - Crisis resource auto-display for concerning content
 
-### 🧘 Guided Meditation Library (6)
+### 🧘 Guided Meditation Library (14)
 - **4-7-8 Breathing** - Dr. Andrew Weil technique
 - **Body Scan** - Full-body awareness meditation
 - **Box Breathing** - 4-4-4-4 technique
 - **Loving-Kindness** - Metta meditation
 - **Anxiety Relief** - Targeted anxiety reduction
 - **Sleep Meditation** - Progressive relaxation for sleep
+- **Mountain Meditation** - Stability visualization
+- **Walking Meditation** - Mindful walking practice
+- **Self-Compassion Meditation** - Dr. Kristin Neff's practice
+- **Gratitude Meditation** - Appreciation practice
+- **Yoga Nidra for Sleep** - Deep relaxation technique
+- **Pain Management Meditation** - Chronic pain relief
+- **Anger Release Meditation** - Emotion regulation
+- **Morning Energizing Meditation** - Start the day right
 - Full guided scripts
 - Duration tracking
 - Benefits listed
 - Category filtering
 
-### 🧠 Therapy Techniques Library (7)
-- **CBT**: Cognitive Restructuring, Behavioral Activation
-- **DBT**: Wise Mind, TIPP Skills (coming)
+### 🧠 Therapy Techniques Library (20)
+- **CBT**: Cognitive Restructuring, Behavioral Activation, Behavioral Experiments, Exposure Hierarchy
+- **DBT**: Wise Mind, TIPP Skills, ACCEPTS, Self-Soothing with 5 Senses, Pros and Cons, DEAR MAN, GIVE, FAST, Radical Acceptance, Opposite Action
+- **ACT**: Thought Defusion, Values Clarification
 - **Mindfulness**: 5-4-3-2-1 Grounding
-- **Exposure**: Exposure Hierarchy (coming)
-- **ACT**: Acceptance techniques (coming)
+- **Self-Compassion**: Self-Compassion Break (Kristin Neff), Worry Time
+- **Crisis**: Safety Planning
 - Step-by-step instructions
 - Examples and applications
 - When to use guidance
