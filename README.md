@@ -13,11 +13,33 @@
 
 Create the most comprehensive, scientifically-backed mental health support platform. **100% Free. 100% Open Source.**
 
+## 🆕 Latest Updates
+
+### ✨ Major Enhancements (January 2026)
+- 🎉 **20 Complete Assessment Tools** - Expanded from 5 to 20 validated screening tools including Y-BOCS (OCD), AUDIT (alcohol), DAST-10 (drugs), EAT-26 (eating disorders), PSQI (sleep), BDI-II, BAI, EPDS, LSAS, SPIN, and more
+- 🔊 **Text-to-Speech Engine** - Full TTS support for meditations and guided exercises with voice selection
+- 🎵 **Sound Effects System** - Audio feedback for breathing exercises, meditation cues, and game completion
+- 📚 **Enhanced Documentation** - Comprehensive contributing guidelines, code of conduct, and issue templates
+- 🔍 **SEO Optimization** - Improved discoverability with robots.txt, sitemap.xml, and meta tags
+- ⚡ **Production Ready** - Optimized Vercel deployment with security headers
+
+## 📊 Platform Statistics
+
+- **22** Comprehensive Mental Health Disorders
+- **20** Validated Assessment Tools
+- **12** Therapeutic Games & Activities
+- **6** Guided Meditations
+- **7** Evidence-Based Therapy Techniques
+- **500+** Chatbot Response Patterns
+- **12** Community Support Categories
+- **100%** Free & Open Source
+- **0** API Keys Required
+
 ## ✨ Complete Features
 
-### 📚 Mental Health Disorders Database (22+ and growing to 68)
-- **Comprehensive Coverage**: Currently 22 fully detailed mental health conditions, expanding to 68+
-- **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Personality Disorders, Eating Disorders, Psychotic Disorders, and more
+### 📚 Mental Health Disorders Database (22 Comprehensive)
+- **Comprehensive Coverage**: 22 fully detailed mental health conditions with evidence-based information
+- **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Eating Disorders, and more
 - Each disorder includes:
   - 15-20 detailed symptoms
   - Biological, psychological, and social causes (6-8 each)
@@ -40,17 +62,30 @@ Create the most comprehensive, scientifically-backed mental health support platf
 - OCD Spectrum: OCD
 - Eating Disorders: Anorexia Nervosa, Bulimia Nervosa, Binge Eating Disorder, ARFID
 
-### 📝 Validated Assessment Tools (5, expanding to 20)
+### 📝 Validated Assessment Tools (20 Complete)
 - **PHQ-9** - Patient Health Questionnaire (Depression)
 - **GAD-7** - Generalized Anxiety Disorder Scale
 - **PCL-5** - PTSD Checklist
 - **MDQ** - Mood Disorder Questionnaire (Bipolar)
 - **PSS-10** - Perceived Stress Scale
-- Complete scoring algorithms
-- Severity interpretations
+- **Y-BOCS** - Yale-Brown Obsessive Compulsive Scale (OCD)
+- **AUDIT** - Alcohol Use Disorders Identification Test
+- **DAST-10** - Drug Abuse Screening Test
+- **EAT-26** - Eating Attitudes Test
+- **PSQI** - Pittsburgh Sleep Quality Index
+- **SWLS** - Satisfaction With Life Scale
+- **RSES** - Rosenberg Self-Esteem Scale
+- **ACE** - Adverse Childhood Experiences
+- **ASRS** - Adult ADHD Self-Report Scale
+- **AQ-10** - Autism Spectrum Quotient (10 items)
+- **SPIN** - Social Phobia Inventory
+- **BDI-II** - Beck Depression Inventory-II
+- **BAI** - Beck Anxiety Inventory
+- **EPDS** - Edinburgh Postnatal Depression Scale
+- **LSAS** - Liebowitz Social Anxiety Scale
+- Complete scoring algorithms with severity interpretations
 - Crisis detection for severe scores
-- Professional recommendations
-- *Additional 15 assessments coming soon*
+- Professional recommendations for each result
 
 ### 🎮 Therapeutic Games & Activities (12)
 1. **Breathing Circle** - 4-7-8 breathing technique for instant calm
@@ -65,6 +100,15 @@ Create the most comprehensive, scientifically-backed mental health support platf
 10. **Progressive Muscle Relaxation** - Guided PMR through 10 muscle groups
 11. **Safe Place Visualization** - Trauma-informed guided visualization for creating mental sanctuary
 12. **Mindful Coloring** - Therapeutic coloring with mandala patterns
+
+### 🎤 Audio Features (NEW!)
+- **Text-to-Speech Engine**: Full TTS support for meditations with natural-sounding voices
+- **Voice Selection**: Choose from available system voices with preference saving
+- **Speed Control**: Adjustable speech rate for comfort (0.8x default for meditation)
+- **Sound Effects**: Subtle audio cues for breathing, meditation start/end, game completion
+- **Tone Generation**: Fallback tones when audio files unavailable
+- **Volume Control**: Adjustable volume and mute functionality
+- **Pause/Resume**: Full playback control for all audio
 
 ### 🤖 AI Support Chatbot
 - **FREE Rule-Based Engine** - 500+ intelligent responses
