@@ -66,7 +66,7 @@ export default function HomePage() {
           World's Largest Open-Source Mental Health Platform
         </p>
         <p className="text-md text-gray-600 max-w-3xl mx-auto">
-          Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
+          Comprehensive, scientifically-backed, free mental health support with 68+ disorders, 
           validated assessments, therapeutic games, meditation, and crisis resources.
         </p>
       </header>
@@ -92,7 +92,7 @@ export default function HomePage() {
               <CardTitle>Disorders Database</CardTitle>
             </div>
             <CardDescription>
-              63+ Mental Health Conditions
+              68+ Mental Health Conditions
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -275,29 +275,41 @@ export default function HomePage() {
       </div>
 
       {/* Statistics Section */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-primary mb-2">40+</div>
+            <div className="text-4xl font-bold text-primary mb-2">68+</div>
             <div className="text-sm text-gray-600">Mental Health Disorders</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-secondary mb-2">10</div>
-            <div className="text-sm text-gray-600">Validated Assessments</div>
+            <div className="text-4xl font-bold text-secondary mb-2">20</div>
+            <div className="text-sm text-gray-600">Clinical Assessments</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-accent mb-2">12</div>
+            <div className="text-4xl font-bold text-accent mb-2">15</div>
             <div className="text-sm text-gray-600">Therapeutic Games</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-indigo-600 mb-2">100%</div>
-            <div className="text-sm text-gray-600">Free & Open Source</div>
+            <div className="text-4xl font-bold text-teal-600 mb-2">25+</div>
+            <div className="text-sm text-gray-600">Guided Meditations</div>
+          </CardContent>
+        </Card>
+        <Card className="text-center">
+          <CardContent className="pt-6">
+            <div className="text-4xl font-bold text-purple-600 mb-2">25+</div>
+            <div className="text-sm text-gray-600">Therapy Techniques</div>
+          </CardContent>
+        </Card>
+        <Card className="text-center">
+          <CardContent className="pt-6">
+            <div className="text-4xl font-bold text-red-600 mb-2">30+</div>
+            <div className="text-sm text-gray-600">Crisis Resources</div>
           </CardContent>
         </Card>
       </div>

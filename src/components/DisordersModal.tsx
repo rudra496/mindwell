@@ -53,7 +53,7 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
         <DialogHeader>
           <DialogTitle className="text-2xl">Mental Health Disorders Database</DialogTitle>
           <DialogDescription>
-            Comprehensive, evidence-based information on mental health conditions
+            Explore comprehensive information on 68+ mental health disorders including symptoms, causes, evidence-based treatments, and when to seek professional help.
           </DialogDescription>
         </DialogHeader>
 
