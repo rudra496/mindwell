@@ -15,9 +15,9 @@ Create the most comprehensive, scientifically-backed mental health support platf
 
 ## ✨ Complete Features
 
-### 📚 Mental Health Disorders Database (22+ and growing to 68)
-- **Comprehensive Coverage**: Currently 22 fully detailed mental health conditions, expanding to 68+
-- **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Personality Disorders, Eating Disorders, Psychotic Disorders, and more
+### 📚 Mental Health Disorders Database (22 Comprehensive)
+- **Comprehensive Coverage**: 22 fully detailed mental health conditions with evidence-based information
+- **Categories Include**: Anxiety Disorders, Mood Disorders, Trauma & Stress, OCD-Related, Eating Disorders, and more
 - Each disorder includes:
   - 15-20 detailed symptoms
   - Biological, psychological, and social causes (6-8 each)
@@ -40,17 +40,30 @@ Create the most comprehensive, scientifically-backed mental health support platf
 - OCD Spectrum: OCD
 - Eating Disorders: Anorexia Nervosa, Bulimia Nervosa, Binge Eating Disorder, ARFID
 
-### 📝 Validated Assessment Tools (5, expanding to 20)
+### 📝 Validated Assessment Tools (20 Complete)
 - **PHQ-9** - Patient Health Questionnaire (Depression)
 - **GAD-7** - Generalized Anxiety Disorder Scale
 - **PCL-5** - PTSD Checklist
 - **MDQ** - Mood Disorder Questionnaire (Bipolar)
 - **PSS-10** - Perceived Stress Scale
-- Complete scoring algorithms
-- Severity interpretations
+- **Y-BOCS** - Yale-Brown Obsessive Compulsive Scale (OCD)
+- **AUDIT** - Alcohol Use Disorders Identification Test
+- **DAST-10** - Drug Abuse Screening Test
+- **EAT-26** - Eating Attitudes Test
+- **PSQI** - Pittsburgh Sleep Quality Index
+- **SWLS** - Satisfaction With Life Scale
+- **RSES** - Rosenberg Self-Esteem Scale
+- **ACE** - Adverse Childhood Experiences
+- **ASRS** - Adult ADHD Self-Report Scale
+- **AQ-10** - Autism Spectrum Quotient (10 items)
+- **SPIN** - Social Phobia Inventory
+- **BDI-II** - Beck Depression Inventory-II
+- **BAI** - Beck Anxiety Inventory
+- **EPDS** - Edinburgh Postnatal Depression Scale
+- **LSAS** - Liebowitz Social Anxiety Scale
+- Complete scoring algorithms with severity interpretations
 - Crisis detection for severe scores
-- Professional recommendations
-- *Additional 15 assessments coming soon*
+- Professional recommendations for each result
 
 ### 🎮 Therapeutic Games & Activities (12)
 1. **Breathing Circle** - 4-7-8 breathing technique for instant calm
