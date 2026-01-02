@@ -13,6 +13,28 @@
 
 Create the most comprehensive, scientifically-backed mental health support platform. **100% Free. 100% Open Source.**
 
+## 🆕 Latest Updates
+
+### ✨ Major Enhancements (January 2026)
+- 🎉 **20 Complete Assessment Tools** - Expanded from 5 to 20 validated screening tools including Y-BOCS (OCD), AUDIT (alcohol), DAST-10 (drugs), EAT-26 (eating disorders), PSQI (sleep), BDI-II, BAI, EPDS, LSAS, SPIN, and more
+- 🔊 **Text-to-Speech Engine** - Full TTS support for meditations and guided exercises with voice selection
+- 🎵 **Sound Effects System** - Audio feedback for breathing exercises, meditation cues, and game completion
+- 📚 **Enhanced Documentation** - Comprehensive contributing guidelines, code of conduct, and issue templates
+- 🔍 **SEO Optimization** - Improved discoverability with robots.txt, sitemap.xml, and meta tags
+- ⚡ **Production Ready** - Optimized Vercel deployment with security headers
+
+## 📊 Platform Statistics
+
+- **22** Comprehensive Mental Health Disorders
+- **20** Validated Assessment Tools
+- **12** Therapeutic Games & Activities
+- **6** Guided Meditations
+- **7** Evidence-Based Therapy Techniques
+- **500+** Chatbot Response Patterns
+- **12** Community Support Categories
+- **100%** Free & Open Source
+- **0** API Keys Required
+
 ## ✨ Complete Features
 
 ### 📚 Mental Health Disorders Database (22 Comprehensive)
@@ -78,6 +100,15 @@ Create the most comprehensive, scientifically-backed mental health support platf
 10. **Progressive Muscle Relaxation** - Guided PMR through 10 muscle groups
 11. **Safe Place Visualization** - Trauma-informed guided visualization for creating mental sanctuary
 12. **Mindful Coloring** - Therapeutic coloring with mandala patterns
+
+### 🎤 Audio Features (NEW!)
+- **Text-to-Speech Engine**: Full TTS support for meditations with natural-sounding voices
+- **Voice Selection**: Choose from available system voices with preference saving
+- **Speed Control**: Adjustable speech rate for comfort (0.8x default for meditation)
+- **Sound Effects**: Subtle audio cues for breathing, meditation start/end, game completion
+- **Tone Generation**: Fallback tones when audio files unavailable
+- **Volume Control**: Adjustable volume and mute functionality
+- **Pause/Resume**: Full playback control for all audio
 
 ### 🤖 AI Support Chatbot
 - **FREE Rule-Based Engine** - 500+ intelligent responses
