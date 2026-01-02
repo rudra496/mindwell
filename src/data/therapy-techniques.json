@@ -1,6 +1,6 @@
 [
   {
-    "id": "cmjuzxu1i0010h67nar2nvn2t",
+    "id": "cmjwaj8ov0024b7k32buxzq09",
     "slug": "grounding-5-4-3-2-1",
     "name": "5-4-3-2-1 Grounding Technique",
     "category": "Mindfulness",
@@ -9,11 +9,24 @@
     "examples": "[\"See: door, window, tree, phone, cup\",\"Touch: soft fabric, cool table, rough carpet, smooth phone\",\"Hear: birds chirping, traffic, refrigerator humming\",\"Smell: coffee, fresh air\",\"Taste: mint from toothpaste\"]",
     "when": "Use during panic attacks, anxiety, dissociation, flashbacks, or feeling disconnected",
     "benefits": "[\"Immediately grounds you in present\",\"Interrupts panic and anxiety\",\"Reduces dissociation\",\"Can be done anywhere\",\"No equipment needed\",\"Works for PTSD flashbacks\",\"Helps with intrusive thoughts\"]",
-    "createdAt": "2026-01-01T05:20:24.919Z",
-    "updatedAt": "2026-01-01T05:20:24.919Z"
+    "createdAt": "2026-01-02T03:04:46.016Z",
+    "updatedAt": "2026-01-02T03:04:46.016Z"
   },
   {
-    "id": "cmjuzxu1f000yh67nlg04ru2v",
+    "id": "cmjwaj8pw002fb7k3xdfas99p",
+    "slug": "accepts-distraction",
+    "name": "ACCEPTS (DBT Distraction)",
+    "category": "DBT",
+    "description": "Seven DBT distraction strategies for tolerating crisis without making it worse.",
+    "steps": "[\"A - Activities: Engage in absorbing activity\",\"C - Contributing: Help someone else\",\"C - Comparisons: Compare to worse times or others' situations\",\"E - Emotions: Generate opposite emotion (comedy if sad)\",\"P - Pushing away: Mentally push situation away temporarily\",\"T - Thoughts: Occupy mind with other thoughts (puzzles, counting)\",\"S - Sensations: Use strong sensation (ice, hot shower, loud music)\",\"Use when you can't solve problem right now\"]",
+    "examples": "[\"A: Clean, puzzle, video game, craft\",\"C: Text supportive message, volunteer, help friend\",\"C: \\\"At least...\\\" or \\\"Others have it worse\\\" (carefully)\",\"E: Watch comedy, listen to upbeat music\",\"P: Visualize boxing up problem until later\",\"T: Count backwards by 7s, name countries alphabetically\",\"S: Bite into lemon, take cold shower, hold ice\"]",
+    "when": "During crisis you can't immediately solve, or when emotions are too high for problem-solving",
+    "benefits": "[\"Prevents impulsive actions\",\"Buys time for emotions to decrease\",\"Gets through crisis safely\",\"Multiple options\",\"Evidence-based\",\"Works for various situations\"]",
+    "createdAt": "2026-01-02T03:04:46.052Z",
+    "updatedAt": "2026-01-02T03:04:46.052Z"
+  },
+  {
+    "id": "cmjwaj8op0022b7k3afl0o3dj",
     "slug": "behavioral-activation",
     "name": "Behavioral Activation",
     "category": "CBT",
@@ -22,11 +35,24 @@
     "examples": "[\"Schedule a 10-minute walk daily\",\"Call a friend once per week\",\"Cook a healthy meal\",\"Work on a hobby for 20 minutes\",\"Complete one household task\",\"Attend a social event\"]",
     "when": "When experiencing depression, low motivation, social withdrawal, or loss of interest",
     "benefits": "[\"Reduces depressive symptoms\",\"Increases positive emotions\",\"Improves sense of accomplishment\",\"Combats avoidance\",\"Increases social connection\",\"Evidence-based for depression\"]",
-    "createdAt": "2026-01-01T05:20:24.915Z",
-    "updatedAt": "2026-01-01T05:20:24.915Z"
+    "createdAt": "2026-01-02T03:04:46.010Z",
+    "updatedAt": "2026-01-02T03:04:46.010Z"
   },
   {
-    "id": "cmjuzxu1d000xh67nktryv1p7",
+    "id": "cmjwaj8pm002cb7k3yyygu89w",
+    "slug": "behavioral-experiments",
+    "name": "Behavioral Experiments (CBT)",
+    "category": "CBT",
+    "description": "Test your negative predictions to discover if they're accurate. Gather real-world evidence.",
+    "steps": "[\"Identify negative prediction: \\\"If I do X, then Y will happen\\\"\",\"Rate belief strength (0-100%)\",\"Design experiment to test it\",\"Make specific, measurable prediction\",\"Carry out experiment\",\"Observe what actually happens\",\"Record results objectively\",\"Re-rate belief strength\",\"Update belief based on evidence\"]",
+    "examples": "[\"Prediction: \\\"If I speak up, everyone will think I'm stupid\\\" → Test: Speak up once → Result: Two people agreed with me\",\"Prediction: \\\"If I leave the house, I'll have a panic attack\\\" → Test: Walk to mailbox → Result: Felt anxious but no panic attack\",\"Prediction: \\\"If I try, I'll fail\\\" → Test: Try small task → Result: Succeeded\"]",
+    "when": "When holding untested negative beliefs, avoiding situations, or stuck in anxiety",
+    "benefits": "[\"Reality-tests negative thoughts\",\"Reduces avoidance\",\"Builds confidence\",\"Evidence-based\",\"Empowering\",\"Reduces anxiety\"]",
+    "createdAt": "2026-01-02T03:04:46.042Z",
+    "updatedAt": "2026-01-02T03:04:46.042Z"
+  },
+  {
+    "id": "cmjwaj8om0021b7k356xq9cxp",
     "slug": "cognitive-restructuring",
     "name": "Cognitive Restructuring",
     "category": "CBT",
@@ -35,11 +61,63 @@
     "examples": "[\"Thought: \\\"I'm a complete failure\\\" → Balanced: \\\"I made a mistake, but I've succeeded at many things\\\"\",\"Thought: \\\"Everyone thinks I'm stupid\\\" → Balanced: \\\"I don't actually know what others think. Some people appreciate my contributions\\\"\",\"Thought: \\\"This is a disaster\\\" → Balanced: \\\"This is difficult, but I can handle it. It's not the end of the world\\\"\"]",
     "when": "When experiencing distressing emotions, negative self-talk, or cognitive distortions",
     "benefits": "[\"Reduces depression and anxiety\",\"Increases emotional regulation\",\"Improves self-esteem\",\"Enhances problem-solving\",\"Reduces rumination\",\"Evidence-based and well-researched\"]",
-    "createdAt": "2026-01-01T05:20:24.914Z",
-    "updatedAt": "2026-01-01T05:20:24.914Z"
+    "createdAt": "2026-01-02T03:04:46.007Z",
+    "updatedAt": "2026-01-02T03:04:46.007Z"
   },
   {
-    "id": "cmjuzxu1q0012h67nvrz0xqsj",
+    "id": "cmjwaj8q5002ib7k31oue3tcs",
+    "slug": "dear-man",
+    "name": "DEAR MAN (DBT Interpersonal Effectiveness)",
+    "category": "DBT",
+    "description": "DBT skill for asking for what you want or saying no effectively while maintaining relationships.",
+    "steps": "[\"D - Describe situation objectively (just facts)\",\"E - Express feelings and opinions clearly\",\"A - Assert by asking clearly or saying no\",\"R - Reinforce: Explain positive effects of getting what you want\",\"M - Mindful: Stay focused, broken record if needed\",\"A - Appear confident: Eye contact, posture, calm voice\",\"N - Negotiate: Be willing to compromise\",\"Practice before difficult conversation\"]",
+    "examples": "[\"D: \\\"You borrowed my car and returned it with an empty gas tank\\\" E: \\\"I felt frustrated\\\" A: \\\"Please fill up the tank\\\" R: \\\"That way I can lend it again\\\"\",\"D: \\\"You asked me to work this weekend\\\" E: \\\"I'm exhausted\\\" A: \\\"I need to say no\\\" R: \\\"I'll be more productive after rest\\\"\",\"Stay Mindful: If they change subject, return to your point\",\"Negotiate: \\\"I can't work all weekend, but I could do Saturday morning\\\"\"]",
+    "when": "Before asking for something, saying no, resolving conflict, or setting boundaries",
+    "benefits": "[\"Increases effectiveness\",\"Maintains self-respect\",\"Preserves relationships\",\"Reduces anxiety about asking\",\"Evidence-based\",\"Improves communication\"]",
+    "createdAt": "2026-01-02T03:04:46.061Z",
+    "updatedAt": "2026-01-02T03:04:46.061Z"
+  },
+  {
+    "id": "cmjwaj8pp002db7k3l3u1sa3c",
+    "slug": "exposure-hierarchy",
+    "name": "Exposure Hierarchy Creation",
+    "category": "CBT/Exposure Therapy",
+    "description": "Create a ladder of feared situations to gradually face fears, starting with easier steps.",
+    "steps": "[\"Identify the feared situation/object\",\"List 10-15 related situations from least to most scary\",\"Rate each situation's anxiety level (0-100 SUDS)\",\"Ensure even spacing between steps\",\"Add more steps if gaps are too large\",\"Start with step rated 30-40 SUDS\",\"Stay in situation until anxiety decreases 50%\",\"Repeat until anxiety is low, then advance\",\"Work up the hierarchy systematically\"]",
+    "examples": "[\"Social anxiety: (20) Email colleague → (40) Phone call → (60) Team meeting → (80) Presentation to 5 people → (100) Conference talk\",\"Spider phobia: (15) Look at pictures → (30) Video of spider → (50) Spider in container across room → (70) Near container → (100) Touch container\",\"Public transport: (25) Sit in parked bus → (45) One stop bus ride → (65) Three stops → (85) Train ride → (100) Rush hour train\"]",
+    "when": "For phobias, OCD, PTSD, social anxiety, or any fear-based avoidance",
+    "benefits": "[\"Systematic anxiety reduction\",\"Evidence-based for phobias\",\"Builds mastery gradually\",\"Reduces avoidance\",\"Long-lasting results\",\"Gold standard for anxiety\"]",
+    "createdAt": "2026-01-02T03:04:46.046Z",
+    "updatedAt": "2026-01-02T03:04:46.046Z"
+  },
+  {
+    "id": "cmjwaj8qa002kb7k3t7dzk9df",
+    "slug": "fast",
+    "name": "FAST (DBT Self-Respect)",
+    "category": "DBT",
+    "description": "DBT skill for maintaining self-respect during interactions, especially conflicts.",
+    "steps": "[\"F - Fair: Be fair to yourself AND others\",\"Don't sacrifice yourself, but don't be selfish\",\"A - Apologies (no excessive): Don't over-apologize\",\"Apologize once if warranted, then stop\",\"S - Stick to values: Act according to your values\",\"Don't compromise your integrity\",\"T - Truthful: Don't lie, don't exaggerate\",\"Be honest while being kind\",\"Walk away with self-respect intact\"]",
+    "examples": "[\"Fair: \\\"I can help for an hour, but then I need to go\\\" (not \\\"I guess I'll cancel my plans...\\\")\",\"No excessive apologies: \\\"I'm sorry I was late\\\" not \\\"I'm so sorry, I'm terrible, I always...\\\"\",\"Stick to values: If honesty is your value, don't lie to avoid conflict\",\"Truthful: \\\"I'm not available\\\" not making up elaborate excuses\"]",
+    "when": "When people-pleasing, over-apologizing, or when you might compromise values to avoid conflict",
+    "benefits": "[\"Maintains self-respect\",\"Prevents resentment\",\"Builds integrity\",\"Reduces people-pleasing\",\"Strengthens boundaries\",\"Evidence-based\"]",
+    "createdAt": "2026-01-02T03:04:46.066Z",
+    "updatedAt": "2026-01-02T03:04:46.066Z"
+  },
+  {
+    "id": "cmjwaj8q7002jb7k39vt6l0pi",
+    "slug": "give",
+    "name": "GIVE (DBT Relationship Skills)",
+    "category": "DBT",
+    "description": "DBT skill for maintaining and improving relationships while being interpersonally effective.",
+    "steps": "[\"G - Gentle: Be courteous and nice, no attacks or threats\",\"Avoid judgmental statements\",\"I - Interested: Listen to other person, don't interrupt\",\"Show genuine interest in their perspective\",\"V - Validate: Acknowledge their feelings as understandable\",\"You don't have to agree, just show you hear them\",\"E - Easy manner: Use humor, smile, be light when possible\",\"Don't take everything too seriously\",\"Builds goodwill and connection\"]",
+    "examples": "[\"Gentle: \\\"I'd like to talk about...\\\" vs \\\"You always...\\\"\",\"Interested: \\\"Tell me more about how you felt\\\"\",\"Validate: \\\"It makes sense you'd feel that way given...\\\"\",\"Easy: Smile, keep it light where appropriate\",\"Example: \\\"Hey, I know we see this differently. I really want to understand your side. Can we talk about it over coffee?\\\"\"]",
+    "when": "When relationship is priority, during conflict, or when you want to strengthen connection",
+    "benefits": "[\"Strengthens relationships\",\"Reduces conflict\",\"Increases trust\",\"Makes difficult conversations easier\",\"Shows respect\",\"Evidence-based\"]",
+    "createdAt": "2026-01-02T03:04:46.064Z",
+    "updatedAt": "2026-01-02T03:04:46.064Z"
+  },
+  {
+    "id": "cmjwaj8p20026b7k3o6055ksc",
     "slug": "opposite-action",
     "name": "Opposite Action",
     "category": "DBT",
@@ -48,11 +126,24 @@
     "examples": "[\"Fear: Avoid → Opposite: Approach\",\"Anger: Attack → Opposite: Be kind\",\"Shame: Hide → Opposite: Share openly\",\"Sadness: Isolate → Opposite: Reach out\",\"Guilt: Apologize → Opposite: Act confidently\"]",
     "when": "When emotion doesn't fit facts, too intense, or action urge would worsen situation",
     "benefits": "[\"Changes emotions from outside-in\",\"Breaks unhelpful patterns\",\"Builds emotional flexibility\",\"Reduces depression and anxiety\",\"Increases mastery over emotions\",\"Backed by science\",\"Empowering\"]",
-    "createdAt": "2026-01-01T05:20:24.926Z",
-    "updatedAt": "2026-01-01T05:20:24.926Z"
+    "createdAt": "2026-01-02T03:04:46.022Z",
+    "updatedAt": "2026-01-02T03:04:46.022Z"
   },
   {
-    "id": "cmjuzxu1k0011h67nh6kifidu",
+    "id": "cmjwaj8q2002hb7k3ofty4rv8",
+    "slug": "pros-and-cons",
+    "name": "Pros and Cons (DBT)",
+    "category": "DBT",
+    "description": "Systematic comparison of pros and cons of tolerating vs not tolerating distress, or of acting vs not acting on urges.",
+    "steps": "[\"Draw 2x2 grid\",\"Label: Tolerate Distress | Don't Tolerate Distress\",\"Top row: Pros of each\",\"Bottom row: Cons of each\",\"Or: Act on Urge | Resist Urge\",\"Fill in all four boxes honestly\",\"Think short-term AND long-term consequences\",\"Review when struggling with decision\",\"Make values-based choice\"]",
+    "examples": "[\"Urge to use substances: Pros of using (feel better now) vs Cons (hangover, shame, relapse)\",\"Urge to self-harm: Pros of doing it (temporary relief) vs Pros of resisting (healing, pride, safety)\",\"Tolerate breakup pain vs call ex repeatedly\",\"Do exposure therapy vs avoid feared situation\"]",
+    "when": "When torn between choices, before acting on destructive urge, or when needing motivation to tolerate distress",
+    "benefits": "[\"Clarifies consequences\",\"Increases motivation\",\"Interrupts impulsivity\",\"Reveals long-term vs short-term tradeoffs\",\"Evidence-based\",\"Empowering\"]",
+    "createdAt": "2026-01-02T03:04:46.058Z",
+    "updatedAt": "2026-01-02T03:04:46.058Z"
+  },
+  {
+    "id": "cmjwaj8p00025b7k3ti4n9abe",
     "slug": "radical-acceptance",
     "name": "Radical Acceptance",
     "category": "DBT",
@@ -61,11 +152,11 @@
     "examples": "[\"Chronic illness: \\\"This is my reality. Fighting it causes more suffering.\\\"\",\"Past trauma: \\\"It happened. I can't change the past.\\\"\",\"Rejection: \\\"They said no. Fighting won't change it.\\\"\",\"Mistake: \\\"I messed up. Beating myself up won't undo it.\\\"\"]",
     "when": "When fighting unchangeable reality, \"should\" thinking causes suffering, or stuck in rumination",
     "benefits": "[\"Reduces suffering\",\"Frees energy for action\",\"Reduces depression and rumination\",\"Helps process grief\",\"Reduces physical tension\",\"Opens path to change\",\"Essential for trauma recovery\"]",
-    "createdAt": "2026-01-01T05:20:24.920Z",
-    "updatedAt": "2026-01-01T05:20:24.920Z"
+    "createdAt": "2026-01-02T03:04:46.020Z",
+    "updatedAt": "2026-01-02T03:04:46.020Z"
   },
   {
-    "id": "cmjuzxu1s0013h67nd9b48rrh",
+    "id": "cmjwaj8p50027b7k33warzqr1",
     "slug": "safety-planning",
     "name": "Safety Planning",
     "category": "Crisis Intervention",
@@ -74,11 +165,76 @@
     "examples": "[\"Warning signs: \\\"Everything is hopeless\\\", self-harm images, numbness\",\"Internal coping: Music, shower, comfort show, pet, breathing\",\"Social settings: Coffee shop, library, friend's house\",\"Support contacts: Best friend, family, sponsor\",\"Professionals: Therapist, 988 Lifeline, hospital\",\"Reasons: My kids, my dog, travel dreams, recovery goals\"]",
     "when": "Create when stable. Review regularly. Use when warning signs appear or in crisis.",
     "benefits": "[\"Reduces suicide risk\",\"Provides concrete steps\",\"Interrupts crisis escalation\",\"Reminds you of coping skills\",\"Connects to support\",\"Evidence-based\",\"Can be life-saving\"]",
-    "createdAt": "2026-01-01T05:20:24.928Z",
-    "updatedAt": "2026-01-01T05:20:24.928Z"
+    "createdAt": "2026-01-02T03:04:46.025Z",
+    "updatedAt": "2026-01-02T03:04:46.025Z"
   },
   {
-    "id": "cmjuzxu1g000zh67njumbk5rr",
+    "id": "cmjwaj8p90028b7k3qzokf8wu",
+    "slug": "self-compassion-break",
+    "name": "Self-Compassion Break",
+    "category": "Self-Compassion",
+    "description": "Dr. Kristin Neff's quick practice for moments of difficulty. Combines mindfulness, common humanity, and self-kindness.",
+    "steps": "[\"Notice you're suffering: \\\"This is a moment of suffering\\\"\",\"Recognize common humanity: \\\"Suffering is part of life\\\" or \\\"I'm not alone\\\"\",\"Offer yourself kindness: \\\"May I be kind to myself\\\" or \\\"May I give myself compassion\\\"\",\"Optional: Place hand(s) over your heart\",\"Breathe and feel the warmth\",\"Use your own words that feel genuine\",\"Return to situation with more kindness\"]",
+    "examples": "[\"After mistake: \\\"This is hard. Everyone makes mistakes. May I learn and grow from this.\\\"\",\"During anxiety: \\\"This is suffering. I'm not alone in feeling anxious. May I be patient with myself.\\\"\",\"After rejection: \\\"This hurts. Rejection is part of being human. May I hold myself with kindness.\\\"\"]",
+    "when": "During any difficult moment, failure, pain, or when being self-critical",
+    "benefits": "[\"Reduces self-criticism\",\"Increases resilience\",\"Scientifically validated\",\"Can be done in under a minute\",\"Reduces anxiety and depression\",\"Improves well-being\"]",
+    "createdAt": "2026-01-02T03:04:46.029Z",
+    "updatedAt": "2026-01-02T03:04:46.029Z"
+  },
+  {
+    "id": "cmjwaj8pz002gb7k38mhe9w0e",
+    "slug": "self-soothe-five-senses",
+    "name": "Self-Soothing with 5 Senses (DBT)",
+    "category": "DBT",
+    "description": "Comfort yourself through each of the five senses during distress.",
+    "steps": "[\"Vision: Look at beautiful images, art, nature, sunset\",\"Hearing: Listen to favorite music, nature sounds, rain\",\"Smell: Light candle, essential oils, bake cookies, flowers\",\"Taste: Savor tea, chocolate, favorite food mindfully\",\"Touch: Soft blanket, hot bath, pet your cat/dog, massage hands\",\"Engage fully with each sense\",\"Notice the pleasant sensation\",\"Use multiple senses if helpful\"]",
+    "examples": "[\"Vision: Watch sunset, look at photos of loved ones\",\"Hearing: Playlist of calming songs, ocean waves\",\"Smell: Lavender oil, fresh coffee, baking bread\",\"Taste: Slowly eat piece of dark chocolate\",\"Touch: Warm bath with soft music and candle\"]",
+    "when": "During distress, after crisis, when needing comfort, or for self-care",
+    "benefits": "[\"Immediate comfort\",\"Activates parasympathetic system\",\"Grounds in present\",\"Improves distress tolerance\",\"Self-nurturing\",\"Can be luxurious or simple\"]",
+    "createdAt": "2026-01-02T03:04:46.055Z",
+    "updatedAt": "2026-01-02T03:04:46.055Z"
+  },
+  {
+    "id": "cmjwaj8ps002eb7k3ddq9k5zu",
+    "slug": "tipp-skills",
+    "name": "TIPP Skills (DBT Crisis)",
+    "category": "DBT",
+    "description": "Fast-acting DBT skills for crisis: Temperature, Intense exercise, Paced breathing, Paired muscle relaxation.",
+    "steps": "[\"T - Temperature: Splash cold water on face or hold ice\",\"Cold activates dive reflex, calms quickly\",\"I - Intense Exercise: Run, jump, do burpees for several minutes\",\"Burns off adrenaline\",\"P - Paced Breathing: Breathe out longer than in (5 in, 7 out)\",\"Activates calm response\",\"P - Paired Muscle Relaxation: Tense and release muscle groups\",\"Use what works for your crisis\"]",
+    "examples": "[\"Panic attack: Hold ice cubes while doing paced breathing\",\"Rage: Do intense exercise until exhausted\",\"Overwhelming emotion: Splash cold water on face\",\"Can combine multiple: Cold water + paced breathing\"]",
+    "when": "During emotional crisis, panic, rage, overwhelming urges, or high distress",
+    "benefits": "[\"Works in minutes\",\"Physiologically calming\",\"Prevents destructive actions\",\"Evidence-based\",\"Can be done anywhere\",\"No equipment needed (mostly)\",\"Highly effective\"]",
+    "createdAt": "2026-01-02T03:04:46.049Z",
+    "updatedAt": "2026-01-02T03:04:46.049Z"
+  },
+  {
+    "id": "cmjwaj8pf002ab7k3d3k510wf",
+    "slug": "thought-defusion",
+    "name": "Thought Defusion (ACT)",
+    "category": "ACT",
+    "description": "Change relationship with thoughts by seeing them as mental events, not facts. Creates distance from unhelpful thoughts.",
+    "steps": "[\"Notice the thought: \\\"I'm having the thought that...\\\"\",\"Sing it to \\\"Happy Birthday\\\" tune\",\"Say it in a cartoon voice\",\"Visualize thought as words on screen\",\"Watch thought like leaf floating down stream\",\"Thank your mind: \\\"Thanks mind, interesting thought\\\"\",\"Practice with many thoughts\",\"Notice: You are not your thoughts\"]",
+    "examples": "[\"Thought: \\\"I'm a failure\\\" → \\\"I'm having the thought that I'm a failure\\\"\",\"Thought: \\\"They hate me\\\" → Sing it to Happy Birthday\",\"Thought: \\\"I can't do this\\\" → Say in Mickey Mouse voice\",\"Visualize anxious thoughts as passing clouds\"]",
+    "when": "When stuck in negative thoughts, rumination, or when thoughts feel like absolute truth",
+    "benefits": "[\"Reduces thought believability\",\"Decreases rumination\",\"Increases psychological flexibility\",\"Reduces distress\",\"Evidence-based for anxiety/depression\",\"Quick and portable\"]",
+    "createdAt": "2026-01-02T03:04:46.036Z",
+    "updatedAt": "2026-01-02T03:04:46.036Z"
+  },
+  {
+    "id": "cmjwaj8pj002bb7k3qyasrmxb",
+    "slug": "values-clarification",
+    "name": "Values Clarification",
+    "category": "ACT",
+    "description": "Identify your core values to guide meaningful action and life direction.",
+    "steps": "[\"Reflect on life domains: relationships, work, health, leisure, spirituality\",\"For each: \\\"What matters most to me here?\\\"\",\"Distinguish values from goals (values never finished)\",\"Ask: \\\"At my funeral, what would I want said about how I lived?\\\"\",\"Identify 3-5 core values\",\"Rate current alignment with each (1-10)\",\"Choose one value-aligned action in each domain\",\"Commit to values-based living\"]",
+    "examples": "[\"Value: Connection vs Goal: Have 5 friends\",\"Value: Growth vs Goal: Read 50 books\",\"Value: Compassion vs Goal: Volunteer monthly\",\"Action: If I value adventure, I could try one new thing weekly\"]",
+    "when": "When feeling lost, making big decisions, or when actions don't match what matters",
+    "benefits": "[\"Increases life meaning\",\"Guides decision-making\",\"Increases motivation\",\"Reduces depression\",\"Improves life satisfaction\",\"Creates direction\"]",
+    "createdAt": "2026-01-02T03:04:46.039Z",
+    "updatedAt": "2026-01-02T03:04:46.039Z"
+  },
+  {
+    "id": "cmjwaj8ot0023b7k3h0xew2vq",
     "slug": "dbt-wise-mind",
     "name": "Wise Mind",
     "category": "DBT",
@@ -87,7 +243,20 @@
     "examples": "[\"Emotion mind: \\\"I hate my job! I should quit right now!\\\" Reasonable: \\\"It's just a job, emotions don't matter\\\" Wise mind: \\\"I'm unhappy here. Let me explore options while maintaining stability\\\"\",\"Emotion mind: \\\"I love them! I should tell them immediately!\\\" Reasonable: \\\"Love is illogical\\\" Wise mind: \\\"These feelings are real and important. I'll express them when timing is right\\\"\"]",
     "when": "When making important decisions, when emotions are overwhelming, or when being too logical",
     "benefits": "[\"Better decision making\",\"Emotional balance\",\"Increased self-trust\",\"Reduces impulsivity\",\"Integrates thinking and feeling\",\"Improves relationships\"]",
-    "createdAt": "2026-01-01T05:20:24.917Z",
-    "updatedAt": "2026-01-01T05:20:24.917Z"
+    "createdAt": "2026-01-02T03:04:46.013Z",
+    "updatedAt": "2026-01-02T03:04:46.013Z"
+  },
+  {
+    "id": "cmjwaj8pc0029b7k3rsdfmxg5",
+    "slug": "worry-time",
+    "name": "Worry Time (Scheduled Worry)",
+    "category": "CBT",
+    "description": "Contain worry by scheduling a specific time to worry, freeing rest of day from rumination.",
+    "steps": "[\"Choose a 15-30 minute worry time daily\",\"Not close to bedtime\",\"Same time and place each day\",\"When worry arises outside this time: \\\"Not now\\\"\",\"Write it down to address during worry time\",\"During worry time: Review worries systematically\",\"Problem-solve what you can\",\"Accept uncertainty for what you can't control\",\"End on time, regardless\"]",
+    "examples": "[\"Set 5:00-5:30pm as worry time\",\"Morning worry arises: \\\"I'll think about that at 5pm\\\"\",\"Write it down and return to present\",\"At 5pm, review all worries\",\"Action plan or practice acceptance\"]",
+    "when": "For chronic worry, rumination, or when worry interferes with daily functioning",
+    "benefits": "[\"Reduces overall worry time\",\"Interrupts rumination\",\"Frees up mental space\",\"Improves concentration\",\"Evidence-based for GAD\",\"Gives sense of control\"]",
+    "createdAt": "2026-01-02T03:04:46.033Z",
+    "updatedAt": "2026-01-02T03:04:46.033Z"
   }
 ]

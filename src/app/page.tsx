@@ -66,8 +66,8 @@ export default function HomePage() {
           World's Largest Open-Source Mental Health Platform
         </p>
         <p className="text-md text-gray-600 max-w-3xl mx-auto">
-          Comprehensive, scientifically-backed, free mental health support with 68+ disorders, 
-          validated assessments, therapeutic games, meditation, and crisis resources.
+          Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
+          20 validated assessments, 12 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.
         </p>
       </header>
 
@@ -92,7 +92,7 @@ export default function HomePage() {
               <CardTitle>Disorders Database</CardTitle>
             </div>
             <CardDescription>
-              68+ Mental Health Conditions
+              63+ Mental Health Conditions
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -113,7 +113,7 @@ export default function HomePage() {
               <CardTitle>Self-Assessments</CardTitle>
             </div>
             <CardDescription>
-              10 Validated Screening Tools
+              20 Validated Screening Tools
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -197,7 +197,7 @@ export default function HomePage() {
               <CardTitle>Therapy Library</CardTitle>
             </div>
             <CardDescription>
-              Evidence-Based Techniques
+              20 Evidence-Based Techniques
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -218,7 +218,7 @@ export default function HomePage() {
               <CardTitle>Meditation Library</CardTitle>
             </div>
             <CardDescription>
-              12+ Guided Practices
+              14 Guided Practices
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -278,7 +278,7 @@ export default function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-primary mb-2">68+</div>
+            <div className="text-4xl font-bold text-primary mb-2">63</div>
             <div className="text-sm text-gray-600">Mental Health Disorders</div>
           </CardContent>
         </Card>
@@ -290,25 +290,25 @@ export default function HomePage() {
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-accent mb-2">15</div>
+            <div className="text-4xl font-bold text-accent mb-2">12</div>
             <div className="text-sm text-gray-600">Therapeutic Games</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-teal-600 mb-2">25+</div>
+            <div className="text-4xl font-bold text-teal-600 mb-2">14</div>
             <div className="text-sm text-gray-600">Guided Meditations</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-purple-600 mb-2">25+</div>
+            <div className="text-4xl font-bold text-purple-600 mb-2">20</div>
             <div className="text-sm text-gray-600">Therapy Techniques</div>
           </CardContent>
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-red-600 mb-2">30+</div>
+            <div className="text-4xl font-bold text-red-600 mb-2">12</div>
             <div className="text-sm text-gray-600">Crisis Resources</div>
           </CardContent>
         </Card>

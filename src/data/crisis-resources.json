@@ -1,6 +1,6 @@
 [
   {
-    "id": "cmjuzxu1b000wh67ne9a9z6pg",
+    "id": "cmjwaj8ok0020b7k37qap10gw",
     "name": "Lifeline Australia",
     "country": "Australia",
     "phone": "13 11 14",
@@ -9,11 +9,11 @@
     "description": "Crisis support and suicide prevention.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.912Z",
-    "updatedAt": "2026-01-01T05:20:24.912Z"
+    "createdAt": "2026-01-02T03:04:46.004Z",
+    "updatedAt": "2026-01-02T03:04:46.004Z"
   },
   {
-    "id": "cmjuzxu1a000vh67n4dnnsmxw",
+    "id": "cmjwaj8oh001zb7k3uen11y6o",
     "name": "Talk Suicide Canada",
     "country": "Canada",
     "phone": "1-833-456-4566",
@@ -22,11 +22,11 @@
     "description": "Suicide prevention service available across Canada.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.910Z",
-    "updatedAt": "2026-01-01T05:20:24.910Z"
+    "createdAt": "2026-01-02T03:04:46.002Z",
+    "updatedAt": "2026-01-02T03:04:46.002Z"
   },
   {
-    "id": "cmjuzxu18000uh67n44c8kgkm",
+    "id": "cmjwaj8of001yb7k30st9l4h3",
     "name": "Samaritans",
     "country": "United Kingdom",
     "phone": "116 123",
@@ -35,11 +35,11 @@
     "description": "Emotional support for anyone in distress or at risk of suicide.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.909Z",
-    "updatedAt": "2026-01-01T05:20:24.909Z"
+    "createdAt": "2026-01-02T03:04:46.000Z",
+    "updatedAt": "2026-01-02T03:04:46.000Z"
   },
   {
-    "id": "cmjuzxu0v000lh67ne7adzl2c",
+    "id": "cmjwaj8np001pb7k3wb85ouuc",
     "name": "988 Suicide & Crisis Lifeline",
     "country": "United States",
     "phone": "988",
@@ -48,11 +48,11 @@
     "description": "Free and confidential 24/7 support for people in distress, prevention and crisis resources.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.895Z",
-    "updatedAt": "2026-01-01T05:20:24.895Z"
+    "createdAt": "2026-01-02T03:04:45.973Z",
+    "updatedAt": "2026-01-02T03:04:45.973Z"
   },
   {
-    "id": "cmjuzxu0w000mh67nc9kraebb",
+    "id": "cmjwaj8nr001qb7k3ntd24ebf",
     "name": "Crisis Text Line",
     "country": "United States",
     "phone": "",
@@ -61,11 +61,11 @@
     "description": "Free, 24/7 support for those in crisis. Text HELLO to 741741.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.897Z",
-    "updatedAt": "2026-01-01T05:20:24.897Z"
+    "createdAt": "2026-01-02T03:04:45.976Z",
+    "updatedAt": "2026-01-02T03:04:45.976Z"
   },
   {
-    "id": "cmjuzxu0y000nh67n05zhdkok",
+    "id": "cmjwaj8nv001rb7k36sedd1jo",
     "name": "Veterans Crisis Line",
     "country": "United States",
     "phone": "988, Press 1",
@@ -74,11 +74,11 @@
     "description": "Confidential support for veterans and their families.",
     "available": "24/7",
     "category": "Veterans",
-    "createdAt": "2026-01-01T05:20:24.898Z",
-    "updatedAt": "2026-01-01T05:20:24.898Z"
+    "createdAt": "2026-01-02T03:04:45.979Z",
+    "updatedAt": "2026-01-02T03:04:45.979Z"
   },
   {
-    "id": "cmjuzxu0z000oh67np7l1q78e",
+    "id": "cmjwaj8ny001sb7k3ceytl60m",
     "name": "Trevor Project",
     "country": "United States",
     "phone": "1-866-488-7386",
@@ -87,11 +87,11 @@
     "description": "Crisis intervention and suicide prevention for LGBTQ+ youth.",
     "available": "24/7",
     "category": "LGBTQ+ Youth",
-    "createdAt": "2026-01-01T05:20:24.900Z",
-    "updatedAt": "2026-01-01T05:20:24.900Z"
+    "createdAt": "2026-01-02T03:04:45.982Z",
+    "updatedAt": "2026-01-02T03:04:45.982Z"
   },
   {
-    "id": "cmjuzxu11000ph67n7b8vdd33",
+    "id": "cmjwaj8o1001tb7k3z69vcqne",
     "name": "Trans Lifeline",
     "country": "United States",
     "phone": "1-877-565-8860",
@@ -100,11 +100,11 @@
     "description": "Peer support hotline run by trans people for trans and questioning people.",
     "available": "Varies",
     "category": "LGBTQ+",
-    "createdAt": "2026-01-01T05:20:24.901Z",
-    "updatedAt": "2026-01-01T05:20:24.901Z"
+    "createdAt": "2026-01-02T03:04:45.985Z",
+    "updatedAt": "2026-01-02T03:04:45.985Z"
   },
   {
-    "id": "cmjuzxu12000qh67nknppns09",
+    "id": "cmjwaj8o3001ub7k3jqbpacji",
     "name": "SAMHSA National Helpline",
     "country": "United States",
     "phone": "1-800-662-4357",
@@ -113,11 +113,11 @@
     "description": "Treatment referral and information service for mental health and substance use disorders.",
     "available": "24/7",
     "category": "General",
-    "createdAt": "2026-01-01T05:20:24.903Z",
-    "updatedAt": "2026-01-01T05:20:24.903Z"
+    "createdAt": "2026-01-02T03:04:45.988Z",
+    "updatedAt": "2026-01-02T03:04:45.988Z"
   },
   {
-    "id": "cmjuzxu14000rh67nhyas0ddv",
+    "id": "cmjwaj8o6001vb7k35qtlvbn4",
     "name": "NEDA Helpline",
     "country": "United States",
     "phone": "1-800-931-2237",
@@ -126,11 +126,11 @@
     "description": "Support and resources for eating disorders.",
     "available": "Mon-Thu 9am-9pm ET, Fri 9am-5pm ET",
     "category": "Eating Disorders",
-    "createdAt": "2026-01-01T05:20:24.904Z",
-    "updatedAt": "2026-01-01T05:20:24.904Z"
+    "createdAt": "2026-01-02T03:04:45.990Z",
+    "updatedAt": "2026-01-02T03:04:45.990Z"
   },
   {
-    "id": "cmjuzxu16000sh67n3bjayw1z",
+    "id": "cmjwaj8o9001wb7k3h1r4rr8t",
     "name": "RAINN National Sexual Assault Hotline",
     "country": "United States",
     "phone": "1-800-656-4673",
@@ -139,11 +139,11 @@
     "description": "Support for survivors of sexual assault.",
     "available": "24/7",
     "category": "Sexual Assault",
-    "createdAt": "2026-01-01T05:20:24.906Z",
-    "updatedAt": "2026-01-01T05:20:24.906Z"
+    "createdAt": "2026-01-02T03:04:45.994Z",
+    "updatedAt": "2026-01-02T03:04:45.994Z"
   },
   {
-    "id": "cmjuzxu17000th67ncabfeybb",
+    "id": "cmjwaj8od001xb7k3hgdbdy7c",
     "name": "National Domestic Violence Hotline",
     "country": "United States",
     "phone": "1-800-799-7233",
@@ -152,7 +152,7 @@
     "description": "Support for victims of domestic violence.",
     "available": "24/7",
     "category": "Domestic Violence",
-    "createdAt": "2026-01-01T05:20:24.908Z",
-    "updatedAt": "2026-01-01T05:20:24.908Z"
+    "createdAt": "2026-01-02T03:04:45.997Z",
+    "updatedAt": "2026-01-02T03:04:45.997Z"
   }
 ]
