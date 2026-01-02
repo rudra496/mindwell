@@ -13,6 +13,9 @@ import MemoryMatch from "./games/MemoryMatch"
 import ThoughtChallenger from "./games/ThoughtChallenger"
 import EmotionWheel from "./games/EmotionWheel"
 import MindfulnessTimer from "./games/MindfulnessTimer"
+import ProgressiveMuscleRelaxation from "./games/ProgressiveMuscleRelaxation"
+import SafePlaceVisualization from "./games/SafePlaceVisualization"
+import ColoringTherapy from "./games/ColoringTherapy"
 
 const games = [
   {
@@ -78,6 +81,27 @@ const games = [
     icon: BookHeart,
     color: 'text-pink-600',
   },
+  {
+    id: 'pmr',
+    name: 'Progressive Muscle Relaxation',
+    description: 'Guided body scan to release tension',
+    icon: Gamepad2,
+    color: 'text-purple-600',
+  },
+  {
+    id: 'safe-place',
+    name: 'Safe Place Visualization',
+    description: 'Create a mental sanctuary for comfort',
+    icon: Heart,
+    color: 'text-teal-600',
+  },
+  {
+    id: 'coloring',
+    name: 'Mindful Coloring',
+    description: 'Therapeutic coloring for stress relief',
+    icon: Gamepad2,
+    color: 'text-pink-600',
+  },
 ]
 
 export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
@@ -126,6 +150,36 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <GratitudeJournal />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'pmr') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <ProgressiveMuscleRelaxation />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'safe-place') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <SafePlaceVisualization />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'coloring') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <ColoringTherapy />
         </DialogContent>
       </Dialog>
     )
