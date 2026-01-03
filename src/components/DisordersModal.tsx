@@ -49,10 +49,10 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl">Mental Health Disorders Database</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Disorders Database</DialogTitle>
+          <DialogDescription className="text-xs sm:text-sm">
             Explore comprehensive information on 68+ mental health disorders including symptoms, causes, evidence-based treatments, and when to seek professional help.
           </DialogDescription>
         </DialogHeader>
@@ -65,12 +65,12 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
                 placeholder="Search disorders..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-10 text-sm sm:text-base min-h-[44px]"
               />
             </div>
 
             {loading ? (
-              <div className="text-center py-8">Loading disorders...</div>
+              <div className="text-center py-8 text-sm sm:text-base">Loading disorders...</div>
             ) : (
               <div className="grid gap-3">
                 {categories.map(category => {
@@ -79,18 +79,18 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
                   
                   return (
                     <div key={category} className="space-y-2">
-                      <h3 className="font-semibold text-lg text-primary">{category}</h3>
+                      <h3 className="font-semibold text-base sm:text-lg text-primary break-words">{category}</h3>
                       <div className="grid gap-2">
                         {categoryDisorders.map(disorder => (
                           <Button
                             key={disorder.id}
                             variant="outline"
-                            className="justify-start h-auto py-3 px-4 text-left"
+                            className="justify-start h-auto py-2 sm:py-3 px-3 sm:px-4 text-left min-h-[60px]"
                             onClick={() => setSelectedDisorder(disorder)}
                           >
-                            <div>
-                              <div className="font-medium">{disorder.name}</div>
-                              <div className="text-sm text-gray-600 mt-1">{disorder.description.substring(0, 100)}...</div>
+                            <div className="w-full">
+                              <div className="font-medium text-sm sm:text-base break-words">{disorder.name}</div>
+                              <div className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2 break-words">{disorder.description.substring(0, 100)}...</div>
                             </div>
                           </Button>
                         ))}
@@ -103,61 +103,61 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
           </div>
         ) : (
           <div className="space-y-4">
-            <Button variant="outline" onClick={() => setSelectedDisorder(null)}>
+            <Button variant="outline" onClick={() => setSelectedDisorder(null)} className="text-sm sm:text-base min-h-[44px]">
               ← Back to All Disorders
             </Button>
 
             <div>
-              <h2 className="text-2xl font-bold mb-2">{selectedDisorder.name}</h2>
-              <p className="text-gray-600 mb-4">{selectedDisorder.description}</p>
-              <div className="text-sm text-primary font-medium">{selectedDisorder.prevalence}</div>
+              <h2 className="text-xl sm:text-2xl font-bold mb-2 break-words">{selectedDisorder.name}</h2>
+              <p className="text-sm sm:text-base text-gray-600 mb-4 break-words">{selectedDisorder.description}</p>
+              <div className="text-xs sm:text-sm text-primary font-medium break-words">{selectedDisorder.prevalence}</div>
             </div>
 
             <Tabs defaultValue="symptoms" className="w-full">
-              <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="symptoms">Symptoms</TabsTrigger>
-                <TabsTrigger value="solutions">Solutions</TabsTrigger>
-                <TabsTrigger value="therapy">Therapy</TabsTrigger>
-                <TabsTrigger value="help">Get Help</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
+                <TabsTrigger value="symptoms" className="text-xs sm:text-sm">Symptoms</TabsTrigger>
+                <TabsTrigger value="solutions" className="text-xs sm:text-sm">Solutions</TabsTrigger>
+                <TabsTrigger value="therapy" className="text-xs sm:text-sm">Therapy</TabsTrigger>
+                <TabsTrigger value="help" className="text-xs sm:text-sm">Get Help</TabsTrigger>
               </TabsList>
 
               <TabsContent value="symptoms" className="space-y-2">
-                <h3 className="font-semibold text-lg">Common Symptoms</h3>
+                <h3 className="font-semibold text-base sm:text-lg">Common Symptoms</h3>
                 <ul className="list-disc list-inside space-y-1">
                   {JSON.parse(selectedDisorder.symptoms).map((symptom: string, idx: number) => (
-                    <li key={idx} className="text-sm">{symptom}</li>
+                    <li key={idx} className="text-xs sm:text-sm break-words">{symptom}</li>
                   ))}
                 </ul>
               </TabsContent>
 
               <TabsContent value="solutions" className="space-y-2">
-                <h3 className="font-semibold text-lg">Evidence-Based Natural Solutions</h3>
+                <h3 className="font-semibold text-base sm:text-lg">Evidence-Based Natural Solutions</h3>
                 <ul className="list-disc list-inside space-y-1">
                   {JSON.parse(selectedDisorder.naturalSolutions).map((solution: string, idx: number) => (
-                    <li key={idx} className="text-sm">{solution}</li>
+                    <li key={idx} className="text-xs sm:text-sm break-words">{solution}</li>
                   ))}
                 </ul>
               </TabsContent>
 
               <TabsContent value="therapy" className="space-y-2">
-                <h3 className="font-semibold text-lg">Therapy Approaches</h3>
+                <h3 className="font-semibold text-base sm:text-lg">Therapy Approaches</h3>
                 <ul className="list-disc list-inside space-y-1">
                   {JSON.parse(selectedDisorder.therapyApproaches).map((approach: string, idx: number) => (
-                    <li key={idx} className="text-sm">{approach}</li>
+                    <li key={idx} className="text-xs sm:text-sm break-words">{approach}</li>
                   ))}
                 </ul>
               </TabsContent>
 
               <TabsContent value="help" className="space-y-2">
-                <h3 className="font-semibold text-lg">When to Seek Professional Help</h3>
+                <h3 className="font-semibold text-base sm:text-lg">When to Seek Professional Help</h3>
                 <ul className="list-disc list-inside space-y-1">
                   {JSON.parse(selectedDisorder.whenToSeekHelp).map((sign: string, idx: number) => (
-                    <li key={idx} className="text-sm">{sign}</li>
+                    <li key={idx} className="text-xs sm:text-sm break-words">{sign}</li>
                   ))}
                 </ul>
-                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <p className="font-semibold text-red-900 mb-2">Crisis Resources</p>
-                  <p className="text-sm text-red-800">If you're in crisis: Call or text 988 (US) for immediate support</p>
+                <div className="mt-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="font-semibold text-red-900 mb-2 text-sm sm:text-base">Crisis Resources</p>
+                  <p className="text-xs sm:text-sm text-red-800">If you're in crisis: Call or text 988 (US) for immediate support</p>
                 </div>
               </TabsContent>
             </Tabs>
