@@ -58,11 +58,35 @@ export async function getChatResponse(
   // Try Puter.js AI first
   if (typeof window !== 'undefined' && window.puter?.ai?.chat) {
     try {
-      const response = await window.puter.ai.chat(message, {
+      const aiResponse = await window.puter.ai.chat(message, {
         model: 'gpt-4o-mini',
         systemPrompt: SYSTEM_PROMPT,
         temperature: 0.7
       })
+      
+      // Extract string content from response - handle both string and object formats
+      let response: string
+      if (typeof aiResponse === 'string') {
+        response = aiResponse
+      } else if (aiResponse && typeof aiResponse === 'object') {
+        // Handle OpenAI-style response format
+        const resp = aiResponse as any
+        if (resp.message) {
+          response = typeof resp.message === 'string' 
+            ? resp.message 
+            : resp.message.content || String(resp.message)
+        } else if (resp.choices && Array.isArray(resp.choices) && resp.choices[0]) {
+          response = resp.choices[0].message?.content || resp.choices[0].text || String(aiResponse)
+        } else if (resp.content) {
+          response = resp.content
+        } else if (resp.text) {
+          response = resp.text
+        } else {
+          response = String(aiResponse)
+        }
+      } else {
+        response = String(aiResponse || '')
+      }
       
       // Detect crisis level from the message
       const crisisLevel = detectCrisisLevel(message)

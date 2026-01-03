@@ -120,36 +120,36 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   if (!selectedAssessment) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl">Mental Health Self-Assessments</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Self-Assessments</DialogTitle>
+            <DialogDescription className="text-xs sm:text-sm">
               Validated screening tools to help understand your mental health
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4">
-            <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-sm text-amber-900">
+            <div className="p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <p className="text-xs sm:text-sm text-amber-900 break-words">
                 <strong>Important:</strong> These are screening tools, not diagnostic instruments. 
                 Results should be discussed with a healthcare professional.
               </p>
             </div>
 
             {loading ? (
-              <div className="text-center py-8">Loading assessments...</div>
+              <div className="text-center py-8 text-sm sm:text-base">Loading assessments...</div>
             ) : (
               <div className="grid gap-3">
                 {assessments.map(assessment => (
                   <Button
                     key={assessment.id}
                     variant="outline"
-                    className="justify-start h-auto py-4 px-4 text-left"
+                    className="justify-start h-auto py-3 sm:py-4 px-3 sm:px-4 text-left min-h-[60px]"
                     onClick={() => startAssessment(assessment)}
                   >
                     <div className="flex-1">
-                      <div className="font-semibold text-lg">{assessment.name}</div>
-                      <div className="text-sm text-gray-600 mt-1">{assessment.description}</div>
+                      <div className="font-semibold text-sm sm:text-lg break-words leading-tight">{assessment.name}</div>
+                      <div className="text-xs sm:text-sm text-gray-600 mt-1 break-words line-clamp-2">{assessment.description}</div>
                     </div>
                   </Button>
                 ))}
@@ -175,22 +175,22 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl">Assessment Results</DialogTitle>
+            <DialogTitle className="text-xl sm:text-2xl break-words">Assessment Results</DialogTitle>
           </DialogHeader>
 
           <div className="space-y-4">
             {isCrisis && (
-              <div className="p-4 bg-red-50 border-2 border-red-500 rounded-lg">
-                <div className="flex items-start gap-3">
-                  <AlertCircle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
+              <div className="p-3 sm:p-4 bg-red-50 border-2 border-red-500 rounded-lg">
+                <div className="flex items-start gap-2 sm:gap-3">
+                  <AlertCircle className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-bold text-red-900 mb-2">Your responses indicate you may need immediate support</p>
-                    <p className="text-sm text-red-800 mb-2">
+                    <p className="font-bold text-red-900 mb-2 text-sm sm:text-base">Your responses indicate you may need immediate support</p>
+                    <p className="text-xs sm:text-sm text-red-800 mb-2">
                       If you're in crisis: Call or text <strong>988</strong> (Suicide & Crisis Lifeline) now
                     </p>
-                    <p className="text-sm text-red-800">
+                    <p className="text-xs sm:text-sm text-red-800">
                       Emergency: Call <strong>911</strong> or go to nearest emergency room
                     </p>
                   </div>
@@ -198,27 +198,27 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               </div>
             )}
 
-            <div className="text-center p-6 bg-gray-50 rounded-lg">
-              <div className="text-5xl font-bold text-primary mb-2">{score}</div>
-              <div className="text-sm text-gray-600">
+            <div className="text-center p-4 sm:p-6 bg-gray-50 rounded-lg">
+              <div className="text-4xl sm:text-5xl font-bold text-primary mb-2">{score}</div>
+              <div className="text-xs sm:text-sm text-gray-600">
                 out of {JSON.parse(selectedAssessment.scoringGuide).maxScore}
               </div>
             </div>
 
             <div>
-              <div className="font-semibold text-lg mb-2">Severity: {interpretation.severity}</div>
-              <p className="text-gray-700 mb-2">{interpretation.description}</p>
-              <p className="text-sm text-gray-600">{interpretation.recommendation}</p>
+              <div className="font-semibold text-base sm:text-lg mb-2 break-words">Severity: {interpretation.severity}</div>
+              <p className="text-sm sm:text-base text-gray-700 mb-2 break-words">{interpretation.description}</p>
+              <p className="text-xs sm:text-sm text-gray-600 break-words">{interpretation.recommendation}</p>
             </div>
 
             <div className="space-y-2">
-              <Button onClick={exportResults} variant="outline" className="w-full">
+              <Button onClick={exportResults} variant="outline" className="w-full text-sm sm:text-base min-h-[44px]">
                 📥 Export Results
               </Button>
-              <Button onClick={() => setSelectedAssessment(null)} variant="outline" className="w-full">
+              <Button onClick={() => setSelectedAssessment(null)} variant="outline" className="w-full text-sm sm:text-base min-h-[44px]">
                 Take Another Assessment
               </Button>
-              <Button onClick={() => onOpenChange(false)} className="w-full">
+              <Button onClick={() => onOpenChange(false)} className="w-full text-sm sm:text-base min-h-[44px]">
                 Close
               </Button>
             </div>
@@ -236,29 +236,29 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{selectedAssessment.name}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-base sm:text-lg break-words">{selectedAssessment.name}</DialogTitle>
+          <DialogDescription className="text-xs sm:text-sm">
             Question {currentQuestion + 1} of {totalQuestions}
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           <Progress value={progress} className="w-full" />
 
           <div className="space-y-4">
-            <p className="text-lg font-medium">{question.text}</p>
-            <p className="text-sm text-gray-600">Over the last 2 weeks, how often have you experienced this?</p>
+            <p className="text-base sm:text-lg font-medium break-words">{question.text}</p>
+            <p className="text-xs sm:text-sm text-gray-600">Over the last 2 weeks, how often have you experienced this?</p>
 
             <RadioGroup
               value={answers[question.id]?.toString()}
               onValueChange={(value) => handleAnswer(question.id, parseInt(value))}
             >
               {question.options.map((option: { value: number; label: string }) => (
-                <div key={option.value} className="flex items-center space-x-2 p-3 border rounded-lg hover:bg-gray-50">
+                <div key={option.value} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px]">
                   <RadioGroupItem value={option.value.toString()} id={`q${question.id}-${option.value}`} />
-                  <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer">
+                  <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words">
                     {option.label}
                   </Label>
                 </div>
@@ -266,11 +266,12 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             </RadioGroup>
           </div>
 
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-2">
             <Button
               variant="outline"
               onClick={() => setCurrentQuestion(currentQuestion - 1)}
               disabled={currentQuestion === 0}
+              className="text-sm sm:text-base min-h-[44px]"
             >
               Previous
             </Button>
@@ -279,6 +280,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <Button
                 onClick={() => setCurrentQuestion(currentQuestion + 1)}
                 disabled={answers[question.id] === undefined}
+                className="text-sm sm:text-base min-h-[44px]"
               >
                 Next
               </Button>
@@ -286,6 +288,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <Button
                 onClick={() => setShowResults(true)}
                 disabled={Object.keys(answers).length < totalQuestions}
+                className="text-sm sm:text-base min-h-[44px]"
               >
                 See Results
               </Button>

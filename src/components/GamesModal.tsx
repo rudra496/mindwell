@@ -227,38 +227,38 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl flex items-center gap-2">
-            <Gamepad2 className="h-6 w-6" />
+          <DialogTitle className="text-xl sm:text-2xl flex items-center gap-2 break-words">
+            <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
             Therapeutic Games & Activities
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs sm:text-sm">
             Evidence-based interactive tools for mental wellness
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid md:grid-cols-2 gap-4 py-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 py-4">
           {games.map((game) => {
             const Icon = game.icon
             return (
               <Button
                 key={game.id}
                 variant="outline"
-                className="h-auto p-6 flex-col items-start gap-3 hover:border-primary"
+                className="h-auto p-4 sm:p-6 flex-col items-start gap-2 sm:gap-3 hover:border-primary min-h-[100px]"
                 onClick={() => setSelectedGame(game.id)}
               >
-                <Icon className={`h-8 w-8 ${game.color}`} />
-                <div className="text-left">
-                  <div className="font-semibold text-lg mb-1">{game.name}</div>
-                  <div className="text-sm text-gray-600">{game.description}</div>
+                <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${game.color}`} />
+                <div className="text-left w-full">
+                  <div className="font-semibold text-sm sm:text-lg mb-1 break-words">{game.name}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 break-words">{game.description}</div>
                 </div>
               </Button>
             )
           })}
         </div>
 
-        <div className="text-sm text-gray-600 text-center">
+        <div className="text-xs sm:text-sm text-gray-600 text-center">
           These evidence-based tools help you practice mental wellness techniques interactively.
         </div>
       </DialogContent>
