@@ -35,9 +35,16 @@ export default function MoodTracker() {
       try {
         const { db } = await import('@/lib/indexeddb')
         await db.init()
-        await loadEntries()
       } catch (error) {
         console.error('Error initializing IndexedDB:', error)
+        setIsLoading(false)
+        return
+      }
+
+      try {
+        await loadEntries()
+      } catch (error) {
+        console.error('Error loading mood entries:', error)
         setIsLoading(false)
       }
     }

@@ -181,6 +181,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   }
 
   // TTS functions
+  const PARAGRAPH_PAUSE_MS = 1000 // Pause duration between meditation paragraphs
+
   const startTTS = async () => {
     if (!selectedMeditation || !isSpeechSynthesisSupported()) return
     
@@ -190,7 +192,11 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
     
     // Play start chime
     if (!isMuted) {
-      await playSound('chime', volume)
+      try {
+        await playSound('chime', volume)
+      } catch (error) {
+        console.warn('Failed to play start chime:', error)
+      }
     }
     
     // Split script into paragraphs for better pacing
@@ -213,7 +219,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
         
         // Small pause between paragraphs
         if (i < paragraphs.length - 1) {
-          await new Promise(resolve => setTimeout(resolve, 1000))
+          await new Promise(resolve => setTimeout(resolve, PARAGRAPH_PAUSE_MS))
         }
       }
       
@@ -221,7 +227,11 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
       
       // Play completion chime
       if (!isMuted) {
-        await playSound('chime', volume)
+        try {
+          await playSound('chime', volume)
+        } catch (error) {
+          console.warn('Failed to play completion chime:', error)
+        }
       }
       
     } catch (error) {
