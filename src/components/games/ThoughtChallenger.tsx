@@ -32,24 +32,24 @@ export default function ThoughtChallenger() {
   }
 
   return (
-    <div className="p-6">
+    <div className="p-3 sm:p-6">
       <DialogHeader>
-        <DialogTitle className="flex items-center gap-2 text-2xl">
-          <Brain className="h-6 w-6 text-purple-600" />
+        <DialogTitle className="flex items-center gap-2 text-xl sm:text-2xl break-words">
+          <Brain className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" />
           Thought Challenger (CBT Tool)
         </DialogTitle>
-        <DialogDescription>
+        <DialogDescription className="text-sm">
           Challenge negative automatic thoughts with evidence-based CBT techniques
         </DialogDescription>
       </DialogHeader>
 
-      <div className="mt-6 space-y-6">
+      <div className="mt-4 sm:mt-6 space-y-4 sm:space-y-6">
         {/* Progress indicator */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between px-2">
           {[1, 2, 3, 4].map((num) => (
             <div key={num} className="flex items-center">
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold ${
+                className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-semibold text-sm ${
                   step >= num ? "bg-purple-600 text-white" : "bg-gray-200 text-gray-500"
                 }`}
               >
@@ -57,7 +57,7 @@ export default function ThoughtChallenger() {
               </div>
               {num < 4 && (
                 <div
-                  className={`w-12 h-1 mx-2 ${
+                  className={`w-6 sm:w-12 h-1 mx-1 sm:mx-2 ${
                     step > num ? "bg-purple-600" : "bg-gray-200"
                   }`}
                 />
@@ -69,9 +69,9 @@ export default function ThoughtChallenger() {
         {/* Step 1: Identify the thought */}
         {step === 1 && (
           <Card>
-            <CardContent className="p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Step 1: Identify the Negative Thought</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="text-base sm:text-lg font-semibold break-words">Step 1: Identify the Negative Thought</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground break-words">
                 What automatic negative thought are you experiencing? Be specific.
               </p>
               <Textarea
@@ -79,14 +79,14 @@ export default function ThoughtChallenger() {
                 onChange={(e) => setThought(e.target.value)}
                 placeholder="Example: 'I'm going to fail this presentation and everyone will think I'm incompetent'"
                 rows={4}
-                className="resize-none"
+                className="resize-none text-sm"
               />
               <Button
                 onClick={() => setStep(2)}
                 disabled={!thought.trim()}
-                className="w-full"
+                className="w-full min-h-[44px]"
               >
-                Next <ArrowRight className="ml-2 h-4 w-4" />
+                <span className="text-sm sm:text-base">Next</span> <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </CardContent>
           </Card>
@@ -95,9 +95,9 @@ export default function ThoughtChallenger() {
         {/* Step 2: Identify cognitive distortion */}
         {step === 2 && (
           <Card>
-            <CardContent className="p-6 space-y-4">
-              <h3 className="text-lg font-semibold">Step 2: Identify the Cognitive Distortion</h3>
-              <p className="text-sm text-muted-foreground">
+            <CardContent className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              <h3 className="text-base sm:text-lg font-semibold break-words">Step 2: Identify the Cognitive Distortion</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Which thinking pattern best describes this thought?
               </p>
               <div className="space-y-2">
