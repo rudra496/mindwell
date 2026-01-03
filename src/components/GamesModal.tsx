@@ -3,11 +3,10 @@
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Smile, Clock, Zap } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"
-import MoodTracker from "./games/MoodTracker"
 import GratitudeJournal from "./games/GratitudeJournal"
 import MemoryMatch from "./games/MemoryMatch"
 import ThoughtChallenger from "./games/ThoughtChallenger"
@@ -68,13 +67,6 @@ const games = [
     color: 'text-yellow-600',
   },
   {
-    id: 'mood-tracker',
-    name: 'Mood Tracker',
-    description: 'Track your daily emotions and patterns',
-    icon: Smile,
-    color: 'text-rose-600',
-  },
-  {
     id: 'gratitude',
     name: 'Gratitude Journal',
     description: 'Daily gratitude practice for wellbeing',
@@ -130,16 +122,6 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <AffirmationsSpinner />
-        </DialogContent>
-      </Dialog>
-    )
-  }
-
-  if (selectedGame === 'mood-tracker') {
-    return (
-      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <MoodTracker />
         </DialogContent>
       </Dialog>
     )
