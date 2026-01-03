@@ -55,5 +55,23 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Responsive text utilities */
+  .text-responsive {
+    @apply text-sm sm:text-base;
+  }
+  
+  /* Touch target utilities */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Scrollable modal utilities */
+  .modal-content {
+    @apply max-h-[90vh] overflow-y-auto;
   }
 }
