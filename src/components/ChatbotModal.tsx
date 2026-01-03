@@ -90,7 +90,28 @@ You are warm, empathetic, and non-judgmental.`,
             temperature: 0.7
           })
           
-          response = aiResponse
+          // Extract string content from response - handle both string and object formats
+          if (typeof aiResponse === 'string') {
+            response = aiResponse
+          } else if (aiResponse && typeof aiResponse === 'object') {
+            // Handle OpenAI-style response format
+            if (aiResponse.message) {
+              response = typeof aiResponse.message === 'string' 
+                ? aiResponse.message 
+                : aiResponse.message.content || String(aiResponse.message)
+            } else if (aiResponse.choices && Array.isArray(aiResponse.choices) && aiResponse.choices[0]) {
+              response = aiResponse.choices[0].message?.content || aiResponse.choices[0].text || String(aiResponse)
+            } else if (aiResponse.content) {
+              response = aiResponse.content
+            } else if (aiResponse.text) {
+              response = aiResponse.text
+            } else {
+              // Last resort: convert to string
+              response = String(aiResponse)
+            }
+          } else {
+            response = String(aiResponse || '')
+          }
           
           // Detect crisis level from user message
           const lowerMsg = userMessage.toLowerCase()
@@ -120,9 +141,12 @@ You are warm, empathetic, and non-judgmental.`,
         crisisLevel = data.crisisLevel
       }
       
+      // Ensure response is a string before rendering
+      const responseText = typeof response === 'string' ? response : String(response || 'I apologize, but I had trouble generating a response. Please try again.')
+      
       const assistantMessage = {
         role: "assistant" as const,
-        content: response,
+        content: responseText,
         showCrisis: crisisLevel === 'crisis'
       }
       
@@ -133,7 +157,7 @@ You are warm, empathetic, and non-judgmental.`,
         const { ChatHistory } = await import('@/lib/indexeddb')
         await ChatHistory.addMessage({
           message: userMessage,
-          response: response,
+          response: responseText,
           crisisLevel: crisisLevel,
           timestamp: new Date()
         })
@@ -170,19 +194,19 @@ You are warm, empathetic, and non-judgmental.`,
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-3xl h-[600px] flex flex-col p-0">
-        <DialogHeader className="p-6 pb-4 border-b">
-          <DialogTitle className="text-2xl">AI Mental Health Support Chat</DialogTitle>
-          <DialogDescription>
+      <DialogContent className="max-w-3xl h-[90vh] sm:h-[600px] flex flex-col p-0 w-[95vw] sm:w-full">
+        <DialogHeader className="p-4 sm:p-6 pb-3 sm:pb-4 border-b">
+          <DialogTitle className="text-xl sm:text-2xl break-words">AI Mental Health Support Chat</DialogTitle>
+          <DialogDescription className="text-xs sm:text-sm">
             Talk to our AI assistant for support, coping strategies, and resources
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
           {showDisclaimer && (
             <Alert className="border-blue-200 bg-blue-50">
-              <AlertCircle className="h-4 w-4 text-blue-600" />
-              <AlertDescription className="text-sm text-blue-900">
+              <AlertCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+              <AlertDescription className="text-xs sm:text-sm text-blue-900">
                 <strong>Important:</strong> This AI chatbot provides general information and support. 
                 It is NOT a substitute for professional medical advice, diagnosis, or treatment. 
                 If you're in crisis, call 988 (Suicide & Crisis Lifeline) or 911 immediately.
@@ -191,16 +215,16 @@ You are warm, empathetic, and non-judgmental.`,
           )}
 
           {messages.length === 0 && !isLoading && (
-            <div className="text-center py-8 space-y-4">
-              <p className="text-muted-foreground mb-4">Start a conversation by typing a message or choosing a suggestion:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-md mx-auto">
+            <div className="text-center py-4 sm:py-8 space-y-4">
+              <p className="text-muted-foreground mb-4 text-sm sm:text-base px-2">Start a conversation by typing a message or choosing a suggestion:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-md mx-auto px-2">
                 {suggestedPrompts.map((prompt) => (
                   <Button
                     key={prompt}
                     variant="outline"
                     size="sm"
                     onClick={() => handleSuggestedPrompt(prompt)}
-                    className="text-sm"
+                    className="text-xs sm:text-sm min-h-[44px]"
                   >
                     {prompt}
                   </Button>
@@ -213,20 +237,20 @@ You are warm, empathetic, and non-judgmental.`,
             <div key={index}>
               <div className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
-                  className={`max-w-[80%] rounded-lg p-4 ${
+                  className={`max-w-[85%] sm:max-w-[80%] rounded-lg p-3 sm:p-4 ${
                     message.role === "user"
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 text-gray-900"
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  <p className="text-xs sm:text-sm whitespace-pre-wrap break-words">{message.content}</p>
                 </div>
               </div>
               
               {message.showCrisis && (
                 <Alert className="mt-2 border-red-500 bg-red-50">
-                  <AlertCircle className="h-4 w-4 text-red-600" />
-                  <AlertDescription className="text-sm text-red-900">
+                  <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
+                  <AlertDescription className="text-xs sm:text-sm text-red-900">
                     <strong>Crisis Resources:</strong> If you're in crisis, please call <strong>988</strong> (Suicide & Crisis Lifeline) 
                     or text <strong>HELLO</strong> to <strong>741741</strong>. For emergencies, call <strong>911</strong>.
                   </AlertDescription>
@@ -237,7 +261,7 @@ You are warm, empathetic, and non-judgmental.`,
 
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-gray-100 rounded-lg p-4">
+              <div className="bg-gray-100 rounded-lg p-3 sm:p-4">
                 <Loader2 className="h-5 w-5 animate-spin text-gray-600" />
               </div>
             </div>
@@ -246,13 +270,13 @@ You are warm, empathetic, and non-judgmental.`,
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="border-t p-4 space-y-2">
+        <div className="border-t p-3 sm:p-4 space-y-2">
           {messages.length > 0 && (
             <Button
               variant="ghost"
               size="sm"
               onClick={clearConversation}
-              className="mb-2"
+              className="mb-2 text-xs sm:text-sm min-h-[40px]"
             >
               <RotateCcw className="h-4 w-4 mr-2" />
               Clear Conversation
@@ -270,12 +294,13 @@ You are warm, empathetic, and non-judgmental.`,
               }}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 text-sm sm:text-base min-h-[44px]"
             />
             <Button
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
               size="icon"
+              className="min-h-[44px] min-w-[44px]"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
