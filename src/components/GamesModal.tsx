@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Smile, Clock, Zap } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"

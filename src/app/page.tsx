@@ -68,7 +68,7 @@ export default function HomePage() {
         </p>
         <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2">
           Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
-          20 validated assessments, 12 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.
+          20 validated assessments, 11 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.
         </p>
       </header>
 
@@ -135,12 +135,12 @@ export default function HomePage() {
               <CardTitle className="text-base sm:text-lg break-words">Therapeutic Games</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
-              12 Interactive Wellness Tools
+              11 Interactive Wellness Tools
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Evidence-based activities including breathing exercises, grounding techniques, mood tracking, gratitude journaling, and CBT tools.
+              Evidence-based activities including breathing exercises, grounding techniques, gratitude journaling, and CBT tools.
             </p>
             <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setGamesOpen(true)}>
               Play Games
@@ -277,7 +277,7 @@ export default function HomePage() {
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-accent mb-2">12</div>
+            <div className="text-4xl font-bold text-accent mb-2">11</div>
             <div className="text-sm text-gray-600">Therapeutic Games</div>
           </CardContent>
         </Card>
