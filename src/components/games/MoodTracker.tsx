@@ -31,10 +31,28 @@ export default function MoodTracker() {
 
   // Load entries from IndexedDB on mount
   useEffect(() => {
-    loadEntries()
+    const initDB = async () => {
+      try {
+        const { db } = await import('@/lib/indexeddb')
+        await db.init()
+      } catch (error) {
+        console.error('Error initializing IndexedDB:', error)
+        setIsLoading(false)
+        return
+      }
+
+      try {
+        await loadEntries()
+      } catch (error) {
+        console.error('Error loading mood entries:', error)
+        setIsLoading(false)
+      }
+    }
+    initDB()
   }, [])
 
   const loadEntries = async () => {
+    setIsLoading(true)
     try {
       const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
       const savedEntries = await MoodTrackerDB.getAllEntries()
@@ -121,126 +139,140 @@ export default function MoodTracker() {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
-          <Alert>
-            <Heart className="h-4 w-4" />
-            <AlertDescription>
-              <strong>Track your moods:</strong> Regular mood tracking helps you identify triggers, 
-              patterns, and what helps you feel better. Check in 2-3 times daily for best results.
-            </AlertDescription>
-          </Alert>
-
-          {/* Mood Selection */}
-          <div className="space-y-3">
-            <h3 className="font-semibold">How are you feeling right now?</h3>
-            <div className="grid grid-cols-5 gap-3">
-              {moodLevels.map((mood) => {
-                const Icon = mood.icon
-                return (
-                  <Button
-                    key={mood.level}
-                    variant={selectedMood === mood.level ? "default" : "outline"}
-                    className={`flex flex-col items-center gap-2 h-auto py-4 ${
-                      selectedMood === mood.level ? '' : 'hover:border-primary'
-                    }`}
-                    onClick={() => setSelectedMood(mood.level)}
-                  >
-                    <Icon className={`h-8 w-8 ${selectedMood === mood.level ? 'text-white' : mood.color}`} />
-                    <span className="text-xs">{mood.label}</span>
-                  </Button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Optional Note */}
-          {selectedMood && (
-            <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
-              <h3 className="font-semibold text-sm">Add a note (optional)</h3>
-              <Textarea
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                placeholder="What's affecting your mood? Any activities, thoughts, or events?"
-                rows={3}
-                maxLength={300}
-              />
-              <div className="flex items-center justify-between">
-                <p className="text-xs text-muted-foreground">{note.length}/300 characters</p>
-                <Button onClick={saveMood}>
-                  Save Mood
-                </Button>
-              </div>
-            </div>
-          )}
-
-          {/* Statistics */}
-          {entries.length > 0 && (
-            <Card className="border-primary">
-              <CardContent className="pt-6">
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div>
-                    <p className="text-3xl font-bold text-primary">{entries.length}</p>
-                    <p className="text-sm text-muted-foreground">Total Check-ins</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-green-600">{getAverageMood()}</p>
-                    <p className="text-sm text-muted-foreground">Average Mood</p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-blue-600">
-                      {entries.filter(e => e.mood >= 4).length}
-                    </p>
-                    <p className="text-sm text-muted-foreground">Good Days</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Mood History */}
-          {entries.length > 0 ? (
-            <div className="space-y-3">
-              <h3 className="font-semibold">Your Mood History</h3>
-              <div className="space-y-2 max-h-[400px] overflow-y-auto">
-                {entries.map((entry) => (
-                  <Card key={entry.id}>
-                    <CardContent className="py-3 px-4">
-                      <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-0.5">
-                          {getMoodIcon(entry.mood)}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-2 mb-1">
-                            <span className="font-medium">{getMoodLabel(entry.mood)}</span>
-                            <span className="text-xs text-muted-foreground">
-                              {formatDate(entry.date)} at {entry.time}
-                            </span>
-                          </div>
-                          {entry.note && (
-                            <p className="text-sm text-muted-foreground">{entry.note}</p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+          {isLoading ? (
+            <div className="flex justify-center items-center py-12">
+              <div className="text-center space-y-3">
+                <Heart className="h-12 w-12 mx-auto text-primary animate-pulse" />
+                <p className="text-sm text-muted-foreground">Loading your mood history...</p>
               </div>
             </div>
           ) : (
-            <Card className="p-8 text-center border-dashed">
-              <Heart className="h-12 w-12 mx-auto text-muted-foreground mb-3 opacity-50" />
-              <p className="text-muted-foreground">
-                Start tracking your mood by selecting how you feel above
-              </p>
-            </Card>
-          )}
+            <>
+              <Alert>
+                <Heart className="h-4 w-4" />
+                <AlertDescription>
+                  <strong>Track your moods:</strong> Regular mood tracking helps you identify triggers, 
+                  patterns, and what helps you feel better. Check in 2-3 times daily for best results.
+                </AlertDescription>
+              </Alert>
 
-          <Alert className="border-blue-200 bg-blue-50">
-            <Heart className="h-4 w-4 text-blue-600" />
-            <AlertDescription className="text-blue-900">
-              <strong>Tip:</strong> Track your mood at consistent times (morning, afternoon, evening). 
-              Look for patterns - do certain activities, people, or times of day affect your mood?
-            </AlertDescription>
-          </Alert>
+              {/* Mood Selection */}
+              <div className="space-y-3">
+                <h3 className="font-semibold">How are you feeling right now?</h3>
+                <div className="grid grid-cols-5 gap-3">
+                  {moodLevels.map((mood) => {
+                    const Icon = mood.icon
+                    return (
+                      <Button
+                        key={mood.level}
+                        variant={selectedMood === mood.level ? "default" : "outline"}
+                        className={`flex flex-col items-center gap-2 h-auto py-4 ${
+                          selectedMood === mood.level ? '' : 'hover:border-primary'
+                        }`}
+                        onClick={() => setSelectedMood(mood.level)}
+                      >
+                        <Icon className={`h-8 w-8 ${selectedMood === mood.level ? 'text-white' : mood.color}`} />
+                        <span className="text-xs">{mood.label}</span>
+                      </Button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Optional Note */}
+              {selectedMood && (
+                <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
+                  <h3 className="font-semibold text-sm">Add a note (optional)</h3>
+                  <Textarea
+                    value={note}
+                    onChange={(e) => setNote(e.target.value)}
+                    placeholder="What's affecting your mood? Any activities, thoughts, or events?"
+                    rows={3}
+                    maxLength={300}
+                  />
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs text-muted-foreground">{note.length}/300 characters</p>
+                    <Button onClick={saveMood}>
+                      Save Mood
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {/* Statistics */}
+              {entries.length > 0 && (
+                <Card className="border-primary">
+                  <CardContent className="pt-6">
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <p className="text-3xl font-bold text-primary">{entries.length}</p>
+                        <p className="text-sm text-muted-foreground">Total Check-ins</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-green-600">{getAverageMood()}</p>
+                        <p className="text-sm text-muted-foreground">Average Mood</p>
+                      </div>
+                      <div>
+                        <p className="text-3xl font-bold text-blue-600">
+                          {entries.filter(e => e.mood >= 4).length}
+                        </p>
+                        <p className="text-sm text-muted-foreground">Good Days</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Mood History */}
+              {entries.length > 0 ? (
+                <div className="space-y-3">
+                  <h3 className="font-semibold">Your Mood History</h3>
+                  <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                    {entries.map((entry) => (
+                      <Card key={entry.id}>
+                        <CardContent className="py-3 px-4">
+                          <div className="flex items-start gap-3">
+                            <div className="flex-shrink-0 mt-0.5">
+                              {getMoodIcon(entry.mood)}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center justify-between gap-2 mb-1">
+                                <span className="font-medium">{getMoodLabel(entry.mood)}</span>
+                                <span className="text-xs text-muted-foreground">
+                                  {formatDate(entry.date)} at {entry.time}
+                                </span>
+                              </div>
+                              {entry.note && (
+                                <p className="text-sm text-muted-foreground">{entry.note}</p>
+                              )}
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Card className="p-8 text-center border-dashed">
+                  <Heart className="h-12 w-12 mx-auto text-muted-foreground mb-3 opacity-50" />
+                  <p className="text-muted-foreground mb-2 font-medium">
+                    No mood entries yet
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Start tracking your mood by selecting how you feel above
+                  </p>
+                </Card>
+              )}
+
+              <Alert className="border-blue-200 bg-blue-50">
+                <Heart className="h-4 w-4 text-blue-600" />
+                <AlertDescription className="text-blue-900">
+                  <strong>Tip:</strong> Track your mood at consistent times (morning, afternoon, evening). 
+                  Look for patterns - do certain activities, people, or times of day affect your mood?
+                </AlertDescription>
+              </Alert>
+            </>
+          )}
         </CardContent>
       </Card>
     </div>

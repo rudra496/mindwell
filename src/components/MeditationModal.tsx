@@ -6,9 +6,22 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Clock, Brain, Heart, Sparkles, Loader2, Play, Pause, RotateCcw } from "lucide-react"
+import { Clock, Brain, Heart, Sparkles, Loader2, Play, Pause, RotateCcw, Volume2, VolumeX, Square } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Progress } from "@/components/ui/progress"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Slider } from "@/components/ui/slider"
+import {
+  speak,
+  stopSpeaking,
+  pauseSpeaking,
+  resumeSpeaking,
+  isSpeaking,
+  isPaused,
+  waitForVoices,
+  isSpeechSynthesisSupported
+} from "@/lib/speech"
+import { playSound, muteSounds, unmuteSounds, isSoundMuted } from "@/lib/sounds"
 
 interface Meditation {
   id: string
@@ -38,18 +51,49 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   const [totalTime, setTotalTime] = useState(0)
   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
+  // TTS state
+  const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([])
+  const [selectedVoiceIndex, setSelectedVoiceIndex] = useState<number>(0)
+  const [speechRate, setSpeechRate] = useState(0.8)
+  const [isTTSSpeaking, setIsTTSSpeaking] = useState(false)
+  const [isTTSPaused, setIsTTSPaused] = useState(false)
+  const [ttsProgress, setTTSProgress] = useState("")
+  const ttsCheckInterval = useRef<NodeJS.Timeout | null>(null)
+
+  // Audio state
+  const [isMuted, setIsMuted] = useState(false)
+  const [volume, setVolume] = useState(1.0)
+
   useEffect(() => {
     if (open) {
       fetchMeditations()
+      loadVoices()
     }
   }, [open])
 
+  // Load available TTS voices
+  const loadVoices = async () => {
+    if (!isSpeechSynthesisSupported()) return
+    const voices = await waitForVoices()
+    setAvailableVoices(voices)
+    // Try to find a good default voice
+    const defaultIndex = voices.findIndex(v => v.lang === 'en-US' && v.name.includes('Google'))
+    if (defaultIndex !== -1) {
+      setSelectedVoiceIndex(defaultIndex)
+    }
+  }
+
   // Cleanup timer on unmount or when meditation changes
   useEffect(() => {
+    const ttsInterval = ttsCheckInterval.current
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current)
       }
+      if (ttsInterval) {
+        clearInterval(ttsInterval)
+      }
+      stopSpeaking()
     }
   }, [])
 
@@ -61,21 +105,9 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
           if (prev <= 1) {
             setIsTimerRunning(false)
             if (timerRef.current) clearInterval(timerRef.current)
-            // Play completion sound (browser beep)
-            if (typeof window !== 'undefined' && window.AudioContext) {
-              const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
-              const oscillator = audioContext.createOscillator()
-              const gainNode = audioContext.createGain()
-              
-              oscillator.connect(gainNode)
-              gainNode.connect(audioContext.destination)
-              
-              oscillator.frequency.value = 528 // Hz (solfeggio frequency)
-              gainNode.gain.value = 0.3
-              
-              oscillator.start()
-              gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1)
-              oscillator.stop(audioContext.currentTime + 1)
+            // Play completion sound
+            if (!isMuted) {
+              playSound('chime', volume)
             }
             return 0
           }
@@ -89,7 +121,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
     } else if (timerRef.current) {
       clearInterval(timerRef.current)
     }
-  }, [isTimerRunning, timeRemaining])
+  }, [isTimerRunning, timeRemaining, isMuted, volume])
 
   const fetchMeditations = async () => {
     setIsLoading(true)
@@ -145,6 +177,98 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
       const seconds = selectedMeditation.duration * 60
       setTimeRemaining(seconds)
       setTotalTime(seconds)
+    }
+  }
+
+  // TTS functions
+  const PARAGRAPH_PAUSE_MS = 1000 // Pause duration between meditation paragraphs
+
+  const startTTS = async () => {
+    if (!selectedMeditation || !isSpeechSynthesisSupported()) return
+    
+    setIsTTSSpeaking(true)
+    setIsTTSPaused(false)
+    setTTSProgress("Starting meditation...")
+    
+    // Play start chime
+    if (!isMuted) {
+      try {
+        await playSound('chime', volume)
+      } catch (error) {
+        console.warn('Failed to play start chime:', error)
+      }
+    }
+    
+    // Split script into paragraphs for better pacing
+    const paragraphs = selectedMeditation.script
+      .split('\n\n')
+      .filter(p => p.trim().length > 0)
+    
+    try {
+      setTTSProgress("Speaking...")
+      
+      // Speak each paragraph
+      for (let i = 0; i < paragraphs.length; i++) {
+        setTTSProgress(`Speaking paragraph ${i + 1} of ${paragraphs.length}...`)
+        
+        await speak(paragraphs[i], {
+          rate: speechRate,
+          voice: availableVoices[selectedVoiceIndex] || null,
+          volume: volume
+        })
+        
+        // Small pause between paragraphs
+        if (i < paragraphs.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, PARAGRAPH_PAUSE_MS))
+        }
+      }
+      
+      setTTSProgress("Meditation complete")
+      
+      // Play completion chime
+      if (!isMuted) {
+        try {
+          await playSound('chime', volume)
+        } catch (error) {
+          console.warn('Failed to play completion chime:', error)
+        }
+      }
+      
+    } catch (error) {
+      console.error('TTS error:', error)
+      setTTSProgress("Playback stopped")
+    } finally {
+      setIsTTSSpeaking(false)
+      setIsTTSPaused(false)
+    }
+  }
+
+  const pauseTTS = () => {
+    pauseSpeaking()
+    setIsTTSPaused(true)
+    setTTSProgress("Paused")
+  }
+
+  const resumeTTS = () => {
+    resumeSpeaking()
+    setIsTTSPaused(false)
+    setTTSProgress("Speaking...")
+  }
+
+  const stopTTS = () => {
+    stopSpeaking()
+    setIsTTSSpeaking(false)
+    setIsTTSPaused(false)
+    setTTSProgress("")
+  }
+
+  const toggleMute = () => {
+    const newMuted = !isMuted
+    setIsMuted(newMuted)
+    if (newMuted) {
+      muteSounds()
+    } else {
+      unmuteSounds()
     }
   }
 
@@ -355,6 +479,135 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                   )}
                 </CardContent>
               </Card>
+
+              {/* Text-to-Speech Card */}
+              {isSpeechSynthesisSupported() && (
+                <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-2 border-purple-200">
+                  <CardHeader>
+                    <CardTitle className="text-lg flex items-center gap-2">
+                      <Sparkles className="h-5 w-5" />
+                      Text-to-Speech Meditation
+                    </CardTitle>
+                    <CardDescription>
+                      Listen to guided audio narration of this meditation
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {/* Voice Selection */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Voice</label>
+                      <Select
+                        value={selectedVoiceIndex.toString()}
+                        onValueChange={(value) => setSelectedVoiceIndex(parseInt(value))}
+                        disabled={isTTSSpeaking}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a voice" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {availableVoices.map((voice, index) => (
+                            <SelectItem key={index} value={index.toString()}>
+                              {voice.name} ({voice.lang})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Speech Rate */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <label className="text-sm font-medium">Speed</label>
+                        <span className="text-sm text-muted-foreground">{speechRate}x</span>
+                      </div>
+                      <Slider
+                        value={[speechRate]}
+                        onValueChange={(values) => setSpeechRate(values[0])}
+                        min={0.5}
+                        max={1.5}
+                        step={0.1}
+                        disabled={isTTSSpeaking}
+                      />
+                    </div>
+
+                    {/* Volume Control */}
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <label className="text-sm font-medium">Volume</label>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onClick={toggleMute}
+                          className="h-8 w-8 p-0"
+                        >
+                          {isMuted ? (
+                            <VolumeX className="h-4 w-4" />
+                          ) : (
+                            <Volume2 className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+                      <Slider
+                        value={[volume]}
+                        onValueChange={(values) => setVolume(values[0])}
+                        min={0}
+                        max={1}
+                        step={0.1}
+                        disabled={isMuted}
+                      />
+                    </div>
+
+                    {/* TTS Status */}
+                    {ttsProgress && (
+                      <Alert>
+                        <AlertDescription className="text-sm">
+                          {ttsProgress}
+                        </AlertDescription>
+                      </Alert>
+                    )}
+
+                    {/* TTS Controls */}
+                    <div className="flex gap-2 justify-center">
+                      {!isTTSSpeaking && (
+                        <Button onClick={startTTS} className="gap-2">
+                          <Play className="h-4 w-4" />
+                          Play Meditation
+                        </Button>
+                      )}
+                      
+                      {isTTSSpeaking && !isTTSPaused && (
+                        <Button onClick={pauseTTS} variant="secondary" className="gap-2">
+                          <Pause className="h-4 w-4" />
+                          Pause
+                        </Button>
+                      )}
+                      
+                      {isTTSSpeaking && isTTSPaused && (
+                        <Button onClick={resumeTTS} className="gap-2">
+                          <Play className="h-4 w-4" />
+                          Resume
+                        </Button>
+                      )}
+                      
+                      {isTTSSpeaking && (
+                        <Button onClick={stopTTS} variant="destructive" className="gap-2">
+                          <Square className="h-4 w-4" />
+                          Stop
+                        </Button>
+                      )}
+                    </div>
+
+                    <Alert className="border-purple-200 bg-purple-50">
+                      <Sparkles className="h-4 w-4 text-purple-600" />
+                      <AlertDescription className="text-sm text-purple-900">
+                        <strong>Tip:</strong> Close your eyes, get comfortable, and let the guided 
+                        meditation voice lead you through the practice. You can adjust the speed 
+                        and volume to your preference.
+                      </AlertDescription>
+                    </Alert>
+                  </CardContent>
+                </Card>
+              )}
 
               <div className="flex items-center gap-4 text-sm">
                 <div className="flex items-center gap-2">

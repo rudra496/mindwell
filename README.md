@@ -7,6 +7,8 @@
 
 > **Comprehensive, scientifically-backed, free mental health support platform**
 
+🌐 **Live Demo:** [https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app](https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app)
+
 ![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
 
 ## 🎯 Mission
