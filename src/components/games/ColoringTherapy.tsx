@@ -96,6 +96,7 @@ export default function ColoringTherapy() {
   const [filled, setFilled] = useState<Record<string, string>>({})
   const [isColoring, setIsColoring] = useState(false)
   const svgRef = useRef<HTMLDivElement>(null)
+  const touchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
   const handleReset = () => {
     setFilled({})
@@ -142,6 +143,16 @@ export default function ColoringTherapy() {
     e.preventDefault()
     if (!isColoring) return
     
+    // Check if touches array exists and has at least one touch
+    if (!e.touches || e.touches.length === 0) return
+    
+    // Throttle touch events to prevent excessive calls (50ms throttle)
+    if (touchTimeoutRef.current) return
+    
+    touchTimeoutRef.current = setTimeout(() => {
+      touchTimeoutRef.current = null
+    }, 50)
+    
     const touch = e.touches[0]
     const element = document.elementFromPoint(touch.clientX, touch.clientY) as SVGElement
     if (element) {
@@ -161,6 +172,13 @@ export default function ColoringTherapy() {
             el.setAttribute('stroke', filled[id])
           }
         })
+      }
+    }
+    
+    // Cleanup timeout on unmount
+    return () => {
+      if (touchTimeoutRef.current) {
+        clearTimeout(touchTimeoutRef.current)
       }
     }
   }, [filled, selectedMandala])
