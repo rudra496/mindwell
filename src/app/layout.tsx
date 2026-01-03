@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 
@@ -47,6 +48,8 @@ export default function RootLayout({
             {children}
           </main>
         </ErrorBoundary>
+        
+        <Analytics />
         
         {/* Service Worker Registration */}
         <Script id="register-sw" strategy="afterInteractive">
