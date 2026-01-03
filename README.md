@@ -208,6 +208,32 @@ npm run prisma:seed
 npm run export-data
 ```
 
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+For detailed deployment instructions, see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md).
+
+**Quick Deploy:**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rudra496/mindwell)
+
+**Manual Steps:**
+
+1. Fork this repository
+2. Create a Vercel account at [vercel.com](https://vercel.com)
+3. Import your forked repository
+4. Add PostgreSQL database (Vercel Postgres/Supabase/Neon)
+5. Configure environment variables (see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md))
+6. Deploy!
+
+**Required Environment Variables:**
+- `DATABASE_URL` - PostgreSQL connection string
+- `POSTGRES_PRISMA_URL` - Connection pooling URL (recommended)
+- `NEXT_PUBLIC_APP_URL` - Your deployment URL
+
+See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for complete setup instructions with troubleshooting.
+
 ## 📁 Project Structure
 
 ```
