@@ -68,12 +68,28 @@ class IndexedDBManager {
   private db: IDBDatabase | null = null
 
   async init(): Promise<void> {
+    if (this.db) {
+      // Already initialized
+      return
+    }
+
     return new Promise((resolve, reject) => {
+      if (typeof window === 'undefined' || typeof indexedDB === 'undefined') {
+        console.warn('IndexedDB not available (likely in SSR context)')
+        reject(new Error('IndexedDB not supported'))
+        return
+      }
+
       const request = indexedDB.open(DB_NAME, DB_VERSION)
 
-      request.onerror = () => reject(request.error)
+      request.onerror = () => {
+        console.error('IndexedDB initialization error:', request.error)
+        reject(request.error)
+      }
+      
       request.onsuccess = () => {
         this.db = request.result
+        console.log('IndexedDB initialized successfully')
         resolve()
       }
 

@@ -50,6 +50,10 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     setIsLoading(true)
     setError(null)
     try {
+      // Initialize IndexedDB first
+      const { db } = await import('@/lib/indexeddb')
+      await db.init()
+      
       // Load posts from IndexedDB
       let allPosts = await Community.getAllPosts()
       
@@ -180,6 +184,15 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           <AlertDescription className="text-sm text-blue-900">
             <strong>Community Guidelines:</strong> Be respectful, supportive, and kind. 
             This is a safe space for everyone. If you're in crisis, please call 988 or visit your nearest emergency room.
+          </AlertDescription>
+        </Alert>
+
+        <Alert className="border-green-200 bg-green-50">
+          <Users className="h-4 w-4 text-green-600" />
+          <AlertDescription className="text-sm text-green-900">
+            <strong>🔒 Privacy First:</strong> All posts are stored <strong>locally in your browser</strong> using 
+            IndexedDB. Posts are <strong>100% client-side</strong> and are NOT sent to any server. 
+            Your posts are completely private to your device and browser.
           </AlertDescription>
         </Alert>
 

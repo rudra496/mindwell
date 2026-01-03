@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 export const metadata: Metadata = {
   title: "MindWell - World's Largest Open-Source Mental Health Platform",
@@ -41,9 +42,11 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
         
-        <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
-          {children}
-        </main>
+        <ErrorBoundary>
+          <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
+            {children}
+          </main>
+        </ErrorBoundary>
         
         {/* Service Worker Registration */}
         <Script id="register-sw" strategy="afterInteractive">
