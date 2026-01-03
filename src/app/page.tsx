@@ -24,6 +24,7 @@ import { ChatbotModal } from "@/components/ChatbotModal"
 import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
+import MoodTracker from "@/components/games/MoodTracker"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -252,26 +253,12 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        {/* Mood Tracker Preview */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
-          <CardHeader>
-            <div className="flex items-center gap-3 mb-2">
-              <Heart className="h-8 w-8 text-rose-500" />
-              <CardTitle>Mood Tracker</CardTitle>
-            </div>
-            <CardDescription>
-              Track Your Wellness Journey
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-600 mb-4">
-              Daily mood logging with visual charts, activity tracking, and insights into patterns. Monitor your mental health progress over time.
-            </p>
-            <Button className="w-full" variant="outline">
-              Track Mood
-            </Button>
-          </CardContent>
-        </Card>
+
+      </div>
+
+      {/* Mood Tracker Section */}
+      <div className="mb-8 sm:mb-12">
+        <MoodTracker />
       </div>
 
       {/* Statistics Section */}
