@@ -85,12 +85,13 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
   // Cleanup timer on unmount or when meditation changes
   useEffect(() => {
+    const ttsInterval = ttsCheckInterval.current
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current)
       }
-      if (ttsCheckInterval.current) {
-        clearInterval(ttsCheckInterval.current)
+      if (ttsInterval) {
+        clearInterval(ttsInterval)
       }
       stopSpeaking()
     }
