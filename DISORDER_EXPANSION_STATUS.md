@@ -1,6 +1,6 @@
 # Disorder Database Expansion Status
 
-## Current Status: 33 of 63 Disorders (52% Complete)
+## Current Status: 50 of 63 Disorders (79% Complete)
 
 ### Completed Disorders (33 total)
 
@@ -41,35 +41,40 @@
 32. Opioid Use Disorder ✅
 33. Cannabis Use Disorder ✅
 
-### Remaining Disorders Needed (30 total)
+#### Phase 2 Additions (7):
+34. Stimulant Use Disorder ✅
+35. Tobacco Use Disorder ✅
+36. Borderline Personality Disorder (BPD) ✅
+37. Narcissistic Personality Disorder (NPD) ✅
+38. Schizophrenia ✅
+39. Antisocial Personality Disorder (ASPD) ✅
+40. Dissociative Identity Disorder (DID) ✅
 
-#### Substance Use Disorders (4):
-- [ ] Stimulant Use Disorder (cocaine, amphetamines, methamphetamine)
+#### Phase 3A Additions (10):
+41. Avoidant Personality Disorder ✅
+42. Paranoid Personality Disorder ✅
+43. Schizoid Personality Disorder ✅
+44. Schizotypal Personality Disorder ✅
+45. Histrionic Personality Disorder ✅
+46. Dependent Personality Disorder ✅
+47. Obsessive-Compulsive Personality Disorder (OCPD) ✅
+48. Schizoaffective Disorder ✅
+49. Delusional Disorder ✅
+50. Schizophreniform Disorder ✅
+
+### Remaining Disorders Needed (13 total)
+
+#### Substance Use Disorders (2):
 - [ ] Sedative/Hypnotic Use Disorder (benzodiazepines, barbiturates)
 - [ ] Hallucinogen Use Disorder (LSD, psilocybin, etc.)
-- [ ] Tobacco Use Disorder
 
-#### Personality Disorders (7):
-- [ ] Avoidant Personality Disorder
-- [ ] Dependent Personality Disorder
-- [ ] Obsessive-Compulsive Personality Disorder (OCPD)
-- [ ] Paranoid Personality Disorder
-- [ ] Schizoid Personality Disorder
-- [ ] Schizotypal Personality Disorder
-- [ ] Histrionic Personality Disorder
+#### Personality Disorders (0 remaining - all complete):
+All 10 major personality disorders now complete ✅
 
-*Note: Narcissistic Personality Disorder, Borderline Personality Disorder, and Antisocial Personality Disorder should also be considered as they are highly prevalent and clinically significant.*
-
-#### Psychotic Disorders (4):
-- [ ] Schizoaffective Disorder
-- [ ] Schizophreniform Disorder
+#### Psychotic Disorders (1):
 - [ ] Brief Psychotic Disorder
-- [ ] Delusional Disorder
 
-*Note: Schizophrenia should also be included as it is a major psychotic disorder.*
-
-#### Dissociative Disorders (3):
-- [ ] Dissociative Identity Disorder (DID)
+#### Dissociative Disorders (2):
 - [ ] Depersonalization/Derealization Disorder
 - [ ] Dissociative Amnesia
 
@@ -78,17 +83,13 @@
 - [ ] Sleep Apnea (Obstructive/Central)
 - [ ] Restless Legs Syndrome
 
-#### Additional High-Priority Disorders (9):
+#### Additional High-Priority Disorders (5):
 Consider adding these prevalent and significant disorders:
-- [ ] Schizophrenia
-- [ ] Borderline Personality Disorder
-- [ ] Narcissistic Personality Disorder
-- [ ] Antisocial Personality Disorder
 - [ ] Intermittent Explosive Disorder
 - [ ] Hoarding Disorder
 - [ ] Excoriation (Skin-Picking) Disorder
-- [ ] Reactive Attachment Disorder
-- [ ] Disinhibited Social Engagement Disorder
+- [ ] Conduct Disorder
+- [ ] Oppositional Defiant Disorder
 
 ## Comprehensive Disorder Format Requirements
 
@@ -115,9 +116,9 @@ Each disorder must include:
 
 ### Lines of Code Per Disorder
 - Each comprehensive disorder: **150-200 lines** of detailed TypeScript/JSON
-- 30 remaining disorders: **4,500-6,000 lines** of code needed
-- Current seed.ts file: **~9,600 lines**
-- Projected final size: **~14,000-15,000 lines**
+- 13 remaining disorders: **1,950-2,600 lines** of code needed
+- Current seed.ts file: **~11,700 lines**
+- Projected final size: **~13,650-14,300 lines**
 
 ### Data Sources Required
 All disorder information must be sourced from:
@@ -161,13 +162,14 @@ All disorder information must be sourced from:
 | Trauma & Stress | 4 | 0 | 100% |
 | OCD Spectrum | 3 | 0 | 100% |
 | Eating Disorders | 4 | 0 | 100% |
-| Substance Use | 3 | 4 | 43% |
-| Personality Disorders | 0 | 7-10 | 0% |
-| Psychotic Disorders | 0 | 4-5 | 0% |
-| Dissociative Disorders | 0 | 3 | 0% |
+| Substance Use | 5 | 2 | 71% |
+| Personality Disorders | 10 | 0 | 100% |
+| Psychotic Disorders | 4 | 1 | 80% |
+| Dissociative Disorders | 1 | 2 | 33% |
 | Sleep Disorders | 1 | 3 | 25% |
 | Neurodevelopmental | 2 | 0 | 100% |
-| **TOTAL** | **33** | **30** | **52%** |
+| Additional Disorders | 0 | 5 | 0% |
+| **TOTAL** | **50** | **13** | **79%** |
 
 ## Implementation Status
 
@@ -195,8 +197,8 @@ All disorder information must be sourced from:
 ## Estimated Effort
 
 - **Time per disorder**: 30-60 minutes (research + writing)
-- **Total remaining time**: 15-30 hours of focused work
-- **Recommended**: Distribute across multiple contributors with medical backgrounds
+- **Total remaining time**: 6.5-13 hours of focused work
+- **Recommended**: Can be completed in 1-2 focused sessions
 - **Review time**: 1-2 hours per disorder for medical accuracy
 
 ## Contact & Resources
