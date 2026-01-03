@@ -6,9 +6,9 @@ generator client {
 
 // Database configuration
 // For local development: use "sqlite" with DATABASE_URL="file:./dev.db"
-// For Vercel production: change provider to "postgresql" and set DATABASE_URL to your Postgres connection string
+// For Vercel production: use "postgresql" and set DATABASE_URL to your Postgres connection string
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
