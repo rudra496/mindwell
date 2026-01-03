@@ -168,13 +168,13 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-3xl flex items-center gap-2">
-            <Users className="h-8 w-8" />
+          <DialogTitle className="text-2xl sm:text-3xl flex items-center gap-2 break-words">
+            <Users className="h-6 w-6 sm:h-8 sm:w-8" />
             Anonymous Community
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-sm sm:text-base">
             Connect with others, share experiences, and find support in a safe, anonymous space
           </DialogDescription>
         </DialogHeader>
@@ -213,9 +213,9 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
             </SelectContent>
           </Select>
 
-          <Button onClick={() => setShowCreatePost(true)}>
+          <Button onClick={() => setShowCreatePost(true)} className="w-full sm:w-auto min-h-[44px]">
             <Plus className="h-4 w-4 mr-2" />
-            Create Post
+            <span className="text-sm sm:text-base">Create Post</span>
           </Button>
         </div>
 
@@ -241,7 +241,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                   <p className="text-muted-foreground mb-4">
                     Be the first to share your story or ask for support
                   </p>
-                  <Button onClick={() => setShowCreatePost(true)}>
+                  <Button onClick={() => setShowCreatePost(true)} className="min-h-[44px]">
                     <Plus className="h-4 w-4 mr-2" />
                     Create First Post
                   </Button>
@@ -255,21 +255,21 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                   onClick={() => setSelectedPost(post)}
                 >
                   <CardHeader>
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4">
+                      <div className="flex-1 w-full">
                         <div className="flex items-center gap-2 flex-wrap mb-2">
                           {post.hasWarning && (
-                            <Badge variant="destructive" className="flex items-center gap-1">
+                            <Badge variant="destructive" className="flex items-center gap-1 text-xs">
                               <AlertTriangle className="h-3 w-3" />
                               Trigger Warning
                             </Badge>
                           )}
-                          <Badge className={getCategoryColor(post.category)}>
+                          <Badge className={getCategoryColor(post.category) + " text-xs"}>
                             {post.category}
                           </Badge>
                         </div>
-                        <CardTitle className="text-lg">{post.title}</CardTitle>
-                        <CardDescription className="mt-1">
+                        <CardTitle className="text-base sm:text-lg break-words max-w-full">{post.title}</CardTitle>
+                        <CardDescription className="mt-1 text-xs sm:text-sm truncate">
                           By {post.username} • {formatDate(post.createdAt)}
                         </CardDescription>
                       </div>
@@ -284,7 +284,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                         </AlertDescription>
                       </Alert>
                     )}
-                    <p className="text-sm text-muted-foreground line-clamp-3">
+                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3 break-words overflow-hidden">
                       {post.content}
                     </p>
                     <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">

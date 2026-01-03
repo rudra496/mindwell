@@ -99,21 +99,21 @@ export default function GratitudeJournal() {
   const [currentPrompt] = useState(prompts[Math.floor(Math.random() * prompts.length)])
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
-            <BookHeart className="h-6 w-6 text-pink-500" />
-            <CardTitle>Gratitude Journal</CardTitle>
+            <BookHeart className="h-5 w-5 sm:h-6 sm:w-6 text-pink-500" />
+            <CardTitle className="text-lg sm:text-xl break-words">Gratitude Journal</CardTitle>
           </div>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Daily practice of gratitude improves mental health and wellbeing
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
           <Alert>
             <BookHeart className="h-4 w-4" />
-            <AlertDescription>
+            <AlertDescription className="text-xs sm:text-sm break-words">
               <strong>Research shows:</strong> Practicing gratitude regularly can increase happiness, 
               reduce depression, improve sleep, and strengthen relationships. Try to write 3-5 things daily.
             </AlertDescription>
@@ -121,32 +121,34 @@ export default function GratitudeJournal() {
 
           {/* Prompt */}
           <Card className="border-2 border-dashed border-primary">
-            <CardContent className="pt-6">
-              <p className="text-sm text-muted-foreground mb-1">Today's Prompt:</p>
-              <p className="text-lg font-medium text-primary">{currentPrompt}</p>
+            <CardContent className="pt-4 sm:pt-6 p-3 sm:p-6">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-1">Today's Prompt:</p>
+              <p className="text-base sm:text-lg font-medium text-primary break-words">{currentPrompt}</p>
             </CardContent>
           </Card>
 
           {/* New Entry */}
           <div className="space-y-3">
-            <h3 className="font-semibold">What are you grateful for today?</h3>
+            <h3 className="font-semibold text-sm sm:text-base">What are you grateful for today?</h3>
             <Textarea
               value={currentEntry}
               onChange={(e) => setCurrentEntry(e.target.value)}
               placeholder="I am grateful for..."
               rows={5}
               maxLength={1000}
+              className="text-sm"
             />
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
               <p className="text-xs text-muted-foreground">
                 {currentEntry.length}/1000 characters
               </p>
               <Button
                 onClick={saveEntry}
                 disabled={!currentEntry.trim()}
+                className="w-full sm:w-auto min-h-[44px]"
               >
                 <Save className="h-4 w-4 mr-2" />
-                Save Entry
+                <span className="text-sm sm:text-base">Save Entry</span>
               </Button>
             </div>
           </div>
@@ -154,19 +156,20 @@ export default function GratitudeJournal() {
           {/* Filter by Date */}
           {entries.length > 0 && (
             <div className="space-y-2">
-              <Label htmlFor="filter-date">Filter by Date</Label>
-              <div className="flex gap-2">
+              <Label htmlFor="filter-date" className="text-sm">Filter by Date</Label>
+              <div className="flex flex-col sm:flex-row gap-2">
                 <Input
                   id="filter-date"
                   type="date"
                   value={filterDate}
                   onChange={(e) => setFilterDate(e.target.value)}
-                  className="flex-1"
+                  className="flex-1 text-sm"
                 />
                 {filterDate && (
                   <Button
                     variant="outline"
                     onClick={() => setFilterDate("")}
+                    className="min-h-[44px]"
                   >
                     Clear
                   </Button>
@@ -178,27 +181,27 @@ export default function GratitudeJournal() {
           {/* Past Entries */}
           {entries.length > 0 ? (
             <div className="space-y-3">
-              <h3 className="font-semibold">
+              <h3 className="font-semibold text-sm sm:text-base">
                 Your Gratitude Entries ({filteredEntries.length})
               </h3>
-              <div className="space-y-3 max-h-[500px] overflow-y-auto">
+              <div className="space-y-3 max-h-[300px] sm:max-h-[500px] overflow-y-auto">
                 {filteredEntries.map((entry) => (
                   <Card key={entry.id} className="border-l-4 border-l-pink-500">
-                    <CardContent className="pt-4">
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <p className="text-sm font-medium text-muted-foreground">
+                    <CardContent className="pt-3 sm:pt-4 p-3 sm:p-6">
+                      <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-3 mb-2">
+                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">
                           {formatDate(entry.date)}
                         </p>
                         <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => deleteEntry(entry.id)}
-                          className="text-destructive"
+                          className="text-destructive min-h-[36px]"
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </div>
-                      <p className="whitespace-pre-wrap">{entry.entry}</p>
+                      <p className="whitespace-pre-wrap text-xs sm:text-sm break-words overflow-hidden">{entry.entry}</p>
                     </CardContent>
                   </Card>
                 ))}

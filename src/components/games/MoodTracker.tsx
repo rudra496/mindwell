@@ -127,18 +127,18 @@ export default function MoodTracker() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       <Card>
         <CardHeader>
           <div className="flex items-center gap-2">
-            <Heart className="h-6 w-6 text-rose-500" />
-            <CardTitle>Mood Tracker</CardTitle>
+            <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-rose-500" />
+            <CardTitle className="text-lg sm:text-xl break-words">Mood Tracker</CardTitle>
           </div>
-          <CardDescription>
+          <CardDescription className="text-sm">
             Track your emotional wellness and identify patterns
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
           {isLoading ? (
             <div className="flex justify-center items-center py-12">
               <div className="text-center space-y-3">
@@ -158,21 +158,21 @@ export default function MoodTracker() {
 
               {/* Mood Selection */}
               <div className="space-y-3">
-                <h3 className="font-semibold">How are you feeling right now?</h3>
-                <div className="grid grid-cols-5 gap-3">
+                <h3 className="font-semibold text-sm sm:text-base">How are you feeling right now?</h3>
+                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
                   {moodLevels.map((mood) => {
                     const Icon = mood.icon
                     return (
                       <Button
                         key={mood.level}
                         variant={selectedMood === mood.level ? "default" : "outline"}
-                        className={`flex flex-col items-center gap-2 h-auto py-4 ${
+                        className={`flex flex-col items-center gap-1 sm:gap-2 h-auto py-3 sm:py-4 min-h-[44px] ${
                           selectedMood === mood.level ? '' : 'hover:border-primary'
                         }`}
                         onClick={() => setSelectedMood(mood.level)}
                       >
-                        <Icon className={`h-8 w-8 ${selectedMood === mood.level ? 'text-white' : mood.color}`} />
-                        <span className="text-xs">{mood.label}</span>
+                        <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${selectedMood === mood.level ? 'text-white' : mood.color}`} />
+                        <span className="text-[10px] sm:text-xs">{mood.label}</span>
                       </Button>
                     )
                   })}
@@ -189,10 +189,11 @@ export default function MoodTracker() {
                     placeholder="What's affecting your mood? Any activities, thoughts, or events?"
                     rows={3}
                     maxLength={300}
+                    className="text-sm"
                   />
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <p className="text-xs text-muted-foreground">{note.length}/300 characters</p>
-                    <Button onClick={saveMood}>
+                    <Button onClick={saveMood} className="w-full sm:w-auto min-h-[44px]">
                       Save Mood
                     </Button>
                   </div>
@@ -202,21 +203,21 @@ export default function MoodTracker() {
               {/* Statistics */}
               {entries.length > 0 && (
                 <Card className="border-primary">
-                  <CardContent className="pt-6">
-                    <div className="grid grid-cols-3 gap-4 text-center">
+                  <CardContent className="pt-4 sm:pt-6 p-3 sm:p-6">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                       <div>
-                        <p className="text-3xl font-bold text-primary">{entries.length}</p>
-                        <p className="text-sm text-muted-foreground">Total Check-ins</p>
+                        <p className="text-2xl sm:text-3xl font-bold text-primary">{entries.length}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Total Check-ins</p>
                       </div>
                       <div>
-                        <p className="text-3xl font-bold text-green-600">{getAverageMood()}</p>
-                        <p className="text-sm text-muted-foreground">Average Mood</p>
+                        <p className="text-2xl sm:text-3xl font-bold text-green-600">{getAverageMood()}</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Average Mood</p>
                       </div>
                       <div>
-                        <p className="text-3xl font-bold text-blue-600">
+                        <p className="text-2xl sm:text-3xl font-bold text-blue-600">
                           {entries.filter(e => e.mood >= 4).length}
                         </p>
-                        <p className="text-sm text-muted-foreground">Good Days</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Good Days</p>
                       </div>
                     </div>
                   </CardContent>
@@ -226,24 +227,24 @@ export default function MoodTracker() {
               {/* Mood History */}
               {entries.length > 0 ? (
                 <div className="space-y-3">
-                  <h3 className="font-semibold">Your Mood History</h3>
-                  <div className="space-y-2 max-h-[400px] overflow-y-auto">
+                  <h3 className="font-semibold text-sm sm:text-base">Your Mood History</h3>
+                  <div className="space-y-2 max-h-[300px] sm:max-h-[400px] overflow-y-auto">
                     {entries.map((entry) => (
                       <Card key={entry.id}>
-                        <CardContent className="py-3 px-4">
-                          <div className="flex items-start gap-3">
+                        <CardContent className="py-2 sm:py-3 px-3 sm:px-4">
+                          <div className="flex items-start gap-2 sm:gap-3">
                             <div className="flex-shrink-0 mt-0.5">
                               {getMoodIcon(entry.mood)}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center justify-between gap-2 mb-1">
-                                <span className="font-medium">{getMoodLabel(entry.mood)}</span>
+                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 mb-1">
+                                <span className="font-medium text-sm sm:text-base">{getMoodLabel(entry.mood)}</span>
                                 <span className="text-xs text-muted-foreground">
                                   {formatDate(entry.date)} at {entry.time}
                                 </span>
                               </div>
                               {entry.note && (
-                                <p className="text-sm text-muted-foreground">{entry.note}</p>
+                                <p className="text-xs sm:text-sm text-muted-foreground break-words overflow-hidden">{entry.note}</p>
                               )}
                             </div>
                           </div>

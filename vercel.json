@@ -6,6 +6,10 @@
   "framework": "nextjs",
   "outputDirectory": ".next",
   "regions": ["iad1"],
+  "env": {
+    "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
+    "SKIP_PLAYWRIGHT_INSTALL": "1"
+  },
   "headers": [
     {
       "source": "/(.*)",

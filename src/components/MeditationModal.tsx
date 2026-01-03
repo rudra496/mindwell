@@ -282,10 +282,10 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-3xl">Guided Meditations</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-2xl sm:text-3xl break-words">Guided Meditations</DialogTitle>
+          <DialogDescription className="text-sm sm:text-base">
             Explore our collection of evidence-based meditation practices for relaxation, mindfulness, and healing
           </DialogDescription>
         </DialogHeader>
@@ -304,10 +304,10 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
         {!isLoading && !error && !selectedMeditation && (
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${categories.length + 1}, minmax(0, 1fr))` }}>
-              <TabsTrigger value="all">All</TabsTrigger>
+            <TabsList className="grid w-full overflow-x-auto" style={{ gridTemplateColumns: `repeat(${categories.length + 1}, minmax(0, 1fr))` }}>
+              <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
               {categories.map(category => (
-                <TabsTrigger key={category} value={category}>
+                <TabsTrigger key={category} value={category} className="text-xs sm:text-sm">
                   {category}
                 </TabsTrigger>
               ))}
@@ -322,14 +322,14 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                     onClick={() => setSelectedMeditation(meditation)}
                   >
                     <CardHeader>
-                      <div className="flex justify-between items-start">
-                        <CardTitle className="text-lg">{meditation.title}</CardTitle>
-                        <Badge variant="outline" className="ml-2">
+                      <div className="flex flex-col sm:flex-row justify-between items-start gap-2">
+                        <CardTitle className="text-base sm:text-lg break-words max-w-full">{meditation.title}</CardTitle>
+                        <Badge variant="outline" className="ml-0 sm:ml-2 shrink-0 text-xs">
                           {getCategoryIcon(meditation.category)}
                           <span className="ml-1">{meditation.category}</span>
                         </Badge>
                       </div>
-                      <CardDescription>{meditation.description}</CardDescription>
+                      <CardDescription className="text-sm break-words">{meditation.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
                       <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
@@ -365,8 +365,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                         onClick={() => setSelectedMeditation(meditation)}
                       >
                         <CardHeader>
-                          <CardTitle className="text-lg">{meditation.title}</CardTitle>
-                          <CardDescription>{meditation.description}</CardDescription>
+                          <CardTitle className="text-base sm:text-lg break-words max-w-full">{meditation.title}</CardTitle>
+                          <CardDescription className="text-sm break-words">{meditation.description}</CardDescription>
                         </CardHeader>
                         <CardContent>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
@@ -408,14 +408,14 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
             <div className="space-y-4">
               <div>
-                <div className="flex items-center justify-between mb-2">
-                  <h2 className="text-2xl font-bold">{selectedMeditation.title}</h2>
-                  <Badge variant="outline">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-2 gap-2">
+                  <h2 className="text-xl sm:text-2xl font-bold break-words max-w-full">{selectedMeditation.title}</h2>
+                  <Badge variant="outline" className="shrink-0 text-xs">
                     {getCategoryIcon(selectedMeditation.category)}
                     <span className="ml-1">{selectedMeditation.category}</span>
                   </Badge>
                 </div>
-                <p className="text-muted-foreground">{selectedMeditation.description}</p>
+                <p className="text-sm sm:text-base text-muted-foreground break-words">{selectedMeditation.description}</p>
               </div>
 
               {/* Timer Card */}
@@ -431,7 +431,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
-                    <div className="text-5xl font-bold text-teal-700 mb-2">
+                    <div className="text-4xl sm:text-5xl font-bold text-teal-700 mb-2">
                       {formatTime(timeRemaining)}
                     </div>
                     {totalTime > 0 && (
@@ -439,32 +439,32 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                     )}
                   </div>
                   
-                  <div className="flex gap-2 justify-center">
+                  <div className="flex flex-wrap gap-2 justify-center">
                     {!isTimerRunning && timeRemaining === 0 && (
-                      <Button onClick={() => startTimer(selectedMeditation)} className="gap-2">
+                      <Button onClick={() => startTimer(selectedMeditation)} className="gap-2 min-h-[44px]">
                         <Play className="h-4 w-4" />
-                        Start Timer
+                        <span className="text-sm sm:text-base">Start Timer</span>
                       </Button>
                     )}
                     
                     {!isTimerRunning && timeRemaining > 0 && timeRemaining < totalTime && (
-                      <Button onClick={resumeTimer} className="gap-2">
+                      <Button onClick={resumeTimer} className="gap-2 min-h-[44px]">
                         <Play className="h-4 w-4" />
-                        Resume
+                        <span className="text-sm sm:text-base">Resume</span>
                       </Button>
                     )}
                     
                     {isTimerRunning && (
-                      <Button onClick={pauseTimer} variant="secondary" className="gap-2">
+                      <Button onClick={pauseTimer} variant="secondary" className="gap-2 min-h-[44px]">
                         <Pause className="h-4 w-4" />
-                        Pause
+                        <span className="text-sm sm:text-base">Pause</span>
                       </Button>
                     )}
                     
                     {timeRemaining !== totalTime && timeRemaining !== 0 && (
-                      <Button onClick={resetTimer} variant="outline" className="gap-2">
+                      <Button onClick={resetTimer} variant="outline" className="gap-2 min-h-[44px]">
                         <RotateCcw className="h-4 w-4" />
-                        Reset
+                        <span className="text-sm sm:text-base">Reset</span>
                       </Button>
                     )}
                   </div>
@@ -567,32 +567,32 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                     )}
 
                     {/* TTS Controls */}
-                    <div className="flex gap-2 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-2 justify-center">
                       {!isTTSSpeaking && (
-                        <Button onClick={startTTS} className="gap-2">
+                        <Button onClick={startTTS} className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Play className="h-4 w-4" />
-                          Play Meditation
+                          <span className="text-sm sm:text-base">Play Meditation</span>
                         </Button>
                       )}
                       
                       {isTTSSpeaking && !isTTSPaused && (
-                        <Button onClick={pauseTTS} variant="secondary" className="gap-2">
+                        <Button onClick={pauseTTS} variant="secondary" className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Pause className="h-4 w-4" />
-                          Pause
+                          <span className="text-sm sm:text-base">Pause</span>
                         </Button>
                       )}
                       
                       {isTTSSpeaking && isTTSPaused && (
-                        <Button onClick={resumeTTS} className="gap-2">
+                        <Button onClick={resumeTTS} className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Play className="h-4 w-4" />
-                          Resume
+                          <span className="text-sm sm:text-base">Resume</span>
                         </Button>
                       )}
                       
                       {isTTSSpeaking && (
-                        <Button onClick={stopTTS} variant="destructive" className="gap-2">
+                        <Button onClick={stopTTS} variant="destructive" className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Square className="h-4 w-4" />
-                          Stop
+                          <span className="text-sm sm:text-base">Stop</span>
                         </Button>
                       )}
                     </div>
@@ -641,7 +641,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                 </CardHeader>
                 <CardContent>
                   <div className="prose prose-sm max-w-none">
-                    <div className="whitespace-pre-wrap text-sm leading-relaxed">
+                    <div className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed break-words overflow-hidden">
                       {selectedMeditation.script}
                     </div>
                   </div>
