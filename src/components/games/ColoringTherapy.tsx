@@ -12,10 +12,10 @@ const mandalas = [
     name: "Flower Mandala",
     complexity: "Beginner",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="80" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="60" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="40" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="20" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 8}, (_, i) => {
         const angle = (i * 45 * Math.PI) / 180
         const x1 = 100 + 20 * Math.cos(angle)
@@ -28,7 +28,7 @@ const mandalas = [
         const angle = (i * 22.5 * Math.PI) / 180
         const x = 100 + 70 * Math.cos(angle)
         const y = 100 + 70 * Math.sin(angle)
-        return `<circle cx="${x}" cy="${y}" r="8" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<circle cx="${x}" cy="${y}" r="8" fill="white" stroke="currentColor" stroke-width="2"/>`
       }).join('')}
     </svg>`
   },
@@ -37,7 +37,7 @@ const mandalas = [
     name: "Geometric Star",
     complexity: "Intermediate",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="90" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 12}, (_, i) => {
         const angle = (i * 30 * Math.PI) / 180
         const x1 = 100 + 30 * Math.cos(angle)
@@ -49,10 +49,10 @@ const mandalas = [
       ${Array.from({length: 6}, (_, i) => {
         const angle = (i * 60 * Math.PI) / 180
         const r = 60
-        return `<circle cx="${100 + r * Math.cos(angle)}" cy="${100 + r * Math.sin(angle)}" r="15" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<circle cx="${100 + r * Math.cos(angle)}" cy="${100 + r * Math.sin(angle)}" r="15" fill="white" stroke="currentColor" stroke-width="2"/>`
       }).join('')}
-      <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="30" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="10" fill="white" stroke="currentColor" stroke-width="2"/>
     </svg>`
   },
   {
@@ -60,11 +60,11 @@ const mandalas = [
     name: "Nature Harmony",
     complexity: "Advanced",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="75" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="95" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="75" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="55" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="35" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="15" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 24}, (_, i) => {
         const angle = (i * 15 * Math.PI) / 180
         const x1 = 100 + 15 * Math.cos(angle)
@@ -78,7 +78,7 @@ const mandalas = [
         const r = 65
         const x = 100 + r * Math.cos(angle)
         const y = 100 + r * Math.sin(angle)
-        return `<path d="M ${x},${y} Q ${x + 10 * Math.cos(angle + Math.PI/4)},${y + 10 * Math.sin(angle + Math.PI/4)} ${x + 15 * Math.cos(angle)},${y + 15 * Math.sin(angle)} Q ${x + 10 * Math.cos(angle - Math.PI/4)},${y + 10 * Math.sin(angle - Math.PI/4)} ${x},${y}" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<path d="M ${x},${y} Q ${x + 10 * Math.cos(angle + Math.PI/4)},${y + 10 * Math.sin(angle + Math.PI/4)} ${x + 15 * Math.cos(angle)},${y + 15 * Math.sin(angle)} Q ${x + 10 * Math.cos(angle - Math.PI/4)},${y + 10 * Math.sin(angle - Math.PI/4)} ${x},${y}" fill="white" stroke="currentColor" stroke-width="2"/>`
       }).join('')}
     </svg>`
   }
@@ -131,9 +131,16 @@ export default function ColoringTherapy() {
       }
       
       // Apply color immediately to the element
-      target.setAttribute('fill', selectedColor)
-      if (target.tagName === 'circle') {
+      // For circles and paths, fill them with color
+      // Keep the stroke visible for outlines
+      if (target.tagName === 'circle' || target.tagName === 'path') {
+        target.setAttribute('fill', selectedColor)
+        target.setAttribute('fill-opacity', '0.8')
+      }
+      // For lines, change stroke color since they can't be filled
+      if (target.tagName === 'line') {
         target.setAttribute('stroke', selectedColor)
+        target.setAttribute('stroke-width', '3')
       }
       
       setFilled(prev => ({
@@ -182,9 +189,14 @@ export default function ColoringTherapy() {
           
           const id = svgEl.getAttribute('data-id')
           if (id && filled[id]) {
-            svgEl.setAttribute('fill', filled[id])
-            if (svgEl.tagName === 'circle') {
+            // Apply saved colors with same logic as colorElement
+            if (svgEl.tagName === 'circle' || svgEl.tagName === 'path') {
+              svgEl.setAttribute('fill', filled[id])
+              svgEl.setAttribute('fill-opacity', '0.8')
+            }
+            if (svgEl.tagName === 'line') {
               svgEl.setAttribute('stroke', filled[id])
+              svgEl.setAttribute('stroke-width', '3')
             }
           }
         })
