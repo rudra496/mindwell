@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap } from "lucide-react"
@@ -15,6 +15,11 @@ import MindfulnessTimer from "./games/MindfulnessTimer"
 import ProgressiveMuscleRelaxation from "./games/ProgressiveMuscleRelaxation"
 import SafePlaceVisualization from "./games/SafePlaceVisualization"
 import ColoringTherapy from "./games/ColoringTherapy"
+
+// >>>>>>> ADD FOR VOICE/TTS SUPPORT
+import { speak } from "@/lib/speech"
+import { useVoiceSettings } from "@/lib/voiceSettings"
+// <<<<<<<
 
 const games = [
   {
@@ -98,6 +103,27 @@ const games = [
 
 export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
+
+  // >>>>>>> ADD FOR VOICE/TTS SUPPORT
+  const { settings } = useVoiceSettings()
+
+  // Narrate when modal opens and no game selected
+  useEffect(() => {
+    if (open && !selectedGame && settings.enabled) {
+      speak("Welcome to the games section. Try out mindfulness games for relaxation.")
+    }
+  }, [open, selectedGame, settings.enabled])
+
+  // Narrate when a new game is selected
+  useEffect(() => {
+    if (selectedGame && settings.enabled) {
+      const game = games.find(g => g.id === selectedGame)
+      if (game) {
+        speak(`${game.name}. ${game.description}`)
+      }
+    }
+  }, [selectedGame, settings.enabled])
+  // <<<<<<<
 
   const closeGame = () => {
     setSelectedGame(null)
