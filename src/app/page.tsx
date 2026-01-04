@@ -26,6 +26,7 @@ import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import MoodTracker from "@/components/games/MoodTracker"
 import { Footer } from "@/components/Footer"
+import { VoiceControlPanel } from "@/components/VoiceControlPanel"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -67,10 +68,14 @@ export default function HomePage() {
         <p className="text-base sm:text-xl text-gray-700 mb-2 px-2">
           World's Largest Open-Source Mental Health Platform
         </p>
-        <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2">
+        <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2 mb-4">
           Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
           20 validated assessments, 11 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.
         </p>
+        {/* Voice Control Panel */}
+        <div className="flex justify-center mt-4">
+          <VoiceControlPanel />
+        </div>
       </header>
 
       {/* Medical Disclaimer */}

@@ -12,23 +12,21 @@ const mandalas = [
     name: "Flower Mandala",
     complexity: "Beginner",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="20" fill="none" stroke="currentColor" stroke-width="2"/>
-      ${Array.from({length: 8}, (_, i) => {
-        const angle = (i * 45 * Math.PI) / 180
-        const x1 = 100 + 20 * Math.cos(angle)
-        const y1 = 100 + 20 * Math.sin(angle)
-        const x2 = 100 + 80 * Math.cos(angle)
-        const y2 = 100 + 80 * Math.sin(angle)
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-width="2"/>`
-      }).join('')}
+      <circle cx="100" cy="100" r="80" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="60" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="40" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="20" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 16}, (_, i) => {
         const angle = (i * 22.5 * Math.PI) / 180
         const x = 100 + 70 * Math.cos(angle)
         const y = 100 + 70 * Math.sin(angle)
-        return `<circle cx="${x}" cy="${y}" r="8" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<circle cx="${x}" cy="${y}" r="8" fill="white" stroke="currentColor" stroke-width="2"/>`
+      }).join('')}
+      ${Array.from({length: 8}, (_, i) => {
+        const angle = (i * 45 * Math.PI) / 180
+        const x = 100 + 50 * Math.cos(angle)
+        const y = 100 + 50 * Math.sin(angle)
+        return `<circle cx="${x}" cy="${y}" r="6" fill="white" stroke="currentColor" stroke-width="2"/>`
       }).join('')}
     </svg>`
   },
@@ -37,22 +35,20 @@ const mandalas = [
     name: "Geometric Star",
     complexity: "Intermediate",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" stroke-width="2"/>
-      ${Array.from({length: 12}, (_, i) => {
-        const angle = (i * 30 * Math.PI) / 180
-        const x1 = 100 + 30 * Math.cos(angle)
-        const y1 = 100 + 30 * Math.sin(angle)
-        const x2 = 100 + 90 * Math.cos(angle)
-        const y2 = 100 + 90 * Math.sin(angle)
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-width="2"/>`
-      }).join('')}
+      <circle cx="100" cy="100" r="90" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 6}, (_, i) => {
         const angle = (i * 60 * Math.PI) / 180
         const r = 60
-        return `<circle cx="${100 + r * Math.cos(angle)}" cy="${100 + r * Math.sin(angle)}" r="15" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<circle cx="${100 + r * Math.cos(angle)}" cy="${100 + r * Math.sin(angle)}" r="15" fill="white" stroke="currentColor" stroke-width="2"/>`
       }).join('')}
-      <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+      ${Array.from({length: 12}, (_, i) => {
+        const angle = (i * 30 * Math.PI) / 180 + Math.PI/6
+        const x = 100 + 40 * Math.cos(angle)
+        const y = 100 + 40 * Math.sin(angle)
+        return `<circle cx="${x}" cy="${y}" r="8" fill="white" stroke="currentColor" stroke-width="2"/>`
+      }).join('')}
+      <circle cx="100" cy="100" r="30" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="10" fill="white" stroke="currentColor" stroke-width="2"/>
     </svg>`
   },
   {
@@ -60,25 +56,24 @@ const mandalas = [
     name: "Nature Harmony",
     complexity: "Advanced",
     svg: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="95" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="75" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="55" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="2"/>
-      <circle cx="100" cy="100" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
-      ${Array.from({length: 24}, (_, i) => {
-        const angle = (i * 15 * Math.PI) / 180
-        const x1 = 100 + 15 * Math.cos(angle)
-        const y1 = 100 + 15 * Math.sin(angle)
-        const x2 = 100 + 95 * Math.cos(angle)
-        const y2 = 100 + 95 * Math.sin(angle)
-        return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="currentColor" stroke-width="1" opacity="0.5"/>`
-      }).join('')}
+      <circle cx="100" cy="100" r="95" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="75" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="55" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="35" fill="white" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="15" fill="white" stroke="currentColor" stroke-width="2"/>
       ${Array.from({length: 8}, (_, i) => {
         const angle = (i * 45 * Math.PI) / 180
         const r = 65
         const x = 100 + r * Math.cos(angle)
         const y = 100 + r * Math.sin(angle)
-        return `<path d="M ${x},${y} Q ${x + 10 * Math.cos(angle + Math.PI/4)},${y + 10 * Math.sin(angle + Math.PI/4)} ${x + 15 * Math.cos(angle)},${y + 15 * Math.sin(angle)} Q ${x + 10 * Math.cos(angle - Math.PI/4)},${y + 10 * Math.sin(angle - Math.PI/4)} ${x},${y}" fill="none" stroke="currentColor" stroke-width="2"/>`
+        return `<path d="M ${x},${y} Q ${x + 10 * Math.cos(angle + Math.PI/4)},${y + 10 * Math.sin(angle + Math.PI/4)} ${x + 15 * Math.cos(angle)},${y + 15 * Math.sin(angle)} Q ${x + 10 * Math.cos(angle - Math.PI/4)},${y + 10 * Math.sin(angle - Math.PI/4)} ${x},${y}" fill="white" stroke="currentColor" stroke-width="2"/>`
+      }).join('')}
+      ${Array.from({length: 16}, (_, i) => {
+        const angle = (i * 22.5 * Math.PI) / 180
+        const r = 85
+        const x = 100 + r * Math.cos(angle)
+        const y = 100 + r * Math.sin(angle)
+        return `<circle cx="${x}" cy="${y}" r="5" fill="white" stroke="currentColor" stroke-width="1.5"/>`
       }).join('')}
     </svg>`
   }
@@ -123,7 +118,7 @@ export default function ColoringTherapy() {
   const colorElement = (target: SVGElement) => {
     if (!isColoring) return
     
-    if (target.tagName === 'circle' || target.tagName === 'path' || target.tagName === 'line') {
+    if (target.tagName === 'circle' || target.tagName === 'path' || target.tagName === 'line' || target.tagName === 'rect' || target.tagName === 'polygon') {
       let id = target.getAttribute('data-id')
       if (!id) {
         id = `${target.tagName}-${Math.random().toString(36).slice(2, 11)}`
@@ -132,8 +127,11 @@ export default function ColoringTherapy() {
       
       // Apply color immediately to the element
       target.setAttribute('fill', selectedColor)
-      if (target.tagName === 'circle') {
-        target.setAttribute('stroke', selectedColor)
+      // Keep stroke visible with a darker version or the original color
+      const originalStroke = target.getAttribute('stroke')
+      if (originalStroke && originalStroke !== 'none') {
+        // Keep the stroke to maintain shape definition
+        target.setAttribute('stroke', '#333')
       }
       
       setFilled(prev => ({
@@ -173,7 +171,7 @@ export default function ColoringTherapy() {
     if (svgRef.current) {
       const svgElement = svgRef.current.querySelector('svg')
       if (svgElement) {
-        const elements = svgElement.querySelectorAll('circle, path, line')
+        const elements = svgElement.querySelectorAll('circle, path, line, rect, polygon')
         elements.forEach(el => {
           const svgEl = el as SVGElement
           // Add pointer events and cursor style
@@ -183,8 +181,10 @@ export default function ColoringTherapy() {
           const id = svgEl.getAttribute('data-id')
           if (id && filled[id]) {
             svgEl.setAttribute('fill', filled[id])
-            if (svgEl.tagName === 'circle') {
-              svgEl.setAttribute('stroke', filled[id])
+            // Keep stroke visible
+            const originalStroke = svgEl.getAttribute('stroke')
+            if (originalStroke && originalStroke !== 'none') {
+              svgEl.setAttribute('stroke', '#333')
             }
           }
         })
