@@ -90,6 +90,10 @@ const colors = [
   "#6C5CE7", "#00B894", "#E17055", "#0984E3", "#FF7675"
 ]
 
+// Coloring constants
+const FILL_OPACITY = 0.8
+const LINE_STROKE_WIDTH = 3
+
 export default function ColoringTherapy() {
   const [selectedMandala, setSelectedMandala] = useState(mandalas[0])
   const [selectedColor, setSelectedColor] = useState(colors[0])
@@ -135,12 +139,12 @@ export default function ColoringTherapy() {
       // Keep the stroke visible for outlines
       if (target.tagName === 'circle' || target.tagName === 'path') {
         target.setAttribute('fill', selectedColor)
-        target.setAttribute('fill-opacity', '0.8')
+        target.setAttribute('fill-opacity', FILL_OPACITY.toString())
       }
       // For lines, change stroke color since they can't be filled
       if (target.tagName === 'line') {
         target.setAttribute('stroke', selectedColor)
-        target.setAttribute('stroke-width', '3')
+        target.setAttribute('stroke-width', LINE_STROKE_WIDTH.toString())
       }
       
       setFilled(prev => ({
@@ -192,11 +196,11 @@ export default function ColoringTherapy() {
             // Apply saved colors with same logic as colorElement
             if (svgEl.tagName === 'circle' || svgEl.tagName === 'path') {
               svgEl.setAttribute('fill', filled[id])
-              svgEl.setAttribute('fill-opacity', '0.8')
+              svgEl.setAttribute('fill-opacity', FILL_OPACITY.toString())
             }
             if (svgEl.tagName === 'line') {
               svgEl.setAttribute('stroke', filled[id])
-              svgEl.setAttribute('stroke-width', '3')
+              svgEl.setAttribute('stroke-width', LINE_STROKE_WIDTH.toString())
             }
           }
         })
