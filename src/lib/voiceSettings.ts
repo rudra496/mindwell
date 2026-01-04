@@ -1,11 +1,12 @@
 "use client"
 
+import React from 'react'
+import { SpeechOptions } from './speech'
+
 /**
  * Global voice settings and state management for MindWell
  * Manages text-to-speech preferences across the application
  */
-
-import { SpeechOptions } from './speech'
 
 export interface VoiceSettings {
   enabled: boolean
@@ -121,6 +122,3 @@ export const toggleVoice = (): boolean => {
 export const isVoiceEnabled = (): boolean => {
   return loadVoiceSettings().enabled
 }
-
-// Add React import for the hook
-import React from 'react'
