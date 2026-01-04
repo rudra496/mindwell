@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
@@ -25,6 +26,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [showResults, setShowResults] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [showBackConfirm, setShowBackConfirm] = useState(false)
 
   useEffect(() => {
     if (open) {
@@ -46,6 +48,24 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     setCurrentQuestion(0)
     setAnswers({})
     setShowResults(false)
+  }
+
+  const handleBackToList = () => {
+    // If assessment is in progress (has answers), show confirmation
+    if (Object.keys(answers).length > 0 && !showResults) {
+      setShowBackConfirm(true)
+    } else {
+      // No progress or on results page, go back immediately
+      resetAssessment()
+    }
+  }
+
+  const resetAssessment = () => {
+    setSelectedAssessment(null)
+    setCurrentQuestion(0)
+    setAnswers({})
+    setShowResults(false)
+    setShowBackConfirm(false)
   }
 
   const handleAnswer = (questionId: number, value: number) => {
@@ -181,7 +201,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setSelectedAssessment(null)}
+                onClick={handleBackToList}
                 className="h-8 px-2 text-xs sm:text-sm"
               >
                 <ArrowLeft className="h-4 w-4 mr-1" />
@@ -253,12 +273,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => {
-                setSelectedAssessment(null)
-                setCurrentQuestion(0)
-                setAnswers({})
-                setShowResults(false)
-              }}
+              onClick={handleBackToList}
               className="h-8 px-2 text-xs sm:text-sm"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
@@ -323,6 +338,25 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
           </div>
         </div>
       </DialogContent>
+
+      {/* Confirmation dialog for leaving in-progress assessment */}
+      <AlertDialog open={showBackConfirm} onOpenChange={setShowBackConfirm}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Leave Assessment?</AlertDialogTitle>
+            <AlertDialogDescription>
+              You have answered {Object.keys(answers).length} of {questions.length} questions. 
+              If you go back now, your progress will be lost. Are you sure you want to continue?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Continue Assessment</AlertDialogCancel>
+            <AlertDialogAction onClick={resetAssessment}>
+              Yes, Go Back
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </Dialog>
   )
 }
