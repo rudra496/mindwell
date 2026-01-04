@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
-import { AlertCircle } from "lucide-react"
+import { AlertCircle, ArrowLeft } from "lucide-react"
 
 interface Assessment {
   id: string
@@ -177,6 +177,17 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
           <DialogHeader>
+            <div className="flex items-center gap-2 mb-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSelectedAssessment(null)}
+                className="h-8 px-2 text-xs sm:text-sm"
+              >
+                <ArrowLeft className="h-4 w-4 mr-1" />
+                Back to All Assessments
+              </Button>
+            </div>
             <DialogTitle className="text-xl sm:text-2xl break-words">Assessment Results</DialogTitle>
           </DialogHeader>
 
@@ -238,6 +249,22 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
+          <div className="flex items-center gap-2 mb-2">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                setSelectedAssessment(null)
+                setCurrentQuestion(0)
+                setAnswers({})
+                setShowResults(false)
+              }}
+              className="h-8 px-2 text-xs sm:text-sm"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back to All Assessments
+            </Button>
+          </div>
           <DialogTitle className="text-base sm:text-lg break-words">{selectedAssessment.name}</DialogTitle>
           <DialogDescription className="text-xs sm:text-sm">
             Question {currentQuestion + 1} of {totalQuestions}
