@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,6 +14,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { speak, speakWithPauses } from "@/lib/speech"
+import { useVoiceSettings, toSpeechOptions } from "@/lib/voiceSettings"
 
 interface TherapyTechnique {
   id: string
@@ -37,12 +39,51 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [lastSpokenId, setLastSpokenId] = useState<string | null>(null)
+
+  const { settings } = useVoiceSettings()
 
   useEffect(() => {
     if (open) {
       fetchTechniques()
     }
   }, [open])
+
+  // Voice output on modal open
+  useEffect(() => {
+    if (open && settings.enabled) {
+      speak(
+        "Evidence-based therapy techniques. Learn practical techniques from CBT, DBT, ACT, and other proven therapies.",
+        toSpeechOptions(settings)
+      )
+    }
+  }, [open, settings])
+
+  // Voice output for technique accordion expand (when opened)
+  const handleAccordionChange = useCallback(
+    async (technique: TherapyTechnique) => {
+      if (!settings.enabled) return
+      setLastSpokenId(technique.id)
+      // Compose a paused narration: title, desc, when, steps, etc.
+      const narration = [
+        `${technique.name}.`,
+        `${technique.category} category.`,
+        `Description: ${technique.description}`,
+        `When to use: ${technique.when}`,
+        ...technique.steps.length
+          ? ["Steps:", ...technique.steps.map((step, idx) => `Step ${idx + 1}: ${step}`)]
+          : [],
+        ...technique.examples.length
+          ? ["Examples:", ...technique.examples]
+          : [],
+        ...technique.benefits.length
+          ? ["Benefits:", ...technique.benefits]
+          : []
+      ]
+      await speakWithPauses(narration, toSpeechOptions(settings), 700)
+    },
+    [settings]
+  )
 
   const fetchTechniques = async () => {
     setIsLoading(true)
@@ -168,7 +209,15 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
               <Accordion type="single" collapsible className="w-full">
                 {filteredTechniques.map((technique, index) => (
                   <AccordionItem key={technique.id} value={`item-${index}`}>
-                    <AccordionTrigger className="hover:no-underline">
+                    <AccordionTrigger
+                      className="hover:no-underline"
+                      onClick={async () => {
+                        // Speak only if not the last spoken and voice enabled
+                        if (lastSpokenId !== technique.id && settings.enabled) {
+                          await handleAccordionChange(technique)
+                        }
+                      }}
+                    >
                       <div className="flex items-center gap-3 text-left">
                         <BookOpen className="h-5 w-5 text-primary flex-shrink-0" />
                         <div className="flex-1">
