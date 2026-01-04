@@ -3,8 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, Loader2, Printer } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -64,7 +63,6 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
     async (technique: TherapyTechnique) => {
       if (!settings.enabled) return
       setLastSpokenId(technique.id)
-      // Compose a paused narration: title, desc, when, steps, etc.
       const narration = [
         `${technique.name}.`,
         `${technique.category} category.`,
@@ -195,9 +193,10 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
         {!isLoading && !error && (
           <div className="space-y-6">
             <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-              <TabsList className="grid w-full" style={{ gridTemplateColumns: `repeat(${Math.min(categories.length + 1, 5)}, minmax(0, 1fr))` }}>
+              {/* FIX: scrollable horizontal list prevents overlapping */}
+              <TabsList className="flex gap-2 overflow-x-auto whitespace-nowrap py-1">
                 <TabsTrigger value="all">All</TabsTrigger>
-                {categories.slice(0, 4).map(category => (
+                {categories.map(category => (
                   <TabsTrigger key={category} value={category}>
                     {category}
                   </TabsTrigger>
@@ -212,7 +211,6 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
                     <AccordionTrigger
                       className="hover:no-underline"
                       onClick={async () => {
-                        // Speak only if not the last spoken and voice enabled
                         if (lastSpokenId !== technique.id && settings.enabled) {
                           await handleAccordionChange(technique)
                         }
