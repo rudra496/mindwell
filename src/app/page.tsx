@@ -25,6 +25,7 @@ import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import MoodTracker from "@/components/games/MoodTracker"
+import { Footer } from "@/components/Footer"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -302,17 +303,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="text-center text-sm text-gray-600 border-t pt-8 mt-12">
-        <p className="mb-2">
-          <strong>MindWell</strong> - Built with care for mental health awareness
-        </p>
-        <p className="mb-2">
-          Data sources: NIMH, WHO, APA, PubMed, Cochrane Reviews
-        </p>
-        <p className="text-xs text-gray-500">
-          Open Source (MIT License) • Not a substitute for professional care
-        </p>
-      </footer>
+      <Footer />
 
       {/* Modals */}
       <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
