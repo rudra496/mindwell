@@ -304,7 +304,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
         {!isLoading && !error && !selectedMeditation && (
           <Tabs defaultValue="all" className="w-full">
-            <TabsList className="grid w-full overflow-x-auto" style={{ gridTemplateColumns: `repeat(${categories.length + 1}, minmax(0, 1fr))` }}>
+            <TabsList className="flex gap-2 overflow-x-auto whitespace-nowrap py-1">
               <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
               {categories.map(category => (
                 <TabsTrigger key={category} value={category} className="text-xs sm:text-sm">
