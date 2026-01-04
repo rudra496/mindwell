@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "MindWell - World's Largest Open-Source Mental Health Platform",
     template: "%s | MindWell"
   },
-  description: "Comprehensive, scientifically-backed, free mental health support platform with 63+ mental health disorders, 20 validated clinical assessments (PHQ-9, GAD-7, PCL-5), 11 therapeutic games, 14 guided meditations, 20 therapy techniques, AI chatbot, community support, and 24/7 crisis resources. Evidence-based tools for anxiety, depression, PTSD, OCD, bipolar disorder, and more.",
+  description: "Free, comprehensive mental health support platform with 63+ disorders, 20 validated clinical assessments, therapeutic games, AI chatbot, and crisis resources. Evidence-based tools for anxiety, depression, PTSD, and more.",
   keywords: [
     "mental health",
     "depression",

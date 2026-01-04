@@ -225,7 +225,10 @@ input, textarea, select {
     color: black;
   }
   
-  a[href]:after {
+  /* Only add URLs for external links */
+  a[href^="http"]:after {
     content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
   }
 }

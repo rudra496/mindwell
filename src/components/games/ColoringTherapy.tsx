@@ -126,7 +126,7 @@ export default function ColoringTherapy() {
     if (target.tagName === 'circle' || target.tagName === 'path' || target.tagName === 'line') {
       let id = target.getAttribute('data-id')
       if (!id) {
-        id = `${target.tagName}-${Math.random().toString(36).substr(2, 9)}`
+        id = `${target.tagName}-${Math.random().toString(36).slice(2, 11)}`
         target.setAttribute('data-id', id)
       }
       
