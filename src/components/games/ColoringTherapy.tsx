@@ -124,8 +124,17 @@ export default function ColoringTherapy() {
     if (!isColoring) return
     
     if (target.tagName === 'circle' || target.tagName === 'path' || target.tagName === 'line') {
-      const id = target.getAttribute('data-id') || `${target.tagName}-${Math.random()}`
-      target.setAttribute('data-id', id)
+      let id = target.getAttribute('data-id')
+      if (!id) {
+        id = `${target.tagName}-${Math.random().toString(36).substr(2, 9)}`
+        target.setAttribute('data-id', id)
+      }
+      
+      // Apply color immediately to the element
+      target.setAttribute('fill', selectedColor)
+      if (target.tagName === 'circle') {
+        target.setAttribute('stroke', selectedColor)
+      }
       
       setFilled(prev => ({
         ...prev,
@@ -166,10 +175,17 @@ export default function ColoringTherapy() {
       if (svgElement) {
         const elements = svgElement.querySelectorAll('circle, path, line')
         elements.forEach(el => {
-          const id = el.getAttribute('data-id')
+          const svgEl = el as SVGElement
+          // Add pointer events and cursor style
+          svgEl.style.cursor = 'pointer'
+          svgEl.style.pointerEvents = 'all'
+          
+          const id = svgEl.getAttribute('data-id')
           if (id && filled[id]) {
-            el.setAttribute('fill', filled[id])
-            el.setAttribute('stroke', filled[id])
+            svgEl.setAttribute('fill', filled[id])
+            if (svgEl.tagName === 'circle') {
+              svgEl.setAttribute('stroke', filled[id])
+            }
           }
         })
       }
