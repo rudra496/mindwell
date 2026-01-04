@@ -114,11 +114,11 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
             </div>
 
             <Tabs defaultValue="symptoms" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4">
-                <TabsTrigger value="symptoms" className="text-xs sm:text-sm">Symptoms</TabsTrigger>
-                <TabsTrigger value="solutions" className="text-xs sm:text-sm">Solutions</TabsTrigger>
-                <TabsTrigger value="therapy" className="text-xs sm:text-sm">Therapy</TabsTrigger>
-                <TabsTrigger value="help" className="text-xs sm:text-sm">Get Help</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 h-auto p-2">
+                <TabsTrigger value="symptoms" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Symptoms</TabsTrigger>
+                <TabsTrigger value="solutions" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Solutions</TabsTrigger>
+                <TabsTrigger value="therapy" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Therapy</TabsTrigger>
+                <TabsTrigger value="help" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Get Help</TabsTrigger>
               </TabsList>
 
               <TabsContent value="symptoms" className="space-y-2">
