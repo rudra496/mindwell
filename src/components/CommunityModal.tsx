@@ -1,9 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
   Select,
@@ -12,8 +24,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus, MessageCircle, ThumbsUp, AlertTriangle, Loader2, Users } from "lucide-react";
+import {
+  Plus,
+  MessageCircle,
+  ThumbsUp,
+  AlertTriangle,
+  Loader2,
+  Users,
+} from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+
 import { CommunityCreatePost } from "./CommunityCreatePost";
 import { CommunityPostDetail } from "./CommunityPostDetail";
 import { getCommunityPosts } from "@/lib/community-firebase";
@@ -51,14 +71,15 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     setIsLoading(true);
     setError(null);
     try {
-      let allPosts = await getCommunityPosts();
-      // Filter by category if needed
+      const allPosts = await getCommunityPosts();
+
       const filtered =
-        filteredCategory && filteredCategory !== "all"
-          ? allPosts.filter((p) => p.category === filteredCategory)
-          : allPosts;
+        filteredCategory === "all"
+          ? allPosts
+          : allPosts.filter((p: any) => p.category === filteredCategory);
+
       setPosts(filtered);
-    } catch (e:any) {
+    } catch {
       setError("Failed to load community posts. Please try again.");
     } finally {
       setIsLoading(false);
@@ -67,7 +88,6 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
 
   useEffect(() => {
     if (open && !showCreatePost && !selectedPost) fetchPosts();
-    // eslint-disable-next-line
   }, [open, showCreatePost, selectedPost, filteredCategory]);
 
   const handlePostCreated = () => {
@@ -101,37 +121,46 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-2xl sm:text-3xl flex items-center gap-2 break-words">
-            <Users className="h-6 w-6 sm:h-8 sm:w-8" />
+          <DialogTitle className="text-2xl sm:text-3xl flex items-center gap-2">
+            <Users className="h-7 w-7" />
             Anonymous Community
           </DialogTitle>
-          <DialogDescription className="text-sm sm:text-base">
-            Connect with others, share experiences, and find support in a safe, anonymous space
+          <DialogDescription>
+            Connect with others, share experiences, and find support in a safe anonymous space.
           </DialogDescription>
         </DialogHeader>
 
-        {/* Alert for sign-in, if needed */}
+        {/* SIGN IN ALERT – FIXED LAYOUT */}
         {!auth.currentUser && (
-          <Alert className="border-orange-200 bg-orange-50 mb-2">
-            <AlertDescription>
-              You must{" "}
-              <Button size="sm" onClick={signInWithGoogle}>
-                Sign in with Google
-              </Button>{" "}
-              to post or reply. Your real identity is never public.
-            </AlertDescription>
-          </Alert>
+          <div className="w-full">
+            <Alert className="border-orange-200 bg-orange-50">
+              <AlertDescription className="flex flex-col gap-3">
+                <span>
+                  You must sign in with Google to post or reply. Your identity is never public.
+                </span>
+
+                <Button
+                  className="w-full sm:w-auto"
+                  size="sm"
+                  onClick={signInWithGoogle}
+                >
+                  Sign in with Google
+                </Button>
+              </AlertDescription>
+            </Alert>
+          </div>
         )}
 
-        <Alert className="border-blue-200 bg-blue-50">
+        {/* GUIDELINES */}
+        <Alert className="border-blue-200 bg-blue-50 mt-2">
           <AlertTriangle className="h-4 w-4 text-blue-600" />
-          <AlertDescription className="text-sm text-blue-900">
-            <strong>Community Guidelines:</strong> Be respectful, supportive, and kind.
-            This is a safe space for everyone. If you're in crisis, please call 988 or visit your nearest emergency room.
+          <AlertDescription className="text-sm">
+            Community Guidelines: Be respectful, supportive, and kind. If you are in crisis, call your local emergency number.
           </AlertDescription>
         </Alert>
 
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        {/* FILTER AND CREATE POST BAR */}
+        <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <Select
             value={filteredCategory}
             onValueChange={(value) => setFilteredCategory(value)}
@@ -150,90 +179,67 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </Select>
 
           <Button
-            onClick={() => setShowCreatePost(true)}
-            className="w-full sm:w-auto min-h-[44px]"
             disabled={!auth.currentUser}
+            className="w-full sm:w-auto"
+            onClick={() => setShowCreatePost(true)}
           >
             <Plus className="h-4 w-4 mr-2" />
-            <span className="text-sm sm:text-base">Create Post</span>
+            Create Post
           </Button>
         </div>
 
+        {/* LOADING */}
         {isLoading && (
           <div className="flex justify-center items-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         )}
 
+        {/* ERROR */}
         {error && (
           <Alert variant="destructive">
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
 
+        {/* POSTS */}
         {!isLoading && !error && (
-          <div className="space-y-4">
+          <div className="space-y-4 mt-4">
             {posts.length === 0 ? (
               <Card className="p-8 text-center">
-                <CardContent>
-                  <MessageCircle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No posts yet</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Be the first to share your story or ask for support
-                  </p>
-                  <Button onClick={() => setShowCreatePost(true)} className="min-h-[44px]" disabled={!auth.currentUser}>
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create First Post
-                  </Button>
-                </CardContent>
+                <MessageCircle className="h-10 w-10 mx-auto mb-3" />
+                <p>No posts yet — be the first to share</p>
               </Card>
             ) : (
               posts.map((post) => (
                 <Card
                   key={post.id}
-                  className="cursor-pointer hover:shadow-lg transition-shadow"
+                  className="cursor-pointer"
                   onClick={() => setSelectedPost(post)}
                 >
                   <CardHeader>
-                    <div className="flex flex-col sm:flex-row items-start justify-between gap-2 sm:gap-4">
-                      <div className="flex-1 w-full">
-                        <div className="flex items-center gap-2 flex-wrap mb-2">
-                          {post.hasWarning && (
-                            <Badge variant="destructive" className="flex items-center gap-1 text-xs">
-                              <AlertTriangle className="h-3 w-3" />
-                              Trigger Warning
-                            </Badge>
-                          )}
-                          <Badge className="text-xs bg-gray-100 text-gray-800">
-                            {post.category}
-                          </Badge>
-                        </div>
-                        <CardTitle className="text-base sm:text-lg break-words max-w-full">{post.title}</CardTitle>
-                        <CardDescription className="mt-1 text-xs sm:text-sm truncate">
-                          By {post.displayName} • {post.createdAt && new Date(post.createdAt.seconds*1000).toLocaleString()}
-                          {post.isAdmin && " • Admin"}
-                        </CardDescription>
-                      </div>
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {post.hasWarning && (
+                        <Badge variant="destructive" className="flex items-center gap-1">
+                          <AlertTriangle className="h-3 w-3" />
+                          Trigger Warning
+                        </Badge>
+                      )}
+                      <Badge>{post.category}</Badge>
                     </div>
+
+                    <CardTitle>{post.title}</CardTitle>
+
+                    <CardDescription>
+                      By {post.displayName || "Anonymous"}
+                    </CardDescription>
                   </CardHeader>
+
                   <CardContent>
-                    {post.hasWarning && post.warningText && (
-                      <Alert variant="destructive" className="mb-3">
-                        <AlertTriangle className="h-4 w-4" />
-                        <AlertDescription className="text-sm">
-                          <strong>Content Warning:</strong> {post.warningText}
-                        </AlertDescription>
-                      </Alert>
-                    )}
-                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-3 break-words overflow-hidden">
-                      {post.content}
-                    </p>
-                    <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <ThumbsUp className="h-4 w-4" />
-                        <span>{post.likes || 0}</span>
-                      </div>
-                      {/* Replies count moved to post detail for simplicity */}
+                    <p className="line-clamp-3">{post.content}</p>
+
+                    <div className="flex gap-4 text-sm mt-2 text-muted-foreground">
+                      <ThumbsUp className="h-4 w-4" /> {post.likes || 0}
                     </div>
                   </CardContent>
                 </Card>
