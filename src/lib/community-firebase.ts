@@ -16,7 +16,7 @@ export async function ensureUserExists(uid: string, email: string) {
   await setDoc(usersRef, {
     banned: false,
     email,
-    isAdmin: email === "YOUR_ADMIN_EMAIL@gmail.com"  // CHANGE THIS!
+    isAdmin: email === "rudrasarker125@gmail.com"  // CHANGE THIS!
   }, { merge: true });
 }
 
@@ -33,7 +33,7 @@ export async function postToCommunity({ title, content, category, triggerWarning
     category,
     displayName: generateAnonymousName(),
     ownerUID: user.uid,
-    isAdmin: user.email === "YOUR_ADMIN_EMAIL@gmail.com",   // CHANGE THIS!
+    isAdmin: user.email === "rudrasarker125@gmail.com",   // CHANGE THIS!
     likes: 0,
     hasWarning: triggerWarnings.length > 0 || hasCrisisLanguage,
     warningText: warningText || "",
