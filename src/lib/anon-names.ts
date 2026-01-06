@@ -1,6 +1,42 @@
-// Generate a fun, anonymous display name (for posts/replies)
-export function generateAnonymousName() {
-  const animals = ["Fox", "Otter", "Bear", "Owl", "Tiger", "Wolf", "Lion", "Rabbit", "Hawk"];
-  const adjs = ["Calm", "Kind", "Gentle", "Strong", "Shy", "Brave", "Mellow", "Happy", "Quick"];
-  return `${adjs[Math.floor(Math.random()*adjs.length)]}${animals[Math.floor(Math.random()*animals.length)]}${Math.floor(Math.random()*100)}`;
+const adjectives = [
+  "Calm",
+  "Brave",
+  "Gentle",
+  "Quiet",
+  "Kind",
+  "Hopeful",
+  "Caring",
+  "Strong",
+  "Bright",
+  "Resilient",
+  "Peaceful",
+  "Thoughtful",
+  "Patient",
+  "Mindful",
+  "Positive"
+];
+
+const nouns = [
+  "Star",
+  "River",
+  "Ocean",
+  "Sky",
+  "Sunrise",
+  "Mountain",
+  "Lotus",
+  "Willow",
+  "Phoenix",
+  "Horizon",
+  "Comet",
+  "Forest",
+  "Breeze",
+  "Rainbow",
+  "Meadow"
+];
+
+export function generateAnonymousName(): string {
+  const adj = adjectives[Math.floor(Math.random() * adjectives.length)];
+  const noun = nouns[Math.floor(Math.random() * nouns.length)];
+  const num = Math.floor(100 + Math.random() * 900);
+  return `${adj}${noun}${num}`;
 }
