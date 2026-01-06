@@ -7,13 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Info } from "lucide-react";
 import { postToCommunity } from "@/lib/community-firebase";
@@ -28,8 +22,16 @@ interface CommunityCreatePostProps {
 }
 
 function detectCrisisLanguage(text: string) {
-  // Keep your custom logic or regex here
-  return /\b(suicide|kill myself|self-harm|end my life)\b/i.test(text);
+  const t = text.toLowerCase();
+  return (
+    t.includes("suicide") ||
+    t.includes("kill myself") ||
+    t.includes("end my life") ||
+    t.includes("self-harm") ||
+    t.includes("hurt myself") ||
+    t.includes("cut myself") ||
+    t.includes("want to die")
+  );
 }
 
 export function CommunityCreatePost({
@@ -57,18 +59,20 @@ export function CommunityCreatePost({
   ];
 
   const handleWarningToggle = (warning: string) => {
-    setTriggerWarnings((prev) =>
-      prev.includes(warning)
-        ? prev.filter((w) => w !== warning)
-        : [...prev, warning]
+    setTriggerWarnings(prev =>
+      prev.includes(warning) ? prev.filter(w => w !== warning) : [...prev, warning]
     );
   };
 
   const handleSubmit = async () => {
     if (!auth.currentUser) {
       await signInWithGoogle();
-      if (!auth.currentUser) return setError("Sign in required!");
+      if (!auth.currentUser) {
+        setError("Sign in required");
+        return;
+      }
     }
+
     if (!title.trim() || !content.trim() || !category) {
       setError("Please fill in all required fields");
       return;
@@ -79,29 +83,26 @@ export function CommunityCreatePost({
     setShowCrisisAlert(false);
 
     try {
-      // Detect crisis language
-      const hasCrisisLanguage = detectCrisisLanguage(`${title} ${content}`);
+      const hasCrisisLanguage = detectCrisisLanguage(title + " " + content);
 
-      if (hasCrisisLanguage) {
-        setShowCrisisAlert(true);
-      }
+      if (hasCrisisLanguage) setShowCrisisAlert(true);
 
-      // Compose warning text
-      const warningText = triggerWarnings.length > 0
-        ? triggerWarnings.join(", ")
-        : (hasCrisisLanguage ? "Crisis/Self-Harm Discussion" : undefined);
+      const warningText =
+        triggerWarnings.length > 0
+          ? triggerWarnings.join(", ")
+          : hasCrisisLanguage
+          ? "Crisis/Self-Harm Discussion"
+          : null;
 
-      // Save to Firestore
       await postToCommunity({
         title: title.trim(),
         content: content.trim(),
         category,
         triggerWarnings,
-        warningText,
-        hasCrisisLanguage
+        warningText: warningText ?? null,
+        hasCrisisLanguage: !!hasCrisisLanguage
       });
 
-      // Reset form
       setTitle("");
       setContent("");
       setCategory("");
@@ -120,9 +121,7 @@ export function CommunityCreatePost({
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">Create a New Post</DialogTitle>
-          <DialogDescription>
-            Share your story, ask for support, or offer encouragement to others
-          </DialogDescription>
+          <DialogDescription>Share your story, ask for support, or offer encouragement to others</DialogDescription>
         </DialogHeader>
 
         <Alert className="border-blue-200 bg-blue-50">
@@ -136,11 +135,11 @@ export function CommunityCreatePost({
           <Alert variant="destructive">
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>
-              <strong>🚨 We detected language suggesting you may be in crisis.</strong>
+              We detected language suggesting you may be in crisis.
               <div className="mt-2 space-y-1">
-                <div>• Call or text <strong>988</strong> - Suicide & Crisis Lifeline (24/7)</div>
-                <div>• Text <strong>HELLO</strong> to <strong>741741</strong> - Crisis Text Line</div>
-                <div>• Call <strong>911</strong> or go to nearest emergency room</div>
+                <div>Call or text 988</div>
+                <div>Text HELLO to 741741</div>
+                <div>Call emergency services if you are in immediate danger</div>
               </div>
             </AlertDescription>
           </Alert>
@@ -148,29 +147,19 @@ export function CommunityCreatePost({
 
         <div className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="title">
-              Post Title <span className="text-red-500">*</span>
-            </Label>
-            <Input
-              id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="Give your post a clear title"
-              maxLength={100}
-            />
-            <p className="text-xs text-muted-foreground">{title.length}/100 characters</p>
+            <Label htmlFor="title">Post Title *</Label>
+            <Input id="title" value={title} onChange={e => setTitle(e.target.value)} maxLength={100} />
+            <p className="text-xs text-muted-foreground">{title.length}/100</p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="category">
-              Category <span className="text-red-500">*</span>
-            </Label>
+            <Label htmlFor="category">Category *</Label>
             <Select value={category} onValueChange={setCategory}>
               <SelectTrigger id="category">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map((cat) => (
+                {categories.map(cat => (
                   <SelectItem key={cat} value={cat}>
                     {cat}
                   </SelectItem>
@@ -180,37 +169,28 @@ export function CommunityCreatePost({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="content">
-              Your Message <span className="text-red-500">*</span>
-            </Label>
+            <Label htmlFor="content">Your Message *</Label>
             <Textarea
               id="content"
               value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Share your thoughts, experiences, or questions..."
+              onChange={e => setContent(e.target.value)}
               rows={8}
               maxLength={5000}
             />
-            <p className="text-xs text-muted-foreground">{content.length}/5000 characters</p>
+            <p className="text-xs text-muted-foreground">{content.length}/5000</p>
           </div>
 
           <div className="space-y-3">
             <Label>Trigger Warnings (Optional)</Label>
-            <p className="text-sm text-muted-foreground">
-              Select any topics that might be triggering for others
-            </p>
             <div className="grid grid-cols-2 gap-3">
-              {warningOptions.map((warning) => (
+              {warningOptions.map(warning => (
                 <div key={warning} className="flex items-center space-x-2">
                   <Checkbox
                     id={warning}
                     checked={triggerWarnings.includes(warning)}
                     onCheckedChange={() => handleWarningToggle(warning)}
                   />
-                  <Label
-                    htmlFor={warning}
-                    className="text-sm font-normal cursor-pointer"
-                  >
+                  <Label htmlFor={warning} className="text-sm font-normal cursor-pointer">
                     {warning}
                   </Label>
                 </div>
@@ -222,18 +202,10 @@ export function CommunityCreatePost({
             <Alert variant="destructive">
               <AlertTriangle className="h-4 w-4" />
               <AlertDescription>
-                Your post will display a trigger warning for: {triggerWarnings.join(", ")}
+                Your post will show a trigger warning for: {triggerWarnings.join(", ")}
               </AlertDescription>
             </Alert>
           )}
-
-          <Alert className="border-yellow-200 bg-yellow-50">
-            <AlertTriangle className="h-4 w-4 text-yellow-600" />
-            <AlertDescription className="text-sm text-yellow-900">
-              <strong>Safety Guidelines:</strong> If you're experiencing a crisis,
-              please call 988 (Suicide & Crisis Lifeline) or 911 for immediate help.
-            </AlertDescription>
-          </Alert>
 
           {error && (
             <Alert variant="destructive">
@@ -244,28 +216,12 @@ export function CommunityCreatePost({
           <div className="flex gap-3">
             <Button
               onClick={handleSubmit}
-              disabled={
-                isSubmitting ||
-                !title.trim() ||
-                !content.trim() ||
-                !category
-              }
+              disabled={isSubmitting || !title.trim() || !content.trim() || !category}
               className="flex-1"
             >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                  Posting...
-                </>
-              ) : (
-                "Post to Community"
-              )}
+              {isSubmitting ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : "Post to Community"}
             </Button>
-            <Button
-              variant="outline"
-              onClick={onCancel}
-              disabled={isSubmitting}
-            >
+            <Button variant="outline" onClick={onCancel} disabled={isSubmitting}>
               Cancel
             </Button>
           </div>
