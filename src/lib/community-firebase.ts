@@ -1,22 +1,19 @@
 import { db, auth } from "./firebase";
 import { collection, addDoc, getDocs, query, orderBy, doc, getDoc, updateDoc, increment, serverTimestamp, setDoc } from "firebase/firestore";
 import { generateAnonymousName } from "./anon-names";
-
-// Check if a user is banned (for moderation)
-// (For production, use a Firestore-triggered function to auto-create 'user' docs on first activity)
 export async function isUserBanned(uid: string) {
   const userRef = doc(db, "users", uid);
   const snap = await getDoc(userRef);
   return snap.exists() && snap.data()?.banned === true;
 }
 
-// Create or update user doc (for tracking ban/admin)
+
 export async function ensureUserExists(uid: string, email: string) {
   const usersRef = doc(db, "users", uid);
   await setDoc(usersRef, {
     banned: false,
     email,
-    isAdmin: email === "rudrasarker125@gmail.com"  // CHANGE THIS!
+    isAdmin: email === "rudrasarker125@gmail.com"
   }, { merge: true });
 }
 
@@ -33,7 +30,7 @@ export async function postToCommunity({ title, content, category, triggerWarning
     category,
     displayName: generateAnonymousName(),
     ownerUID: user.uid,
-    isAdmin: user.email === "rudrasarker125@gmail.com",   // CHANGE THIS!
+    isAdmin: user.email === "rudrasarker125@gmail.com",
     likes: 0,
     hasWarning: triggerWarnings.length > 0 || hasCrisisLanguage,
     warningText: warningText || "",
