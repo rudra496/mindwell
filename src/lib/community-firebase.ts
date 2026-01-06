@@ -16,7 +16,6 @@ import { generateAnonymousName } from "./anon-names";
 
 const postsRef = collection(db, "communityPosts");
 const repliesRef = collection(db, "communityReplies");
-
 export async function postToCommunity(data: {
   title: string;
   content: string;
@@ -34,10 +33,17 @@ export async function postToCommunity(data: {
     createdAt: serverTimestamp(),
     likes: 0,
     hasWarning: Boolean(data.warningText || data.hasCrisisLanguage),
-    isAdmin: false,
   });
 }
+export async function getCommunityPosts() {
+  const q = query(postsRef, orderBy("createdAt", "desc"));
+  const snapshot = await getDocs(q);
 
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as any),
+  }));
+}
 export async function getReplies(postId: string) {
   const q = query(
     repliesRef,
@@ -46,9 +52,12 @@ export async function getReplies(postId: string) {
   );
 
   const snapshot = await getDocs(q);
-  return snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-}
 
+  return snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...(doc.data() as any),
+  }));
+}
 export async function addReply(postId: string, content: string) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
@@ -61,12 +70,10 @@ export async function addReply(postId: string, content: string) {
     likes: 0,
   });
 }
-
 export async function likePost(postId: string) {
   const ref = doc(db, "communityPosts", postId);
   await updateDoc(ref, { likes: increment(1) });
 }
-
 export async function likeReply(replyId: string) {
   const ref = doc(db, "communityReplies", replyId);
   await updateDoc(ref, { likes: increment(1) });
