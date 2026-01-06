@@ -45,10 +45,11 @@ export function CommunityPostDetail({
   const [isLoadingReplies, setIsLoadingReplies] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
   const [hasLiked, setHasLiked] = useState(false);
   const [currentLikes, setCurrentLikes] = useState<number>(post.likes || 0);
 
-  // ---------- FETCH REPLIES ----------
+  // ---------------- FETCH REPLIES ----------------
   const fetchReplies = async () => {
     setIsLoadingReplies(true);
     setError(null);
@@ -67,7 +68,7 @@ export function CommunityPostDetail({
     if (open && post?.id) fetchReplies();
   }, [open, post?.id]);
 
-  // ---------- REPLY SUBMIT ----------
+  // ---------------- SUBMIT REPLY ----------------
   const handleSubmitReply = async () => {
     if (!newReply.trim()) return;
 
@@ -84,6 +85,7 @@ export function CommunityPostDetail({
 
     try {
       await addReply(post.id, newReply.trim());
+
       setNewReply("");
       await fetchReplies();
       onPostUpdate?.();
@@ -94,43 +96,45 @@ export function CommunityPostDetail({
     }
   };
 
-  // ---------- LIKE POST ----------
+  // ---------------- LIKE POST ----------------
   const handleLikePost = async () => {
     if (hasLiked) return;
 
     try {
       await likePost(post.id);
-      setCurrentLikes((prev: number) => (prev || 0) + 1);
+
+      setCurrentLikes(prev => (prev || 0) + 1);
       setHasLiked(true);
+
       onPostUpdate?.();
     } catch {
-      // ignore
+      // ignore errors silently
     }
   };
 
-  // ---------- LIKE REPLY (fixed signature) ----------
+  // ---------------- LIKE REPLY ----------------
   const handleLikeReply = async (replyId: string) => {
     try {
       await likeReply(replyId);
 
-      setReplies((prev: any[]) =>
+      setReplies(prev =>
         prev.map(r =>
           r.id === replyId ? { ...r, likes: (r.likes || 0) + 1 } : r
         )
       );
     } catch {
-      // ignore
+      // ignore errors silently
     }
   };
 
-  // ---------- SAFE DATE ----------
+  // ---------------- SAFE DATE ----------------
   const safeDate = (ts: any) => {
     if (!ts) return "";
     if (ts?.seconds) return new Date(ts.seconds * 1000).toLocaleString();
     return "";
   };
 
-  // ---------- CRISIS DETECTION ----------
+  // ---------------- CRISIS MATCH ----------------
   const isCrisis =
     (post?.content || "")
       .toLowerCase()
@@ -139,6 +143,7 @@ export function CommunityPostDetail({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+
         <Button variant="ghost" onClick={onBack} className="mb-4 -ml-2">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Community
@@ -150,32 +155,29 @@ export function CommunityPostDetail({
           </Alert>
         ) : (
           <div className="space-y-6">
+
             {/* POST CARD */}
             <Card>
               <CardContent className="pt-6">
+
                 <div className="space-y-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 flex-wrap mb-3">
-                        {post.hasWarning && (
-                          <Badge variant="destructive" className="flex items-center gap-1">
-                            <AlertTriangle className="h-3 w-3" />
-                            Trigger Warning
-                          </Badge>
-                        )}
-                        <Badge className="bg-gray-100 text-gray-800">
-                          {post.category}
-                        </Badge>
-                      </div>
 
-                      <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+                  <div className="flex items-center gap-2 flex-wrap mb-3">
+                    {post.hasWarning && (
+                      <Badge variant="destructive" className="flex items-center gap-1">
+                        <AlertTriangle className="h-3 w-3" />
+                        Trigger Warning
+                      </Badge>
+                    )}
 
-                      <p className="text-sm text-muted-foreground">
-                        By {post.displayName || "Anonymous"} • {safeDate(post.createdAt)}
-                        {post.isAdmin && " • Admin"}
-                      </p>
-                    </div>
+                    <Badge>{post.category}</Badge>
                   </div>
+
+                  <h2 className="text-2xl font-bold">{post.title}</h2>
+
+                  <p className="text-sm text-muted-foreground">
+                    By {post.displayName || "Anonymous"} • {safeDate(post.createdAt)}
+                  </p>
 
                   {post.hasWarning && post.warningText && (
                     <Alert variant="destructive">
@@ -186,11 +188,10 @@ export function CommunityPostDetail({
                     </Alert>
                   )}
 
-                  <div className="prose prose-sm max-w-none">
-                    <p className="whitespace-pre-wrap">{post.content}</p>
-                  </div>
+                  <p className="whitespace-pre-wrap">{post.content}</p>
 
                   <div className="flex items-center gap-4 pt-4 border-t">
+
                     <Button
                       variant={hasLiked ? "default" : "outline"}
                       size="sm"
@@ -203,7 +204,7 @@ export function CommunityPostDetail({
 
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MessageCircle className="h-4 w-4" />
-                      <span>{replies.length} {replies.length === 1 ? "Reply" : "Replies"}</span>
+                      {replies.length} Replies
                     </div>
                   </div>
                 </div>
@@ -221,49 +222,39 @@ export function CommunityPostDetail({
               </Alert>
             )}
 
-            {/* REPLIES */}
+            {/* REPLIES SECTION */}
             <div className="space-y-4">
+
               <DialogHeader>
-                <DialogTitle className="text-xl">
-                  Replies ({replies.length})
-                </DialogTitle>
+                <DialogTitle>Replies ({replies.length})</DialogTitle>
               </DialogHeader>
 
-              {/* NEW REPLY */}
+              {/* NEW REPLY BOX */}
               <Card className="border-2 border-dashed">
                 <CardContent className="pt-6">
-                  <div className="space-y-3">
-                    <Textarea
-                      value={newReply}
-                      onChange={e => setNewReply(e.target.value)}
-                      placeholder="Share your support, kindness, or thoughts…"
-                      rows={4}
-                      maxLength={2000}
-                    />
 
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs text-muted-foreground">
-                        {newReply.length}/2000 characters
-                      </p>
+                  <Textarea
+                    value={newReply}
+                    onChange={e => setNewReply(e.target.value)}
+                    rows={4}
+                    maxLength={2000}
+                  />
 
-                      <Button
-                        onClick={handleSubmitReply}
-                        disabled={!newReply.trim() || isSubmitting}
-                        size="sm"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                            Posting…
-                          </>
-                        ) : (
-                          <>
-                            <Send className="h-4 w-4 mr-2" />
-                            Post Reply
-                          </>
-                        )}
-                      </Button>
-                    </div>
+                  <div className="flex items-center justify-between mt-2">
+                    <p className="text-xs text-muted-foreground">
+                      {newReply.length}/2000 characters
+                    </p>
+
+                    <Button
+                      onClick={handleSubmitReply}
+                      disabled={!newReply.trim() || isSubmitting}
+                      size="sm"
+                    >
+                      {isSubmitting
+                        ? <Loader2 className="h-4 w-4 animate-spin" />
+                        : <Send className="h-4 w-4 mr-2" />}
+                      Post Reply
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -279,38 +270,30 @@ export function CommunityPostDetail({
                 </Alert>
               ) : replies.length === 0 ? (
                 <Card className="p-8 text-center border-dashed">
-                  <MessageCircle className="h-12 w-12 mx-auto text-muted-foreground mb-3 opacity-50" />
-                  <p className="text-muted-foreground">
-                    No replies yet. Be the first to respond.
-                  </p>
+                  <MessageCircle className="h-12 w-12 mx-auto opacity-50 mb-3" />
+                  <p className="text-muted-foreground">No replies yet.</p>
                 </Card>
               ) : (
                 <div className="space-y-3">
                   {replies.map(reply => (
                     <Card key={reply.id}>
                       <CardContent className="pt-6">
-                        <div className="flex items-start justify-between gap-4 mb-3">
-                          <p className="text-sm font-medium">
-                            {reply.displayName || "Anonymous"}
-                          </p>
 
-                          <p className="text-xs text-muted-foreground">
-                            {safeDate(reply.createdAt)}
-                          </p>
+                        <div className="flex justify-between mb-2">
+                          <strong>{reply.displayName || "Anonymous"}</strong>
+                          <span className="text-xs">{safeDate(reply.createdAt)}</span>
                         </div>
 
                         <p className="text-sm whitespace-pre-wrap">{reply.content}</p>
 
-                        <div className="flex items-center gap-2 mt-3 pt-3 border-t text-sm text-muted-foreground">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleLikeReply(reply.id)}
-                          >
-                            <ThumbsUp className="h-3 w-3 mr-1" />
-                            {reply.likes || 0}
-                          </Button>
-                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleLikeReply(reply.id)}
+                        >
+                          <ThumbsUp className="h-3 w-3 mr-1" />
+                          {reply.likes || 0}
+                        </Button>
                       </CardContent>
                     </Card>
                   ))}
