@@ -87,7 +87,7 @@ export function CommunityCreatePost({
 
       if (hasCrisisLanguage) setShowCrisisAlert(true);
 
-      const warningText =
+      const warningText: string | undefined =
         triggerWarnings.length > 0
           ? triggerWarnings.join(", ")
           : hasCrisisLanguage
