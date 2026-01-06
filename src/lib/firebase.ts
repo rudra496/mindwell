@@ -12,12 +12,28 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore and Auth
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+// Google Auth Provider
 export const googleProvider = new GoogleAuthProvider();
 
-// Helper for sign-in
+// Helper for Google Sign-In
 export async function signInWithGoogle() {
-  return await signInWithPopup(auth, googleProvider);
+  try {
+    const result = await signInWithPopup(auth, googleProvider);
+    // You get access to the user's credentials & info with:
+    // const credential = GoogleAuthProvider.credentialFromResult(result);
+    // const token = credential?.accessToken;
+    // const user = result.user;
+    return result;
+  } catch (error) {
+    // You may want to handle errors here
+    throw error;
+  }
 }
