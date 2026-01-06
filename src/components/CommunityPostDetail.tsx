@@ -1,151 +1,92 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ThumbsUp, MessageCircle, AlertTriangle, ArrowLeft, Loader2, Send } from "lucide-react"
-import { Community, type CommunityPost, type CommunityReply } from "@/lib/indexeddb"
-import { generateAnonymousUsername } from "@/lib/community"
+import { useState, useEffect } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ThumbsUp, MessageCircle, AlertTriangle, ArrowLeft, Loader2, Send } from "lucide-react";
+import { getReplies, addReply, likePost, likeReply } from "@/lib/community-firebase";
+import { auth, signInWithGoogle } from "@/lib/firebase";
 
 interface CommunityPostDetailProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  post: CommunityPost
-  onBack: () => void
-  onPostUpdate?: () => void
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  post: any;
+  onBack: () => void;
+  onPostUpdate?: () => void;
 }
 
 export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUpdate }: CommunityPostDetailProps) {
-  const [replies, setReplies] = useState<CommunityReply[]>([])
-  const [newReply, setNewReply] = useState("")
-  const [isLoadingReplies, setIsLoadingReplies] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [hasLiked, setHasLiked] = useState(false)
-  const [currentLikes, setCurrentLikes] = useState(post.likes)
+  const [replies, setReplies] = useState<any[]>([]);
+  const [newReply, setNewReply] = useState("");
+  const [isLoadingReplies, setIsLoadingReplies] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [currentLikes, setCurrentLikes] = useState(post.likes || 0);
 
-  const fetchReplies = useCallback(async () => {
-    setIsLoadingReplies(true)
-    setError(null)
+  const fetchReplies = async () => {
+    setIsLoadingReplies(true);
+    setError(null);
     try {
-      const loadedReplies = await Community.getReplies(post.id)
-      // Sort by date (oldest first for replies)
-      loadedReplies.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
-      setReplies(loadedReplies)
-    } catch (err) {
-      console.error('Error loading replies:', err)
-      setError("Failed to load replies. Please try again.")
+      const loadedReplies = await getReplies(post.id);
+      setReplies(loadedReplies);
+    } catch (err: any) {
+      setError("Failed to load replies. Please try again.");
     } finally {
-      setIsLoadingReplies(false)
+      setIsLoadingReplies(false);
     }
-  }, [post.id])
+  };
 
   useEffect(() => {
     if (open) {
-      fetchReplies()
+      fetchReplies();
     }
-  }, [open, fetchReplies])
+    // eslint-disable-next-line
+  }, [open]);
 
   const handleSubmitReply = async () => {
-    if (!newReply.trim()) return
+    if (!auth.currentUser) await signInWithGoogle();
+    if (!newReply.trim()) return;
 
-    setIsSubmitting(true)
-    setError(null)
+    setIsSubmitting(true);
+    setError(null);
 
     try {
-      const username = generateAnonymousUsername()
-      
-      const reply: CommunityReply = {
-        id: `reply-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-        postId: post.id,
-        content: newReply.trim(),
-        username,
-        likes: 0,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-      
-      await Community.addReply(reply)
-      setNewReply("")
-      await fetchReplies()
-      
-      // Update post reply count if callback provided
-      if (onPostUpdate) {
-        onPostUpdate()
-      }
-    } catch (err) {
-      console.error('Error posting reply:', err)
-      setError("Failed to post reply. Please try again.")
+      await addReply(post.id, newReply.trim());
+      setNewReply("");
+      await fetchReplies();
+      if (onPostUpdate) onPostUpdate();
+    } catch (err: any) {
+      setError(err.message || "Failed to post reply. Please try again.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   const handleLike = async () => {
-    if (!hasLiked) {
-      try {
-        const updatedPost = { ...post, likes: post.likes + 1 }
-        await Community.updatePost(updatedPost)
-        setCurrentLikes(prev => prev + 1)
-        setHasLiked(true)
-        
-        if (onPostUpdate) {
-          onPostUpdate()
-        }
-      } catch (err) {
-        console.error('Error liking post:', err)
-      }
-    }
-  }
-
-  const formatDate = (dateString: string | Date) => {
-    const date = new Date(dateString)
-    const now = new Date()
-    const diffInHours = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60))
-    
-    if (diffInHours < 1) return "Just now"
-    if (diffInHours < 24) return `${diffInHours}h ago`
-    if (diffInHours < 48) return "Yesterday"
-    if (diffInHours < 168) return `${Math.floor(diffInHours / 24)}d ago`
-    return date.toLocaleDateString()
-  }
-
-  const getCategoryColor = (category: string) => {
-    const colors: { [key: string]: string } = {
-      'General Support': 'bg-gray-100 text-gray-800',
-      'Depression': 'bg-blue-100 text-blue-800',
-      'Anxiety': 'bg-yellow-100 text-yellow-800',
-      'PTSD': 'bg-red-100 text-red-800',
-      'OCD': 'bg-purple-100 text-purple-800',
-      'Bipolar': 'bg-green-100 text-green-800',
-      'Eating Disorders': 'bg-pink-100 text-pink-800',
-      'Addiction': 'bg-orange-100 text-orange-800',
-      'Grief & Loss': 'bg-indigo-100 text-indigo-800',
-      'Relationships': 'bg-rose-100 text-rose-800',
-      'Success Stories': 'bg-emerald-100 text-emerald-800',
-      'Coping Strategies': 'bg-teal-100 text-teal-800',
-    }
-    return colors[category] || 'bg-gray-100 text-gray-800'
-  }
+    if (hasLiked) return;
+    try {
+      await likePost(post.id);
+      setCurrentLikes((prev) => prev + 1);
+      setHasLiked(true);
+      if (onPostUpdate) onPostUpdate();
+    } catch (err) { /* ignore */ }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-        <Button
-          variant="ghost"
-          onClick={onBack}
-          className="mb-4 -ml-2"
-        >
+        <Button variant="ghost" onClick={onBack} className="mb-4 -ml-2">
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back to Community
         </Button>
 
         <div className="space-y-6">
-          {/* Post Content */}
+          {/* Post content */}
           <Card>
             <CardContent className="pt-6">
               <div className="space-y-4">
@@ -158,13 +99,12 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
                           Trigger Warning
                         </Badge>
                       )}
-                      <Badge className={getCategoryColor(post.category)}>
-                        {post.category}
-                      </Badge>
+                      <Badge className="bg-gray-100 text-gray-800">{post.category}</Badge>
                     </div>
                     <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
                     <p className="text-sm text-muted-foreground">
-                      By {post.username} • {formatDate(post.createdAt)}
+                      By {post.displayName} • {post.createdAt && new Date(post.createdAt.seconds*1000).toLocaleString()}
+                      {post.isAdmin && " • Admin"}
                     </p>
                   </div>
                 </div>
@@ -173,7 +113,7 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
                   <Alert variant="destructive">
                     <AlertTriangle className="h-4 w-4" />
                     <AlertDescription>
-                      <strong>Content Warning:</strong> This post contains discussion of: {post.warningText}
+                      <strong>Content Warning:</strong> {post.warningText}
                     </AlertDescription>
                   </Alert>
                 )}
@@ -189,34 +129,33 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
                     onClick={handleLike}
                     disabled={hasLiked}
                   >
-                    <ThumbsUp className={`h-4 w-4 mr-2 ${hasLiked ? 'fill-current' : ''}`} />
-                    {currentLikes} {hasLiked ? 'Liked' : 'Like'}
+                    <ThumbsUp className={`h-4 w-4 mr-2 ${hasLiked ? "fill-current" : ""}`} />
+                    {currentLikes} {hasLiked ? "Liked" : "Like"}
                   </Button>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MessageCircle className="h-4 w-4" />
-                    <span>{replies.length} {replies.length === 1 ? 'Reply' : 'Replies'}</span>
+                    <span>{replies.length} {replies.length === 1 ? "Reply" : "Replies"}</span>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          {/* Crisis Resources Detection */}
-          {(post.content.toLowerCase().includes('suicide') ||
-            post.content.toLowerCase().includes('kill myself') ||
-            post.content.toLowerCase().includes('end my life') ||
-            post.content.toLowerCase().includes('self harm')) && (
+          {(post.content?.toLowerCase().includes("suicide") ||
+            post.content?.toLowerCase().includes("kill myself") ||
+            post.content?.toLowerCase().includes("end my life") ||
+            post.content?.toLowerCase().includes("self harm")) && (
             <Alert className="border-red-500 bg-red-50">
               <AlertTriangle className="h-4 w-4 text-red-600" />
               <AlertDescription className="text-red-900">
-                <strong>Crisis Resources Available:</strong> If you or someone you know is in crisis, 
-                please call <strong>988</strong> (Suicide & Crisis Lifeline) or text <strong>HELLO</strong> to <strong>741741</strong>. 
+                <strong>Crisis Resources Available:</strong> If you or someone you know is in crisis,
+                please call <strong>988</strong> (Suicide & Crisis Lifeline) or text <strong>HELLO</strong> to <strong>741741</strong>.
                 For emergencies, call <strong>911</strong>.
               </AlertDescription>
             </Alert>
           )}
 
-          {/* Reply Section */}
+          {/* Reply section */}
           <div className="space-y-4">
             <DialogHeader>
               <DialogTitle className="text-xl">Replies ({replies.length})</DialogTitle>
@@ -277,13 +216,13 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
               </Card>
             ) : (
               <div className="space-y-3">
-                {replies.map(reply => (
+                {replies.map((reply) => (
                   <Card key={reply.id}>
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between gap-4 mb-3">
-                        <p className="text-sm font-medium">{reply.username}</p>
+                        <p className="text-sm font-medium">{reply.displayName}</p>
                         <p className="text-xs text-muted-foreground">
-                          {formatDate(reply.createdAt)}
+                          {reply.createdAt && new Date(reply.createdAt.seconds*1000).toLocaleString()}
                         </p>
                       </div>
                       <p className="text-sm whitespace-pre-wrap">{reply.content}</p>
@@ -300,5 +239,5 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
