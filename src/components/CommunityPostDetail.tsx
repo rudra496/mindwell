@@ -99,7 +99,7 @@ export function CommunityPostDetail({
 
     try {
       await likePost(post.id);
-      setCurrentLikes(prev => (prev || 0) + 1);
+      setCurrentLikes((prev: number) => (prev || 0) + 1);
       setHasLiked(true);
       if (onPostUpdate) onPostUpdate();
     } catch {
