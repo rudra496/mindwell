@@ -92,14 +92,14 @@ export function CommunityCreatePost({
           ? triggerWarnings.join(", ")
           : hasCrisisLanguage
           ? "Crisis/Self-Harm Discussion"
-          : null;
+          : undefined;
 
       await postToCommunity({
         title: title.trim(),
         content: content.trim(),
         category,
         triggerWarnings,
-        warningText: warningText ?? null,
+        warningText,
         hasCrisisLanguage: !!hasCrisisLanguage
       });
 
@@ -121,7 +121,9 @@ export function CommunityCreatePost({
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl">Create a New Post</DialogTitle>
-          <DialogDescription>Share your story, ask for support, or offer encouragement to others</DialogDescription>
+          <DialogDescription>
+            Share your story, ask for support, or offer encouragement to others
+          </DialogDescription>
         </DialogHeader>
 
         <Alert className="border-blue-200 bg-blue-50">
