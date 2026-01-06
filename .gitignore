@@ -1,50 +1,241 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# -------------------------------
+# OS generated files
+# -------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# dependencies
-/node_modules
-/.pnp
+# ---------------------------------
+# Dependency/package/build folders
+# ---------------------------------
+node_modules/
+bower_components/
+jspm_packages/
+.pnp/
 .pnp.js
 
-# testing
-/coverage
+# ---------------------------------
+# Package managers & lock files
+# ---------------------------------
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# next.js
-/.next/
-/out/
+# ---------------------------------
+# Environment & secrets (security!)
+# ---------------------------------
+.env
+.env.local
+.env.*.local
+*.env
+.env.development.local
+.env.test.local
+.env.production.local
+firebase-debug.log
+firestore-debug.log
 
-# production
-/build
+# ---------------------------------
+# Build output & Caches
+# ---------------------------------
+.next/
+out/
+.cache/
+public/
+dist/
+build/
 
-# misc
-.DS_Store
-*.pem
+# ---------------------------------
+# Coverage & test artifacts
+# ---------------------------------
+coverage/
+*.lcov
 
-# debug
+# ---------------------------------
+# logs
+# ---------------------------------
+*.log
+*.log.*
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# local env files
-.env*.local
-.env
+# ---------------------------------
+# IDE/editor folders & settings
+# ---------------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+.history/
 
-# vercel
-.vercel
+# ---------------------------------
+# Temporary & backup files
+# ---------------------------------
+*.tmp
+*.bak
+*.swp
+*.swo
+*.temp
+*.orig
+*.save
+*~
 
-# typescript
+# ---------------------------------
+# TypeScript
+# ---------------------------------
 *.tsbuildinfo
 next-env.d.ts
 
-# prisma
+# ---------------------------------
+# Python
+# ---------------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg
+*.eggs/
+*.manifest
+*.spec
+
+# ---------------------------------
+# Java/Gradle/Maven
+# ---------------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.car
+*.zip
+*.tar.gz
+*.rar
+*.javadoc/
+target/
+out/
+.factorypath
+
+# ---------------------------------
+# Ruby
+# ---------------------------------
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+log/
+tmp/
+*.rvmrc
+
+# ---------------------------------
+# Go
+# ---------------------------------
+bin/
+*.exe
+*.test
+*.out
+
+# ---------------------------------
+# Parcel, Gatsby, Expo, RN
+# ---------------------------------
+.expo/
+.yarn-integrity
+android/
+ios/
+
+# ---------------------------------
+# Prisma
+# ---------------------------------
 prisma/*.db
 prisma/*.db-journal
 
-# IDE
-.vscode
-.idea
-*.swp
-*.swo
-*~
+# ---------------------------------
+# Docker
+# ---------------------------------
+.dockerignore
+docker-compose.override.yml
+docker-compose.dev.yml
 
-# temporary files
-/tmp
+# ---------------------------------
+# Misc
+# ---------------------------------
+*.pid
+*.seed
+*.sqlite
+*.sqlite3
+*.lock
+*.node
+
+# ---------------------------------
+# Asset thumbnails
+# ---------------------------------
+*.png
+*.jpg
+*.jpeg
+*.bmp
+*.tiff
+*.gif
+
+# ---------------------------------
+# SASS transpilation cache
+# ---------------------------------
+.sass-cache/
+
+# ---------------------------------
+# Jupyter Notebooks
+# ---------------------------------
+.ipynb_checkpoints
+
+# ---------------------------------
+# Android Studio
+# ---------------------------------
+.gradle/
+local.properties
+*.hprof
+
+# ---------------------------------
+# Unity
+# ---------------------------------
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+*.pidb
+*.suo
+*.user
+*.userprefs
+*.unityproj
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.ldb
+*.db
+
+# ---------------------------------
+# Godot
+# ---------------------------------
+.import/
+.export/
+.export/
+
+# ---------------------------------
+# Custom Ignore
+# ---------------------------------
+custom_ignore/
+
+# ---------------------------------
+# General security: DO NOT commit secrets!
+# Provide .env.example with placeholder values in repo
+# ---------------------------------
