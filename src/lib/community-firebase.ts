@@ -9,6 +9,7 @@ import {
   doc,
   updateDoc,
   increment,
+  arrayUnion
 } from "firebase/firestore";
 
 import { db, auth } from "./firebase";
@@ -17,7 +18,6 @@ import { generateAnonymousName } from "./anon-names";
 const postsRef = collection(db, "communityPosts");
 const repliesRef = collection(db, "communityReplies");
 
-// CREATE POST
 export async function postToCommunity(data: {
   title: string;
   content: string;
@@ -28,20 +28,17 @@ export async function postToCommunity(data: {
 }) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
-  if (!data.title.trim() || !data.content.trim()) {
-    throw new Error("Title and content are required");
-  }
-
   const post: any = {
-    title: data.title.trim(),
-    content: data.content.trim(),
+    title: data.title,
+    content: data.content,
     category: data.category,
     triggerWarnings: data.triggerWarnings || [],
-    displayName: generateAnonymousName(),
     userId: auth.currentUser.uid,
+    displayName: generateAnonymousName(),
     createdAt: serverTimestamp(),
     likes: 0,
-    hasWarning: Boolean(data.warningText || data.hasCrisisLanguage),
+    likedBy: [],
+    hasWarning: Boolean(data.warningText || data.hasCrisisLanguage)
   };
 
   if (data.warningText) post.warningText = data.warningText;
@@ -50,18 +47,16 @@ export async function postToCommunity(data: {
   return await addDoc(postsRef, post);
 }
 
-// GET POSTS
 export async function getCommunityPosts() {
   const q = query(postsRef, orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((d) => ({
+  return snapshot.docs.map(d => ({
     id: d.id,
     ...(d.data() as any),
   }));
 }
 
-// GET REPLIES BY POST ID
 export async function getReplies(postId: string) {
   const q = query(
     repliesRef,
@@ -71,38 +66,46 @@ export async function getReplies(postId: string) {
 
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((d) => ({
+  return snapshot.docs.map(d => ({
     id: d.id,
     ...(d.data() as any),
   }));
 }
 
-// ADD REPLY
 export async function addReply(postId: string, content: string) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
-  if (!content.trim()) throw new Error("Reply cannot be empty");
-
   const reply: any = {
     postId,
-    content: content.trim(),
+    content,
     userId: auth.currentUser.uid,
     displayName: generateAnonymousName(),
     createdAt: serverTimestamp(),
     likes: 0,
+    likedBy: []
   };
 
   return await addDoc(repliesRef, reply);
 }
 
-// LIKE POST
 export async function likePost(postId: string) {
+  if (!auth.currentUser) throw new Error("Authentication required");
+
   const ref = doc(db, "communityPosts", postId);
-  await updateDoc(ref, { likes: increment(1) });
+
+  await updateDoc(ref, {
+    likes: increment(1),
+    likedBy: arrayUnion(auth.currentUser.uid)
+  });
 }
 
-// LIKE REPLY
 export async function likeReply(replyId: string) {
+  if (!auth.currentUser) throw new Error("Authentication required");
+
   const ref = doc(db, "communityReplies", replyId);
-  await updateDoc(ref, { likes: increment(1) });
+
+  await updateDoc(ref, {
+    likes: increment(1),
+    likedBy: arrayUnion(auth.currentUser.uid)
+  });
 }
