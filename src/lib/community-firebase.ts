@@ -16,6 +16,8 @@ import { generateAnonymousName } from "./anon-names";
 
 const postsRef = collection(db, "communityPosts");
 const repliesRef = collection(db, "communityReplies");
+
+// CREATE POST
 export async function postToCommunity(data: {
   title: string;
   content: string;
@@ -26,28 +28,29 @@ export async function postToCommunity(data: {
 }) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
+  if (!data.title.trim() || !data.content.trim()) {
+    throw new Error("Title and content are required");
+  }
+
   const post: any = {
-    title: data.title,
-    content: data.content,
+    title: data.title.trim(),
+    content: data.content.trim(),
     category: data.category,
     triggerWarnings: data.triggerWarnings || [],
-    userId: auth.currentUser.uid,
     displayName: generateAnonymousName(),
+    userId: auth.currentUser.uid,
     createdAt: serverTimestamp(),
     likes: 0,
     hasWarning: Boolean(data.warningText || data.hasCrisisLanguage),
   };
 
-  // only add optional fields if present (avoid undefined errors)
   if (data.warningText) post.warningText = data.warningText;
   if (data.hasCrisisLanguage) post.hasCrisisLanguage = true;
 
   return await addDoc(postsRef, post);
 }
 
-//
-// GET ALL POSTS (latest first)
-//
+// GET POSTS
 export async function getCommunityPosts() {
   const q = query(postsRef, orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
@@ -57,6 +60,8 @@ export async function getCommunityPosts() {
     ...(d.data() as any),
   }));
 }
+
+// GET REPLIES BY POST ID
 export async function getReplies(postId: string) {
   const q = query(
     repliesRef,
@@ -71,12 +76,16 @@ export async function getReplies(postId: string) {
     ...(d.data() as any),
   }));
 }
+
+// ADD REPLY
 export async function addReply(postId: string, content: string) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
+  if (!content.trim()) throw new Error("Reply cannot be empty");
+
   const reply: any = {
     postId,
-    content,
+    content: content.trim(),
     userId: auth.currentUser.uid,
     displayName: generateAnonymousName(),
     createdAt: serverTimestamp(),
@@ -85,10 +94,14 @@ export async function addReply(postId: string, content: string) {
 
   return await addDoc(repliesRef, reply);
 }
+
+// LIKE POST
 export async function likePost(postId: string) {
   const ref = doc(db, "communityPosts", postId);
   await updateDoc(ref, { likes: increment(1) });
 }
+
+// LIKE REPLY
 export async function likeReply(replyId: string) {
   const ref = doc(db, "communityReplies", replyId);
   await updateDoc(ref, { likes: increment(1) });
