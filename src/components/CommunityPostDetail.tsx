@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
 import {
   ThumbsUp,
   MessageCircle,
@@ -47,11 +46,13 @@ export function CommunityPostDetail({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [hasLiked, setHasLiked] = useState(false);
-  const [currentLikes, setCurrentLikes] = useState(post.likes || 0);
+  const [currentLikes, setCurrentLikes] = useState<number>(post.likes || 0);
 
+  // ---------- FETCH REPLIES ----------
   const fetchReplies = async () => {
     setIsLoadingReplies(true);
     setError(null);
+
     try {
       const loadedReplies = await getReplies(post.id);
       setReplies(loadedReplies || []);
@@ -63,11 +64,10 @@ export function CommunityPostDetail({
   };
 
   useEffect(() => {
-    if (open && post?.id) {
-      fetchReplies();
-    }
+    if (open && post?.id) fetchReplies();
   }, [open, post?.id]);
 
+  // ---------- REPLY SUBMIT ----------
   const handleSubmitReply = async () => {
     if (!newReply.trim()) return;
 
@@ -86,7 +86,7 @@ export function CommunityPostDetail({
       await addReply(post.id, newReply.trim());
       setNewReply("");
       await fetchReplies();
-      if (onPostUpdate) onPostUpdate();
+      onPostUpdate?.();
     } catch (err: any) {
       setError(err?.message || "Failed to post reply. Please try again.");
     } finally {
@@ -94,6 +94,7 @@ export function CommunityPostDetail({
     }
   };
 
+  // ---------- LIKE POST ----------
   const handleLikePost = async () => {
     if (hasLiked) return;
 
@@ -101,31 +102,39 @@ export function CommunityPostDetail({
       await likePost(post.id);
       setCurrentLikes((prev: number) => (prev || 0) + 1);
       setHasLiked(true);
-      if (onPostUpdate) onPostUpdate();
+      onPostUpdate?.();
     } catch {
-      return;
+      // ignore
     }
   };
 
+  // ---------- LIKE REPLY (fixed signature) ----------
   const handleLikeReply = async (replyId: string) => {
     try {
-      await likeReply(post.id, replyId);
-      setReplies(prev =>
+      await likeReply(replyId);
+
+      setReplies((prev: any[]) =>
         prev.map(r =>
           r.id === replyId ? { ...r, likes: (r.likes || 0) + 1 } : r
         )
       );
     } catch {
-      return;
+      // ignore
     }
   };
 
+  // ---------- SAFE DATE ----------
   const safeDate = (ts: any) => {
     if (!ts) return "";
     if (ts?.seconds) return new Date(ts.seconds * 1000).toLocaleString();
-    if (typeof ts === "string" || typeof ts === "number") return new Date(ts).toLocaleString();
     return "";
   };
+
+  // ---------- CRISIS DETECTION ----------
+  const isCrisis =
+    (post?.content || "")
+      .toLowerCase()
+      .match(/suicide|kill myself|end my life|self.?harm|want to die/);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -141,6 +150,7 @@ export function CommunityPostDetail({
           </Alert>
         ) : (
           <div className="space-y-6">
+            {/* POST CARD */}
             <Card>
               <CardContent className="pt-6">
                 <div className="space-y-4">
@@ -153,15 +163,15 @@ export function CommunityPostDetail({
                             Trigger Warning
                           </Badge>
                         )}
-                        <Badge className="bg-gray-100 text-gray-800">{post.category}</Badge>
+                        <Badge className="bg-gray-100 text-gray-800">
+                          {post.category}
+                        </Badge>
                       </div>
 
                       <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
 
                       <p className="text-sm text-muted-foreground">
-                        By {post.displayName || "Anonymous"}
-                        {" • "}
-                        {safeDate(post.createdAt)}
+                        By {post.displayName || "Anonymous"} • {safeDate(post.createdAt)}
                         {post.isAdmin && " • Admin"}
                       </p>
                     </div>
@@ -200,21 +210,26 @@ export function CommunityPostDetail({
               </CardContent>
             </Card>
 
-            {(post.content || "").toLowerCase().match(/suicide|kill myself|end my life|self.?harm/) && (
+            {/* CRISIS ALERT */}
+            {isCrisis && (
               <Alert className="border-red-500 bg-red-50">
                 <AlertTriangle className="h-4 w-4 text-red-600" />
                 <AlertDescription className="text-red-900">
-                  If you are in immediate danger, call emergency services now.  
+                  If you are in immediate danger, call emergency services now.
                   US: Call or text 988. Text HELLO to 741741.
                 </AlertDescription>
               </Alert>
             )}
 
+            {/* REPLIES */}
             <div className="space-y-4">
               <DialogHeader>
-                <DialogTitle className="text-xl">Replies ({replies.length})</DialogTitle>
+                <DialogTitle className="text-xl">
+                  Replies ({replies.length})
+                </DialogTitle>
               </DialogHeader>
 
+              {/* NEW REPLY */}
               <Card className="border-2 border-dashed">
                 <CardContent className="pt-6">
                   <div className="space-y-3">
@@ -227,7 +242,9 @@ export function CommunityPostDetail({
                     />
 
                     <div className="flex items-center justify-between">
-                      <p className="text-xs text-muted-foreground">{newReply.length}/2000 characters</p>
+                      <p className="text-xs text-muted-foreground">
+                        {newReply.length}/2000 characters
+                      </p>
 
                       <Button
                         onClick={handleSubmitReply}
@@ -251,9 +268,10 @@ export function CommunityPostDetail({
                 </CardContent>
               </Card>
 
+              {/* REPLY LIST */}
               {isLoadingReplies ? (
                 <div className="flex justify-center py-8">
-                  <Loader2 className="h-6 w-6 animate-spin text-primary" />
+                  <Loader2 className="h-6 w-6 animate-spin" />
                 </div>
               ) : error ? (
                 <Alert variant="destructive">
@@ -262,7 +280,9 @@ export function CommunityPostDetail({
               ) : replies.length === 0 ? (
                 <Card className="p-8 text-center border-dashed">
                   <MessageCircle className="h-12 w-12 mx-auto text-muted-foreground mb-3 opacity-50" />
-                  <p className="text-muted-foreground">No replies yet. Be the first to respond.</p>
+                  <p className="text-muted-foreground">
+                    No replies yet. Be the first to respond.
+                  </p>
                 </Card>
               ) : (
                 <div className="space-y-3">
@@ -273,6 +293,7 @@ export function CommunityPostDetail({
                           <p className="text-sm font-medium">
                             {reply.displayName || "Anonymous"}
                           </p>
+
                           <p className="text-xs text-muted-foreground">
                             {safeDate(reply.createdAt)}
                           </p>
