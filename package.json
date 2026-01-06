@@ -41,6 +41,7 @@
     "recharts": "^2.15.0",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
+    "firebase": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
@@ -56,8 +57,5 @@
   },
   "engines": {
     "node": ">=18.17.0"
-  },
-  "dependencies": {
-  "firebase": "^9.0.0"
   }
 }
