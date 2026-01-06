@@ -71,7 +71,7 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
     if (hasLiked) return;
     try {
       await likePost(post.id);
-      setCurrentLikes((prev) => prev + 1);
+      setCurrentLikes((prev: number) => prev + 1)
       setHasLiked(true);
       if (onPostUpdate) onPostUpdate();
     } catch (err) { /* ignore */ }
