@@ -26,22 +26,35 @@ export async function postToCommunity(data: {
 }) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
-  return await addDoc(postsRef, {
-    ...data,
+  const post: any = {
+    title: data.title,
+    content: data.content,
+    category: data.category,
+    triggerWarnings: data.triggerWarnings || [],
     userId: auth.currentUser.uid,
     displayName: generateAnonymousName(),
     createdAt: serverTimestamp(),
     likes: 0,
     hasWarning: Boolean(data.warningText || data.hasCrisisLanguage),
-  });
+  };
+
+  // only add optional fields if present (avoid undefined errors)
+  if (data.warningText) post.warningText = data.warningText;
+  if (data.hasCrisisLanguage) post.hasCrisisLanguage = true;
+
+  return await addDoc(postsRef, post);
 }
+
+//
+// GET ALL POSTS (latest first)
+//
 export async function getCommunityPosts() {
   const q = query(postsRef, orderBy("createdAt", "desc"));
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...(doc.data() as any),
+  return snapshot.docs.map((d) => ({
+    id: d.id,
+    ...(d.data() as any),
   }));
 }
 export async function getReplies(postId: string) {
@@ -53,22 +66,24 @@ export async function getReplies(postId: string) {
 
   const snapshot = await getDocs(q);
 
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...(doc.data() as any),
+  return snapshot.docs.map((d) => ({
+    id: d.id,
+    ...(d.data() as any),
   }));
 }
 export async function addReply(postId: string, content: string) {
   if (!auth.currentUser) throw new Error("Authentication required");
 
-  return await addDoc(repliesRef, {
+  const reply: any = {
     postId,
     content,
     userId: auth.currentUser.uid,
     displayName: generateAnonymousName(),
     createdAt: serverTimestamp(),
     likes: 0,
-  });
+  };
+
+  return await addDoc(repliesRef, reply);
 }
 export async function likePost(postId: string) {
   const ref = doc(db, "communityPosts", postId);
