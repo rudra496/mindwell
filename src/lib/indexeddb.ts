@@ -1,8 +1,3 @@
-/**
- * IndexedDB utility for client-side data persistence
- * Provides a simple interface for storing and retrieving data locally
- */
-
 const DB_NAME = 'MindWellDB'
 const DB_VERSION = 1
 
@@ -68,35 +63,20 @@ class IndexedDBManager {
   private db: IDBDatabase | null = null
 
   async init(): Promise<void> {
-    if (this.db) {
-      // Already initialized
-      return
-    }
-
+    if (this.db) return
     return new Promise((resolve, reject) => {
       if (typeof window === 'undefined' || typeof indexedDB === 'undefined') {
-        console.warn('IndexedDB not available (likely in SSR context)')
         reject(new Error('IndexedDB not supported'))
         return
       }
-
       const request = indexedDB.open(DB_NAME, DB_VERSION)
-
-      request.onerror = () => {
-        console.error('IndexedDB initialization error:', request.error)
-        reject(request.error)
-      }
-      
+      request.onerror = () => reject(request.error)
       request.onsuccess = () => {
         this.db = request.result
-        console.log('IndexedDB initialized successfully')
         resolve()
       }
-
-      request.onupgradeneeded = (event) => {
+      request.onupgradeneeded = event => {
         const db = (event.target as IDBOpenDBRequest).result
-
-        // Create object stores
         if (!db.objectStoreNames.contains('moodEntries')) {
           db.createObjectStore('moodEntries', { keyPath: 'id', autoIncrement: true })
         }
@@ -121,23 +101,17 @@ class IndexedDBManager {
   }
 
   private async ensureDB(): Promise<IDBDatabase> {
-    if (!this.db) {
-      await this.init()
-    }
-    if (!this.db) {
-      throw new Error('Failed to initialize IndexedDB. Database connection is not available.')
-    }
+    if (!this.db) await this.init()
+    if (!this.db) throw new Error('Failed to initialize IndexedDB')
     return this.db
   }
 
-  // Generic CRUD operations
   async add<T>(storeName: string, data: T): Promise<IDBValidKey> {
     const db = await this.ensureDB()
     return new Promise((resolve, reject) => {
       const transaction = db.transaction(storeName, 'readwrite')
       const store = transaction.objectStore(storeName)
       const request = store.add(data)
-
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error)
     })
@@ -149,7 +123,6 @@ class IndexedDBManager {
       const transaction = db.transaction(storeName, 'readonly')
       const store = transaction.objectStore(storeName)
       const request = store.getAll()
-
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error)
     })
@@ -161,7 +134,6 @@ class IndexedDBManager {
       const transaction = db.transaction(storeName, 'readonly')
       const store = transaction.objectStore(storeName)
       const request = store.get(id)
-
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error)
     })
@@ -173,7 +145,6 @@ class IndexedDBManager {
       const transaction = db.transaction(storeName, 'readwrite')
       const store = transaction.objectStore(storeName)
       const request = store.put(data)
-
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error)
     })
@@ -185,7 +156,6 @@ class IndexedDBManager {
       const transaction = db.transaction(storeName, 'readwrite')
       const store = transaction.objectStore(storeName)
       const request = store.delete(id)
-
       request.onsuccess = () => resolve()
       request.onerror = () => reject(request.error)
     })
@@ -197,13 +167,11 @@ class IndexedDBManager {
       const transaction = db.transaction(storeName, 'readwrite')
       const store = transaction.objectStore(storeName)
       const request = store.clear()
-
       request.onsuccess = () => resolve()
       request.onerror = () => reject(request.error)
     })
   }
 
-  // Get replies by post ID
   async getRepliesByPostId(postId: string): Promise<CommunityReply[]> {
     const db = await this.ensureDB()
     return new Promise((resolve, reject) => {
@@ -211,17 +179,14 @@ class IndexedDBManager {
       const store = transaction.objectStore('communityReplies')
       const index = store.index('postId')
       const request = index.getAll(postId)
-
       request.onsuccess = () => resolve(request.result)
       request.onerror = () => reject(request.error)
     })
   }
 }
 
-// Singleton instance
 export const db = new IndexedDBManager()
 
-// Convenience methods
 export const MoodTracker = {
   async addEntry(entry: Omit<MoodEntry, 'id'>): Promise<number> {
     return await db.add('moodEntries', { ...entry, date: new Date(entry.date) }) as number
