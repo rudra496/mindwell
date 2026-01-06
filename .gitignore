@@ -17,13 +17,6 @@ jspm_packages/
 .pnp.js
 
 # ---------------------------------
-# Package managers & lock files
-# ---------------------------------
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-
-# ---------------------------------
 # Environment & secrets (security!)
 # ---------------------------------
 .env
@@ -37,14 +30,23 @@ firebase-debug.log
 firestore-debug.log
 
 # ---------------------------------
-# Build output & Caches
+# Build output & caches
 # ---------------------------------
 .next/
 out/
 .cache/
-public/
 dist/
 build/
+
+# ---------------------------------
+# DO NOT ignore public assets
+# public/ must be committed
+# ---------------------------------
+
+# ---------------------------------
+# Package managers (lock files KEPT)
+# ---------------------------------
+# keep package-lock.json for security & reproducibility
 
 # ---------------------------------
 # Coverage & test artifacts
@@ -110,132 +112,22 @@ __pycache__/
 *.spec
 
 # ---------------------------------
-# Java/Gradle/Maven
-# ---------------------------------
-*.class
-*.jar
-*.war
-*.ear
-*.nar
-*.car
-*.zip
-*.tar.gz
-*.rar
-*.javadoc/
-target/
-out/
-.factorypath
-
-# ---------------------------------
-# Ruby
-# ---------------------------------
-*.gem
-*.rbc
-.bundle/
-vendor/bundle/
-log/
-tmp/
-*.rvmrc
-
-# ---------------------------------
-# Go
-# ---------------------------------
-bin/
-*.exe
-*.test
-*.out
-
-# ---------------------------------
-# Parcel, Gatsby, Expo, RN
-# ---------------------------------
-.expo/
-.yarn-integrity
-android/
-ios/
-
-# ---------------------------------
 # Prisma
 # ---------------------------------
 prisma/*.db
 prisma/*.db-journal
 
 # ---------------------------------
-# Docker
+# Docker (optional)
 # ---------------------------------
-.dockerignore
 docker-compose.override.yml
 docker-compose.dev.yml
 
 # ---------------------------------
-# Misc
+# Do NOT ignore images or public assets
 # ---------------------------------
-*.pid
-*.seed
-*.sqlite
-*.sqlite3
-*.lock
-*.node
 
 # ---------------------------------
-# Asset thumbnails
-# ---------------------------------
-*.png
-*.jpg
-*.jpeg
-*.bmp
-*.tiff
-*.gif
-
-# ---------------------------------
-# SASS transpilation cache
-# ---------------------------------
-.sass-cache/
-
-# ---------------------------------
-# Jupyter Notebooks
-# ---------------------------------
-.ipynb_checkpoints
-
-# ---------------------------------
-# Android Studio
-# ---------------------------------
-.gradle/
-local.properties
-*.hprof
-
-# ---------------------------------
-# Unity
-# ---------------------------------
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-*.pidb
-*.suo
-*.user
-*.userprefs
-*.unityproj
-*.booproj
-*.svd
-*.pdb
-*.mdb
-*.opendb
-*.ldb
-*.db
-
-# ---------------------------------
-# Godot
-# ---------------------------------
-.import/
-.export/
-.export/
-
-# ---------------------------------
-# Custom Ignore
+# Custom ignore
 # ---------------------------------
 custom_ignore/
-
-# ---------------------------------
-# General security: DO NOT commit secrets!
-# Provide .env.example with placeholder values in repo
-# ---------------------------------
