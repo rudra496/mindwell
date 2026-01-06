@@ -1,46 +1,51 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
+import { useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { AlertTriangle, Loader2, Info } from "lucide-react"
-import { Community, type CommunityPost } from "@/lib/indexeddb"
-import { generateAnonymousUsername, detectCrisisLanguage } from "@/lib/community"
+} from "@/components/ui/select";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertTriangle, Loader2, Info } from "lucide-react";
+import { postToCommunity } from "@/lib/community-firebase";
+import { auth, signInWithGoogle } from "@/lib/firebase";
 
 interface CommunityCreatePostProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
-  onPostCreated: () => void
-  onCancel: () => void
-  categories: string[]
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onPostCreated: () => void;
+  onCancel: () => void;
+  categories: string[];
 }
 
-export function CommunityCreatePost({ 
-  open, 
-  onOpenChange, 
-  onPostCreated, 
+function detectCrisisLanguage(text: string) {
+  // Keep your custom logic or regex here
+  return /\b(suicide|kill myself|self-harm|end my life)\b/i.test(text);
+}
+
+export function CommunityCreatePost({
+  open,
+  onOpenChange,
+  onPostCreated,
   onCancel,
-  categories 
+  categories,
 }: CommunityCreatePostProps) {
-  const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  const [category, setCategory] = useState("")
-  const [triggerWarnings, setTriggerWarnings] = useState<string[]>([])
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [showCrisisAlert, setShowCrisisAlert] = useState(false)
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [category, setCategory] = useState("");
+  const [triggerWarnings, setTriggerWarnings] = useState<string[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [showCrisisAlert, setShowCrisisAlert] = useState(false);
 
   const warningOptions = [
     "Self-harm",
@@ -49,71 +54,66 @@ export function CommunityCreatePost({
     "Substance abuse",
     "Violence",
     "Trauma"
-  ]
+  ];
 
   const handleWarningToggle = (warning: string) => {
-    setTriggerWarnings(prev =>
+    setTriggerWarnings((prev) =>
       prev.includes(warning)
-        ? prev.filter(w => w !== warning)
+        ? prev.filter((w) => w !== warning)
         : [...prev, warning]
-    )
-  }
+    );
+  };
 
   const handleSubmit = async () => {
+    if (!auth.currentUser) {
+      await signInWithGoogle();
+      if (!auth.currentUser) return setError("Sign in required!");
+    }
     if (!title.trim() || !content.trim() || !category) {
-      setError("Please fill in all required fields")
-      return
+      setError("Please fill in all required fields");
+      return;
     }
 
-    setIsSubmitting(true)
-    setError(null)
-    setShowCrisisAlert(false)
+    setIsSubmitting(true);
+    setError(null);
+    setShowCrisisAlert(false);
 
     try {
       // Detect crisis language
-      const hasCrisisLanguage = detectCrisisLanguage(`${title} ${content}`)
-      
+      const hasCrisisLanguage = detectCrisisLanguage(`${title} ${content}`);
+
       if (hasCrisisLanguage) {
-        setShowCrisisAlert(true)
+        setShowCrisisAlert(true);
       }
-      
-      // Generate anonymous username
-      const username = generateAnonymousUsername()
-      
-      // Create post object
-      const post: CommunityPost = {
-        id: `post-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+
+      // Compose warning text
+      const warningText = triggerWarnings.length > 0
+        ? triggerWarnings.join(", ")
+        : (hasCrisisLanguage ? "Crisis/Self-Harm Discussion" : undefined);
+
+      // Save to Firestore
+      await postToCommunity({
         title: title.trim(),
         content: content.trim(),
         category,
-        anonymous: true,
-        username,
-        likes: 0,
-        hasWarning: triggerWarnings.length > 0 || hasCrisisLanguage,
-        warningText: triggerWarnings.length > 0 
-          ? triggerWarnings.join(", ") 
-          : (hasCrisisLanguage ? "Crisis/Self-Harm Discussion" : undefined),
-        createdAt: new Date(),
-        updatedAt: new Date()
-      }
-      
-      // Save to IndexedDB
-      await Community.createPost(post)
+        triggerWarnings,
+        warningText,
+        hasCrisisLanguage
+      });
 
       // Reset form
-      setTitle("")
-      setContent("")
-      setCategory("")
-      setTriggerWarnings([])
-      
-      onPostCreated()
-    } catch (err) {
-      console.error('Error creating post:', err)
-      setError("Failed to create post. Please try again.")
+      setTitle("");
+      setContent("");
+      setCategory("");
+      setTriggerWarnings([]);
+
+      onPostCreated();
+    } catch (err: any) {
+      setError(err.message || "Failed to create post. Please try again.");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -128,8 +128,7 @@ export function CommunityCreatePost({
         <Alert className="border-blue-200 bg-blue-50">
           <Info className="h-4 w-4 text-blue-600" />
           <AlertDescription className="text-sm text-blue-900">
-            <strong>Your privacy matters:</strong> All posts are anonymous and stored locally in your browser. 
-            Your username is randomly generated. Do not share personal identifying information.
+            <strong>Your privacy matters:</strong> Posts are anonymous. Your username is randomly generated. Do not share personal identifying information.
           </AlertDescription>
         </Alert>
 
@@ -171,7 +170,7 @@ export function CommunityCreatePost({
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map(cat => (
+                {categories.map((cat) => (
                   <SelectItem key={cat} value={cat}>
                     {cat}
                   </SelectItem>
@@ -201,7 +200,7 @@ export function CommunityCreatePost({
               Select any topics that might be triggering for others
             </p>
             <div className="grid grid-cols-2 gap-3">
-              {warningOptions.map(warning => (
+              {warningOptions.map((warning) => (
                 <div key={warning} className="flex items-center space-x-2">
                   <Checkbox
                     id={warning}
@@ -231,9 +230,8 @@ export function CommunityCreatePost({
           <Alert className="border-yellow-200 bg-yellow-50">
             <AlertTriangle className="h-4 w-4 text-yellow-600" />
             <AlertDescription className="text-sm text-yellow-900">
-              <strong>Safety Guidelines:</strong> If you're experiencing a crisis, 
-              please call 988 (Suicide & Crisis Lifeline) or 911 for immediate help. 
-              This community is for support, not emergency intervention.
+              <strong>Safety Guidelines:</strong> If you're experiencing a crisis,
+              please call 988 (Suicide & Crisis Lifeline) or 911 for immediate help.
             </AlertDescription>
           </Alert>
 
@@ -246,7 +244,12 @@ export function CommunityCreatePost({
           <div className="flex gap-3">
             <Button
               onClick={handleSubmit}
-              disabled={isSubmitting || !title.trim() || !content.trim() || !category}
+              disabled={
+                isSubmitting ||
+                !title.trim() ||
+                !content.trim() ||
+                !category
+              }
               className="flex-1"
             >
               {isSubmitting ? (
@@ -269,5 +272,5 @@ export function CommunityCreatePost({
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
