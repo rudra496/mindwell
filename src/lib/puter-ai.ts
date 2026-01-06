@@ -1,8 +1,3 @@
-/**
- * Puter.js AI Integration for Free Chatbot
- * Provides 100% free AI chat capabilities without API keys
- */
-
 import { getFallbackResponse } from './chat-fallback'
 
 declare global {
