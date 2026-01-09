@@ -54,7 +54,9 @@ export function Footer() {
               </a>
             </div>
           </div>
-
+              <p className="text-sm text-gray-500 mt-2">
+  Inspired by Prof. Farzana Hussain, Ph.D.
+</p>
           {/* Quick Links */}
           <div>
             <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
