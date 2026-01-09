@@ -495,11 +495,23 @@ MIT License - Open source and free to use.
 
 See [LICENSE](./LICENSE) for details.
 
-## 🙏 Acknowledgments
+## 🙏Acknowledgement
 
 - Built with care for mental health awareness
 - Inspired by the need for accessible mental health resources
 - Thanks to all contributors and mental health professionals who review content
+
+## Recognition
+
+This project is respectfully dedicated to my honourable mentor.
+
+**Name:** Farzana Hussain, Ph.D.  
+**Designation:** Professor and Chair  
+**Department:** Department of Mathematics  
+**Institution:** Huston–Tillotson University, Austin, Texas, USA  
+**Professional Profile:** https://www.linkedin.com/in/farzanahussain/
+
+Her academic leadership, guidance, and commitment to excellence have been a source of inspiration in my learning journey. This acknowledgement is a sincere expression of gratitude and respect.
 
 ## 📧 Contact
 
