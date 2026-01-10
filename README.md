@@ -7,7 +7,7 @@
 
 > **Comprehensive, scientifically-backed, free mental health support platform**
 
-🌐 **Live Demo:** [https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app](https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app)
+🌐 **Live Demo:** [https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app](https://mindwell-navy.vercel.app/)
 
 ![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
 
@@ -488,6 +488,14 @@ See [SOURCES.md](./SOURCES.md) for detailed citations.
 - Emergency: Call **911** or go to nearest emergency room
 
 See [MEDICAL_DISCLAIMER.md](./MEDICAL_DISCLAIMER.md) for full disclaimer.
+
+## Legal & Privacy
+
+By using MindWell, you agree to the
+[Terms of Use](./TERMS.md) and
+[Privacy Policy](./PRIVACY.md).
+
+MindWell is for educational purposes only and is not a substitute for professional mental health care.
 
 ## 📄 License
 
