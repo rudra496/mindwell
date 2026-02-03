@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap, Lightbulb, Calculator } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap, Lightbulb, Calculator, Gauge, Target } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"
@@ -14,9 +14,12 @@ import EmotionWheel from "./games/EmotionWheel"
 import MindfulnessTimer from "./games/MindfulnessTimer"
 import ProgressiveMuscleRelaxation from "./games/ProgressiveMuscleRelaxation"
 import SafePlaceVisualization from "./games/SafePlaceVisualization"
-import ColoringTherapy from "./games/ColoringTherapy"
 import PatternRecognition from "./games/PatternRecognition"
 import NumberSequence from "./games/NumberSequence"
+import SimonMemory from "./games/SimonMemory"
+import CognitiveSpeed from "./games/CognitiveSpeed"
+import FocusTracker from "./games/FocusTracker"
+import LogicPuzzle from "./games/LogicPuzzle"
 
 // >>>>>>> ADD FOR VOICE/TTS SUPPORT
 import { speak } from "@/lib/speech"
@@ -62,15 +65,43 @@ const games = [
   {
     id: 'memory-match',
     name: 'Memory Match Pro',
-    description: 'Card matching with 4 difficulty levels',
+    description: 'Progressive card matching - 15 challenging levels',
+    icon: Brain,
+    color: 'text-purple-600',
+  },
+  {
+    id: 'simon-memory',
+    name: 'Simon Memory Challenge',
+    description: 'Repeat color sequences - 10 progressive levels',
     icon: Zap,
-    color: 'text-orange-600',
+    color: 'text-purple-600',
+  },
+  {
+    id: 'cognitive-speed',
+    name: 'Cognitive Speed Test',
+    description: 'Quick decision-making challenges - 10 levels',
+    icon: Gauge,
+    color: 'text-blue-600',
+  },
+  {
+    id: 'focus-tracker',
+    name: 'Focus Tracker',
+    description: 'Track moving targets - 11 attention levels',
+    icon: Target,
+    color: 'text-green-600',
+  },
+  {
+    id: 'logic-puzzle',
+    name: 'Logic Puzzle Challenge',
+    description: 'Mental puzzles and logic problems - 11 levels',
+    icon: Lightbulb,
+    color: 'text-amber-600',
   },
   {
     id: 'pattern-recognition',
     name: 'Pattern Recognition',
     description: 'Find patterns in shape sequences - 4 levels',
-    icon: Lightbulb,
+    icon: Eye,
     color: 'text-yellow-600',
   },
   {
@@ -78,7 +109,7 @@ const games = [
     name: 'Number Sequence Challenge',
     description: 'Solve number patterns - 4 difficulty levels',
     icon: Calculator,
-    color: 'text-blue-600',
+    color: 'text-indigo-600',
   },
   {
     id: 'affirmations',
@@ -107,13 +138,6 @@ const games = [
     description: 'Create a mental sanctuary for comfort',
     icon: Heart,
     color: 'text-teal-600',
-  },
-  {
-    id: 'coloring',
-    name: 'Mindful Coloring',
-    description: 'Therapeutic coloring for stress relief',
-    icon: Gamepad2,
-    color: 'text-pink-600',
   },
 ]
 
@@ -199,16 +223,6 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
     )
   }
 
-  if (selectedGame === 'coloring') {
-    return (
-      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <ColoringTherapy />
-        </DialogContent>
-      </Dialog>
-    )
-  }
-
   if (selectedGame === 'memory-match') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
@@ -264,6 +278,46 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <NumberSequence />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'simon-memory') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <SimonMemory />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'cognitive-speed') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <CognitiveSpeed />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'focus-tracker') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <FocusTracker />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'logic-puzzle') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <LogicPuzzle />
         </DialogContent>
       </Dialog>
     )
