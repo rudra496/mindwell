@@ -95,7 +95,7 @@ export default function HomePage() {
         <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110 transition-transform hover:scale-110" />
+              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Disorders Database</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -116,7 +116,7 @@ export default function HomePage() {
         <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110 transition-transform hover:scale-110" />
+              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Self-Assessments</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
