@@ -66,8 +66,14 @@
     );
     background-attachment: fixed;
     background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
     min-height: 100vh;
+  }
+  
+  /* Animate background for users who haven't disabled motion */
+  @media (prefers-reduced-motion: no-preference) {
+    body {
+      animation: gradientShift 20s ease infinite;
+    }
   }
   
   /* Smooth scrolling */
@@ -96,7 +102,13 @@
       radial-gradient(circle at 40% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);  /* Soft purple */
     pointer-events: none;
     z-index: -1;
-    animation: pulse-soft 10s ease-in-out infinite;
+  }
+  
+  /* Animate overlay for users who haven't disabled motion */
+  @media (prefers-reduced-motion: no-preference) {
+    body::before {
+      animation: pulse-soft 10s ease-in-out infinite;
+    }
   }
 }
 
@@ -324,6 +336,18 @@ input, textarea, select {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Print styles */
