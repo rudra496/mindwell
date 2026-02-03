@@ -49,10 +49,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   }
 
   const handleAnswer = (questionId: number, value: number) => {
-    setAnswers(prev => {
-      const newAnswers = { ...prev, [questionId]: value }
-      return newAnswers
-    })
+    setAnswers(prev => ({ ...prev, [questionId]: value }))
   }
 
   const calculateScore = () => {

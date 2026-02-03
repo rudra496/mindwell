@@ -101,10 +101,10 @@ export default function MemoryMatch() {
     setGameState('playing')
   }
 
-  const calculateLevelScore = (moves: number, pairs: number, timeTaken?: number) => {
+  const calculateLevelScore = (moves: number, pairs: number, timeRemaining?: number) => {
     const perfectMoves = pairs
     const efficiency = Math.max(0, 100 - ((moves - perfectMoves) / perfectMoves) * 50)
-    const timeBonus = timeTaken ? Math.max(0, timeTaken * 2) : 0
+    const timeBonus = timeRemaining ? Math.max(0, timeRemaining * 2) : 0
     return Math.round(efficiency + timeBonus)
   }
 

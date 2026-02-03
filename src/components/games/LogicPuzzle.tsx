@@ -69,7 +69,6 @@ export default function LogicPuzzle() {
           [4, 0, 0, 1],
           [0, 1, 4, 0],
         ]
-        const missing = difficulty === 'easy' ? 2 : difficulty === 'medium' ? 3 : difficulty === 'hard' ? 6 : 2
         const answer = '2'
         
         return {

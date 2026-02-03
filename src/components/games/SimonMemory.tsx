@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -38,15 +38,27 @@ export default function SimonMemory() {
   const [highScore, setHighScore] = useState(0)
   const [gameState, setGameState] = useState<'idle' | 'playing' | 'success' | 'failure'>('idle')
   const [soundEnabled, setSoundEnabled] = useState(true)
+  const audioContextRef = useRef<AudioContext | null>(null)
 
   useEffect(() => {
     const saved = localStorage.getItem("simonMemoryHighScore")
     if (saved) setHighScore(parseInt(saved))
+    
+    return () => {
+      if (audioContextRef.current) {
+        audioContextRef.current.close()
+      }
+    }
   }, [])
 
   const playSound = useCallback((frequency: number) => {
     if (!soundEnabled) return
-    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    
+    if (!audioContextRef.current) {
+      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
+    }
+    
+    const audioContext = audioContextRef.current
     const oscillator = audioContext.createOscillator()
     const gainNode = audioContext.createGain()
     
