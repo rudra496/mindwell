@@ -107,6 +107,7 @@ export default function MemoryMatch() {
     if (saved) {
       setBestScore(JSON.parse(saved))
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty])
 
   const resetGame = () => {

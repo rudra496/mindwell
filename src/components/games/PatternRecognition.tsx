@@ -110,6 +110,7 @@ export default function PatternRecognition() {
 
   useEffect(() => {
     startGame()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty])
 
   useEffect(() => {
@@ -126,6 +127,7 @@ export default function PatternRecognition() {
       
       return () => clearInterval(timer)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pattern, isCorrect, isComplete, timeLeft])
 
   const startGame = () => {

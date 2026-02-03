@@ -158,6 +158,7 @@ export default function NumberSequence() {
 
   useEffect(() => {
     startGame()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [difficulty])
 
   useEffect(() => {
@@ -174,6 +175,7 @@ export default function NumberSequence() {
       
       return () => clearInterval(timer)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sequence, isCorrect, isComplete, timeLeft])
 
   const startGame = () => {

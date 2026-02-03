@@ -87,6 +87,7 @@ export function CommunityPostDetail({
 
   useEffect(() => {
     if (open && post?.id) fetchReplies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, post?.id]);
 
   const safeDate = (ts: any) => {
