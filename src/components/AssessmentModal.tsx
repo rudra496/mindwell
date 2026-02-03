@@ -244,7 +244,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   }
 
   const question = questions[currentQuestion]
-  const currentQuestionAnswered = answers[question.id] !== undefined
+  const hasAnswer = answers[question.id] !== undefined
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -307,7 +307,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             {currentQuestion < totalQuestions - 1 ? (
               <Button
                 onClick={() => setCurrentQuestion(currentQuestion + 1)}
-                disabled={!currentQuestionAnswered}
+                disabled={!hasAnswer}
                 className="text-sm sm:text-base min-h-[44px] sm:min-h-[48px]"
               >
                 Next

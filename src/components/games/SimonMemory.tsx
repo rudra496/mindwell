@@ -55,7 +55,8 @@ export default function SimonMemory() {
     if (!soundEnabled) return
     
     if (!audioContextRef.current) {
-      audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)()
+      const AudioContextConstructor = window.AudioContext || (window as any).webkitAudioContext
+      audioContextRef.current = new AudioContextConstructor()
     }
     
     const audioContext = audioContextRef.current
