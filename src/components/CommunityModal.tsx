@@ -132,7 +132,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
         </DialogHeader>
 
         {/* SIGN IN ALERT – FIXED LAYOUT */}
-        {!auth.currentUser && (
+        {!auth?.currentUser && (
           <div className="w-full">
             <Alert className="border-orange-200 bg-orange-50">
               <AlertDescription className="flex flex-col gap-3">
@@ -180,7 +180,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </Select>
 
           <Button
-            disabled={!auth.currentUser}
+            disabled={!auth?.currentUser}
             className="w-full sm:w-auto"
             onClick={() => setShowCreatePost(true)}
           >
