@@ -57,6 +57,12 @@ export default function LogicPuzzle() {
     }
   }, [timeLeft, gameState])
 
+  const getDifficultyIndex = (difficulty: string, arrayLength: number): number => {
+    if (difficulty === 'easy') return 0
+    if (difficulty === 'medium') return Math.floor(Math.random() * 3)
+    return Math.floor(Math.random() * arrayLength)
+  }
+
   const generatePuzzle = (difficulty: string): Puzzle => {
     const types: PuzzleType[] = ['sudoku-lite', 'pattern', 'sequence', 'logic-grid']
     const type = types[Math.floor(Math.random() * types.length)]
@@ -115,7 +121,7 @@ export default function LogicPuzzle() {
           },
         ]
         
-        const idx = difficulty === 'easy' ? 0 : difficulty === 'medium' ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * patterns.length)
+        const idx = getDifficultyIndex(difficulty, patterns.length)
         return { type, ...patterns[idx] }
       }
 
@@ -153,7 +159,7 @@ export default function LogicPuzzle() {
           },
         ]
         
-        const idx = difficulty === 'easy' ? 0 : difficulty === 'medium' ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * sequences.length)
+        const idx = getDifficultyIndex(difficulty, sequences.length)
         return { type, ...sequences[idx] }
       }
 
@@ -191,7 +197,7 @@ export default function LogicPuzzle() {
           },
         ]
         
-        const idx = difficulty === 'easy' ? 0 : difficulty === 'medium' ? Math.floor(Math.random() * 3) : Math.floor(Math.random() * logicProblems.length)
+        const idx = getDifficultyIndex(difficulty, logicProblems.length)
         return { type, ...logicProblems[idx] }
       }
     }
