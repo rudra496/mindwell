@@ -193,30 +193,6 @@ export default function CognitiveSpeed() {
     }, 800)
   }
 
-  const handleAnswer = (answer: string) => {
-    if (!currentChallenge || feedback !== null) return
-
-    const isCorrect = answer === currentChallenge.correctAnswer
-    setFeedback(isCorrect ? 'correct' : 'wrong')
-    setTotalAttempts(totalAttempts + 1)
-
-    if (isCorrect) {
-      const points = Math.ceil(timeLeft / 100)
-      setScore(score + points)
-      setTotalCorrect(totalCorrect + 1)
-    }
-
-    setTimeout(() => {
-      const config = LEVEL_CONFIG[level - 1]
-      if (challengeIndex + 1 < config.challenges) {
-        setChallengeIndex(challengeIndex + 1)
-        loadNextChallenge(level, challengeIndex + 1)
-      } else {
-        completeLevel()
-      }
-    }, 800)
-  }
-
   const completeLevel = () => {
     const config = LEVEL_CONFIG[level - 1]
     const accuracy = (totalCorrect / config.challenges) * 100
