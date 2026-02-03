@@ -70,7 +70,7 @@ export default function HomePage() {
         </p>
         <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2 mb-4">
           Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
-          20 validated assessments, 11 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.
+          20 validated assessments, 13 therapeutic games with multiple difficulty levels, 14 meditations, 20 therapy techniques, and crisis resources.
         </p>
         {/* Voice Control Panel */}
         <div className="flex justify-center mt-4">
@@ -92,10 +92,10 @@ export default function HomePage() {
       {/* Main Features Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
         {/* Disorders Database */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Disorders Database</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -106,17 +106,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Comprehensive DSM-5 information including symptoms, causes, treatments, and research-backed solutions for all major mental health disorders.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setDisordersOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setDisordersOpen(true)}>
               Explore Disorders
             </Button>
           </CardContent>
         </Card>
 
         {/* Self-Assessments */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary" />
+              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Self-Assessments</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -127,17 +127,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Clinically validated questionnaires including PHQ-9 (Depression), GAD-7 (Anxiety), PCL-5 (PTSD), and more with proper scoring.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setAssessmentOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setAssessmentOpen(true)}>
               Take Assessment
             </Button>
           </CardContent>
         </Card>
 
         {/* Therapeutic Games */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-accent" />
+              <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-accent transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Therapeutic Games</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -148,17 +148,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Evidence-based activities including breathing exercises, grounding techniques, gratitude journaling, and CBT tools.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setGamesOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setGamesOpen(true)}>
               Play Games
             </Button>
           </CardContent>
         </Card>
 
         {/* AI Chatbot */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500" />
+              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500 transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">AI Support Chatbot</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -169,17 +169,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Compassionate AI trained in mental health support, crisis detection, coping strategies, and psychoeducation. Available anytime.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setChatbotOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setChatbotOpen(true)}>
               Chat Now
             </Button>
           </CardContent>
         </Card>
 
         {/* Community Forum */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500" />
+              <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500 transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Community Forum</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -190,17 +190,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Anonymous peer support with categories for Depression, Anxiety, Trauma, Recovery, and more. Moderated for safety.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setCommunityOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setCommunityOpen(true)}>
               Join Community
             </Button>
           </CardContent>
         </Card>
 
         {/* Therapy Techniques */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-teal-500" />
+              <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-teal-500 transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Therapy Library</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -211,17 +211,17 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Learn CBT, DBT, ACT, ERP, MBCT, and IPT techniques with step-by-step guides, examples, and practical applications.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setTherapyTechniquesOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setTherapyTechniquesOpen(true)}>
               Learn Techniques
             </Button>
           </CardContent>
         </Card>
 
         {/* Meditation Library */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-primary">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-pink-500" />
+              <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-pink-500 transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg break-words">Meditation Library</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -232,7 +232,7 @@ export default function HomePage() {
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
               Full guided meditation scripts including body scan, loving-kindness, breath work, progressive relaxation, and sleep meditation.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base" variant="outline" onClick={() => setMeditationOpen(true)}>
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setMeditationOpen(true)}>
               Meditate Now
             </Button>
           </CardContent>
@@ -242,7 +242,7 @@ export default function HomePage() {
         <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-400 bg-red-50">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-red-600" />
+              <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-red-600 transition-transform hover:scale-110" />
               <CardTitle className="text-base sm:text-lg text-red-900 break-words">Crisis Resources</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm text-red-700">

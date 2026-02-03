@@ -49,7 +49,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   }
 
   const handleAnswer = (questionId: number, value: number) => {
-    setAnswers({ ...answers, [questionId]: value })
+    setAnswers(prev => ({ ...prev, [questionId]: value }))
   }
 
   const calculateScore = () => {
@@ -251,7 +251,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
         <DialogHeader>
           <div className="flex items-center gap-2 mb-2">
             <Button
-              variant="ghost"
+              variant="outline"
               size="sm"
               onClick={() => {
                 setSelectedAssessment(null)
@@ -259,10 +259,10 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
                 setAnswers({})
                 setShowResults(false)
               }}
-              className="h-8 px-2 text-xs sm:text-sm"
+              className="h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm border-2 shadow-sm hover:shadow-md min-h-[44px]"
             >
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              Back to All Assessments
+              <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 font-bold" />
+              <span className="font-medium">Back</span>
             </Button>
           </div>
           <DialogTitle className="text-base sm:text-lg break-words">{selectedAssessment.name}</DialogTitle>

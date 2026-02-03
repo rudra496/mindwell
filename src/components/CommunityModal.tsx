@@ -88,6 +88,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
 
   useEffect(() => {
     if (open && !showCreatePost && !selectedPost) fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, showCreatePost, selectedPost, filteredCategory]);
 
   const handlePostCreated = () => {

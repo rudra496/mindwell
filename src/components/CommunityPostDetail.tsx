@@ -10,6 +10,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -21,7 +22,9 @@ import {
   ArrowLeft,
   Loader2,
   Send,
-  MoreVertical
+  MoreVertical,
+  Edit,
+  Trash2
 } from "lucide-react";
 
 import {
@@ -30,7 +33,9 @@ import {
   likePost,
   likeReply,
   editReply,
-  deleteReply
+  deleteReply,
+  editPost,
+  deletePost
 } from "@/lib/community-firebase";
 
 import { auth, signInWithGoogle } from "@/lib/firebase";
@@ -57,6 +62,10 @@ export function CommunityPostDetail({
 
   const [editingReplyId, setEditingReplyId] = useState<string | null>(null);
   const [editingText, setEditingText] = useState("");
+  
+  const [editingPost, setEditingPost] = useState(false);
+  const [editPostTitle, setEditPostTitle] = useState(post.title || "");
+  const [editPostContent, setEditPostContent] = useState(post.content || "");
 
   const [hasLikedPost, setHasLikedPost] = useState(false);
 
@@ -78,6 +87,7 @@ export function CommunityPostDetail({
 
   useEffect(() => {
     if (open && post?.id) fetchReplies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, post?.id]);
 
   const safeDate = (ts: any) => {
@@ -143,6 +153,37 @@ export function CommunityPostDetail({
     await fetchReplies();
   };
 
+  const beginEditPost = () => {
+    setEditingPost(true);
+    setEditPostTitle(post.title || "");
+    setEditPostContent(post.content || "");
+  };
+
+  const savePostEdit = async () => {
+    if (!editPostTitle.trim() || !editPostContent.trim()) return;
+    try {
+      await editPost(post.id, {
+        title: editPostTitle.trim(),
+        content: editPostContent.trim(),
+      });
+      setEditingPost(false);
+      if (onPostUpdate) onPostUpdate();
+    } catch {
+      setError("Failed to update post");
+    }
+  };
+
+  const removePost = async () => {
+    if (!confirm("Are you sure you want to delete this post?")) return;
+    try {
+      await deletePost(post.id);
+      onBack();
+      if (onPostUpdate) onPostUpdate();
+    } catch {
+      setError("Failed to delete post");
+    }
+  };
+
   const crisis =
     (post?.content || "")
       .toLowerCase()
@@ -177,15 +218,46 @@ export function CommunityPostDetail({
                   <Badge>{post.category}</Badge>
                 </div>
 
-                <h2 className="text-2xl font-bold">{post.title}</h2>
+                {editingPost ? (
+                  <div className="space-y-3">
+                    <Input
+                      value={editPostTitle}
+                      onChange={(e) => setEditPostTitle(e.target.value)}
+                      placeholder="Post title"
+                      className="text-xl font-bold"
+                    />
+                    <Textarea
+                      value={editPostContent}
+                      onChange={(e) => setEditPostContent(e.target.value)}
+                      rows={6}
+                      placeholder="Post content"
+                    />
+                    <div className="flex gap-2">
+                      <Button size="sm" onClick={savePostEdit}>
+                        Save Changes
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setEditingPost(false)}
+                      >
+                        Cancel
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <h2 className="text-2xl font-bold">{post.title}</h2>
 
-                <p className="text-sm text-muted-foreground">
-                  {post.displayName || "Anonymous"} • {safeDate(post.createdAt)}
-                </p>
+                    <p className="text-sm text-muted-foreground">
+                      {post.displayName || "Anonymous"} • {safeDate(post.createdAt)}
+                    </p>
 
-                <p className="whitespace-pre-wrap">{post.content}</p>
+                    <p className="whitespace-pre-wrap">{post.content}</p>
+                  </>
+                )}
 
-                <div className="flex gap-3 pt-3 border-t">
+                <div className="flex gap-3 pt-3 border-t flex-wrap">
                   <Button
                     variant={hasLikedPost ? "default" : "outline"}
                     size="sm"
@@ -200,6 +272,28 @@ export function CommunityPostDetail({
                     <MessageCircle className="h-4 w-4" />
                     {replies.length} replies
                   </div>
+
+                  {post.userId === auth.currentUser?.uid && !editingPost && (
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={beginEditPost}
+                      >
+                        <Edit className="h-4 w-4 mr-2" />
+                        Edit
+                      </Button>
+
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        onClick={removePost}
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" />
+                        Delete
+                      </Button>
+                    </>
+                  )}
                 </div>
               </CardContent>
             </Card>
