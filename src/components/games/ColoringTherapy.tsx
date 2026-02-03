@@ -89,7 +89,7 @@ export default function ColoringTherapy() {
   const [selectedMandala, setSelectedMandala] = useState(mandalas[0])
   const [selectedColor, setSelectedColor] = useState(colors[0])
   const [filled, setFilled] = useState<Record<string, string>>({})
-  const [isColoring, setIsColoring] = useState(false)
+  const [isColoring, setIsColoring] = useState(true) // Start with coloring mode ON by default
   const svgRef = useRef<HTMLDivElement>(null)
   const touchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
@@ -242,14 +242,26 @@ export default function ColoringTherapy() {
 
         {/* Color Palette */}
         <div>
-          <h3 className="text-xs sm:text-sm font-medium mb-3">Choose a Color:</h3>
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="text-xs sm:text-sm font-medium">Choose a Color:</h3>
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
+              <span className="text-gray-600">Current:</span>
+              <div 
+                className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-2 border-gray-300 shadow-sm"
+                style={{ backgroundColor: selectedColor }}
+              />
+            </div>
+          </div>
           <div className="flex flex-wrap gap-2">
             {colors.map((color) => (
               <button
                 key={color}
-                onClick={() => setSelectedColor(color)}
-                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all hover:scale-110 touch-target ${
-                  selectedColor === color ? 'ring-4 ring-offset-2 ring-pink-400' : ''
+                onClick={() => {
+                  setSelectedColor(color)
+                  setIsColoring(true) // Ensure coloring mode is enabled when selecting a color
+                }}
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full transition-all hover:scale-110 touch-target border-2 ${
+                  selectedColor === color ? 'ring-4 ring-offset-2 ring-pink-400 border-pink-600 scale-110' : 'border-gray-300 hover:border-pink-300'
                 }`}
                 style={{ backgroundColor: color }}
                 aria-label={`Select color ${color}`}

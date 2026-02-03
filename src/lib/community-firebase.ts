@@ -160,3 +160,26 @@ export async function deleteReply(replyId: string) {
 
   return await deleteDoc(doc(db, "communityReplies", replyId));
 }
+
+// =====================================================
+// EDIT POST
+// =====================================================
+
+export async function editPost(postId: string, data: { title: string; content: string }) {
+  if (!auth.currentUser) throw new Error("Authentication required");
+
+  return await updateDoc(doc(db, "communityPosts", postId), {
+    title: data.title.trim(),
+    content: data.content.trim(),
+  });
+}
+
+// =====================================================
+// DELETE POST
+// =====================================================
+
+export async function deletePost(postId: string) {
+  if (!auth.currentUser) throw new Error("Authentication required");
+
+  return await deleteDoc(doc(db, "communityPosts", postId));
+}
