@@ -14,7 +14,11 @@ import {
   Gamepad2,
   Phone,
   AlertCircle,
-  Sparkles
+  Sparkles,
+  Pill,
+  Package,
+  Bell,
+  ArrowRight
 } from "lucide-react"
 import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
@@ -70,7 +74,7 @@ export default function HomePage() {
         </p>
         <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2 mb-4">
           Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
-          20 validated assessments, 13 therapeutic games with multiple difficulty levels, 14 meditations, 20 therapy techniques, and crisis resources.
+          20 validated assessments, 16 therapeutic games with multiple difficulty levels, 14 meditations, 20 therapy techniques, and crisis resources.
         </p>
         {/* Voice Control Panel */}
         <div className="flex justify-center mt-4">
@@ -92,10 +96,10 @@ export default function HomePage() {
       {/* Main Features Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
         {/* Disorders Database */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110" />
+              <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Disorders Database</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -113,10 +117,10 @@ export default function HomePage() {
         </Card>
 
         {/* Self-Assessments */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-100">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110" />
+              <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Self-Assessments</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -134,19 +138,19 @@ export default function HomePage() {
         </Card>
 
         {/* Therapeutic Games */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-200">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-accent transition-transform hover:scale-110" />
+              <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-accent transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Therapeutic Games</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
-              11 Interactive Wellness Tools
+              16 Interactive Wellness Tools
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Evidence-based activities including breathing exercises, grounding techniques, gratitude journaling, and CBT tools.
+              Evidence-based activities with progressive difficulty levels including breathing exercises, memory challenges, cognitive tests, and focus training games.
             </p>
             <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setGamesOpen(true)}>
               Play Games
@@ -155,10 +159,10 @@ export default function HomePage() {
         </Card>
 
         {/* AI Chatbot */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-300">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500 transition-transform hover:scale-110" />
+              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500 transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">AI Support Chatbot</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -176,10 +180,10 @@ export default function HomePage() {
         </Card>
 
         {/* Community Forum */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-400">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500 transition-transform hover:scale-110" />
+              <Users className="h-6 w-6 sm:h-8 sm:w-8 text-purple-500 transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Community Forum</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -197,10 +201,10 @@ export default function HomePage() {
         </Card>
 
         {/* Therapy Techniques */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-teal-500 transition-transform hover:scale-110" />
+              <BookOpen className="h-6 w-6 sm:h-8 sm:w-8 text-teal-500 transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Therapy Library</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -218,10 +222,10 @@ export default function HomePage() {
         </Card>
 
         {/* Meditation Library */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm">
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-100">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-pink-500 transition-transform hover:scale-110" />
+              <Sparkles className="h-6 w-6 sm:h-8 sm:w-8 text-pink-500 transition-transform hover:scale-110 hover:rotate-12" />
               <CardTitle className="text-base sm:text-lg break-words">Meditation Library</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
@@ -239,10 +243,10 @@ export default function HomePage() {
         </Card>
 
         {/* Crisis Resources */}
-        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-400 bg-red-50">
+        <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-red-400 bg-red-50 animate-fade-in animate-delay-200">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-red-600 transition-transform hover:scale-110" />
+              <Phone className="h-6 w-6 sm:h-8 sm:w-8 text-red-600 transition-transform hover:scale-110 animate-pulse-soft" />
               <CardTitle className="text-base sm:text-lg text-red-900 break-words">Crisis Resources</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm text-red-700">
@@ -267,6 +271,132 @@ export default function HomePage() {
         <MoodTracker />
       </div>
 
+      {/* Coming Soon Section */}
+      <div className="mb-8 sm:mb-12">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+            🚀 Upcoming Features
+          </h2>
+          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">
+            We're expanding our platform to provide even more comprehensive mental health support for university students
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Clinical Psychologist Support */}
+          <Card className="relative overflow-hidden border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
+            <div className="absolute top-0 right-0 bg-gradient-to-br from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+              Coming Soon
+            </div>
+            <CardHeader className="p-4 sm:p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 bg-white rounded-full shadow-md">
+                  <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />
+                </div>
+                <CardTitle className="text-lg sm:text-xl break-words">Clinical Psychologist Support</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 sm:p-6 pt-0">
+              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
+                <strong>Free professional mental health support</strong> from licensed clinical psychologists available to all university students. Get expert guidance when you need it most.
+              </p>
+              <div className="space-y-2 text-xs text-gray-600 mb-4">
+                <p className="flex items-center gap-2">
+                  ✓ Licensed professionals
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ Confidential sessions
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ University partnership
+                </p>
+              </div>
+              <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
+                <Bell className="mr-2 h-4 w-4" />
+                Launching Soon
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Medicine Provision Program */}
+          <Card className="relative overflow-hidden border-2 border-teal-200 bg-gradient-to-br from-teal-50 to-cyan-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
+            <div className="absolute top-0 right-0 bg-gradient-to-br from-teal-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+              In Development
+            </div>
+            <CardHeader className="p-4 sm:p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 bg-white rounded-full shadow-md">
+                  <Pill className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600" />
+                </div>
+                <CardTitle className="text-lg sm:text-xl break-words">Medicine Provision Program</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 sm:p-6 pt-0">
+              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
+                <strong>Free medication support</strong> for university students who need prescribed mental health medications but face financial barriers to accessing them.
+              </p>
+              <div className="space-y-2 text-xs text-gray-600 mb-4">
+                <p className="flex items-center gap-2">
+                  ✓ Prescription medications
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ Pharmacy partnerships
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ No cost to students
+                </p>
+              </div>
+              <Button className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
+                <Bell className="mr-2 h-4 w-4" />
+                Stay Informed
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Wellness Care Packages */}
+          <Card className="relative overflow-hidden border-2 border-pink-200 bg-gradient-to-br from-pink-50 to-rose-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
+            <div className="absolute top-0 right-0 bg-gradient-to-br from-pink-500 to-rose-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+              Upcoming
+            </div>
+            <CardHeader className="p-4 sm:p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-3 bg-white rounded-full shadow-md">
+                  <Package className="h-6 w-6 sm:h-8 sm:w-8 text-pink-600" />
+                </div>
+                <CardTitle className="text-lg sm:text-xl break-words">Wellness Care Packages</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent className="p-4 sm:p-6 pt-0">
+              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
+                <strong>Essential care items</strong> including sanitary products, hygiene supplies, and wellness essentials for students in need. Supporting holistic wellbeing.
+              </p>
+              <div className="space-y-2 text-xs text-gray-600 mb-4">
+                <p className="flex items-center gap-2">
+                  ✓ Sanitary products
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ Hygiene essentials
+                </p>
+                <p className="flex items-center gap-2">
+                  ✓ Monthly distribution
+                </p>
+              </div>
+              <Button className="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
+                <Bell className="mr-2 h-4 w-4" />
+                Get Notified
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="mt-6 text-center">
+          <p className="text-xs sm:text-sm text-gray-500 italic max-w-2xl mx-auto px-4">
+            These programs are in partnership with university administration and will be launched pending approvals and funding. 
+            Our goal is to provide comprehensive support addressing all aspects of student mental health and wellbeing.
+          </p>
+        </div>
+      </div>
+
       {/* Statistics Section */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
         <Card className="text-center">
@@ -283,7 +413,7 @@ export default function HomePage() {
         </Card>
         <Card className="text-center">
           <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-accent mb-2">11</div>
+            <div className="text-4xl font-bold text-accent mb-2">16</div>
             <div className="text-sm text-gray-600">Therapeutic Games</div>
           </CardContent>
         </Card>
