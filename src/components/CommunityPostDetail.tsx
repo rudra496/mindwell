@@ -99,7 +99,7 @@ export function CommunityPostDetail({
   const handleSubmitReply = async () => {
     if (!newReply.trim()) return;
 
-    if (!auth.currentUser) await signInWithGoogle();
+    if (!auth?.currentUser) await signInWithGoogle();
 
     setIsSubmitting(true);
 
@@ -273,7 +273,7 @@ export function CommunityPostDetail({
                     {replies.length} replies
                   </div>
 
-                  {post.userId === auth.currentUser?.uid && !editingPost && (
+                  {post.userId === auth?.currentUser?.uid && !editingPost && (
                     <>
                       <Button
                         variant="outline"
@@ -406,7 +406,7 @@ export function CommunityPostDetail({
                         {safeDate(reply.createdAt)}
                       </span>
 
-                      {reply.userId === auth.currentUser?.uid && (
+                      {reply.userId === auth?.currentUser?.uid && (
                         <>
                           <Button
                             variant="outline"

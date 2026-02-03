@@ -244,6 +244,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   }
 
   const question = questions[currentQuestion]
+  const hasAnswer = answers[question.id] !== undefined
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -259,7 +260,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
                 setAnswers({})
                 setShowResults(false)
               }}
-              className="h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm border-2 shadow-sm hover:shadow-md min-h-[44px]"
+              className="h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm border-2 shadow-sm hover:shadow-md min-h-[44px] sm:min-h-[48px] z-50"
             >
               <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 font-bold" />
               <span className="font-medium">Back</span>
@@ -283,7 +284,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               onValueChange={(value) => handleAnswer(question.id, parseInt(value))}
             >
               {question.options.map((option: { value: number; label: string }) => (
-                <div key={option.value} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px]">
+                <div key={option.value} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px] sm:min-h-[48px]">
                   <RadioGroupItem value={option.value.toString()} id={`q${question.id}-${option.value}`} />
                   <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words">
                     {option.label}
@@ -298,7 +299,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               variant="outline"
               onClick={() => setCurrentQuestion(currentQuestion - 1)}
               disabled={currentQuestion === 0}
-              className="text-sm sm:text-base min-h-[44px]"
+              className="text-sm sm:text-base min-h-[44px] sm:min-h-[48px]"
             >
               Previous
             </Button>
@@ -306,8 +307,8 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             {currentQuestion < totalQuestions - 1 ? (
               <Button
                 onClick={() => setCurrentQuestion(currentQuestion + 1)}
-                disabled={answers[question.id] === undefined}
-                className="text-sm sm:text-base min-h-[44px]"
+                disabled={!hasAnswer}
+                className="text-sm sm:text-base min-h-[44px] sm:min-h-[48px]"
               >
                 Next
               </Button>
@@ -315,7 +316,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <Button
                 onClick={() => setShowResults(true)}
                 disabled={Object.keys(answers).length < totalQuestions}
-                className="text-sm sm:text-base min-h-[44px]"
+                className="text-sm sm:text-base min-h-[44px] sm:min-h-[48px]"
               >
                 See Results
               </Button>

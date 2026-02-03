@@ -10,7 +10,8 @@ import {
   updateDoc,
   increment,
   deleteDoc,
-  arrayUnion
+  arrayUnion,
+  CollectionReference
 } from "firebase/firestore";
 
 import { db, auth } from "./firebase";
@@ -20,8 +21,16 @@ import { generateAnonymousName } from "./anon-names";
 // COLLECTION REFERENCES
 // =====================================================
 
-const postsRef = collection(db, "communityPosts");
-const repliesRef = collection(db, "communityReplies");
+// Lazy collection references to avoid errors when Firebase isn't configured
+const getPostsRef = () => {
+  if (!db) throw new Error("Firebase not configured");
+  return collection(db, "communityPosts");
+};
+
+const getRepliesRef = () => {
+  if (!db) throw new Error("Firebase not configured");
+  return collection(db, "communityReplies");
+};
 
 // =====================================================
 // CREATE COMMUNITY POST
@@ -35,7 +44,9 @@ export async function postToCommunity(data: {
   warningText?: string;
   hasCrisisLanguage?: boolean;
 }) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  
+  const postsRef = getPostsRef();
 
   return await addDoc(postsRef, {
     title: data.title.trim(),
@@ -61,6 +72,7 @@ export async function postToCommunity(data: {
 // =====================================================
 
 export async function getCommunityPosts() {
+  const postsRef = getPostsRef();
   const q = query(postsRef, orderBy("createdAt", "desc"));
   const snap = await getDocs(q);
 
@@ -75,7 +87,9 @@ export async function getCommunityPosts() {
 // =====================================================
 
 export async function addReply(postId: string, content: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  
+  const repliesRef = getRepliesRef();
 
   return await addDoc(repliesRef, {
     postId,
@@ -95,6 +109,7 @@ export async function addReply(postId: string, content: string) {
 // =====================================================
 
 export async function getReplies(postId: string) {
+  const repliesRef = getRepliesRef();
   const q = query(
     repliesRef,
     where("postId", "==", postId),
@@ -114,7 +129,8 @@ export async function getReplies(postId: string) {
 // =====================================================
 
 export async function likePost(postId: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   const ref = doc(db, "communityPosts", postId);
 
@@ -129,7 +145,8 @@ export async function likePost(postId: string) {
 // =====================================================
 
 export async function likeReply(replyId: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   const ref = doc(db, "communityReplies", replyId);
 
@@ -144,7 +161,8 @@ export async function likeReply(replyId: string) {
 // =====================================================
 
 export async function editReply(replyId: string, content: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   return await updateDoc(doc(db, "communityReplies", replyId), {
     content: content.trim()
@@ -156,7 +174,8 @@ export async function editReply(replyId: string, content: string) {
 // =====================================================
 
 export async function deleteReply(replyId: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   return await deleteDoc(doc(db, "communityReplies", replyId));
 }
@@ -166,7 +185,8 @@ export async function deleteReply(replyId: string) {
 // =====================================================
 
 export async function editPost(postId: string, data: { title: string; content: string }) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   return await updateDoc(doc(db, "communityPosts", postId), {
     title: data.title.trim(),
@@ -179,7 +199,8 @@ export async function editPost(postId: string, data: { title: string; content: s
 // =====================================================
 
 export async function deletePost(postId: string) {
-  if (!auth.currentUser) throw new Error("Authentication required");
+  if (!auth?.currentUser) throw new Error("Authentication required");
+  if (!db) throw new Error("Firebase not configured");
 
   return await deleteDoc(doc(db, "communityPosts", postId));
 }

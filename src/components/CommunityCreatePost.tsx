@@ -65,9 +65,9 @@ export function CommunityCreatePost({
   };
 
   const handleSubmit = async () => {
-    if (!auth.currentUser) {
+    if (!auth || !auth.currentUser) {
       await signInWithGoogle();
-      if (!auth.currentUser) {
+      if (!auth || !auth.currentUser) {
         setError("Sign in required");
         return;
       }
