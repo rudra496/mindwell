@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap, Lightbulb, Calculator } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"
@@ -15,6 +15,8 @@ import MindfulnessTimer from "./games/MindfulnessTimer"
 import ProgressiveMuscleRelaxation from "./games/ProgressiveMuscleRelaxation"
 import SafePlaceVisualization from "./games/SafePlaceVisualization"
 import ColoringTherapy from "./games/ColoringTherapy"
+import PatternRecognition from "./games/PatternRecognition"
+import NumberSequence from "./games/NumberSequence"
 
 // >>>>>>> ADD FOR VOICE/TTS SUPPORT
 import { speak } from "@/lib/speech"
@@ -59,10 +61,24 @@ const games = [
   },
   {
     id: 'memory-match',
-    name: 'Memory Match',
-    description: 'Card matching for cognitive training',
+    name: 'Memory Match Pro',
+    description: 'Card matching with 4 difficulty levels',
     icon: Zap,
     color: 'text-orange-600',
+  },
+  {
+    id: 'pattern-recognition',
+    name: 'Pattern Recognition',
+    description: 'Find patterns in shape sequences - 4 levels',
+    icon: Lightbulb,
+    color: 'text-yellow-600',
+  },
+  {
+    id: 'number-sequence',
+    name: 'Number Sequence Challenge',
+    description: 'Solve number patterns - 4 difficulty levels',
+    icon: Calculator,
+    color: 'text-blue-600',
   },
   {
     id: 'affirmations',
@@ -228,6 +244,26 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <MindfulnessTimer />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'pattern-recognition') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <PatternRecognition />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'number-sequence') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <NumberSequence />
         </DialogContent>
       </Dialog>
     )
