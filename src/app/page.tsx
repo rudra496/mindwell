@@ -33,6 +33,11 @@ import MoodTracker from "@/components/games/MoodTracker"
 import { Footer } from "@/components/Footer"
 import { VoiceControlPanel } from "@/components/VoiceControlPanel"
 import { NavigationBar } from "@/components/NavigationBar"
+import { HeroSection } from "@/components/HeroSection"
+import { OurSupportSection } from "@/components/OurSupportSection"
+import { BangladeshServicesSection } from "@/components/BangladeshServicesSection"
+import { SDGSection } from "@/components/SDGSection"
+import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -51,6 +56,31 @@ export default function HomePage() {
         // Scroll to top or reset view
         window.scrollTo({ top: 0, behavior: "smooth" })
         break
+      case "self-help":
+        // Scroll to self-help section
+        document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "therapy":
+        setTherapyTechniquesOpen(true)
+        break
+      case "psychologists":
+        document.getElementById("psychologists")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "crisis":
+        setCrisisOpen(true)
+        break
+      case "bangladesh":
+        document.getElementById("bangladesh-services")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "sdg":
+        document.getElementById("sdg-mission")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "about":
+        document.getElementById("our-support")?.scrollIntoView({ behavior: "smooth" })
+        break
+      case "contact":
+        window.location.href = "mailto:rudrasarker130@gmail.com"
+        break
       case "disorders":
         setDisordersOpen(true)
         break
@@ -60,9 +90,6 @@ export default function HomePage() {
       case "games":
         setGamesOpen(true)
         break
-      case "therapy":
-        setTherapyTechniquesOpen(true)
-        break
       case "meditation":
         setMeditationOpen(true)
         break
@@ -71,9 +98,6 @@ export default function HomePage() {
         break
       case "community":
         setCommunityOpen(true)
-        break
-      case "crisis":
-        setCrisisOpen(true)
         break
       default:
         break
@@ -86,6 +110,13 @@ export default function HomePage() {
       <NavigationBar onNavigate={handleNavigate} />
 
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
+      
+      {/* Hero Section */}
+      <HeroSection 
+        onGetSupport={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
+        onEmergencyHelp={() => setCrisisOpen(true)}
+      />
+
       {/* Crisis Banner */}
       <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 border-2 border-red-500 p-3 sm:p-4">
         <div className="flex items-start gap-2 sm:gap-3">
@@ -103,27 +134,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Header */}
-      <header className="text-center mb-8 sm:mb-12">
-        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-          <Brain className="h-8 w-8 sm:h-12 sm:w-12 text-primary" />
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
-            MindWell
-          </h1>
-        </div>
-        <p className="text-base sm:text-xl text-gray-700 mb-2 px-2">
-          World's Largest Open-Source Mental Health Platform
-        </p>
-        <p className="text-xs sm:text-sm md:text-md text-gray-600 max-w-3xl mx-auto px-2 mb-4">
-          Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 
-          20 validated assessments, 16 therapeutic games with multiple difficulty levels, 14 meditations, 20 therapy techniques, and crisis resources.
-        </p>
-        {/* Voice Control Panel */}
-        <div className="flex justify-center mt-4">
-          <VoiceControlPanel />
-        </div>
-      </header>
-
       {/* Medical Disclaimer */}
       <div className="mb-8 sm:mb-12 rounded-lg bg-amber-50 border-2 border-amber-400 p-4 sm:p-6">
         <h3 className="text-base sm:text-lg font-bold text-amber-900 mb-2 break-words">
@@ -135,8 +145,26 @@ export default function HomePage() {
         </p>
       </div>
 
+      {/* Voice Control Panel */}
+      <div className="flex justify-center mb-8">
+        <VoiceControlPanel />
+      </div>
+
+      {/* Our Support Section */}
+      <OurSupportSection />
+
       {/* Main Features Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
+      <div id="features" className="mb-8 sm:mb-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+            What MindWell Offers
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Comprehensive tools and resources for your mental health journey
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Disorders Database */}
         <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="p-4 sm:p-6">
@@ -307,6 +335,18 @@ export default function HomePage() {
 
 
       </div>
+      </div>
+
+      {/* Psychologists Access Section */}
+      <PsychologistsAccessSection 
+        onRequestSupport={() => setAdvisorsOpen(true)}
+      />
+
+      {/* Bangladesh Services Section */}
+      <BangladeshServicesSection />
+
+      {/* SDG Section */}
+      <SDGSection />
 
       {/* Mood Tracker Section */}
       <div className="mb-8 sm:mb-12">
