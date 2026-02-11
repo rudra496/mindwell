@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import {
   ClipboardList,
   Phone,
@@ -57,7 +58,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200" role="navigation" aria-label="Main navigation">
+      <nav className="hidden lg:block bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200 dark:border-teal-800 transition-colors" role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -77,13 +78,16 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavClick(item.id)}
-                  className="flex items-center gap-2 text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-all"
+                  className="flex items-center gap-2 text-gray-700 hover:text-teal-600 hover:bg-teal-50 dark:text-gray-200 dark:hover:text-teal-400 dark:hover:bg-slate-800 transition-all"
                   aria-label={item.label}
                 >
                   <item.icon className="h-4 w-4" />
                   <span className="text-sm font-medium">{item.label}</span>
                 </Button>
               ))}
+              
+              {/* Theme Toggle */}
+              <ThemeToggle />
               
               {/* Language Toggle */}
               <LanguageToggle />
@@ -93,7 +97,7 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200" role="navigation" aria-label="Mobile navigation">
+      <nav className="lg:hidden bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200 dark:border-teal-800 transition-colors" role="navigation" aria-label="Mobile navigation">
         <div className="container mx-auto px-3 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
@@ -106,6 +110,9 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
             </button>
 
             <div className="flex items-center gap-2">
+              {/* Theme Toggle */}
+              <ThemeToggle />
+              
               {/* Language Toggle */}
               <LanguageToggle />
               
@@ -125,13 +132,13 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
 
           {/* Mobile Menu Dropdown */}
           {mobileMenuOpen && (
-            <div className="mt-3 pb-2 space-y-1 border-t pt-2">
+            <div className="mt-3 pb-2 space-y-1 border-t dark:border-slate-700 pt-2">
               {navItems.map((item) => (
                 <Button
                   key={item.id}
                   variant="ghost"
                   onClick={() => handleNavClick(item.id)}
-                  className="w-full justify-start text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-all min-h-[48px]"
+                  className="w-full justify-start text-gray-700 hover:text-teal-600 hover:bg-teal-50 dark:text-gray-200 dark:hover:text-teal-400 dark:hover:bg-slate-800 transition-all min-h-[48px]"
                   aria-label={item.label}
                 >
                   <item.icon className="h-5 w-5 mr-3" />

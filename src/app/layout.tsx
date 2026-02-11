@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mindwell.vercel.app'),
@@ -121,7 +122,7 @@ export default function RootLayout({
         "description": "World's largest open-source mental health platform",
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "rudrasarker130@gmail.com",
+          "email": "rudrasarker125@gmail.com",
           "contactType": "Customer Support"
         },
         "sameAs": [
@@ -169,10 +170,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0d9488" />
+        <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="canonical" href="https://mindwell.vercel.app" />
         
@@ -191,11 +193,13 @@ export default function RootLayout({
           strategy="beforeInteractive"
         />
         
-        <ErrorBoundary>
-          <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50">
-            {children}
-          </main>
-        </ErrorBoundary>
+        <ThemeProvider>
+          <ErrorBoundary>
+            <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
+              {children}
+            </main>
+          </ErrorBoundary>
+        </ThemeProvider>
         
         {/* Service Worker Registration */}
         <Script id="register-sw" strategy="afterInteractive">

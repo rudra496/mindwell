@@ -9,15 +9,19 @@
       "Dialectical Behavior Therapy (DBT)"
     ],
     "expertise": [
+      "Personality Disorder",
+      "Anxiety Disorders (Panic, Phobia, Social Anxiety)",
+      "Obsessive Compulsive Disorders",
+      "Bipolar & other Psychotic Disorders",
       "Suicide Risk Assessment & Management",
-      "Crisis Intervention & Safety Planning",
+      "Crisis Intervention",
       "Trauma & Dissociation Management",
       "Addiction Management",
       "Family & Couple Counseling"
     ],
-    "imageUrl": "/advisors/rifat-hasan-tarofder.svg",
+    "imageUrl": "/advisors/rifat-hasan-tarofder.jpg",
     "role": "volunteer",
-    "bio": "Licensed clinical psychologist specializing in crisis intervention and trauma-informed care.",
+    "bio": "Licensed clinical psychologist specializing in personality disorders, anxiety disorders, OCD, bipolar disorder, and other psychotic disorders. Experienced in crisis intervention and trauma-informed care.",
     "createdAt": "2026-02-11T05:45:00.000Z",
     "updatedAt": "2026-02-11T05:45:00.000Z"
   }

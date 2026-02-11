@@ -14,6 +14,16 @@ export function useLanguage() {
     setIsClient(true)
     const currentLang = getCurrentLanguage()
     setLanguage(currentLang)
+    
+    // Restore scroll position after language change refresh
+    const savedScrollPosition = sessionStorage.getItem('mindwell_scroll_position')
+    if (savedScrollPosition) {
+      const scrollY = parseInt(savedScrollPosition, 10)
+      if (!isNaN(scrollY) && scrollY >= 0) {
+        window.scrollTo(0, scrollY)
+      }
+      sessionStorage.removeItem('mindwell_scroll_position')
+    }
   }, [])
 
   const changeLanguage = (newLang: Language) => {
@@ -23,6 +33,14 @@ export function useLanguage() {
     // Trigger a custom event for other components to listen to
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('languageChange', { detail: newLang }))
+      
+      // Auto-refresh the page after language change
+      // Save current scroll position to restore after refresh
+      const scrollY = window.scrollY
+      sessionStorage.setItem('mindwell_scroll_position', scrollY.toString())
+      
+      // Refresh the page
+      window.location.reload()
     }
   }
 
