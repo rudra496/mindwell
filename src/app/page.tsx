@@ -15,9 +15,6 @@ import {
   Phone,
   AlertCircle,
   Sparkles,
-  Pill,
-  Package,
-  Bell,
   ArrowRight
 } from "lucide-react"
 import { DisordersModal } from "@/components/DisordersModal"
@@ -39,6 +36,7 @@ import { BangladeshServicesSection } from "@/components/BangladeshServicesSectio
 import { SDGSection } from "@/components/SDGSection"
 import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
 import { MedicalDisclaimer } from "@/components/safety/MedicalDisclaimer"
+import { ContactForm } from "@/components/ContactForm"
 import { config } from "@/lib/config"
 
 export default function HomePage() {
@@ -81,7 +79,7 @@ export default function HomePage() {
         document.getElementById("our-support")?.scrollIntoView({ behavior: "smooth" })
         break
       case "contact":
-        window.location.href = `mailto:${config.contact.email}`
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
         break
       case "disorders":
         setDisordersOpen(true)
@@ -146,6 +144,11 @@ export default function HomePage() {
 
       {/* Our Support Section */}
       <OurSupportSection />
+
+      {/* Psychologists Access Section - MOVED TO TOP */}
+      <PsychologistsAccessSection 
+        onRequestSupport={() => setAdvisorsOpen(true)}
+      />
 
       {/* Main Features Grid */}
       <div id="features" className="mb-8 sm:mb-12">
@@ -331,13 +334,13 @@ export default function HomePage() {
       </div>
       </div>
 
-      {/* Psychologists Access Section */}
-      <PsychologistsAccessSection 
-        onRequestSupport={() => setAdvisorsOpen(true)}
-      />
-
       {/* Bangladesh Services Section */}
       <BangladeshServicesSection />
+
+      {/* Contact Form Section */}
+      <div id="contact" className="mb-8 sm:mb-12">
+        <ContactForm />
+      </div>
 
       {/* SDG Section */}
       <SDGSection />
@@ -345,132 +348,6 @@ export default function HomePage() {
       {/* Mood Tracker Section */}
       <div className="mb-8 sm:mb-12">
         <MoodTracker />
-      </div>
-
-      {/* Coming Soon Section */}
-      <div className="mb-8 sm:mb-12">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-            🚀 Upcoming Features
-          </h2>
-          <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">
-            We're expanding our platform to provide even more comprehensive mental health support for university students
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Clinical Psychologist Support */}
-          <Card className="relative overflow-hidden border-2 border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
-            <div className="absolute top-0 right-0 bg-gradient-to-br from-purple-500 to-pink-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-              Coming Soon
-            </div>
-            <CardHeader className="p-4 sm:p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-3 bg-white rounded-full shadow-md">
-                  <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-purple-600" />
-                </div>
-                <CardTitle className="text-lg sm:text-xl break-words">Clinical Psychologist Support</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 sm:p-6 pt-0">
-              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
-                <strong>Free professional mental health support</strong> from licensed clinical psychologists available to all university students. Get expert guidance when you need it most.
-              </p>
-              <div className="space-y-2 text-xs text-gray-600 mb-4">
-                <p className="flex items-center gap-2">
-                  ✓ Licensed professionals
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Confidential sessions
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ University partnership
-                </p>
-              </div>
-              <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
-                <Bell className="mr-2 h-4 w-4" />
-                Launching Soon
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Medicine Provision Program */}
-          <Card className="relative overflow-hidden border-2 border-teal-200 bg-gradient-to-br from-teal-50 to-cyan-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
-            <div className="absolute top-0 right-0 bg-gradient-to-br from-teal-500 to-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-              In Development
-            </div>
-            <CardHeader className="p-4 sm:p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-3 bg-white rounded-full shadow-md">
-                  <Pill className="h-6 w-6 sm:h-8 sm:w-8 text-teal-600" />
-                </div>
-                <CardTitle className="text-lg sm:text-xl break-words">Medicine Provision Program</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 sm:p-6 pt-0">
-              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
-                <strong>Free medication support</strong> for university students who need prescribed mental health medications but face financial barriers to accessing them.
-              </p>
-              <div className="space-y-2 text-xs text-gray-600 mb-4">
-                <p className="flex items-center gap-2">
-                  ✓ Prescription medications
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Pharmacy partnerships
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ No cost to students
-                </p>
-              </div>
-              <Button className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
-                <Bell className="mr-2 h-4 w-4" />
-                Stay Informed
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Wellness Care Packages */}
-          <Card className="relative overflow-hidden border-2 border-pink-200 bg-gradient-to-br from-pink-50 to-rose-50 hover:shadow-xl transition-all duration-300 hover:scale-105 animate-fade-in">
-            <div className="absolute top-0 right-0 bg-gradient-to-br from-pink-500 to-rose-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-              Upcoming
-            </div>
-            <CardHeader className="p-4 sm:p-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-3 bg-white rounded-full shadow-md">
-                  <Package className="h-6 w-6 sm:h-8 sm:w-8 text-pink-600" />
-                </div>
-                <CardTitle className="text-lg sm:text-xl break-words">Wellness Care Packages</CardTitle>
-              </div>
-            </CardHeader>
-            <CardContent className="p-4 sm:p-6 pt-0">
-              <p className="text-sm text-gray-700 mb-4 break-words leading-relaxed">
-                <strong>Essential care items</strong> including sanitary products, hygiene supplies, and wellness essentials for students in need. Supporting holistic wellbeing.
-              </p>
-              <div className="space-y-2 text-xs text-gray-600 mb-4">
-                <p className="flex items-center gap-2">
-                  ✓ Sanitary products
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Hygiene essentials
-                </p>
-                <p className="flex items-center gap-2">
-                  ✓ Monthly distribution
-                </p>
-              </div>
-              <Button className="w-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white min-h-[44px] transition-all hover:scale-105" disabled>
-                <Bell className="mr-2 h-4 w-4" />
-                Get Notified
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mt-6 text-center">
-          <p className="text-xs sm:text-sm text-gray-500 italic max-w-2xl mx-auto px-4">
-            These programs are in partnership with university administration and will be launched pending approvals and funding. 
-            Our goal is to provide comprehensive support addressing all aspects of student mental health and wellbeing.
-          </p>
-        </div>
       </div>
 
       {/* Statistics Section */}

@@ -34,8 +34,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)
-    localStorage.setItem("mindwell_theme", newTheme)
-    document.documentElement.classList.toggle("dark", newTheme === "dark")
+    if (typeof window !== 'undefined') {
+      localStorage.setItem("mindwell_theme", newTheme)
+      document.documentElement.classList.toggle("dark", newTheme === "dark")
+    }
   }
 
   const toggleTheme = () => {
@@ -43,10 +45,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setTheme(newTheme)
   }
 
-  if (!mounted) {
-    return <>{children}</>
-  }
-
+  // Always provide context, even during SSR
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
       {children}
