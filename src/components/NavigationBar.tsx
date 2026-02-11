@@ -39,14 +39,14 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   // Navigation items organized by new requirements
   const navItems = [
     { id: "home", label: mounted ? t(translations.nav.home, language) : "Home", icon: Home },
-    { id: "self-help", label: mounted ? t(translations.nav.selfHelpTools, language) : "Self-Help Tools", icon: Gamepad2 },
+    { id: "disorders", label: "Learn & Awareness", icon: BookOpen },
+    { id: "assessments", label: "Self-Reflection Tools", icon: ClipboardList },
     { id: "therapy", label: mounted ? t(translations.nav.therapyMeditation, language) : "Therapy & Meditation", icon: Sparkles },
     { id: "psychologists", label: mounted ? t(translations.nav.psychologists, language) : "Psychologists", icon: Stethoscope },
-    { id: "crisis", label: mounted ? t(translations.nav.crisisHelp, language) : "Crisis Help", icon: Phone },
-    { id: "bangladesh", label: mounted ? t(translations.nav.bangladeshServices, language) : "Free Services in Bangladesh 🇧🇩", icon: Heart },
-    { id: "sdg", label: mounted ? t(translations.nav.sdgMission, language) : "SDG & Our Mission", icon: Target },
-    { id: "about", label: mounted ? t(translations.nav.about, language) : "About Us", icon: Info },
-    { id: "contact", label: mounted ? t(translations.nav.contact, language) : "Contact & Support", icon: Mail }
+    { id: "crisis", label: mounted ? t(translations.nav.crisisHelp, language) : "Crisis & Emergency", icon: Phone },
+    { id: "bangladesh", label: mounted ? t(translations.nav.bangladeshServices, language) : "Bangladesh Services 🇧🇩", icon: Heart },
+    { id: "sdg", label: mounted ? t(translations.nav.sdgMission, language) : "SDG & Mission", icon: Target },
+    { id: "about", label: mounted ? t(translations.nav.about, language) : "About", icon: Info },
   ]
 
   const handleNavClick = (id: string) => {
