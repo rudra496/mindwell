@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { User, Award, Briefcase, AlertTriangle } from "lucide-react"
@@ -76,10 +77,12 @@ export function AdvisorsModal({ open, onOpenChange }: { open: boolean; onOpenCha
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
                     {/* Profile Image */}
                     <div className="flex-shrink-0">
-                      <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto sm:mx-0 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200">
-                        <img 
+                      <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto sm:mx-0 rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 relative">
+                        <Image 
                           src={advisor.imageUrl} 
                           alt={advisor.name}
+                          width={160}
+                          height={160}
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             // Fallback to placeholder if image fails to load
