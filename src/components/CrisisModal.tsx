@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageSquare, Globe, AlertCircle } from "lucide-react"
+import { Phone, MessageSquare, Globe, AlertCircle, Stethoscope } from "lucide-react"
 
 interface CrisisResource {
   id: string
@@ -17,7 +17,15 @@ interface CrisisResource {
   category: string
 }
 
-export function CrisisModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export function CrisisModal({ 
+  open, 
+  onOpenChange,
+  onOpenAdvisors 
+}: { 
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onOpenAdvisors?: () => void
+}) {
   const [resources, setResources] = useState<CrisisResource[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedCountry, setSelectedCountry] = useState<string>('United States')
@@ -131,6 +139,90 @@ export function CrisisModal({ open, onOpenChange }: { open: boolean; onOpenChang
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Bangladesh Free & Low-Cost Services - English */}
+          {selectedCountry === 'Bangladesh' && (
+            <div className="p-3 sm:p-4 bg-green-50 border-2 border-green-400 rounded-lg">
+              <h3 className="font-bold text-green-900 mb-3 text-sm sm:text-base">
+                🏥 Free & Low-Cost Mental Health Services (Bangladesh)
+              </h3>
+              <div className="text-xs sm:text-sm text-green-800 mb-3">
+                <p className="font-semibold mb-2">Government Hospitals Offering Psychiatric & Psychological Services:</p>
+                <ul className="space-y-1.5 ml-4">
+                  <li>• National Institute of Mental Health (NIMH), Dhaka</li>
+                  <li>• Dhaka Medical College Hospital</li>
+                  <li>• Sir Salimullah Medical College (Mitford Hospital)</li>
+                  <li>• Chittagong Medical College Hospital</li>
+                  <li>• Pabna Mental Hospital</li>
+                </ul>
+                <p className="mt-3 font-medium">
+                  <strong>Cost:</strong> Very low cost services (approximately BDT 10 ticket fee in government hospitals)
+                </p>
+              </div>
+              <div className="text-xs sm:text-sm text-green-900 bg-green-100 p-2 rounded border border-green-300 mb-3">
+                <p className="font-semibold mb-1">⚠️ Important Disclaimers:</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• Availability, waiting time, and services may vary</li>
+                  <li>• MindWell does NOT manage, control, or guarantee these services</li>
+                  <li>• For life-threatening emergencies, contact local emergency services immediately</li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Bangladesh Free & Low-Cost Services - Bangla */}
+          {selectedCountry === 'Bangladesh' && (
+            <div className="p-3 sm:p-4 bg-teal-50 border-2 border-teal-400 rounded-lg">
+              <h3 className="font-bold text-teal-900 mb-3 text-sm sm:text-base">
+                🏥 বিনামূল্যে ও স্বল্পমূল্যের মানসিক স্বাস্থ্য সেবা (বাংলাদেশ)
+              </h3>
+              <div className="text-xs sm:text-sm text-teal-800 mb-3">
+                <p className="font-semibold mb-2">সরকারি হাসপাতাল যেখানে মানসিক স্বাস্থ্য সেবা পাওয়া যায়:</p>
+                <ul className="space-y-1.5 ml-4">
+                  <li>• জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট (NIMH), ঢাকা</li>
+                  <li>• ঢাকা মেডিকেল কলেজ হাসপাতাল</li>
+                  <li>• স্যার সলিমুল্লাহ মেডিকেল কলেজ (মিটফোর্ড হাসপাতাল)</li>
+                  <li>• চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল</li>
+                  <li>• পাবনা মানসিক হাসপাতাল</li>
+                </ul>
+                <p className="mt-3 font-medium">
+                  <strong>খরচ:</strong> খুবই কম খরচে সেবা (সরকারি হাসপাতালে প্রায় ১০ টাকা টিকিট ফি)
+                </p>
+              </div>
+              <div className="text-xs sm:text-sm text-teal-900 bg-teal-100 p-2 rounded border border-teal-300 mb-3">
+                <p className="font-semibold mb-1">⚠️ গুরুত্বপূর্ণ সতর্কতা:</p>
+                <ul className="space-y-1 ml-4">
+                  <li>• সেবার প্রাপ্যতা, অপেক্ষার সময় এবং সেবা ভিন্ন হতে পারে</li>
+                  <li>• MindWell এই সেবাগুলি পরিচালনা, নিয়ন্ত্রণ বা গ্যারান্টি দেয় না</li>
+                  <li>• জীবন-হুমকিমূলক জরুরী পরিস্থিতিতে অবিলম্বে স্থানীয় জরুরী সেবায় যোগাযোগ করুন</li>
+                </ul>
+              </div>
+            </div>
+          )}
+
+          {/* Professional Advisors Section */}
+          {onOpenAdvisors && (
+            <div className="p-3 sm:p-4 bg-purple-50 border-2 border-purple-300 rounded-lg">
+              <h3 className="font-bold text-purple-900 mb-2 text-sm sm:text-base flex items-center gap-2">
+                <Stethoscope className="h-5 w-5" />
+                Professional Advisory Support (Volunteer)
+              </h3>
+              <p className="text-xs sm:text-sm text-purple-800 mb-3">
+                Access volunteer clinical advisors who can provide informational support and guidance. 
+                This is not a replacement for emergency services or ongoing therapy.
+              </p>
+              <Button 
+                variant="outline" 
+                className="w-full sm:w-auto min-h-[44px] border-purple-400 text-purple-900 hover:bg-purple-100"
+                onClick={() => {
+                  onOpenChange(false)
+                  setTimeout(() => onOpenAdvisors(), 300)
+                }}
+              >
+                View Professional Advisors →
+              </Button>
             </div>
           )}
 

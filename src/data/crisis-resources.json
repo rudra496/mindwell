@@ -154,5 +154,70 @@
     "category": "Domestic Violence",
     "createdAt": "2026-01-02T03:04:45.997Z",
     "updatedAt": "2026-01-02T03:04:45.997Z"
+  },
+  {
+    "id": "bd001-nimh-dhaka",
+    "name": "National Institute of Mental Health (NIMH), Dhaka",
+    "country": "Bangladesh",
+    "phone": "+880-2-9004850",
+    "textLine": "",
+    "website": "https://nimh.gov.bd",
+    "description": "Government mental health hospital providing psychiatric and psychological services at very low cost (approximately BDT 10 ticket fee). Availability, waiting time, and services may vary. For emergencies, contact local emergency services.",
+    "available": "Government hours",
+    "category": "Free & Low-Cost Services",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
+  },
+  {
+    "id": "bd002-dmch",
+    "name": "Dhaka Medical College Hospital",
+    "country": "Bangladesh",
+    "phone": "+880-2-55165088",
+    "textLine": "",
+    "website": "https://www.dmch.gov.bd",
+    "description": "Government hospital offering psychiatric services at very low cost. Mental health consultations available. Availability and waiting time may vary. For emergencies, contact local emergency services.",
+    "available": "Government hours",
+    "category": "Free & Low-Cost Services",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
+  },
+  {
+    "id": "bd003-mitford",
+    "name": "Sir Salimullah Medical College (Mitford Hospital)",
+    "country": "Bangladesh",
+    "phone": "+880-2-7391002",
+    "textLine": "",
+    "website": "",
+    "description": "Government hospital with psychiatric department offering low-cost mental health services. Approximately BDT 10 ticket fee for consultations. Services and waiting time may vary. For emergencies, contact local emergency services.",
+    "available": "Government hours",
+    "category": "Free & Low-Cost Services",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
+  },
+  {
+    "id": "bd004-cmch",
+    "name": "Chittagong Medical College Hospital",
+    "country": "Bangladesh",
+    "phone": "+880-31-2502963",
+    "textLine": "",
+    "website": "https://www.cmch.gov.bd",
+    "description": "Government medical college hospital in Chittagong providing psychiatric consultations and mental health services at very low cost. Availability may vary. For emergencies, contact local emergency services.",
+    "available": "Government hours",
+    "category": "Free & Low-Cost Services",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
+  },
+  {
+    "id": "bd005-pabna",
+    "name": "Pabna Mental Hospital",
+    "country": "Bangladesh",
+    "phone": "+880-731-65424",
+    "textLine": "",
+    "website": "",
+    "description": "Specialized government mental health hospital offering comprehensive psychiatric care at very low cost. One of the oldest and largest mental health facilities in Bangladesh. For emergencies, contact local emergency services.",
+    "available": "Government hours",
+    "category": "Free & Low-Cost Services",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
   }
 ]

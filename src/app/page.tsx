@@ -28,6 +28,7 @@ import { ChatbotModal } from "@/components/ChatbotModal"
 import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
+import { AdvisorsModal } from "@/components/AdvisorsModal"
 import MoodTracker from "@/components/games/MoodTracker"
 import { Footer } from "@/components/Footer"
 import { VoiceControlPanel } from "@/components/VoiceControlPanel"
@@ -41,6 +42,7 @@ export default function HomePage() {
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
+  const [advisorsOpen, setAdvisorsOpen] = useState(false)
 
   return (
     <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
@@ -444,11 +446,16 @@ export default function HomePage() {
       <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
       <AssessmentModal open={assessmentOpen} onOpenChange={setAssessmentOpen} />
       <GamesModal open={gamesOpen} onOpenChange={setGamesOpen} />
-      <CrisisModal open={crisisOpen} onOpenChange={setCrisisOpen} />
+      <CrisisModal 
+        open={crisisOpen} 
+        onOpenChange={setCrisisOpen}
+        onOpenAdvisors={() => setAdvisorsOpen(true)}
+      />
       <ChatbotModal open={chatbotOpen} onOpenChange={setChatbotOpen} />
       <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
       <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
+      <AdvisorsModal open={advisorsOpen} onOpenChange={setAdvisorsOpen} />
     </div>
   )
 }

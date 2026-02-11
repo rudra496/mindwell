@@ -1,0 +1,24 @@
+[
+  {
+    "id": "advisor-001-rifat-tarofder",
+    "name": "Md. Rifat Hasan Tarofder",
+    "title": "Assistant Clinical Psychologist",
+    "education": "MS in Clinical Psychology, University of Dhaka",
+    "certifications": [
+      "Cognitive Behavioral Therapy (CBT)",
+      "Dialectical Behavior Therapy (DBT)"
+    ],
+    "expertise": [
+      "Suicide Risk Assessment & Management",
+      "Crisis Intervention & Safety Planning",
+      "Trauma & Dissociation Management",
+      "Addiction Management",
+      "Family & Couple Counseling"
+    ],
+    "imageUrl": "/advisors/rifat-hasan-tarofder.svg",
+    "role": "volunteer",
+    "bio": "Licensed clinical psychologist specializing in crisis intervention and trauma-informed care.",
+    "createdAt": "2026-02-11T05:45:00.000Z",
+    "updatedAt": "2026-02-11T05:45:00.000Z"
+  }
+]
