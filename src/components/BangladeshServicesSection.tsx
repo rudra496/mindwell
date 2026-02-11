@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Heart, Shield, Users, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
+import { CONTENT_COUNTS } from "@/lib/constants"
 
 /**
  * Free Services in Bangladesh Section
@@ -44,9 +45,9 @@ export function BangladeshServicesSection() {
       en: "Community Support Forums", 
       bn: "কমিউনিটি সহায়তা ফোরাম" 
     },
-    { 
-      en: "Mental Health Education on 63+ Conditions", 
-      bn: "৬৩+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান" 
+    {
+      en: `Mental Health Education on ${CONTENT_COUNTS.disorders}+ Conditions`, 
+      bn: `${CONTENT_COUNTS.disorders}+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান` 
     },
     {
       en: "24/7 Kaan Pete Roi Helpline: 09678 676 777",

@@ -10,6 +10,7 @@ import { AlertCircle, ArrowLeft } from "lucide-react"
 import { featureFlags, isHighRiskAssessment } from "@/lib/featureFlags"
 import { ConsentModal } from "@/components/gating/ConsentModal"
 import { AssessmentDisclaimer } from "@/components/safety/AssessmentDisclaimer"
+import { useLanguage } from "@/lib/useLanguage"
 
 interface Assessment {
   id: string
@@ -30,6 +31,12 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   const [loading, setLoading] = useState(true)
   const [showConsentModal, setShowConsentModal] = useState(false)
   const [pendingAssessment, setPendingAssessment] = useState<Assessment | null>(null)
+  const { language } = useLanguage()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (open) {
@@ -153,9 +160,17 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
         <Dialog open={open} onOpenChange={onOpenChange}>
           <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Self-Assessments</DialogTitle>
+              <DialogTitle className="text-xl sm:text-2xl break-words">
+                {mounted 
+                  ? (language === 'en' ? "Mental Health Self-Reflection Tools" : "মানসিক স্বাস্থ্য স্ব-প্রতিফলন সরঞ্জাম")
+                  : "Mental Health Self-Reflection Tools"}
+              </DialogTitle>
               <DialogDescription className="text-xs sm:text-sm">
-                Validated screening tools to help understand your mental health
+                {mounted
+                  ? (language === 'en' 
+                      ? "Validated screening tools to help understand your mental wellbeing"
+                      : "আপনার মানসিক সুস্থতা বুঝতে সাহায্য করার জন্য যাচাইকৃত স্ক্রীনিং সরঞ্জাম")
+                  : "Validated screening tools to help understand your mental wellbeing"}
               </DialogDescription>
             </DialogHeader>
 
@@ -163,7 +178,11 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <AssessmentDisclaimer />
 
               {loading ? (
-                <div className="text-center py-8 text-sm sm:text-base">Loading assessments...</div>
+                <div className="text-center py-8 text-sm sm:text-base">
+                  {mounted
+                    ? (language === 'en' ? "Loading assessments..." : "মূল্যায়ন লোড হচ্ছে...")
+                    : "Loading assessments..."}
+                </div>
               ) : (
                 <div className="grid gap-3">
                 {assessments.map(assessment => (

@@ -37,12 +37,15 @@ export const highRiskAssessmentSlugs = [
   'trauma-screening',
 ] as const
 
+type HighRiskSlug = typeof highRiskAssessmentSlugs[number]
+
 /**
  * Check if an assessment is high-risk
  */
 export function isHighRiskAssessment(slug: string): boolean {
-  return highRiskAssessmentSlugs.includes(slug as any) || 
-         slug.toLowerCase().includes('suicide') ||
-         slug.toLowerCase().includes('self-harm') ||
-         slug.toLowerCase().includes('trauma')
+  const normalizedSlug = slug.toLowerCase()
+  return (highRiskAssessmentSlugs as readonly string[]).includes(slug) ||
+         normalizedSlug.includes('suicide') ||
+         normalizedSlug.includes('self-harm') ||
+         normalizedSlug.includes('trauma')
 }

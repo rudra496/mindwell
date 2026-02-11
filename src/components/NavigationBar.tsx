@@ -39,8 +39,8 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   // Navigation items organized by new requirements
   const navItems = [
     { id: "home", label: mounted ? t(translations.nav.home, language) : "Home", icon: Home },
-    { id: "disorders", label: "Learn & Awareness", icon: BookOpen },
-    { id: "assessments", label: "Self-Reflection Tools", icon: ClipboardList },
+    { id: "disorders", label: mounted ? (language === 'en' ? "Learn & Awareness" : "শিখুন এবং সচেতনতা") : "Learn & Awareness", icon: BookOpen },
+    { id: "assessments", label: mounted ? (language === 'en' ? "Self-Reflection Tools" : "স্ব-প্রতিফলন সরঞ্জাম") : "Self-Reflection Tools", icon: ClipboardList },
     { id: "therapy", label: mounted ? t(translations.nav.therapyMeditation, language) : "Therapy & Meditation", icon: Sparkles },
     { id: "psychologists", label: mounted ? t(translations.nav.psychologists, language) : "Psychologists", icon: Stethoscope },
     { id: "crisis", label: mounted ? t(translations.nav.crisisHelp, language) : "Crisis & Emergency", icon: Phone },
