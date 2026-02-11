@@ -38,6 +38,7 @@ import { OurSupportSection } from "@/components/OurSupportSection"
 import { BangladeshServicesSection } from "@/components/BangladeshServicesSection"
 import { SDGSection } from "@/components/SDGSection"
 import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
+import { config } from "@/lib/config"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -79,7 +80,7 @@ export default function HomePage() {
         document.getElementById("our-support")?.scrollIntoView({ behavior: "smooth" })
         break
       case "contact":
-        window.location.href = "mailto:rudrasarker130@gmail.com"
+        window.location.href = `mailto:${config.contact.email}`
         break
       case "disorders":
         setDisordersOpen(true)

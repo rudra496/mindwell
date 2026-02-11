@@ -153,6 +153,11 @@ export const translations = {
     getHelp: { en: 'Get Help Now', bn: 'এখনই সাহায্য পান' },
   },
   
+  // Common
+  common: {
+    inspiredBy: { en: 'Inspired by Prof. Farzana Hussain, Ph.D.', bn: 'অনুপ্রাণিত: প্রফেসর ফারজানা হুসেন, পিএইচডি' },
+  },
+  
   // Voice Controls
   voice: {
     play: { en: 'Play', bn: 'প্লে' },

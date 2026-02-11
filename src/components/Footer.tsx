@@ -4,6 +4,7 @@ import { Heart, Mail, Globe, Github } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
+import { config } from "@/lib/config"
 
 export function Footer() {
   const { language } = useLanguage()
@@ -49,14 +50,14 @@ export function Footer() {
             </h3>
             <div className="space-y-2">
               <a
-                href="mailto:rudrasarker130@gmail.com"
+                href={`mailto:${config.contact.email}`}
                 className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
               >
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <span>rudrasarker130@gmail.com</span>
+                <span>{config.contact.email}</span>
               </a>
               <a
-                href="https://rudra496.github.io/site"
+                href={config.contact.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
@@ -65,7 +66,7 @@ export function Footer() {
                 <span>rudra496.github.io/site</span>
               </a>
               <a
-                href="https://github.com/rudra496/mindwell"
+                href={config.contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
@@ -75,9 +76,7 @@ export function Footer() {
               </a>
             </div>
             <p className="text-sm text-gray-500 mt-3">
-              {mounted
-                ? (language === 'en' ? "Inspired by Prof. Farzana Hussain, Ph.D." : "অনুপ্রাণিত: প্রফেসর ফারজানা হুসেন, পিএইচডি")
-                : "Inspired by Prof. Farzana Hussain, Ph.D."}
+              {mounted ? t(translations.common.inspiredBy, language) : "Inspired by Prof. Farzana Hussain, Ph.D."}
             </p>
           </div>
           
