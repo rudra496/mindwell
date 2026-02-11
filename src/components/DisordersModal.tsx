@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Search, ExternalLink } from "lucide-react"
+import { EducationalDisclaimer } from "@/components/safety/EducationalDisclaimer"
 
 interface Disorder {
   id: string
@@ -51,14 +52,16 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Disorders Database</DialogTitle>
+          <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Education (Not Diagnosis)</DialogTitle>
           <DialogDescription className="text-xs sm:text-sm">
-            Explore comprehensive information on 68+ mental health disorders including symptoms, causes, evidence-based treatments, and when to seek professional help.
+            Educational information on mental health conditions. This is not a diagnostic tool. Always consult a qualified healthcare professional.
           </DialogDescription>
         </DialogHeader>
 
         {!selectedDisorder ? (
           <div className="space-y-4">
+            <EducationalDisclaimer />
+            
             <div className="relative">
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <Input
@@ -103,8 +106,10 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
           </div>
         ) : (
           <div className="space-y-4">
+            <EducationalDisclaimer />
+            
             <Button variant="outline" onClick={() => setSelectedDisorder(null)} className="text-sm sm:text-base min-h-[44px]">
-              ← Back to All Disorders
+              ← Back to All Conditions
             </Button>
 
             <div>

@@ -7,6 +7,9 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { AlertCircle, ArrowLeft } from "lucide-react"
+import { featureFlags, isHighRiskAssessment } from "@/lib/featureFlags"
+import { ConsentModal } from "@/components/gating/ConsentModal"
+import { AssessmentDisclaimer } from "@/components/safety/AssessmentDisclaimer"
 
 interface Assessment {
   id: string
@@ -25,6 +28,8 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [showResults, setShowResults] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [showConsentModal, setShowConsentModal] = useState(false)
+  const [pendingAssessment, setPendingAssessment] = useState<Assessment | null>(null)
 
   useEffect(() => {
     if (open) {
@@ -42,10 +47,27 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   }, [open])
 
   const startAssessment = (assessment: Assessment) => {
+    // Check if consent is required for this assessment
+    if (featureFlags.requireConsentForAssessments && isHighRiskAssessment(assessment.slug)) {
+      setPendingAssessment(assessment)
+      setShowConsentModal(true)
+    } else {
+      proceedWithAssessment(assessment)
+    }
+  }
+
+  const proceedWithAssessment = (assessment: Assessment) => {
     setSelectedAssessment(assessment)
     setCurrentQuestion(0)
     setAnswers({})
     setShowResults(false)
+  }
+
+  const handleConsentGranted = () => {
+    if (pendingAssessment) {
+      proceedWithAssessment(pendingAssessment)
+      setPendingAssessment(null)
+    }
   }
 
   const handleAnswer = (questionId: number, value: number) => {
@@ -119,27 +141,31 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
   if (!selectedAssessment) {
     return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Self-Assessments</DialogTitle>
-            <DialogDescription className="text-xs sm:text-sm">
-              Validated screening tools to help understand your mental health
-            </DialogDescription>
-          </DialogHeader>
+      <>
+        <ConsentModal 
+          open={showConsentModal}
+          onOpenChange={setShowConsentModal}
+          onConsent={handleConsentGranted}
+          assessmentName={pendingAssessment?.name}
+          isHighRisk={pendingAssessment ? isHighRiskAssessment(pendingAssessment.slug) : false}
+        />
+        
+        <Dialog open={open} onOpenChange={onOpenChange}>
+          <DialogContent className="max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Self-Assessments</DialogTitle>
+              <DialogDescription className="text-xs sm:text-sm">
+                Validated screening tools to help understand your mental health
+              </DialogDescription>
+            </DialogHeader>
 
-          <div className="space-y-4">
-            <div className="p-3 sm:p-4 bg-amber-50 border border-amber-200 rounded-lg">
-              <p className="text-xs sm:text-sm text-amber-900 break-words">
-                <strong>Important:</strong> These are screening tools, not diagnostic instruments. 
-                Results should be discussed with a healthcare professional.
-              </p>
-            </div>
+            <div className="space-y-4">
+              <AssessmentDisclaimer />
 
-            {loading ? (
-              <div className="text-center py-8 text-sm sm:text-base">Loading assessments...</div>
-            ) : (
-              <div className="grid gap-3">
+              {loading ? (
+                <div className="text-center py-8 text-sm sm:text-base">Loading assessments...</div>
+              ) : (
+                <div className="grid gap-3">
                 {assessments.map(assessment => (
                   <Button
                     key={assessment.id}
@@ -158,6 +184,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
           </div>
         </DialogContent>
       </Dialog>
+      </>
     )
   }
 
