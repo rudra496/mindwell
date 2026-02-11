@@ -1,6 +1,6 @@
 "use client"
 
-import { Heart, Mail, Globe, Github } from "lucide-react"
+import { Heart, Mail, Globe, Github, Facebook, Linkedin } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
@@ -17,22 +17,22 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="mt-12 border-t border-gray-200 bg-white/50 backdrop-blur-sm">
+    <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm transition-colors">
       <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* About */}
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
               {mounted ? t(translations.footer.about, language) : "About MindWell"}
             </h3>
-            <p className="text-xs sm:text-sm text-gray-600 break-words mb-3">
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 break-words mb-3">
               {mounted 
                 ? (language === 'en'
                     ? "World's largest open-source mental health platform providing comprehensive, scientifically-backed, free mental health support to everyone, everywhere."
                     : "বিশ্বের বৃহত্তম ওপেন-সোর্স মানসিক স্বাস্থ্য প্ল্যাটফর্ম সবার জন্য ব্যাপক, বৈজ্ঞানিকভাবে সমর্থিত, বিনামূল্যে মানসিক স্বাস্থ্য সহায়তা প্রদান করে।")
                 : "World's largest open-source mental health platform providing comprehensive, scientifically-backed, free mental health support to everyone, everywhere."}
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               {mounted
                 ? (language === 'en' ? "Created with" : "তৈরি করা হয়েছে")
                 : "Created with"}{" "}
@@ -41,17 +41,22 @@ export function Footer() {
                 ? (language === 'en' ? "for mental health awareness" : "মানসিক স্বাস্থ্য সচেতনতার জন্য")
                 : "for mental health awareness"}
             </p>
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 italic">
+              {mounted
+                ? (language === 'en' ? "📱 Mobile APK under development" : "📱 মোবাইল APK ডেভেলপমেন্টের অধীনে")
+                : "📱 Mobile APK under development"}
+            </p>
           </div>
 
           {/* Contact Information */}
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
               {mounted ? t(translations.footer.contact, language) : "Contact"}
             </h3>
             <div className="space-y-2">
               <a
                 href={`mailto:${config.contact.email}`}
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
               >
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <span>{config.contact.email}</span>
@@ -60,7 +65,7 @@ export function Footer() {
                 href={config.contact.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
               >
                 <Globe className="h-4 w-4 flex-shrink-0" />
                 <span>rudra496.github.io/site</span>
@@ -69,23 +74,41 @@ export function Footer() {
                 href={config.contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 hover:text-teal-600 transition-colors break-words"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
               >
                 <Github className="h-4 w-4 flex-shrink-0" />
                 <span>github.com/rudra496/mindwell</span>
               </a>
+              <a
+                href={config.contact.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
+              >
+                <Facebook className="h-4 w-4 flex-shrink-0" />
+                <span>{mounted ? (language === 'en' ? "MindWell Facebook Page" : "মাইন্ডওয়েল ফেসবুক পেজ") : "MindWell Facebook Page"}</span>
+              </a>
             </div>
-            <p className="text-sm text-gray-500 mt-3">
-              {mounted ? t(translations.common.inspiredBy, language) : "Inspired by Prof. Farzana Hussain, Ph.D."}
+            <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+              {mounted ? (language === 'en' ? "Inspired by" : "অনুপ্রাণিত") : "Inspired by"}{" "}
+              <a
+                href={config.advisors.farzanaLinkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 font-medium transition-colors"
+              >
+                Prof. Farzana Hussain, Ph.D.
+                <Linkedin className="h-3 w-3" />
+              </a>
             </p>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
+            <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
               {mounted ? t(translations.footer.important, language) : "Important"}
             </h3>
-            <div className="space-y-2 text-xs sm:text-sm text-gray-600">
+            <div className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               <p className="break-words">
                 <strong>
                   {mounted ? (language === 'en' ? "Crisis Support:" : "সংকট সহায়তা:") : "Crisis Support:"}

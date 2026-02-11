@@ -162,6 +162,13 @@ export function AdvisorsModal({ open, onOpenChange }: { open: boolean; onOpenCha
             </div>
           )}
 
+          {/* Notice about Future Psychologists */}
+          <div className="p-3 sm:p-4 bg-teal-50 border-2 border-teal-200 rounded-lg">
+            <p className="text-sm sm:text-base text-teal-900 text-center font-medium">
+              ✨ More psychologists will be added over time to provide you with the best possible service and support
+            </p>
+          </div>
+
           {/* Additional Information */}
           <div className="p-3 sm:p-4 bg-gray-50 border border-gray-200 rounded-lg">
             <p className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Need Professional Help?</p>
