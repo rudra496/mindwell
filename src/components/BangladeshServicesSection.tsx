@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, Shield, Users, CheckCircle } from "lucide-react"
+import { Heart, Shield, Users, CheckCircle, Phone, MapPin, Globe } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
 import { CONTENT_COUNTS } from "@/lib/constants"
@@ -59,30 +59,39 @@ export function BangladeshServicesSection() {
     {
       name: { en: "Kaan Pete Roi", bn: "কান পেতে রই" },
       description: { en: "24/7 Emotional Support Helpline", bn: "২৪/৭ আবেগিক সহায়তা হেল্পলাইন" },
-      contact: "09678 676 777"
+      phone: "09678676777",
+      phoneDisplay: "09678 676 777",
+      website: "https://www.shuni.org/",
+      location: { en: "Nationwide, Bangladesh", bn: "সারাদেশব্যাপী, বাংলাদেশ" }
     },
     {
-      name: { en: "National Mental Health Institute", bn: "জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট" },
-      description: { en: "Professional Mental Health Services", bn: "পেশাদার মানসিক স্বাস্থ্য সেবা" },
-      contact: "Sher-e-Bangla Nagar, Dhaka"
+      name: { en: "National Mental Health Institute (NIMH)", bn: "জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট (NIMH)" },
+      description: { en: "Professional Mental Health Services & Treatment", bn: "পেশাদার মানসিক স্বাস্থ্য সেবা এবং চিকিৎসা" },
+      phone: "029126613",
+      phoneDisplay: "+880-2-9126613",
+      website: "http://www.nimh.gov.bd/",
+      location: { en: "Sher-e-Bangla Nagar, Dhaka-1207", bn: "শেরে বাংলা নগর, ঢাকা-১২০৭" }
     },
     {
-      name: { en: "NIMH Hospital", bn: "এনআইএমএইচ হাসপাতাল" },
-      description: { en: "Psychiatric Treatment & Counseling", bn: "মানসিক রোগের চিকিৎসা এবং পরামর্শ" },
-      contact: "Contact: +880-2-9126613"
+      name: { en: "Bangladesh Association for Psychiatry", bn: "বাংলাদেশ অ্যাসোসিয়েশন ফর সাইকিয়াট্রি" },
+      description: { en: "Professional psychiatric support and resources", bn: "পেশাদার মনোরোগ সহায়তা এবং সম্পদ" },
+      phone: "029126613",
+      phoneDisplay: "+880-2-9126613",
+      website: "https://bap.org.bd/",
+      location: { en: "Dhaka, Bangladesh", bn: "ঢাকা, বাংলাদেশ" }
     }
   ]
 
   return (
-    <section className="mb-12 bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border-2 border-green-200" id="bangladesh-services">
+    <section className="mb-12 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 rounded-2xl p-8 border-2 border-green-200 dark:border-green-800 transition-colors" id="bangladesh-services">
       <div className="text-center mb-8">
         <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full mb-4">
           <Heart className="h-8 w-8 text-white" />
         </div>
-        <h2 className="text-3xl sm:text-4xl font-bold text-green-900 mb-3">
+        <h2 className="text-3xl sm:text-4xl font-bold text-green-900 dark:text-green-300 mb-3">
           {mounted ? t(translations.bangladesh.title, language) : "Free Services in Bangladesh 🇧🇩"}
         </h2>
-        <p className="text-gray-700 max-w-2xl mx-auto text-lg">
+        <p className="text-gray-700 dark:text-gray-300 max-w-2xl mx-auto text-lg">
           {mounted ? t(translations.bangladesh.description, language) : "All MindWell services are completely free for users in Bangladesh. We are committed to making mental health support accessible to everyone."}
         </p>
       </div>
@@ -91,26 +100,26 @@ export function BangladeshServicesSection() {
         {services.map((service, index) => (
           <div 
             key={index} 
-            className="flex items-center gap-3 bg-white/80 rounded-lg p-4 border border-green-200 hover:shadow-md transition-all"
+            className="flex items-center gap-3 bg-white/80 dark:bg-slate-800/80 rounded-lg p-4 border border-green-200 dark:border-green-800 hover:shadow-md transition-all"
           >
-            <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
-            <span className="text-gray-800 font-medium">
+            <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" />
+            <span className="text-gray-800 dark:text-gray-200 font-medium">
               {mounted ? (language === 'en' ? service.en : service.bn) : service.en}
             </span>
           </div>
         ))}
       </div>
 
-      <div className="bg-white/60 rounded-xl p-6 border border-green-200 mb-6">
+      <div className="bg-white/60 dark:bg-slate-800/60 rounded-xl p-6 border border-green-200 dark:border-green-800 mb-6 transition-colors">
         <div className="flex items-start gap-4">
-          <Shield className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+          <Shield className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" />
           <div>
-            <h3 className="font-bold text-green-900 mb-2">
+            <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">
               {mounted 
                 ? (language === 'en' ? "Commitment to Accessibility" : "অ্যাক্সেসযোগ্যতার প্রতিশ্রুতি")
                 : "Commitment to Accessibility"}
             </h3>
-            <p className="text-gray-700 text-sm">
+            <p className="text-gray-700 dark:text-gray-300 text-sm">
               {mounted
                 ? (language === 'en'
                     ? "MindWell is developed with a focus on Bangladesh and similar low-resource settings. We align with government and NGO initiatives to improve mental health awareness and support in our communities."
@@ -121,26 +130,53 @@ export function BangladeshServicesSection() {
         </div>
       </div>
 
-      <div className="bg-white/80 rounded-xl p-6 border border-green-200">
-        <h3 className="font-bold text-green-900 mb-4 text-lg">
+      <div className="bg-white/80 dark:bg-slate-800/80 rounded-xl p-6 border border-green-200 dark:border-green-800 transition-colors">
+        <h3 className="font-bold text-green-900 dark:text-green-300 mb-4 text-lg">
           {mounted 
             ? (language === 'en' ? "Bangladesh Mental Health Resources" : "বাংলাদেশ মানসিক স্বাস্থ্য সংস্থান")
             : "Bangladesh Mental Health Resources"}
         </h3>
         <div className="space-y-4">
           {bdResources.map((resource, index) => (
-            <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
-              <Users className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-900">
-                  {mounted ? (language === 'en' ? resource.name.en : resource.name.bn) : resource.name.en}
-                </h4>
-                <p className="text-sm text-gray-700">
-                  {mounted ? (language === 'en' ? resource.description.en : resource.description.bn) : resource.description.en}
-                </p>
-                <p className="text-sm text-green-700 font-medium mt-1">
-                  {resource.contact}
-                </p>
+            <div key={index} className="p-4 bg-green-50 dark:bg-slate-900/50 rounded-lg border border-green-100 dark:border-green-900 transition-colors">
+              <div className="flex items-start gap-3 mb-3">
+                <Users className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900 dark:text-gray-100 text-lg">
+                    {mounted ? (language === 'en' ? resource.name.en : resource.name.bn) : resource.name.en}
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                    {mounted ? (language === 'en' ? resource.description.en : resource.description.bn) : resource.description.en}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-2 mt-3 pl-8">
+                {/* Phone */}
+                <a 
+                  href={`tel:${resource.phone}`}
+                  className="flex items-center gap-2 text-sm text-green-700 dark:text-green-400 font-medium hover:text-green-800 dark:hover:text-green-300 transition-colors"
+                >
+                  <Phone className="h-4 w-4" />
+                  <span>{resource.phoneDisplay}</span>
+                </a>
+                
+                {/* Location */}
+                <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                  <MapPin className="h-4 w-4" />
+                  <span>{mounted ? (language === 'en' ? resource.location.en : resource.location.bn) : resource.location.en}</span>
+                </div>
+                
+                {/* Website */}
+                <a 
+                  href={resource.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm text-teal-600 dark:text-teal-400 font-medium hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
+                >
+                  <Globe className="h-4 w-4" />
+                  <span>{mounted ? (language === 'en' ? "Visit Website" : "ওয়েবসাইট দেখুন") : "Visit Website"}</span>
+                </a>
               </div>
             </div>
           ))}
