@@ -18,7 +18,10 @@ export function useLanguage() {
     // Restore scroll position after language change refresh
     const savedScrollPosition = sessionStorage.getItem('mindwell_scroll_position')
     if (savedScrollPosition) {
-      window.scrollTo(0, parseInt(savedScrollPosition, 10))
+      const scrollY = parseInt(savedScrollPosition, 10)
+      if (!isNaN(scrollY) && scrollY >= 0) {
+        window.scrollTo(0, scrollY)
+      }
       sessionStorage.removeItem('mindwell_scroll_position')
     }
   }, [])

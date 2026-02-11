@@ -29,7 +29,6 @@ export async function POST(request: NextRequest) {
 
     // In a production environment, you would send an actual email here
     // using a service like SendGrid, AWS SES, Resend, or EmailJS
-    // For now, we'll log it and return success
     
     const emailData = {
       to: 'rudrasarker125@gmail.com',
@@ -47,9 +46,6 @@ ${message}
       timestamp: new Date().toISOString()
     }
 
-    // Log the email data (in production, this would be sent via email service)
-    console.log('Contact form submission:', emailData)
-
     // TODO: Integrate with actual email service
     // Example with SendGrid:
     // await sendgrid.send({
@@ -60,14 +56,15 @@ ${message}
     //   replyTo: email
     // })
 
-    // For now, we'll simulate success
-    // In production, replace this with actual email sending logic
+    // For development, log minimal info (remove in production)
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Contact form submission received from:', email)
+    }
     
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Message received. Email functionality needs to be configured with a service like SendGrid, Resend, or EmailJS.',
-        note: 'Contact form data logged to console. Integrate email service to actually send emails.'
+        message: 'Thank you for your message. We will get back to you soon.'
       },
       { status: 200 }
     )

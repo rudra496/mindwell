@@ -12,6 +12,13 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+// Helper function to apply theme to document
+function applyThemeToDocument(theme: Theme) {
+  if (typeof window !== 'undefined') {
+    document.documentElement.classList.toggle("dark", theme === "dark")
+  }
+}
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("light")
   const [mounted, setMounted] = useState(false)
@@ -22,13 +29,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const stored = localStorage.getItem("mindwell_theme") as Theme | null
     if (stored === "light" || stored === "dark") {
       setThemeState(stored)
-      document.documentElement.classList.toggle("dark", stored === "dark")
+      applyThemeToDocument(stored)
     } else {
       // Check system preference
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
       const initialTheme = prefersDark ? "dark" : "light"
       setThemeState(initialTheme)
-      document.documentElement.classList.toggle("dark", prefersDark)
+      applyThemeToDocument(initialTheme)
     }
   }, [])
 
@@ -36,7 +43,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(newTheme)
     if (typeof window !== 'undefined') {
       localStorage.setItem("mindwell_theme", newTheme)
-      document.documentElement.classList.toggle("dark", newTheme === "dark")
+      applyThemeToDocument(newTheme)
     }
   }
 
