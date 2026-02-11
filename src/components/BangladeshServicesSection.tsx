@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Heart, Shield, Users, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
+import { CONTENT_COUNTS } from "@/lib/constants"
 
 /**
  * Free Services in Bangladesh Section
@@ -25,8 +26,8 @@ export function BangladeshServicesSection() {
       bn: "সমস্ত মানসিক স্বাস্থ্য মূল্যায়ন" 
     },
     { 
-      en: "Therapeutic Games & Activities", 
-      bn: "থেরাপিউটিক গেম এবং কার্যক্রম" 
+      en: "Wellness Activities & Interactive Tools", 
+      bn: "সুস্থতা কার্যক্রম এবং ইন্টারঅ্যাক্টিভ সরঞ্জাম" 
     },
     { 
       en: "Meditation & Mindfulness Guides", 
@@ -44,13 +45,31 @@ export function BangladeshServicesSection() {
       en: "Community Support Forums", 
       bn: "কমিউনিটি সহায়তা ফোরাম" 
     },
-    { 
-      en: "AI Mental Health Chatbot", 
-      bn: "AI মানসিক স্বাস্থ্য চ্যাটবট" 
+    {
+      en: `Mental Health Education on ${CONTENT_COUNTS.disorders}+ Conditions`, 
+      bn: `${CONTENT_COUNTS.disorders}+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান` 
     },
-    { 
-      en: "Educational Materials on 63+ Disorders", 
-      bn: "৬৩+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান" 
+    {
+      en: "24/7 Kaan Pete Roi Helpline: 09678 676 777",
+      bn: "২৪/৭ কান পেতে রই হেল্পলাইন: ০৯৬৭৮ ৬৭৬ ৭৭৭"
+    }
+  ]
+
+  const bdResources = [
+    {
+      name: { en: "Kaan Pete Roi", bn: "কান পেতে রই" },
+      description: { en: "24/7 Emotional Support Helpline", bn: "২৪/৭ আবেগিক সহায়তা হেল্পলাইন" },
+      contact: "09678 676 777"
+    },
+    {
+      name: { en: "National Mental Health Institute", bn: "জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট" },
+      description: { en: "Professional Mental Health Services", bn: "পেশাদার মানসিক স্বাস্থ্য সেবা" },
+      contact: "Sher-e-Bangla Nagar, Dhaka"
+    },
+    {
+      name: { en: "NIMH Hospital", bn: "এনআইএমএইচ হাসপাতাল" },
+      description: { en: "Psychiatric Treatment & Counseling", bn: "মানসিক রোগের চিকিৎসা এবং পরামর্শ" },
+      contact: "Contact: +880-2-9126613"
     }
   ]
 
@@ -82,7 +101,7 @@ export function BangladeshServicesSection() {
         ))}
       </div>
 
-      <div className="bg-white/60 rounded-xl p-6 border border-green-200">
+      <div className="bg-white/60 rounded-xl p-6 border border-green-200 mb-6">
         <div className="flex items-start gap-4">
           <Shield className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
           <div>
@@ -99,6 +118,32 @@ export function BangladeshServicesSection() {
                 : "MindWell is developed with a focus on Bangladesh and similar low-resource settings. We align with government and NGO initiatives to improve mental health awareness and support in our communities."}
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="bg-white/80 rounded-xl p-6 border border-green-200">
+        <h3 className="font-bold text-green-900 mb-4 text-lg">
+          {mounted 
+            ? (language === 'en' ? "Bangladesh Mental Health Resources" : "বাংলাদেশ মানসিক স্বাস্থ্য সংস্থান")
+            : "Bangladesh Mental Health Resources"}
+        </h3>
+        <div className="space-y-4">
+          {bdResources.map((resource, index) => (
+            <div key={index} className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+              <Users className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+              <div className="flex-1">
+                <h4 className="font-semibold text-gray-900">
+                  {mounted ? (language === 'en' ? resource.name.en : resource.name.bn) : resource.name.en}
+                </h4>
+                <p className="text-sm text-gray-700">
+                  {mounted ? (language === 'en' ? resource.description.en : resource.description.bn) : resource.description.en}
+                </p>
+                <p className="text-sm text-green-700 font-medium mt-1">
+                  {resource.contact}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -38,6 +38,7 @@ import { OurSupportSection } from "@/components/OurSupportSection"
 import { BangladeshServicesSection } from "@/components/BangladeshServicesSection"
 import { SDGSection } from "@/components/SDGSection"
 import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
+import { MedicalDisclaimer } from "@/components/safety/MedicalDisclaimer"
 import { config } from "@/lib/config"
 
 export default function HomePage() {
@@ -124,27 +125,19 @@ export default function HomePage() {
           <AlertCircle className="h-5 w-5 sm:h-6 sm:w-6 text-red-600 flex-shrink-0 mt-0.5" />
           <div className="flex-1">
             <h2 className="text-base sm:text-lg font-bold text-red-900 mb-1 sm:mb-2 break-words">
-              ⚠️ IN CRISIS? GET HELP NOW
+              In Crisis? Get Help Now
             </h2>
             <div className="space-y-1 text-xs sm:text-sm text-red-800">
-              <p className="break-words"><strong>US:</strong> Call or text <strong>988</strong> (Suicide & Crisis Lifeline) - Available 24/7</p>
-              <p className="break-words"><strong>Crisis Text Line:</strong> Text <strong>HELLO</strong> to <strong>741741</strong></p>
-              <p className="break-words"><strong>Emergency:</strong> Call <strong>911</strong> or go to nearest emergency room</p>
+              <p className="break-words"><strong>Bangladesh:</strong> Call <strong>Kaan Pete Roi: 09678 676 777</strong> (24/7)</p>
+              <p className="break-words"><strong>US:</strong> Call or text <strong>988</strong> (Suicide & Crisis Lifeline)</p>
+              <p className="break-words"><strong>Emergency:</strong> Call <strong>999</strong> (Bangladesh) or <strong>911</strong> (US)</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Medical Disclaimer */}
-      <div className="mb-8 sm:mb-12 rounded-lg bg-amber-50 border-2 border-amber-400 p-4 sm:p-6">
-        <h3 className="text-base sm:text-lg font-bold text-amber-900 mb-2 break-words">
-          ⚕️ Medical Disclaimer
-        </h3>
-        <p className="text-xs sm:text-sm text-amber-800 break-words">
-          <strong>FOR EDUCATIONAL PURPOSES ONLY.</strong> This platform is NOT a substitute for professional medical advice, diagnosis, or treatment. 
-          ALWAYS consult licensed mental health professionals. Assessments are screening tools, NOT diagnostic instruments.
-        </p>
-      </div>
+      <MedicalDisclaimer variant="compact" className="mb-8 sm:mb-12" />
 
       {/* Voice Control Panel */}
       <div className="flex justify-center mb-8">
@@ -158,52 +151,52 @@ export default function HomePage() {
       <div id="features" className="mb-8 sm:mb-12">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent mb-3">
-            What MindWell Offers
+            How MindWell Helps
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Comprehensive tools and resources for your mental health journey
+            Guidance, education, and support for your mental wellbeing journey
           </p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        {/* Disorders Database */}
+        {/* Mental Health Education */}
         <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
               <Stethoscope className="h-6 w-6 sm:h-8 sm:w-8 text-primary transition-transform hover:scale-110 hover:rotate-12" />
-              <CardTitle className="text-base sm:text-lg break-words">Disorders Database</CardTitle>
+              <CardTitle className="text-base sm:text-lg break-words">Mental Health Education</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
-              63+ Mental Health Conditions
+              Learn About Mental Health Conditions
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Comprehensive DSM-5 information including symptoms, causes, treatments, and research-backed solutions for all major mental health disorders.
+              Educational information about mental health conditions, symptoms, and evidence-based approaches. For awareness and understanding, not diagnosis.
             </p>
             <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setDisordersOpen(true)}>
-              Explore Disorders
+              Learn More
             </Button>
           </CardContent>
         </Card>
 
-        {/* Self-Assessments */}
+        {/* Self-Reflection Tools */}
         <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-100">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
               <ClipboardList className="h-6 w-6 sm:h-8 sm:w-8 text-secondary transition-transform hover:scale-110 hover:rotate-12" />
-              <CardTitle className="text-base sm:text-lg break-words">Self-Assessments</CardTitle>
+              <CardTitle className="text-base sm:text-lg break-words">Self-Reflection Tools</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
-              20 Validated Screening Tools
+              Validated Screening Questionnaires
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Clinically validated questionnaires including PHQ-9 (Depression), GAD-7 (Anxiety), PCL-5 (PTSD), and more with proper scoring.
+              Self-reflection questionnaires to help understand your wellbeing. These are educational screening tools, not diagnostic instruments.
             </p>
             <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setAssessmentOpen(true)}>
-              Take Assessment
+              Explore Tools
             </Button>
           </CardContent>
         </Card>
@@ -213,39 +206,39 @@ export default function HomePage() {
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
               <Gamepad2 className="h-6 w-6 sm:h-8 sm:w-8 text-accent transition-transform hover:scale-110 hover:rotate-12" />
-              <CardTitle className="text-base sm:text-lg break-words">Therapeutic Games</CardTitle>
+              <CardTitle className="text-base sm:text-lg break-words">Wellness Activities</CardTitle>
             </div>
             <CardDescription className="text-xs sm:text-sm">
-              16 Interactive Wellness Tools
+              Interactive Mindfulness Tools
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Evidence-based activities with progressive difficulty levels including breathing exercises, memory challenges, cognitive tests, and focus training games.
+              Evidence-based interactive activities including breathing exercises, memory challenges, cognitive training, and mindfulness practices.
             </p>
             <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setGamesOpen(true)}>
-              Play Games
+              Try Activities
             </Button>
           </CardContent>
         </Card>
 
-        {/* AI Chatbot */}
-        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary hover:scale-105 bg-white/80 backdrop-blur-sm animate-fade-in animate-delay-300">
+        {/* AI Support - PAUSED */}
+        <Card className="hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-orange-400 hover:scale-105 bg-orange-50/50 backdrop-blur-sm animate-fade-in animate-delay-300 opacity-75">
           <CardHeader className="p-4 sm:p-6">
             <div className="flex items-center gap-2 sm:gap-3 mb-2">
-              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-indigo-500 transition-transform hover:scale-110 hover:rotate-12" />
-              <CardTitle className="text-base sm:text-lg break-words">AI Support Chatbot</CardTitle>
+              <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 text-orange-500 transition-transform hover:scale-110 hover:rotate-12" />
+              <CardTitle className="text-base sm:text-lg break-words">AI Support (Paused)</CardTitle>
             </div>
-            <CardDescription className="text-xs sm:text-sm">
-              24/7 Empathetic Companion
+            <CardDescription className="text-xs sm:text-sm text-orange-700">
+              Under Safety Review
             </CardDescription>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 break-words">
-              Compassionate AI trained in mental health support, crisis detection, coping strategies, and psychoeducation. Available anytime.
+              This feature is temporarily paused to ensure ethical standards and user safety. We're committed to providing safe mental health support.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all hover:scale-105" variant="outline" onClick={() => setChatbotOpen(true)}>
-              Chat Now
+            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all" variant="outline" onClick={() => setChatbotOpen(true)} disabled={false}>
+              Learn More
             </Button>
           </CardContent>
         </Card>

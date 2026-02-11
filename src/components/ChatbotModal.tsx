@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { AlertCircle, Send, Loader2, RotateCcw } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { featureFlags } from "@/lib/featureFlags"
+import { FeaturePausedNotice } from "@/components/safety/FeaturePausedNotice"
 
 interface Message {
   role: "user" | "assistant"
@@ -190,6 +192,26 @@ You are warm, empathetic, and non-judgmental.`,
       setMessages([])
       setShowDisclaimer(true)
     }
+  }
+
+  // PAUSED FOR SAFETY REVIEW - DO NOT DELETE
+  // AI Chatbot requires clinical validation and proper crisis handling
+  if (!featureFlags.enableAIChatbot) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-xl sm:text-2xl break-words">AI Mental Health Support</DialogTitle>
+            <DialogDescription className="text-xs sm:text-sm">
+              Compassionate AI assistance for mental health support
+            </DialogDescription>
+          </DialogHeader>
+          <div className="py-6">
+            <FeaturePausedNotice featureName="AI Chatbot" />
+          </div>
+        </DialogContent>
+      </Dialog>
+    )
   }
 
   return (
