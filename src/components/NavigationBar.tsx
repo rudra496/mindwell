@@ -1,21 +1,27 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/Logo"
+import { LanguageToggle } from "@/components/LanguageToggle"
 import {
-  Brain,
   ClipboardList,
   Phone,
   Users,
   MessageCircle,
   Menu,
-  X,
   Home,
   BookOpen,
   Sparkles,
   Gamepad2,
-  Stethoscope
+  Stethoscope,
+  Target,
+  Heart,
+  Info,
+  Mail
 } from "lucide-react"
+import { useLanguage } from "@/lib/useLanguage"
+import { translations, t } from "@/lib/i18n"
 
 interface NavigationBarProps {
   onNavigate: (section: string) => void
@@ -23,17 +29,24 @@ interface NavigationBarProps {
 
 export function NavigationBar({ onNavigate }: NavigationBarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { language } = useLanguage()
+  const [mounted, setMounted] = useState(false)
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Navigation items organized by new requirements
   const navItems = [
-    { id: "home", label: "Home", icon: Home, color: "text-teal-600" },
-    { id: "disorders", label: "Mental Health Info", icon: Stethoscope, color: "text-primary" },
-    { id: "assessments", label: "Assessments", icon: ClipboardList, color: "text-secondary" },
-    { id: "games", label: "Therapeutic Games", icon: Gamepad2, color: "text-accent" },
-    { id: "therapy", label: "Therapy Techniques", icon: BookOpen, color: "text-teal-500" },
-    { id: "meditation", label: "Meditation", icon: Sparkles, color: "text-pink-500" },
-    { id: "chatbot", label: "AI Support", icon: MessageCircle, color: "text-indigo-500" },
-    { id: "community", label: "Community", icon: Users, color: "text-purple-500" },
-    { id: "crisis", label: "Crisis Support", icon: Phone, color: "text-red-600" }
+    { id: "home", label: mounted ? t(translations.nav.home, language) : "Home", icon: Home },
+    { id: "self-help", label: mounted ? t(translations.nav.selfHelpTools, language) : "Self-Help Tools", icon: Gamepad2 },
+    { id: "therapy", label: mounted ? t(translations.nav.therapyMeditation, language) : "Therapy & Meditation", icon: Sparkles },
+    { id: "psychologists", label: mounted ? t(translations.nav.psychologists, language) : "Psychologists", icon: Stethoscope },
+    { id: "crisis", label: mounted ? t(translations.nav.crisisHelp, language) : "Crisis Help", icon: Phone },
+    { id: "bangladesh", label: mounted ? t(translations.nav.bangladeshServices, language) : "Free Services in Bangladesh 🇧🇩", icon: Heart },
+    { id: "sdg", label: mounted ? t(translations.nav.sdgMission, language) : "SDG & Our Mission", icon: Target },
+    { id: "about", label: mounted ? t(translations.nav.about, language) : "About Us", icon: Info },
+    { id: "contact", label: mounted ? t(translations.nav.contact, language) : "Contact & Support", icon: Mail }
   ]
 
   const handleNavClick = (id: string) => {
@@ -44,18 +57,16 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden lg:block bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200">
+      <nav className="hidden lg:block bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200" role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
               onClick={() => handleNavClick("home")}
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg p-2"
+              aria-label="MindWell Home"
             >
-              <Brain className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
-                MindWell
-              </span>
+              <Logo variant="full" className="h-8" />
             </button>
 
             {/* Navigation Items */}
@@ -66,42 +77,50 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center gap-2 ${item.color} hover:bg-gray-100 transition-all`}
+                  className="flex items-center gap-2 text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-all"
+                  aria-label={item.label}
                 >
                   <item.icon className="h-4 w-4" />
                   <span className="text-sm font-medium">{item.label}</span>
                 </Button>
               ))}
+              
+              {/* Language Toggle */}
+              <LanguageToggle />
             </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="lg:hidden bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200">
+      <nav className="lg:hidden bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200" role="navigation" aria-label="Mobile navigation">
         <div className="container mx-auto px-3 py-3">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <button
               onClick={() => handleNavClick("home")}
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+              className="flex items-center gap-2 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg p-1"
+              aria-label="MindWell Home"
             >
-              <Brain className="h-7 w-7 text-primary" />
-              <span className="text-lg font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
-                MindWell
-              </span>
+              <Logo variant="full" className="h-7" />
             </button>
 
-            {/* Mobile Menu Button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Language Toggle */}
+              <LanguageToggle />
+              
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2"
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
+              >
+                {mobileMenuOpen ? <Menu className="h-6 w-6 rotate-90 transition-transform" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Dropdown */}
@@ -112,56 +131,10 @@ export function NavigationBar({ onNavigate }: NavigationBarProps) {
                   key={item.id}
                   variant="ghost"
                   onClick={() => handleNavClick(item.id)}
-                  className={`w-full justify-start ${item.color} hover:bg-gray-100 transition-all min-h-[48px]`}
+                  className="w-full justify-start text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-all min-h-[48px]"
+                  aria-label={item.label}
                 >
                   <item.icon className="h-5 w-5 mr-3" />
-                  <span className="text-sm font-medium">{item.label}</span>
-                </Button>
-              ))}
-            </div>
-          )}
-        </div>
-      </nav>
-
-      {/* Tablet Navigation (md breakpoint) */}
-      <nav className="hidden md:block lg:hidden bg-white/90 backdrop-blur-md shadow-md sticky top-0 z-40 border-b-2 border-teal-200">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between mb-2">
-            {/* Logo */}
-            <button
-              onClick={() => handleNavClick("home")}
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-            >
-              <Brain className="h-8 w-8 text-primary" />
-              <span className="text-xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 bg-clip-text text-transparent">
-                MindWell
-              </span>
-            </button>
-
-            {/* Mobile Menu Button for Tablet */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
-
-          {/* Tablet Menu */}
-          {mobileMenuOpen && (
-            <div className="grid grid-cols-2 gap-2 border-t pt-2">
-              {navItems.slice(1).map((item) => (
-                <Button
-                  key={item.id}
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleNavClick(item.id)}
-                  className={`flex items-center gap-2 ${item.color} hover:bg-gray-100 transition-all justify-start min-h-[44px]`}
-                >
-                  <item.icon className="h-4 w-4" />
                   <span className="text-sm font-medium">{item.label}</span>
                 </Button>
               ))}
