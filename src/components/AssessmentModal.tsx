@@ -280,13 +280,14 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             <p className="text-xs sm:text-sm text-gray-600">Over the last 2 weeks, how often have you experienced this?</p>
 
             <RadioGroup
-              value={answers[question.id]?.toString()}
+              key={`question-${currentQuestion}-${question.id}`}
+              value={answers[question.id]?.toString() || ""}
               onValueChange={(value) => handleAnswer(question.id, parseInt(value))}
             >
               {question.options.map((option: { value: number; label: string }) => (
-                <div key={option.value} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px] sm:min-h-[48px]">
-                  <RadioGroupItem value={option.value.toString()} id={`q${question.id}-${option.value}`} />
-                  <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words">
+                <div key={`${question.id}-${option.value}`} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px] sm:min-h-[48px] cursor-pointer transition-colors">
+                  <RadioGroupItem value={option.value.toString()} id={`q${question.id}-${option.value}`} className="cursor-pointer" />
+                  <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words leading-relaxed">
                     {option.label}
                   </Label>
                 </div>

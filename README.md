@@ -25,6 +25,45 @@ Create the most comprehensive, scientifically-backed mental health support platf
 - 🔍 **SEO Optimization** - Improved discoverability with robots.txt, sitemap.xml, and meta tags
 - ⚡ **Production Ready** - Optimized Vercel deployment with security headers
 
+### 🆘 Crisis Support & Suicide Prevention (February 2026)
+- 💙 **Comprehensive Suicide Prevention Section** - New dedicated section with NIMH/WHO-based educational content, always shown FIRST in crisis resources
+- ⚠️ **Enhanced Crisis Detection** - Improved AI chatbot crisis detection with prominent emergency instructions displayed immediately
+- 🏥 **Bangladesh Mental Health Services** - Added information about 5 government hospitals providing low-cost mental health care (approx. BDT 10)
+- 🗺️ **Google Maps Integration** - Direct Google Maps links to all Bangladesh government mental health facilities for easy navigation
+- 🌐 **Bangla Language Support** - Full Bangla translations for crisis instructions, suicide prevention content, and emergency guidance
+- 🎯 **Emergency-First Design** - All crisis-related features prominently display emergency options BEFORE other content
+- 🧭 **Professional Navigation Bar** - New responsive navigation with clear access to all features including crisis support
+- 🔧 **Assessment Bug Fixes** - Fixed critical radio button responsiveness issue in self-assessment tools
+
+## 🆘 Suicide Prevention & Crisis Support
+
+**⚠️ EMERGENCY: If you or someone you know is in immediate danger, call emergency services (911 in US, 999 in Bangladesh) or go to the nearest emergency room immediately.**
+
+### Crisis Resources Available 24/7
+- **US Suicide & Crisis Lifeline:** Call or text **988**
+- **Crisis Text Line (US):** Text **HELLO** to **741741**
+- **International Crisis Resources:** Available in 12+ countries including US, UK, Canada, Australia, Bangladesh
+
+### Educational Suicide Prevention Content
+Our platform includes evidence-based warning signs and self-reflection questions adapted from:
+- National Institute of Mental Health (NIMH) guidelines
+- World Health Organization (WHO) recommendations
+- Professional psychiatric associations
+
+**Important:** This content is educational only. It provides NO scoring, NO interpretation, and NO diagnosis. Emergency services and professional help are ALWAYS the first option for anyone experiencing suicidal thoughts.
+
+### Bangladesh Mental Health Services (Free & Low-Cost)
+
+Government hospitals offering psychiatric and psychological services for approximately **BDT 10**:
+
+1. **National Institute of Mental Health (NIMH), Dhaka** - Specialized mental health facility
+2. **Dhaka Medical College Hospital** - General hospital with psychiatric department
+3. **Sir Salimullah Medical College (Mitford Hospital)** - Historic hospital with mental health services
+4. **Chittagong Medical College Hospital** - Major hospital in Chittagong
+5. **Pabna Mental Hospital** - Oldest and largest specialized mental health facility in Bangladesh
+
+**Note:** All facilities include Google Maps links for easy navigation. Availability, waiting times, and services may vary. MindWell does not manage or control these services.
+
 ## 📊 Platform Statistics
 
 - **63** Comprehensive Mental Health Disorders
@@ -477,6 +516,77 @@ All medical information is sourced from:
 - DSM-5 Diagnostic Criteria
 
 See [SOURCES.md](./SOURCES.md) for detailed citations.
+
+## 🌐 Language Support & Accessibility
+
+### Supported Languages
+- **Primary Language:** English (all features fully supported)
+- **Secondary Language:** Bangla/Bengali (crisis support, suicide prevention, emergency instructions)
+
+### Bangla Translation Coverage
+- ✅ Crisis instructions and emergency numbers
+- ✅ Suicide prevention section and warning signs
+- ✅ Bangladesh hospital information and services
+- ✅ Emergency help guidance
+- ✅ Google Maps links with Bangla labels
+
+**Translation Approach:** Static, professional translations are used for all safety-critical content. User input is NOT auto-translated to maintain accuracy and prevent miscommunication in crisis situations.
+
+### Accessibility Features
+- **Keyboard Navigation:** Full keyboard support for all interactive elements
+- **Screen Reader Compatible:** Semantic HTML and ARIA labels throughout
+- **Mobile-First Design:** Optimized for mobile devices with touch-friendly interfaces (44px minimum touch targets)
+- **High Contrast:** WCAG 2.1 AA compliant color contrasts
+- **Responsive Navigation:** Professional navigation bar adapts to desktop, tablet, and mobile screens
+- **Voice Control:** Voice command panel for hands-free navigation
+- **Clear Visual Hierarchy:** Emergency content always displayed first with prominent styling
+
+### Emergency-First UX Design
+All crisis and emergency content follows a strict hierarchy:
+1. **Emergency services** (911, 999) displayed FIRST and most prominently
+2. **Crisis hotlines** (988, crisis text lines) shown immediately after
+3. **Hospital information** and resources displayed next
+4. **Other support** resources shown last
+
+Visual styling uses calming colors (blues, teals, greens) while maintaining prominence through:
+- Gradient backgrounds for visual appeal
+- Border emphasis without aggressive red (except critical emergencies)
+- Clear typography and spacing
+- Professional, supportive tone
+
+## 🔒 Safety & Ethical Boundaries
+
+### What MindWell Does
+- ✅ Provides evidence-based educational information
+- ✅ Offers validated screening tools (not diagnostic)
+- ✅ Connects users to professional resources
+- ✅ Detects crisis language and provides immediate help
+- ✅ Maintains user privacy with local storage (IndexedDB)
+- ✅ References NIMH, WHO, and DSM-5 guidelines
+
+### What MindWell Does NOT Do
+- ❌ Diagnose medical or mental health conditions
+- ❌ Prescribe medications or treatments
+- ❌ Replace professional medical care
+- ❌ Provide emergency services directly
+- ❌ Store personal data on external servers (without consent)
+- ❌ Guarantee treatment outcomes
+
+### Known Limitations
+- AI chatbot provides general support only, not therapy
+- Assessments are screening tools, not diagnostic tests
+- Crisis resources list may not be comprehensive for all regions
+- Bangladesh hospital information subject to change (availability, costs, services)
+- Internet connection required for full functionality
+- Google Maps links require external service access
+
+### Ethical Commitments
+- **Transparency:** All limitations clearly stated
+- **Safety First:** Crisis detection and emergency resources prioritized
+- **No False Promises:** Clear disclaimers throughout
+- **Privacy Respected:** Local-first data storage
+- **Evidence-Based:** All medical content cited and sourced
+- **Cultural Sensitivity:** Bangladesh context included without removing global applicability
 
 ## ⚠️ Medical Disclaimer
 

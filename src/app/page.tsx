@@ -32,6 +32,7 @@ import { AdvisorsModal } from "@/components/AdvisorsModal"
 import MoodTracker from "@/components/games/MoodTracker"
 import { Footer } from "@/components/Footer"
 import { VoiceControlPanel } from "@/components/VoiceControlPanel"
+import { NavigationBar } from "@/components/NavigationBar"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -44,8 +45,47 @@ export default function HomePage() {
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
   const [advisorsOpen, setAdvisorsOpen] = useState(false)
 
+  const handleNavigate = (section: string) => {
+    switch (section) {
+      case "home":
+        // Scroll to top or reset view
+        window.scrollTo({ top: 0, behavior: "smooth" })
+        break
+      case "disorders":
+        setDisordersOpen(true)
+        break
+      case "assessments":
+        setAssessmentOpen(true)
+        break
+      case "games":
+        setGamesOpen(true)
+        break
+      case "therapy":
+        setTherapyTechniquesOpen(true)
+        break
+      case "meditation":
+        setMeditationOpen(true)
+        break
+      case "chatbot":
+        setChatbotOpen(true)
+        break
+      case "community":
+        setCommunityOpen(true)
+        break
+      case "crisis":
+        setCrisisOpen(true)
+        break
+      default:
+        break
+    }
+  }
+
   return (
-    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
+    <>
+      {/* Navigation Bar */}
+      <NavigationBar onNavigate={handleNavigate} />
+
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
       {/* Crisis Banner */}
       <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 border-2 border-red-500 p-3 sm:p-4">
         <div className="flex items-start gap-2 sm:gap-3">
@@ -441,6 +481,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <Footer />
+      </div>
 
       {/* Modals */}
       <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
@@ -456,6 +497,6 @@ export default function HomePage() {
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
       <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
       <AdvisorsModal open={advisorsOpen} onOpenChange={setAdvisorsOpen} />
-    </div>
+    </>
   )
 }

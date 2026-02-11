@@ -248,13 +248,30 @@ You are warm, empathetic, and non-judgmental.`,
               </div>
               
               {message.showCrisis && (
-                <Alert className="mt-2 border-red-500 bg-red-50">
-                  <AlertCircle className="h-4 w-4 text-red-600 flex-shrink-0" />
-                  <AlertDescription className="text-xs sm:text-sm text-red-900">
-                    <strong>Crisis Resources:</strong> If you're in crisis, please call <strong>988</strong> (Suicide & Crisis Lifeline) 
-                    or text <strong>HELLO</strong> to <strong>741741</strong>. For emergencies, call <strong>911</strong>.
-                  </AlertDescription>
-                </Alert>
+                <div className="mt-3 space-y-3">
+                  {/* PRIMARY EMERGENCY BANNER - FIRST AND MOST PROMINENT */}
+                  <Alert className="border-2 border-red-600 bg-gradient-to-r from-red-50 to-orange-50 shadow-lg">
+                    <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 animate-pulse" />
+                    <AlertDescription className="text-sm sm:text-base text-red-900">
+                      <p className="font-bold mb-2">⚠️ CRISIS DETECTED - Get Help Immediately:</p>
+                      <div className="space-y-1.5 text-xs sm:text-sm">
+                        <p className="font-semibold">🚨 <strong>Call 911</strong> or go to nearest emergency room (Life-threatening)</p>
+                        <p className="font-semibold">☎️ Call or text <strong>988</strong> - Suicide & Crisis Lifeline (24/7, Free)</p>
+                        <p className="font-semibold">💬 Text <strong>HELLO</strong> to <strong>741741</strong> - Crisis Text Line</p>
+                      </div>
+                    </AlertDescription>
+                  </Alert>
+                  
+                  {/* IMPORTANT INFORMATION */}
+                  <Alert className="border-amber-400 bg-amber-50">
+                    <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                    <AlertDescription className="text-xs sm:text-sm text-amber-900">
+                      <strong>You are not alone.</strong> Professional help is available right now. 
+                      Crisis counselors are trained to help people in your exact situation. 
+                      Reaching out is a sign of strength, not weakness.
+                    </AlertDescription>
+                  </Alert>
+                </div>
               )}
             </div>
           ))}

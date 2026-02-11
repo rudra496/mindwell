@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Phone, MessageSquare, Globe, AlertCircle, Stethoscope } from "lucide-react"
+import { Phone, MessageSquare, Globe, AlertCircle, Stethoscope, MapPin } from "lucide-react"
+import { SuicidePreventionSection } from "./SuicidePreventionSection"
 
 interface CrisisResource {
   id: string
@@ -52,13 +53,16 @@ export function CrisisModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-xl sm:text-2xl text-red-900 break-words">Crisis Resources - Get Help Now</DialogTitle>
+          <DialogTitle className="text-xl sm:text-2xl text-red-900 break-words">Emergency Help / Crisis Resources</DialogTitle>
           <DialogDescription className="text-xs sm:text-sm">
             Immediate support available 24/7 for mental health crises
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-4 sm:space-y-6">
+          {/* SUICIDE PREVENTION SECTION - FIRST AND MOST PROMINENT */}
+          <SuicidePreventionSection />
+
           {/* Emergency Banner */}
           <div className="p-3 sm:p-4 bg-red-50 border-2 border-red-500 rounded-lg">
             <div className="flex items-start gap-2 sm:gap-3">
@@ -144,29 +148,110 @@ export function CrisisModal({
 
           {/* Bangladesh Free & Low-Cost Services - English */}
           {selectedCountry === 'Bangladesh' && (
-            <div className="p-3 sm:p-4 bg-green-50 border-2 border-green-400 rounded-lg">
-              <h3 className="font-bold text-green-900 mb-3 text-sm sm:text-base">
-                🏥 Free & Low-Cost Mental Health Services (Bangladesh)
+            <div className="p-3 sm:p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-500 rounded-lg shadow-md">
+              <h3 className="font-bold text-green-900 mb-3 text-sm sm:text-base flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                🏥 Bangladesh Government Mental Health Services (Free & Low-Cost)
               </h3>
               <div className="text-xs sm:text-sm text-green-800 mb-3">
-                <p className="font-semibold mb-2">Government Hospitals Offering Psychiatric & Psychological Services:</p>
-                <ul className="space-y-1.5 ml-4">
-                  <li>• National Institute of Mental Health (NIMH), Dhaka</li>
-                  <li>• Dhaka Medical College Hospital</li>
-                  <li>• Sir Salimullah Medical College (Mitford Hospital)</li>
-                  <li>• Chittagong Medical College Hospital</li>
-                  <li>• Pabna Mental Hospital</li>
-                </ul>
-                <p className="mt-3 font-medium">
-                  <strong>Cost:</strong> Very low cost services (approximately BDT 10 ticket fee in government hospitals)
+                <p className="font-semibold mb-3 text-green-900">
+                  Government Hospitals Offering Psychiatric & Psychological Services:
                 </p>
+                
+                <div className="space-y-3">
+                  {/* NIMH Dhaka */}
+                  <div className="p-3 bg-white rounded-lg border border-green-300">
+                    <p className="font-bold text-green-900 mb-1">• National Institute of Mental Health (NIMH), Dhaka</p>
+                    <p className="text-xs mb-2">Specialized mental health facility - Comprehensive psychiatric care</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=National+Institute+of+Mental+Health+Dhaka+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      View on Google Maps →
+                    </a>
+                  </div>
+
+                  {/* Dhaka Medical College Hospital */}
+                  <div className="p-3 bg-white rounded-lg border border-green-300">
+                    <p className="font-bold text-green-900 mb-1">• Dhaka Medical College Hospital</p>
+                    <p className="text-xs mb-2">General hospital with psychiatric department</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Dhaka+Medical+College+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      View on Google Maps →
+                    </a>
+                  </div>
+
+                  {/* Sir Salimullah Medical College */}
+                  <div className="p-3 bg-white rounded-lg border border-green-300">
+                    <p className="font-bold text-green-900 mb-1">• Sir Salimullah Medical College (Mitford Hospital)</p>
+                    <p className="text-xs mb-2">Historic hospital with mental health services</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Sir+Salimullah+Medical+College+Mitford+Hospital+Dhaka"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      View on Google Maps →
+                    </a>
+                  </div>
+
+                  {/* Chittagong Medical College Hospital */}
+                  <div className="p-3 bg-white rounded-lg border border-green-300">
+                    <p className="font-bold text-green-900 mb-1">• Chittagong Medical College Hospital</p>
+                    <p className="text-xs mb-2">Major hospital in Chittagong with psychiatric services</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Chittagong+Medical+College+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      View on Google Maps →
+                    </a>
+                  </div>
+
+                  {/* Pabna Mental Hospital */}
+                  <div className="p-3 bg-white rounded-lg border border-green-300">
+                    <p className="font-bold text-green-900 mb-1">• Pabna Mental Hospital</p>
+                    <p className="text-xs mb-2">Oldest and largest specialized mental health facility in Bangladesh</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Pabna+Mental+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      View on Google Maps →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-3 bg-green-100 rounded-lg border border-green-400">
+                  <p className="font-bold text-green-900 mb-1">
+                    💰 <strong>Cost:</strong> Very low cost services
+                  </p>
+                  <p className="text-xs">
+                    Government hospitals charge approximately <strong>BDT 10 ticket fee</strong> for consultations. 
+                    Some medications may have additional minimal costs.
+                  </p>
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-green-900 bg-green-100 p-2 rounded border border-green-300 mb-3">
+              <div className="text-xs sm:text-sm text-green-900 bg-amber-50 p-2 rounded border border-amber-400 mb-3">
                 <p className="font-semibold mb-1">⚠️ Important Disclaimers:</p>
                 <ul className="space-y-1 ml-4">
-                  <li>• Availability, waiting time, and services may vary</li>
+                  <li>• Availability, waiting time, and services may vary by facility and time</li>
                   <li>• MindWell does NOT manage, control, or guarantee these services</li>
-                  <li>• For life-threatening emergencies, contact local emergency services immediately</li>
+                  <li>• For life-threatening emergencies, contact <strong>999</strong> or go to the nearest emergency room immediately</li>
+                  <li>• Google Maps links are provided for convenience - directions may vary</li>
                 </ul>
               </div>
             </div>
@@ -174,29 +259,110 @@ export function CrisisModal({
 
           {/* Bangladesh Free & Low-Cost Services - Bangla */}
           {selectedCountry === 'Bangladesh' && (
-            <div className="p-3 sm:p-4 bg-teal-50 border-2 border-teal-400 rounded-lg">
-              <h3 className="font-bold text-teal-900 mb-3 text-sm sm:text-base">
-                🏥 বিনামূল্যে ও স্বল্পমূল্যের মানসিক স্বাস্থ্য সেবা (বাংলাদেশ)
+            <div className="p-3 sm:p-4 bg-gradient-to-br from-teal-50 to-cyan-50 border-2 border-teal-500 rounded-lg shadow-md">
+              <h3 className="font-bold text-teal-900 mb-3 text-sm sm:text-base flex items-center gap-2">
+                <MapPin className="h-5 w-5" />
+                🏥 বাংলাদেশ সরকারি মানসিক স্বাস্থ্য সেবা (বিনামূল্যে ও স্বল্পমূল্যে)
               </h3>
               <div className="text-xs sm:text-sm text-teal-800 mb-3">
-                <p className="font-semibold mb-2">সরকারি হাসপাতাল যেখানে মানসিক স্বাস্থ্য সেবা পাওয়া যায়:</p>
-                <ul className="space-y-1.5 ml-4">
-                  <li>• জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট (NIMH), ঢাকা</li>
-                  <li>• ঢাকা মেডিকেল কলেজ হাসপাতাল</li>
-                  <li>• স্যার সলিমুল্লাহ মেডিকেল কলেজ (মিটফোর্ড হাসপাতাল)</li>
-                  <li>• চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল</li>
-                  <li>• পাবনা মানসিক হাসপাতাল</li>
-                </ul>
-                <p className="mt-3 font-medium">
-                  <strong>খরচ:</strong> খুবই কম খরচে সেবা (সরকারি হাসপাতালে প্রায় ১০ টাকা টিকিট ফি)
+                <p className="font-semibold mb-3 text-teal-900">
+                  সরকারি হাসপাতাল যেখানে মানসিক স্বাস্থ্য সেবা পাওয়া যায়:
                 </p>
+                
+                <div className="space-y-3">
+                  {/* NIMH Dhaka - Bangla */}
+                  <div className="p-3 bg-white rounded-lg border border-teal-300">
+                    <p className="font-bold text-teal-900 mb-1">• জাতীয় মানসিক স্বাস্থ্য ইনস্টিটিউট (NIMH), ঢাকা</p>
+                    <p className="text-xs mb-2">বিশেষায়িত মানসিক স্বাস্থ্য কেন্দ্র - সম্পূর্ণ মানসিক স্বাস্থ্য সেবা</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=National+Institute+of+Mental+Health+Dhaka+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      গুগল ম্যাপে দেখুন →
+                    </a>
+                  </div>
+
+                  {/* Dhaka Medical College Hospital - Bangla */}
+                  <div className="p-3 bg-white rounded-lg border border-teal-300">
+                    <p className="font-bold text-teal-900 mb-1">• ঢাকা মেডিকেল কলেজ হাসপাতাল</p>
+                    <p className="text-xs mb-2">মানসিক স্বাস্থ্য বিভাগ সহ সাধারণ হাসপাতাল</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Dhaka+Medical+College+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      গুগল ম্যাপে দেখুন →
+                    </a>
+                  </div>
+
+                  {/* Sir Salimullah Medical College - Bangla */}
+                  <div className="p-3 bg-white rounded-lg border border-teal-300">
+                    <p className="font-bold text-teal-900 mb-1">• স্যার সলিমুল্লাহ মেডিকেল কলেজ (মিটফোর্ড হাসপাতাল)</p>
+                    <p className="text-xs mb-2">মানসিক স্বাস্থ্য সেবা সহ ঐতিহাসিক হাসপাতাল</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Sir+Salimullah+Medical+College+Mitford+Hospital+Dhaka"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      গুগল ম্যাপে দেখুন →
+                    </a>
+                  </div>
+
+                  {/* Chittagong Medical College Hospital - Bangla */}
+                  <div className="p-3 bg-white rounded-lg border border-teal-300">
+                    <p className="font-bold text-teal-900 mb-1">• চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল</p>
+                    <p className="text-xs mb-2">মানসিক স্বাস্থ্য সেবা সহ চট্টগ্রামের প্রধান হাসপাতাল</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Chittagong+Medical+College+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      গুগল ম্যাপে দেখুন →
+                    </a>
+                  </div>
+
+                  {/* Pabna Mental Hospital - Bangla */}
+                  <div className="p-3 bg-white rounded-lg border border-teal-300">
+                    <p className="font-bold text-teal-900 mb-1">• পাবনা মানসিক হাসপাতাল</p>
+                    <p className="text-xs mb-2">বাংলাদেশের সবচেয়ে পুরাতন এবং বৃহত্তম বিশেষায়িত মানসিক স্বাস্থ্য কেন্দ্র</p>
+                    <a 
+                      href="https://www.google.com/maps/search/?api=1&query=Pabna+Mental+Hospital+Bangladesh"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium underline"
+                    >
+                      <MapPin className="h-3 w-3" />
+                      গুগল ম্যাপে দেখুন →
+                    </a>
+                  </div>
+                </div>
+
+                <div className="mt-4 p-3 bg-teal-100 rounded-lg border border-teal-400">
+                  <p className="font-bold text-teal-900 mb-1">
+                    💰 <strong>খরচ:</strong> খুবই কম খরচে সেবা
+                  </p>
+                  <p className="text-xs">
+                    সরকারি হাসপাতালে পরামর্শের জন্য প্রায় <strong>১০ টাকা টিকিট ফি</strong> নেওয়া হয়। 
+                    কিছু ওষুধের জন্য অতিরিক্ত ন্যূনতম খরচ হতে পারে।
+                  </p>
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-teal-900 bg-teal-100 p-2 rounded border border-teal-300 mb-3">
+              <div className="text-xs sm:text-sm text-teal-900 bg-amber-50 p-2 rounded border border-amber-400 mb-3">
                 <p className="font-semibold mb-1">⚠️ গুরুত্বপূর্ণ সতর্কতা:</p>
                 <ul className="space-y-1 ml-4">
-                  <li>• সেবার প্রাপ্যতা, অপেক্ষার সময় এবং সেবা ভিন্ন হতে পারে</li>
+                  <li>• সেবার প্রাপ্যতা, অপেক্ষার সময় এবং সেবা প্রতিষ্ঠান ও সময় অনুযায়ী ভিন্ন হতে পারে</li>
                   <li>• MindWell এই সেবাগুলি পরিচালনা, নিয়ন্ত্রণ বা গ্যারান্টি দেয় না</li>
-                  <li>• জীবন-হুমকিমূলক জরুরী পরিস্থিতিতে অবিলম্বে স্থানীয় জরুরী সেবায় যোগাযোগ করুন</li>
+                  <li>• জীবন-হুমকিমূলক জরুরী পরিস্থিতিতে <strong>999</strong> এ যোগাযোগ করুন বা নিকটস্থ জরুরী বিভাগে অবিলম্বে যান</li>
+                  <li>• সুবিধার জন্য গুগল ম্যাপ লিঙ্ক প্রদান করা হয়েছে - পথনির্দেশ ভিন্ন হতে পারে</li>
                 </ul>
               </div>
             </div>

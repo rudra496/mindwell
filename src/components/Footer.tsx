@@ -76,6 +76,15 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Bangladesh Context Note */}
+        <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-teal-50 border-l-4 border-teal-500 rounded-lg">
+          <p className="text-xs sm:text-sm text-gray-700">
+            <strong>🇧🇩 Bangladesh Context:</strong> This platform is developed with a focus on Bangladesh 
+            and similar low-resource settings, while maintaining global applicability. We provide information 
+            about local low-cost government mental health services alongside international crisis resources.
+          </p>
+        </div>
+
         {/* Bottom Bar */}
         <div className="mt-6 pt-6 border-t border-gray-200 text-center">
           <p className="text-xs text-gray-500">
