@@ -1,12 +1,13 @@
 {
-  "name": "MindWell - Mental Health Platform",
+  "name": "MindWell - Free Mental Health Support",
   "short_name": "MindWell",
-  "description": "World's Largest Open-Source Mental Health Platform - 100% Free, 100% Private",
+  "description": "Free mental health support platform built for Bangladesh, accessible worldwide. Evidence-based resources for anxiety, depression, and mental wellness.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d9488",
   "orientation": "portrait-primary",
+  "categories": ["health", "medical", "lifestyle"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -21,23 +22,43 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["health", "lifestyle", "medical"],
-  "shortcuts": [
+  "screenshots": [
     {
-      "name": "Take Assessment",
-      "url": "/?action=assessment",
-      "description": "Take a mental health self-assessment"
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
     },
     {
-      "name": "Community",
-      "url": "/?action=community",
-      "description": "Connect with supportive community"
-    },
-    {
-      "name": "Crisis Resources",
-      "url": "/?action=crisis",
-      "description": "Get immediate crisis support"
+      "src": "/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Crisis Support",
+      "short_name": "Crisis",
+      "description": "Access immediate crisis resources",
+      "url": "/?crisis=true",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Licensed Psychologist",
+      "short_name": "Psychologist",
+      "description": "Request session with licensed psychologist",
+      "url": "/psychologists",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Mental Health Resources",
+      "short_name": "Resources",
+      "description": "Browse mental health disorders and resources",
+      "url": "/",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": [],
   "prefer_related_applications": false
 }

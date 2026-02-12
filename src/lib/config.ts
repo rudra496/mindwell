@@ -11,8 +11,8 @@ export const config = {
   },
   site: {
     name: 'MindWell',
-    url: 'https://mindwell.vercel.app',
-    description: "World's Largest Open-Source Mental Health Platform",
+    url: process.env.NEXT_PUBLIC_APP_URL || 'https://mindwell-navy.vercel.app',
+    description: 'Built for Bangladesh. Accessible to the World.',
   },
   advisors: {
     farzanaLinkedIn: 'https://www.linkedin.com/in/farzanahussain?utm_source=share_via&utm_content=profile&utm_medium=member_android',

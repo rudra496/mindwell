@@ -21,7 +21,7 @@ import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
 import { GamesModal } from "@/components/GamesModal"
 import { CrisisModal } from "@/components/CrisisModal"
-import { ChatbotModal } from "@/components/ChatbotModal"
+
 import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
@@ -44,7 +44,7 @@ export default function HomePage() {
   const [assessmentOpen, setAssessmentOpen] = useState(false)
   const [gamesOpen, setGamesOpen] = useState(false)
   const [crisisOpen, setCrisisOpen] = useState(false)
-  const [chatbotOpen, setChatbotOpen] = useState(false)
+
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
@@ -94,7 +94,8 @@ export default function HomePage() {
         setMeditationOpen(true)
         break
       case "chatbot":
-        setChatbotOpen(true)
+        // Chatbot removed due to clinical liability concerns
+        // Human support available via licensed psychologist
         break
       case "community":
         setCommunityOpen(true)
@@ -116,6 +117,31 @@ export default function HomePage() {
         onGetSupport={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
         onEmergencyHelp={() => setCrisisOpen(true)}
       />
+
+      {/* Free Sessions Policy Banner */}
+      <div className="mb-8 p-6 bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg border-2 border-green-500 dark:border-green-700 shadow-lg">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-3xl">🇧🇩</span>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              For Bangladeshi University Students
+            </h2>
+          </div>
+          <p className="text-lg text-gray-800 dark:text-gray-200 mb-3">
+            <strong>2 Completely Free Counseling Sessions</strong> with licensed psychologist Md. Rifat Hasan Tarofder
+          </p>
+          <div className="space-y-2 text-gray-700 dark:text-gray-300">
+            <p className="flex items-start gap-2">
+              <span className="text-xl">🌍</span>
+              <span><strong>For Worldwide Users:</strong> All educational resources, assessments, therapeutic games, and tools are 100% free.</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-xl">💚</span>
+              <span><strong>Therapy sessions:</strong> Limited pro-bono availability (donation-based, not required).</span>
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Crisis Banner */}
       <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 dark:bg-red-950/30 border-2 border-red-500 dark:border-red-700 p-3 sm:p-4 transition-colors">
@@ -147,7 +173,7 @@ export default function HomePage() {
 
       {/* Psychologists Access Section - MOVED TO TOP */}
       <PsychologistsAccessSection 
-        onRequestSupport={() => setAdvisorsOpen(true)}
+        onRequestSupport={() => window.location.href = '/psychologists'}
       />
 
       {/* Main Features Grid */}
@@ -238,10 +264,14 @@ export default function HomePage() {
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0">
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-3 sm:mb-4 break-words">
-              This feature is temporarily paused to ensure ethical standards and user safety. We're committed to providing safe mental health support.
+              AI chatbot removed due to clinical liability concerns. Human support available via licensed psychologist.
             </p>
-            <Button className="w-full min-h-[44px] text-sm sm:text-base transition-all dark:hover:bg-slate-700" variant="outline" onClick={() => setChatbotOpen(true)} disabled={false}>
-              Learn More
+            <Button 
+              className="w-full min-h-[44px] text-sm sm:text-base transition-all dark:hover:bg-slate-700" 
+              variant="outline" 
+              onClick={() => { window.location.href = '/psychologists' }}
+            >
+              Get Human Support →
             </Button>
           </CardContent>
         </Card>
@@ -403,11 +433,12 @@ export default function HomePage() {
         onOpenChange={setCrisisOpen}
         onOpenAdvisors={() => setAdvisorsOpen(true)}
       />
-      <ChatbotModal open={chatbotOpen} onOpenChange={setChatbotOpen} />
       <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
       <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
       <AdvisorsModal open={advisorsOpen} onOpenChange={setAdvisorsOpen} />
+      {/* ChatbotModal removed - AI chatbot removed due to clinical liability concerns. 
+          Human support available via licensed psychologist at /psychologists */}
     </>
   )
 }

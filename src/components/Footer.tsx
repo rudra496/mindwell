@@ -133,6 +133,22 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Free Sessions Policy */}
+        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg p-4 border border-green-500/50 dark:border-green-700/50">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xl">🇧🇩</span>
+              <p className="font-bold text-gray-900 dark:text-gray-100">
+                For Bangladeshi University Students: 2 Free Counseling Sessions
+              </p>
+            </div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">
+              🌍 For Worldwide Users: All educational resources, assessments, and tools are 100% free. 
+              Therapy sessions: Limited pro-bono availability.
+            </p>
+          </div>
+        </div>
+
         {/* Bangladesh Context Note */}
         <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-teal-50 border-l-4 border-teal-500 rounded-lg">
           <p className="text-xs sm:text-sm text-gray-700">

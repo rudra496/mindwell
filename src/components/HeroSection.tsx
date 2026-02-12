@@ -47,7 +47,11 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         
         {/* Sub-headline */}
         <p className="text-xl sm:text-2xl text-gray-700 mb-3 font-medium">
-          {mounted ? t(translations.hero.subtitle, language) : "World's Largest Open-Source Mental Health Platform"}
+          {mounted 
+            ? (language === 'en' 
+                ? "Built for Bangladesh. Accessible to the World." 
+                : "বাংলাদেশের জন্য নির্মিত। বিশ্বের জন্য অ্যাক্সেসযোগ্য।")
+            : "Built for Bangladesh. Accessible to the World."}
         </p>
         
         {/* Description */}
