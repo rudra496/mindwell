@@ -27,7 +27,7 @@ export function EmergencySupportBar() {
             </a>
             <span className="text-red-400 dark:text-red-600">|</span>
             <a
-              href="tel:+8801779554391"
+              href="tel:+880-9678-676789"
               className="flex items-center gap-1 hover:underline focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 rounded px-1"
               aria-label="Call Bangladesh Kaan Pete Roi crisis hotline"
             >
