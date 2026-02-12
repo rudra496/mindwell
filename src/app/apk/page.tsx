@@ -55,7 +55,7 @@ export default function APKGuidePage() {
               Android (Chrome, Edge, Samsung Internet)
             </h3>
             <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              <li>Open <strong>mindwell-navy.vercel.app</strong> in Chrome</li>
+              <li>Open <strong>{typeof window !== 'undefined' ? window.location.host : 'mindwell-navy.vercel.app'}</strong> in Chrome</li>
               <li>Tap the <strong>menu icon</strong> (three dots) in the top-right corner</li>
               <li>Select <strong>"Add to Home screen"</strong> or <strong>"Install app"</strong></li>
               <li>Confirm by tapping <strong>"Install"</strong></li>

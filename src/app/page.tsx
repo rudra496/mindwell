@@ -269,7 +269,7 @@ export default function HomePage() {
             <Button 
               className="w-full min-h-[44px] text-sm sm:text-base transition-all dark:hover:bg-slate-700" 
               variant="outline" 
-              onClick={() => window.scrollTo({ top: document.getElementById('psychologists')?.offsetTop || 0, behavior: 'smooth' })}
+              onClick={() => { window.location.href = '/psychologists' }}
             >
               Get Human Support →
             </Button>

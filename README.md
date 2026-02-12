@@ -28,8 +28,6 @@
 
 ![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
 
-![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
-
 ## 🎯 Mission
 
 Create the most comprehensive, scientifically-backed mental health support platform. **100% Free. 100% Open Source.**

@@ -100,7 +100,7 @@ export default function PsychologistsPage() {
               <div>
                 <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-1">Experience</h3>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  5+ years clinical experience
+                  5+ years clinical experience (placeholder - verify with professional)
                 </p>
               </div>
             </div>
