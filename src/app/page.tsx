@@ -148,7 +148,7 @@ export default function HomePage() {
 
       {/* Psychologists Access Section - MOVED TO TOP */}
       <PsychologistsAccessSection 
-        onRequestSupport={() => setAdvisorsOpen(true)}
+        onRequestSupport={() => window.location.href = '/psychologists'}
       />
 
       {/* Main Features Grid */}

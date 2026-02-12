@@ -90,15 +90,15 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
           <div className="bg-teal-100/50 rounded-lg p-6 border-l-4 border-teal-600 mb-6">
             <h3 className="font-bold text-teal-900 mb-3">
               {mounted
-                ? (language === 'en' ? "Available Soon" : "শীঘ্রই উপলব্ধ")
-                : "Available Soon"}
+                ? (language === 'en' ? "Now Available ✓" : "এখন উপলব্ধ ✓")
+                : "Now Available ✓"}
             </h3>
             <p className="text-gray-700 mb-4">
               {mounted
                 ? (language === 'en'
-                    ? "We are currently establishing partnerships with licensed psychologists to provide professional mental health support. This service will be available free of charge to university students in Bangladesh."
-                    : "আমরা বর্তমানে পেশাদার মানসিক স্বাস্থ্য সহায়তা প্রদানের জন্য লাইসেন্সপ্রাপ্ত মনোবিজ্ঞানীদের সাথে অংশীদারিত্ব স্থাপন করছি। এই পরিষেবাটি বাংলাদেশের বিশ্ববিদ্যালয়ের শিক্ষার্থীদের জন্য বিনামূল্যে উপলব্ধ হবে।")
-                : "We are currently establishing partnerships with licensed psychologists to provide professional mental health support. This service will be available free of charge to university students in Bangladesh."}
+                    ? "Professional mental health support is now available through licensed psychologist Md. Rifat Hasan Tarofder. This service is available free of charge to university students in Bangladesh."
+                    : "পেশাদার মানসিক স্বাস্থ্য সহায়তা এখন লাইসেন্সপ্রাপ্ত মনোবিজ্ঞানী মোঃ রিফাত হাসান তারোফদারের মাধ্যমে উপলব্ধ। এই পরিষেবাটি বাংলাদেশের বিশ্ববিদ্যালয়ের শিক্ষার্থীদের জন্য বিনামূল্যে উপলব্ধ।")
+                : "Professional mental health support is now available through licensed psychologist Md. Rifat Hasan Tarofder. This service is available free of charge to university students in Bangladesh."}
             </p>
             
             {/* CTA Button */}
