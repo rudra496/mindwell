@@ -118,6 +118,31 @@ export default function HomePage() {
         onEmergencyHelp={() => setCrisisOpen(true)}
       />
 
+      {/* Free Sessions Policy Banner */}
+      <div className="mb-8 p-6 bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg border-2 border-green-500 dark:border-green-700 shadow-lg">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-3xl">🇧🇩</span>
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              For Bangladeshi University Students
+            </h2>
+          </div>
+          <p className="text-lg text-gray-800 dark:text-gray-200 mb-3">
+            <strong>2 Completely Free Counseling Sessions</strong> with licensed psychologist Md. Rifat Hasan Tarofder
+          </p>
+          <div className="space-y-2 text-gray-700 dark:text-gray-300">
+            <p className="flex items-start gap-2">
+              <span className="text-xl">🌍</span>
+              <span><strong>For Worldwide Users:</strong> All educational resources, assessments, therapeutic games, and tools are 100% free.</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <span className="text-xl">💚</span>
+              <span><strong>Therapy sessions:</strong> Limited pro-bono availability (donation-based, not required).</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
       {/* Crisis Banner */}
       <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 dark:bg-red-950/30 border-2 border-red-500 dark:border-red-700 p-3 sm:p-4 transition-colors">
         <div className="flex items-start gap-2 sm:gap-3">

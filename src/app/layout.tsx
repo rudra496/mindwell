@@ -17,10 +17,10 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 export const metadata: Metadata = {
   metadataBase: new URL('https://mindwell.vercel.app'),
   title: {
-    default: "MindWell - World's Largest Open-Source Mental Health Platform",
+    default: "MindWell - Free Mental Health Support Platform",
     template: "%s | MindWell"
   },
-  description: "Free, comprehensive mental health support platform with 63+ disorders, 20 validated clinical assessments, therapeutic games, AI chatbot, and crisis resources. Evidence-based tools for anxiety, depression, PTSD, and more.",
+  description: "Built for Bangladesh. Accessible to the World. Free, comprehensive mental health support with 63+ disorders, validated assessments, therapeutic games, licensed psychologist support, and crisis resources.",
   applicationName: "MindWell",
   referrer: "origin-when-cross-origin",
   formatDetection: {
@@ -74,8 +74,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://mindwell.vercel.app",
     siteName: "MindWell",
-    title: "MindWell - World's Largest Open-Source Mental Health Platform",
-    description: "Free, comprehensive mental health support with 63+ disorders, validated assessments, therapeutic games, AI chatbot, and crisis resources. Evidence-based tools for anxiety, depression, PTSD, and more.",
+    title: "MindWell - Free Mental Health Support Platform | Built for Bangladesh",
+    description: "Built for Bangladesh. Accessible to the World. Free mental health support with licensed psychologist, validated assessments, therapeutic games, and crisis resources.",
     images: [
       {
         url: "/icon-512.png",
@@ -153,7 +153,7 @@ export default function RootLayout({
         "@id": "https://mindwell.vercel.app/#website",
         "url": "https://mindwell.vercel.app",
         "name": "MindWell",
-        "description": "World's largest open-source mental health platform",
+        "description": "Free mental health support platform built for Bangladesh and accessible worldwide",
         "publisher": {
           "@id": "https://mindwell.vercel.app/#organization"
         },

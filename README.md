@@ -2,24 +2,31 @@
 
 **Built for Bangladesh. Accessible to the World.**
 
-## ⚠️ Important Service Update
-
-**AI Chatbot Removed (January 2026)**: The AI chatbot feature has been removed from MindWell due to clinical liability concerns and the need for proper medical oversight. We are committed to providing safe, ethical mental health support.
-
-**✅ Human Support Now Available**: Licensed psychologist support is now available through our platform. Md. Rifat Hasan Tarofder (M.Sc. Clinical Psychology) offers pro-bono counseling to Bangladeshi university students.
-
-👉 **Visit** [/psychologists](/psychologists) **to request a session with a licensed professional.**
-
----
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Next.js](https://img.shields.io/badge/Next.js-15.1-black)](https://nextjs.org/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Translation Needed](https://img.shields.io/badge/translation-needed-orange.svg)](#)
+[![Made in Bangladesh](https://img.shields.io/badge/Made%20in-Bangladesh-green.svg)](#)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue)](https://www.typescriptlang.org/)
 [![Prisma](https://img.shields.io/badge/Prisma-5.22-2D3748)](https://www.prisma.io/)
 
 > **Comprehensive, scientifically-backed, free mental health support platform**
 
-🌐 **Live Demo:** [https://mindwell-8gfk0h7js-rudra-sarkers-projects.vercel.app](https://mindwell-navy.vercel.app/)
+🌐 **Live Demo:** [https://mindwell-navy.vercel.app](https://mindwell-navy.vercel.app/)
+
+## 🇧🇩 Bangladesh-First Mission
+
+🇧🇩 **Proudly developed in Bangladesh** to serve global communities. Free mental health support for all, with dedicated resources for Bangladeshi students.
+
+## ⚠️ Important Service Update (February 2026)
+
+**AI Chatbot Removed**: The AI chatbot feature has been removed from MindWell due to clinical liability concerns and the need for proper medical oversight. We are committed to providing safe, ethical mental health support.
+
+**✅ Human Support Now Available**: Licensed psychologist support is now available through our platform. Md. Rifat Hasan Tarofder (M.Sc. Clinical Psychology) offers pro-bono counseling to Bangladeshi university students.
+
+👉 **Visit** [/psychologists](https://mindwell-navy.vercel.app/psychologists) **to request a session with a licensed professional.**
+
+![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
 
 ![MindWell Homepage](https://github.com/user-attachments/assets/4fcbd87f-d712-4be0-abb1-d7f76e9c3116)
 
