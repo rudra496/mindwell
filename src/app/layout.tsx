@@ -1,8 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
+import "./a11y.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { AccessibilitySkipLink } from "@/components/AccessibilitySkipLink";
+import { EmergencySupportBar } from "@/components/safety/EmergencySupportBar";
+import { GlobalNavigation } from "@/components/layout/GlobalNavigation";
+import { GlobalFooter } from "@/components/layout/GlobalFooter";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { LegalLinksBar } from "@/components/layout/LegalLinksBar";
+import { AnalyticsPlaceholder } from "@/components/AnalyticsPlaceholder";
+import { ClientErrorLogger } from "@/components/ClientErrorLogger";
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mindwell.vercel.app'),
@@ -11,6 +21,13 @@ export const metadata: Metadata = {
     template: "%s | MindWell"
   },
   description: "Free, comprehensive mental health support platform with 63+ disorders, 20 validated clinical assessments, therapeutic games, AI chatbot, and crisis resources. Evidence-based tools for anxiety, depression, PTSD, and more.",
+  applicationName: "MindWell",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   keywords: [
     "mental health",
     "depression",
@@ -97,7 +114,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0d9488"
+  themeColor: "#0d9488",
+  colorScheme: "light dark"
 }
 
 export default function RootLayout({
@@ -129,6 +147,17 @@ export default function RootLayout({
           "https://github.com/rudra496/mindwell",
           "https://rudra496.github.io/site"
         ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://mindwell.vercel.app/#website",
+        "url": "https://mindwell.vercel.app",
+        "name": "MindWell",
+        "description": "World's largest open-source mental health platform",
+        "publisher": {
+          "@id": "https://mindwell.vercel.app/#organization"
+        },
+        "inLanguage": "en-US"
       },
       {
         "@type": "WebApplication",
@@ -195,9 +224,37 @@ export default function RootLayout({
         
         <ThemeProvider>
           <ErrorBoundary>
-            <main className="min-h-screen bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
-              {children}
-            </main>
+            {/* Accessibility Skip Link */}
+            <AccessibilitySkipLink />
+            
+            {/* Emergency Support Bar - Always Visible */}
+            <EmergencySupportBar />
+            
+            {/* Global Navigation - Shows on non-home pages */}
+            <GlobalNavigation />
+            
+            <div className="flex flex-col min-h-screen">
+              <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
+                {/* Breadcrumbs for page hierarchy */}
+                <div className="container mx-auto px-4">
+                  <Breadcrumbs />
+                </div>
+                
+                {/* Main Content */}
+                {children}
+              </main>
+              
+              {/* Legal Links Bar */}
+              <LegalLinksBar />
+              
+              {/* Global Footer */}
+              <GlobalFooter />
+            </div>
+            
+            {/* Monitoring Components */}
+            <AnalyticsPlaceholder />
+            <ClientErrorLogger />
+            <PerformanceMonitor />
           </ErrorBoundary>
         </ThemeProvider>
         
