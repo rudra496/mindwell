@@ -1,4 +1,16 @@
-# 🌍 MindWell - World's Largest Open-Source Mental Health Platform
+# 🌍 MindWell - Free Mental Health Support Platform
+
+**Built for Bangladesh. Accessible to the World.**
+
+## ⚠️ Important Service Update
+
+**AI Chatbot Removed (January 2026)**: The AI chatbot feature has been removed from MindWell due to clinical liability concerns and the need for proper medical oversight. We are committed to providing safe, ethical mental health support.
+
+**✅ Human Support Now Available**: Licensed psychologist support is now available through our platform. Md. Rifat Hasan Tarofder (M.Sc. Clinical Psychology) offers pro-bono counseling to Bangladeshi university students.
+
+👉 **Visit** [/psychologists](/psychologists) **to request a session with a licensed professional.**
+
+---
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Next.js](https://img.shields.io/badge/Next.js-15.1-black)](https://nextjs.org/)
