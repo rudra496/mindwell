@@ -81,9 +81,9 @@ export function MinimalSection({
             aria-label={isOpen ? "Collapse section" : "Expand section"}
           >
             {isOpen ? (
-              <ChevronUp className="h-6 w-6 sm:h-7 sm:w-7 animate-bounce-soft" />
+              <ChevronUp className="h-6 w-6 sm:h-7 sm:w-7 transition-transform" />
             ) : (
-              <ChevronDown className="h-6 w-6 sm:h-7 sm:w-7 animate-bounce-soft" />
+              <ChevronDown className="h-6 w-6 sm:h-7 sm:w-7 transition-transform" />
             )}
           </button>
         </div>

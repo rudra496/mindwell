@@ -200,8 +200,8 @@ export default function HomePage() {
                   <input 
                     type="checkbox" 
                     className="w-4 h-4 text-teal-600 rounded"
-                    onClick={(e) => {
-                      if ((e.target as HTMLInputElement).checked) {
+                    onChange={(e) => {
+                      if (e.target.checked) {
                         setAssessmentOpen(true)
                       }
                     }}
