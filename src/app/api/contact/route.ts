@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     // using a service like SendGrid, AWS SES, Resend, or EmailJS
     
     const emailData = {
-      to: 'rudrasarker125@gmail.com',
+      to: 'contactmindwellorg@gmail.com',
       from: email,
       subject: `MindWell Contact Form: ${reason}`,
       body: `
@@ -49,7 +49,7 @@ ${message}
     // TODO: Integrate with actual email service
     // Example with SendGrid:
     // await sendgrid.send({
-    //   to: 'rudrasarker125@gmail.com',
+    //   to: 'contactmindwellorg@gmail.com',
     //   from: 'noreply@mindwell.app',
     //   subject: emailData.subject,
     //   text: emailData.body,

@@ -189,10 +189,10 @@ export default function PsychologistsPage() {
             with MindWell, please get in touch.
           </p>
           <a 
-            href="mailto:rudrasarker125@gmail.com?subject=Interest in Joining MindWell Mental Health Team" 
+            href="mailto:contactmindwellorg@gmail.com?subject=Interest in Joining MindWell Mental Health Team" 
             className="text-teal-600 dark:text-teal-400 hover:underline font-medium"
           >
-            Contact us: rudrasarker125@gmail.com
+            Contact us: contactmindwellorg@gmail.com
           </a>
         </CardContent>
       </Card>

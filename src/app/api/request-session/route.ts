@@ -113,7 +113,7 @@ Please respond to this request within 48 hours.
       try {
         await resend.emails.send({
           from: 'MindWell <onboarding@resend.dev>', // TODO: Change to verified domain in production (e.g., 'MindWell <noreply@mindwell.app>')
-          to: 'rudrasarker125@gmail.com',
+          to: 'contactmindwellorg@gmail.com',
           replyTo: email,
           subject: emailSubject,
           text: emailBody,

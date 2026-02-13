@@ -140,7 +140,7 @@ export default function RootLayout({
         "description": "World's largest open-source mental health platform",
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "rudrasarker125@gmail.com",
+          "email": "contactmindwellorg@gmail.com",
           "contactType": "Customer Support"
         },
         "sameAs": [
