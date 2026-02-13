@@ -107,7 +107,7 @@ Any changes will be reflected in this document with an updated revision date.
 
 For questions or concerns related to privacy:
 
-📧 **rudrasarker130@gmail.com**
+📧 **contactmindwellorg@gmail.com**
 
 ---
 
