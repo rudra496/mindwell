@@ -297,7 +297,7 @@ All paused features marked with:
 ## 📞 Support & Contact
 
 **Emergency**: Always recommend emergency services first  
-**Platform Support**: rudrasarker130@gmail.com  
+**Platform Support**: contactmindwellorg@gmail.com  
 **GitHub**: https://github.com/rudra496/mindwell
 
 ## 📜 License
