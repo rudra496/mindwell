@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown, ChevronUp, LucideIcon } from "lucide-react"
 
@@ -49,10 +50,13 @@ export function MinimalSection({
         {/* Stock Photo Background with Transparent Overlay */}
         {stockPhotoUrl && (
           <div className="absolute inset-0 overflow-hidden opacity-30 group-hover:opacity-40 transition-opacity">
-            <img 
+            <Image 
               src={stockPhotoUrl} 
               alt={stockPhotoAlt}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority={false}
             />
           </div>
         )}
