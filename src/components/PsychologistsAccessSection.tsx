@@ -43,7 +43,7 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
       ],
       whatsapp: "https://wa.me/+8801706520948",
       phone: "+880 1706-520948",
-      photo: null // Using initials
+      hasPendingPhoto: false
     },
     {
       name: "Kamrul Hasan",
@@ -63,9 +63,11 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
         "Client Management",
         "Crisis Management"
       ],
-      whatsapp: "https://wa.me/+8801706520948", // Temporary - same as Rifat
-      phone: "+880 1706-520948", // Temporary - same as Rifat
-      photo: "kamrul.jpg" // Placeholder - needs to be added
+      // TODO: Update with unique contact info when available
+      // Currently using shared contact channel
+      whatsapp: "https://wa.me/+8801706520948", 
+      phone: "+880 1706-520948",
+      hasPendingPhoto: true // TODO: Add kamrul.jpg to /public/images/
     }
   ]
 
@@ -98,7 +100,7 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
                   <div className="flex items-start gap-4">
                     {/* Photo/Avatar */}
                     <div className="w-20 h-20 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0">
-                      {psychologist.photo === "kamrul.jpg" ? (
+                      {psychologist.hasPendingPhoto ? (
                         <div className="text-center">
                           <User className="h-10 w-10" />
                           <p className="text-xs mt-1">Photo pending</p>
@@ -189,6 +191,12 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
                     ? "• WhatsApp is for chat only; phone numbers are provided for calling"
                     : "• হোয়াটসঅ্যাপ শুধুমাত্র চ্যাটের জন্য; ফোন নম্বরগুলি কল করার জন্য প্রদান করা হয়েছে")
                 : "• WhatsApp is for chat only; phone numbers are provided for calling"}
+              <br />
+              {mounted 
+                ? (language === 'en'
+                    ? "• Both psychologists currently share contact channels for initial consultation"
+                    : "• প্রাথমিক পরামর্শের জন্য উভয় মনোবিজ্ঞানী বর্তমানে যোগাযোগ চ্যানেল শেয়ার করেন")
+                : "• Both psychologists currently share contact channels for initial consultation"}
               <br />
               {mounted 
                 ? (language === 'en'

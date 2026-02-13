@@ -22,6 +22,7 @@ export const config = {
     linkedin: 'https://www.linkedin.com/in/rudra-sarker',
     facebook: 'https://facebook.com/rudra496',
     github: 'https://github.com/rudra496',
-    phone: '+880-XXXX-XXXXXX', // To be updated
+    // TODO: Update with actual phone number when available
+    phone: '+880-XXXX-XXXXXX',
   },
 } as const
