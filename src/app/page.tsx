@@ -36,7 +36,6 @@ import { BangladeshServicesSection } from "@/components/BangladeshServicesSectio
 import { SDGSection } from "@/components/SDGSection"
 import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
 import { MedicalDisclaimer } from "@/components/safety/MedicalDisclaimer"
-import { ContactForm } from "@/components/ContactForm"
 import { config } from "@/lib/config"
 
 export default function HomePage() {
@@ -78,9 +77,6 @@ export default function HomePage() {
       case "about":
         document.getElementById("our-support")?.scrollIntoView({ behavior: "smooth" })
         break
-      case "contact":
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-        break
       case "disorders":
         setDisordersOpen(true)
         break
@@ -117,31 +113,6 @@ export default function HomePage() {
         onGetSupport={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
         onEmergencyHelp={() => setCrisisOpen(true)}
       />
-
-      {/* Free Sessions Policy Banner */}
-      <div className="mb-8 p-6 bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg border-2 border-green-500 dark:border-green-700 shadow-lg">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl">🇧🇩</span>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              For Bangladeshi University Students
-            </h2>
-          </div>
-          <p className="text-lg text-gray-800 dark:text-gray-200 mb-3">
-            <strong>2 Completely Free Counseling Sessions</strong> with licensed psychologist Md. Rifat Hasan Tarofder
-          </p>
-          <div className="space-y-2 text-gray-700 dark:text-gray-300">
-            <p className="flex items-start gap-2">
-              <span className="text-xl">🌍</span>
-              <span><strong>For Worldwide Users:</strong> All educational resources, assessments, therapeutic games, and tools are 100% free.</span>
-            </p>
-            <p className="flex items-start gap-2">
-              <span className="text-xl">💚</span>
-              <span><strong>Therapy sessions:</strong> Limited pro-bono availability (donation-based, not required).</span>
-            </p>
-          </div>
-        </div>
-      </div>
 
       {/* Crisis Banner */}
       <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 dark:bg-red-950/30 border-2 border-red-500 dark:border-red-700 p-3 sm:p-4 transition-colors">
@@ -367,57 +338,12 @@ export default function HomePage() {
       {/* Bangladesh Services Section */}
       <BangladeshServicesSection />
 
-      {/* Contact Form Section */}
-      <div id="contact" className="mb-8 sm:mb-12">
-        <ContactForm />
-      </div>
-
       {/* SDG Section */}
       <SDGSection />
 
       {/* Mood Tracker Section */}
       <div className="mb-8 sm:mb-12">
         <MoodTracker />
-      </div>
-
-      {/* Statistics Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-12">
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-primary dark:text-teal-400 mb-2">63</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Mental Health Disorders</div>
-          </CardContent>
-        </Card>
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-secondary dark:text-indigo-400 mb-2">20</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Clinical Assessments</div>
-          </CardContent>
-        </Card>
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-accent dark:text-pink-400 mb-2">16</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Therapeutic Games</div>
-          </CardContent>
-        </Card>
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-teal-600 dark:text-teal-400 mb-2">14</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Guided Meditations</div>
-          </CardContent>
-        </Card>
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">20</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Therapy Techniques</div>
-          </CardContent>
-        </Card>
-        <Card className="text-center bg-white/80 dark:bg-slate-800/80 border dark:border-gray-700 transition-colors">
-          <CardContent className="pt-6">
-            <div className="text-4xl font-bold text-red-600 dark:text-red-400 mb-2">12</div>
-            <div className="text-sm text-gray-600 dark:text-gray-400">Crisis Resources</div>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Footer */}

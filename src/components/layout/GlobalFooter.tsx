@@ -34,7 +34,7 @@ export function GlobalFooter() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="mailto:rudrasarker125@gmail.com"
+                href="mailto:contactmindwellorg@gmail.com"
                 className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-500 rounded"
                 aria-label="Contact via email"
               >

@@ -37,7 +37,7 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         </div>
         
         {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-gray-900">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
           {mounted
             ? (language === 'en'
                 ? "Your Mental Health Matters"
@@ -45,18 +45,9 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
             : "Your Mental Health Matters"}
         </h1>
         
-        {/* Sub-headline */}
-        <p className="text-xl sm:text-2xl text-gray-700 mb-3 font-medium">
-          {mounted 
-            ? (language === 'en' 
-                ? "Built for Bangladesh. Accessible to the World." 
-                : "বাংলাদেশের জন্য নির্মিত। বিশ্বের জন্য অ্যাক্সেসযোগ্য।")
-            : "Built for Bangladesh. Accessible to the World."}
-        </p>
-        
         {/* Description */}
-        <p className="text-base sm:text-lg text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-          {mounted ? t(translations.hero.description, language) : "Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 20 validated assessments, 16 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources."}
+        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          {mounted ? t(translations.hero.description, language) : "Comprehensive, scientifically-backed, free mental health support with evidence-based resources and professional guidance."}
         </p>
         
         {/* CTAs */}
@@ -65,7 +56,7 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
           <Button 
             onClick={onGetSupport}
             size="lg"
-            className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white text-lg px-8 py-6 min-h-[56px] shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+            className="bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 dark:from-teal-500 dark:to-cyan-500 dark:hover:from-teal-600 dark:hover:to-cyan-600 text-white text-lg px-8 py-6 min-h-[56px] shadow-xl hover:shadow-2xl transition-all hover:scale-105"
           >
             <Heart className="h-5 w-5 mr-2" />
             {mounted ? t(translations.hero.getSupportBtn, language) : "Get Support"}
@@ -76,7 +67,7 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
             onClick={onEmergencyHelp}
             size="lg"
             variant="outline"
-            className="bg-white/90 hover:bg-white border-2 border-red-500 text-red-700 hover:text-red-800 text-lg px-8 py-6 min-h-[56px] shadow-lg hover:shadow-xl transition-all hover:scale-105"
+            className="bg-white/90 hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 border-2 border-red-500 dark:border-red-600 text-red-700 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-lg px-8 py-6 min-h-[56px] shadow-lg hover:shadow-xl transition-all hover:scale-105"
           >
             <Phone className="h-5 w-5 mr-2" />
             {mounted ? t(translations.hero.emergencyHelpBtn, language) : "Emergency Help"}
@@ -84,21 +75,21 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         </div>
         
         {/* Trust Badge */}
-        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-700">
+        <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-700 dark:text-gray-300">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full"></div>
             <span>{mounted ? (language === 'en' ? "100% Free" : "১০০% বিনামূল্যে") : "100% Free"}</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full"></div>
             <span>{mounted ? (language === 'en' ? "Evidence-Based" : "প্রমাণ-ভিত্তিক") : "Evidence-Based"}</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-purple-500 dark:bg-purple-400 rounded-full"></div>
             <span>{mounted ? (language === 'en' ? "Open-Source" : "ওপেন-সোর্স") : "Open-Source"}</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-pink-500 dark:bg-pink-400 rounded-full"></div>
             <span>{mounted ? (language === 'en' ? "Accessible 24/7" : "২৪/৭ অ্যাক্সেসযোগ্য") : "Accessible 24/7"}</span>
           </div>
         </div>

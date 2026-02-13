@@ -71,7 +71,7 @@ export default function FAQPage() {
           If you couldn't find the answer you were looking for, feel free to reach out.
         </p>
         <a
-          href="mailto:rudrasarker125@gmail.com"
+          href="mailto:contactmindwellorg@gmail.com"
           className="inline-block px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2"
         >
           Contact Us
