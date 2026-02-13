@@ -36,7 +36,6 @@ import { BangladeshServicesSection } from "@/components/BangladeshServicesSectio
 import { SDGSection } from "@/components/SDGSection"
 import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
 import { MedicalDisclaimer } from "@/components/safety/MedicalDisclaimer"
-import { ContactForm } from "@/components/ContactForm"
 import { config } from "@/lib/config"
 
 export default function HomePage() {
@@ -77,9 +76,6 @@ export default function HomePage() {
         break
       case "about":
         document.getElementById("our-support")?.scrollIntoView({ behavior: "smooth" })
-        break
-      case "contact":
-        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
         break
       case "disorders":
         setDisordersOpen(true)
@@ -341,11 +337,6 @@ export default function HomePage() {
 
       {/* Bangladesh Services Section */}
       <BangladeshServicesSection />
-
-      {/* Contact Form Section */}
-      <div id="contact" className="mb-8 sm:mb-12">
-        <ContactForm />
-      </div>
 
       {/* SDG Section */}
       <SDGSection />
