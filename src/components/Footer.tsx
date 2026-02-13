@@ -19,6 +19,8 @@ export function Footer() {
   return (
     <footer className="mt-12 border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm transition-colors">
       <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-7xl">
+        
+        {/* Main Content Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* About */}
           <div>
@@ -41,11 +43,6 @@ export function Footer() {
                 ? (language === 'en' ? "for mental health awareness" : "মানসিক স্বাস্থ্য সচেতনতার জন্য")
                 : "for mental health awareness"}
             </p>
-            <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 italic">
-              {mounted
-                ? (language === 'en' ? "📱 Mobile APK under development" : "📱 মোবাইল APK ডেভেলপমেন্টের অধীনে")
-                : "📱 Mobile APK under development"}
-            </p>
           </div>
 
           {/* Contact Information */}
@@ -62,13 +59,13 @@ export function Footer() {
                 <span>{config.contact.email}</span>
               </a>
               <a
-                href={config.contact.website}
+                href={config.contact.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
               >
-                <Globe className="h-4 w-4 flex-shrink-0" />
-                <span>rudra496.github.io/site</span>
+                <Facebook className="h-4 w-4 flex-shrink-0" />
+                <span>{mounted ? (language === 'en' ? "Facebook Page" : "ফেসবুক পেজ") : "Facebook Page"}</span>
               </a>
               <a
                 href={config.contact.github}
@@ -77,19 +74,10 @@ export function Footer() {
                 className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
               >
                 <Github className="h-4 w-4 flex-shrink-0" />
-                <span>github.com/rudra496/mindwell</span>
-              </a>
-              <a
-                href={config.contact.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
-              >
-                <Facebook className="h-4 w-4 flex-shrink-0" />
-                <span>{mounted ? (language === 'en' ? "MindWell Facebook Page" : "মাইন্ডওয়েল ফেসবুক পেজ") : "MindWell Facebook Page"}</span>
+                <span>GitHub Repository</span>
               </a>
             </div>
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
               {mounted ? (language === 'en' ? "Inspired by" : "অনুপ্রাণিত") : "Inspired by"}{" "}
               <a
                 href={config.advisors.farzanaLinkedIn}
@@ -106,85 +94,96 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100 mb-3">
-              {mounted ? t(translations.footer.important, language) : "Important"}
+              {mounted ? (language === 'en' ? "Quick Links" : "দ্রুত লিঙ্ক") : "Quick Links"}
             </h3>
-            <div className="space-y-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              <p className="break-words">
-                <strong>
-                  {mounted ? (language === 'en' ? "Crisis Support:" : "সংকট সহায়তা:") : "Crisis Support:"}
-                </strong>{" "}
-                {mounted ? (language === 'en' ? "Call or text" : "কল বা টেক্সট করুন") : "Call or text"}{" "}
-                <strong>988</strong>
-              </p>
-              <p className="break-words">
-                <strong>
-                  {mounted ? (language === 'en' ? "Emergency:" : "জরুরি:") : "Emergency:"}
-                </strong>{" "}
-                <strong>911</strong>
-              </p>
-              <p className="text-xs text-gray-500 mt-3">
-                {mounted
-                  ? (language === 'en'
-                      ? "For educational purposes only. Not a substitute for professional medical advice."
-                      : "শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে। পেশাদার চিকিৎসা পরামর্শের বিকল্প নয়।")
-                  : "For educational purposes only. Not a substitute for professional medical advice."}
-              </p>
+            <div className="space-y-2 text-xs sm:text-sm">
+              <a href="/medical-disclaimer" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+                {mounted ? (language === 'en' ? "Disclaimer" : "দাবিত্যাগ") : "Disclaimer"}
+              </a>
+              <a href="/privacy" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+                {mounted ? (language === 'en' ? "Privacy Policy" : "গোপনীয়তা নীতি") : "Privacy Policy"}
+              </a>
+              <a href="/faq" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+                {mounted ? (language === 'en' ? "FAQ" : "সাধারণ প্রশ্ন") : "FAQ"}
+              </a>
+              <a href="/ethics" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+                {mounted ? (language === 'en' ? "Ethics & Safety" : "নীতি ও নিরাপত্তা") : "Ethics & Safety"}
+              </a>
+              <a href="/terms" className="block text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
+                {mounted ? (language === 'en' ? "Terms of Service" : "সেবার শর্তাবলী") : "Terms of Service"}
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Free Sessions Policy */}
+        {/* Important Crisis Info */}
         <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg p-4 border border-green-500/50 dark:border-green-700/50">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="text-xl">🇧🇩</span>
-              <p className="font-bold text-gray-900 dark:text-gray-100">
-                For Bangladeshi University Students: 2 Free Counseling Sessions
-              </p>
+          <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-300 dark:border-red-700">
+            <h4 className="font-bold text-red-900 dark:text-red-300 mb-2 text-sm">
+              {mounted ? (language === 'en' ? "🚨 Crisis Support" : "🚨 সংকট সহায়তা") : "🚨 Crisis Support"}
+            </h4>
+            <div className="space-y-1 text-xs text-red-800 dark:text-red-300">
+              <p><strong>Bangladesh:</strong> Kaan Pete Roi: <strong>09678 676 777</strong> (24/7)</p>
+              <p><strong>US:</strong> Call or text <strong>988</strong> (Suicide & Crisis Lifeline)</p>
+              <p><strong>Emergency:</strong> <strong>999</strong> (Bangladesh) or <strong>911</strong> (US)</p>
             </div>
-            <p className="text-xs text-gray-700 dark:text-gray-300">
-              🌍 For Worldwide Users: All educational resources, assessments, and tools are 100% free. 
-              Therapy sessions: Limited pro-bono availability.
-            </p>
           </div>
         </div>
 
-        {/* Bangladesh Context Note */}
-        <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-teal-50 border-l-4 border-teal-500 rounded-lg">
-          <p className="text-xs sm:text-sm text-gray-700">
-            <strong>🇧🇩{" "}
-              {mounted ? (language === 'en' ? "Bangladesh Context:" : "বাংলাদেশ প্রসঙ্গ:") : "Bangladesh Context:"}
-            </strong>{" "}
-            {mounted
-              ? (language === 'en'
-                  ? "This platform is developed with a focus on Bangladesh and similar low-resource settings, while maintaining global applicability. We provide information about local low-cost government mental health services alongside international crisis resources."
-                  : "এই প্ল্যাটফর্মটি বৈশ্বিক প্রযোজ্যতা বজায় রেখে বাংলাদেশ এবং অনুরূপ কম-সম্পদ সেটিংসের উপর ফোকাস করে তৈরি করা হয়েছে। আমরা আন্তর্জাতিক সংকট সম্পদের পাশাপাশি স্থানীয় স্বল্প-খরচ সরকারী মানসিক স্বাস্থ্য পরিষেবা সম্পর্কে তথ্য প্রদান করি।")
-              : "This platform is developed with a focus on Bangladesh and similar low-resource settings, while maintaining global applicability. We provide information about local low-cost government mental health services alongside international crisis resources."}
-          </p>
-        </div>
-
-        {/* Ethical Commitment */}
-        <div className="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg">
-          <h4 className="font-bold text-blue-900 mb-2 text-sm">
-            {mounted
-              ? (language === 'en' ? "Our Ethical Commitment" : "আমাদের নৈতিক প্রতিশ্রুতি")
-              : "Our Ethical Commitment"}
-          </h4>
-          <p className="text-xs text-blue-800">
-            {mounted
-              ? (language === 'en'
-                  ? "MindWell is a non-profit, open-source initiative committed to providing free, evidence-based mental health resources. We maintain strict ethical standards, protect user privacy, and ensure all information is scientifically validated."
-                  : "মাইন্ডওয়েল একটি অলাভজনক, ওপেন-সোর্স উদ্যোগ যা বিনামূল্যে, প্রমাণ-ভিত্তিক মানসিক স্বাস্থ্য সংস্থান প্রদানে প্রতিশ্রুতিবদ্ধ। আমরা কঠোর নৈতিক মান বজায় রাখি, ব্যবহারকারীর গোপনীয়তা রক্ষা করি এবং সমস্ত তথ্য বৈজ্ঞানিকভাবে যাচাই করা নিশ্চিত করি।")
-              : "MindWell is a non-profit, open-source initiative committed to providing free, evidence-based mental health resources. We maintain strict ethical standards, protect user privacy, and ensure all information is scientifically validated."}
-          </p>
+        {/* Developer Info */}
+        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="text-center">
+            <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">
+              {mounted ? (language === 'en' ? "Developed & Founded by" : "উন্নয়ন ও প্রতিষ্ঠা") : "Developed & Founded by"}
+            </p>
+            <p className="text-base font-bold text-teal-700 dark:text-teal-400 mb-3">
+              {config.developer.name}
+            </p>
+            <div className="flex justify-center gap-4 flex-wrap">
+              <a
+                href={config.developer.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href={config.developer.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                aria-label="Facebook"
+              >
+                <Facebook className="h-5 w-5" />
+              </a>
+              <a
+                href={config.developer.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-6 pt-6 border-t border-gray-200 text-center">
-          <p className="text-xs text-gray-500">
+        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700 text-center">
+          <p className="text-xs text-gray-500 dark:text-gray-400">
             &copy; {currentYear} MindWell.{" "}
             {mounted ? t(translations.footer.copyright, language) : "Open-source mental health platform."}
             <br className="sm:hidden" /> Licensed under MIT.
+          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+            {mounted
+              ? (language === 'en'
+                  ? "For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment."
+                  : "শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে। পেশাদার চিকিৎসা পরামর্শ, নির্ণয় বা চিকিৎসার বিকল্প নয়।")
+              : "For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment."}
           </p>
         </div>
       </div>
