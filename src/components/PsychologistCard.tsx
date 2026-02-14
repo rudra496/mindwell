@@ -27,6 +27,7 @@ export function PsychologistCard({ psychologist }: PsychologistCardProps) {
             <CardTitle className="text-xl text-teal-900 dark:text-teal-100">{psychologist.name}</CardTitle>
             <p className="text-gray-700 dark:text-gray-300 font-medium">{psychologist.title}</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">{psychologist.education}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Experience: {psychologist.experience}</p>
           </div>
         </div>
       </CardHeader>

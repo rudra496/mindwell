@@ -1,8 +1,5 @@
 "use client"
 
-import { Mail, Shield } from "lucide-react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { PsychologistCard } from "@/components/PsychologistCard"
 import { psychologists } from "@/data/psychologists"
 
@@ -18,21 +15,6 @@ export default function PsychologistsPage() {
         {psychologists.map((psychologist) => (
           <PsychologistCard key={psychologist.name} psychologist={psychologist} />
         ))}
-      </div>
-
-      <div className="mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-        <p className="text-sm text-blue-900 flex items-start gap-2">
-          <Shield className="h-5 w-5 flex-shrink-0 mt-0.5" />
-          <span><strong>Strict Confidentiality:</strong> All sessions are private and follow ethical professional standards.</span>
-        </p>
-      </div>
-
-      <div className="mt-6 text-center">
-        <Link href="/request-session">
-          <Button className="bg-teal-600 hover:bg-teal-700 text-white">
-            <Mail className="h-4 w-4 mr-2" /> Request a Session
-          </Button>
-        </Link>
       </div>
     </div>
   )

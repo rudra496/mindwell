@@ -78,7 +78,7 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-700 dark:text-gray-300">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full"></div>
-            <span>{mounted ? (language === 'en' ? "100% Free" : "১০০% বিনামূল্যে") : "100% Free"}</span>
+            <span>{mounted ? (language === 'en' ? "Limited Free Sessions" : "১০০% বিনামূল্যে") : "Limited Free Sessions"}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full"></div>
