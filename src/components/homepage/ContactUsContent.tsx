@@ -21,7 +21,7 @@ export function ContactUsContent() {
       icon: Facebook,
       label: "Facebook",
       value: "MindWell Facebook Page",
-      href: "https://www.facebook.com/profile.php?id=61571354720793",
+      href: "https://www.facebook.com/share/17uZeJjmBc/",
       color: "text-blue-600 dark:text-blue-400",
       bgColor: "bg-blue-50 dark:bg-blue-900/20"
     },
@@ -29,7 +29,7 @@ export function ContactUsContent() {
       icon: Linkedin,
       label: "LinkedIn",
       value: "MindWell LinkedIn",
-      href: "https://www.linkedin.com/company/mindwell-mental-health",
+      href: "https://www.linkedin.com/company/mindwell-care/",
       color: "text-cyan-600 dark:text-cyan-400",
       bgColor: "bg-cyan-50 dark:bg-cyan-900/20"
     }
