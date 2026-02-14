@@ -42,7 +42,7 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
         "Crisis Management"
       ],
       whatsapp: "https://wa.me/+8801706520948",
-      phone: "+880 1706-520948",
+      phone: "+8801706520948",
       hasPendingPhoto: false
     },
     {
@@ -63,11 +63,9 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
         "Client Management",
         "Crisis Management"
       ],
-      // TODO: Update with unique contact info when available
-      // Currently using shared contact channel
-      whatsapp: "https://wa.me/+8801706520948", 
-      phone: "+880 1706-520948",
-      hasPendingPhoto: true // TODO: Add kamrul.jpg to /public/images/
+      whatsapp: "https://wa.me/+8801835569198", 
+      phone: "+8801835569198",
+      hasPendingPhoto: false
     }
   ]
 
@@ -194,9 +192,9 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
               <br />
               {mounted 
                 ? (language === 'en'
-                    ? "• Both psychologists currently share contact channels for initial consultation"
+                    ? "• Each psychologist has a separate direct contact channel"
                     : "• প্রাথমিক পরামর্শের জন্য উভয় মনোবিজ্ঞানী বর্তমানে যোগাযোগ চ্যানেল শেয়ার করেন")
-                : "• Both psychologists currently share contact channels for initial consultation"}
+                : "• Each psychologist has a separate direct contact channel"}
               <br />
               {mounted 
                 ? (language === 'en'
@@ -206,20 +204,6 @@ export function PsychologistsAccessSection({ onRequestSupport }: PsychologistsAc
             </p>
           </div>
           
-          {/* Photo Placeholder Note for Kamrul */}
-          <div className="mt-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4 border border-yellow-300 dark:border-yellow-700">
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              <strong className="text-yellow-900 dark:text-yellow-300">
-                {mounted ? (language === 'en' ? '📸 For Developers:' : '📸 ডেভেলপারদের জন্য:') : '📸 For Developers:'}
-              </strong>
-              <br />
-              {mounted 
-                ? (language === 'en'
-                    ? "Please add kamrul.jpg photo to /public/images/ directory. The photo should be a professional headshot with transparent or neutral background."
-                    : "দয়া করে /public/images/ ডিরেক্টরিতে kamrul.jpg ফটো যোগ করুন। ফটোটি স্বচ্ছ বা নিরপেক্ষ পটভূমি সহ একটি পেশাদার হেডশট হওয়া উচিত।")
-                : "Please add kamrul.jpg photo to /public/images/ directory. The photo should be a professional headshot with transparent or neutral background."}
-            </p>
-          </div>
         </CardContent>
       </Card>
     </section>

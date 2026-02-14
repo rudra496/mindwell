@@ -12,7 +12,21 @@
 
 > **Comprehensive, scientifically-backed, free mental health support platform**
 
-🌐 **Live Demo:** [https://mindwell-navy.vercel.app](https://mindwell-navy.vercel.app/)
+🌐 **Live Demo:** [https://mindwell.vercel.app](https://mindwell.vercel.app/)
+
+📱 **Facebook:** https://www.facebook.com/share/17uZeJjmBc/
+
+💼 **LinkedIn:** https://www.linkedin.com/company/mindwell-care/
+
+## ✅ Homepage + SEO Refresh (February 2026)
+
+- Added clear section images for every homepage block (`/public/images/stock/*.svg`) for better visual communication.
+- Replaced text logo usage with the official logo image (`/public/images/Mindwell.jpg`).
+- Updated psychologist presentation with two separate profiles and updated Kamrul contact: **+8801835569198**.
+- Updated social links to official Facebook and LinkedIn company URLs.
+- Added Google Search Console verification meta tag.
+- Refined sitemap URLs for better indexing and removed outdated anchor URLs.
+- Homepage content now uses cleaner structure with less duplicate information.
 
 ## 🇧🇩 Bangladesh-First Mission
 

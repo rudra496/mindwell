@@ -7,7 +7,7 @@ export const config = {
     email: 'contactmindwellorg@gmail.com',
     website: 'https://rudra496.github.io/site',
     github: 'https://github.com/rudra496/mindwell',
-    facebook: 'https://www.facebook.com/share/1ApXh7C6L5/',
+    facebook: 'https://www.facebook.com/share/17uZeJjmBc/',
   },
   site: {
     name: 'MindWell',
@@ -15,7 +15,7 @@ export const config = {
     description: 'World\'s Largest Free Mental Health Platform',
   },
   advisors: {
-    farzanaLinkedIn: 'https://www.linkedin.com/in/farzanahussain?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+    farzanaLinkedIn: 'https://www.linkedin.com/company/mindwell-care/',
   },
   developer: {
     name: 'Rudra Sarker',
@@ -23,6 +23,6 @@ export const config = {
     facebook: 'https://facebook.com/rudra496',
     github: 'https://github.com/rudra496',
     // TODO: Update with actual phone number when available
-    phone: '+880-XXXX-XXXXXX',
+    phone: '+880198822165',
   },
 } as const

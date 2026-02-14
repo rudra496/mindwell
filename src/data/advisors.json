@@ -21,8 +21,37 @@
     ],
     "imageUrl": "/advisors/rifat-hasan-tarofder.jpg",
     "role": "volunteer",
-    "bio": "Licensed clinical psychologist specializing in personality disorders, anxiety disorders, OCD, bipolar disorder, and other psychotic disorders. Experienced in crisis intervention and trauma-informed care.",
+    "bio": "Licensed clinical psychologist specializing in anxiety, personality disorders, and crisis intervention.",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-14T19:45:00.000Z"
+  },
+  {
+    "id": "advisor-002-kamrul-hasan",
+    "name": "Kamrul Hasan",
+    "title": "Clinical Psychologist",
+    "education": "Counseling and Clinical Practice",
+    "certifications": [
+      "Counseling Psychology",
+      "Psychometrics"
+    ],
+    "expertise": [
+      "Cognitive Behavioral Therapy",
+      "Counseling Psychology",
+      "Mental Health",
+      "Active Listening",
+      "Psychology",
+      "Communication Skills",
+      "Research Paper Writing",
+      "Psychometrics",
+      "Child Counseling",
+      "Stress Management",
+      "Client Management",
+      "Crisis Management"
+    ],
+    "imageUrl": "/advisors/kamrul.jpg",
+    "role": "volunteer",
+    "bio": "Clinical psychologist focused on counseling support, stress management, and crisis care.",
+    "createdAt": "2026-02-14T19:45:00.000Z",
+    "updatedAt": "2026-02-14T19:45:00.000Z"
   }
 ]

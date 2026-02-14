@@ -139,6 +139,7 @@ export function Footer() {
             <p className="text-base font-bold text-teal-700 dark:text-teal-400 mb-3">
               {config.developer.name}
             </p>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Phone: {config.developer.phone}</p>
             <div className="flex justify-center gap-4 flex-wrap">
               <a
                 href={config.developer.linkedin}

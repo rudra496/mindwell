@@ -58,7 +58,11 @@ export const metadata: Metadata = {
     "mental health resources",
     "free mental health support",
     "online therapy tools",
-    "mental health community"
+    "mental health community",
+    "psychologist in bangladesh",
+    "free counseling",
+    "online mental health support bangla",
+    "mindwell care"
   ],
   authors: [{ name: "Rudra Sarker", url: "https://rudra496.github.io/site" }],
   creator: "Rudra Sarker",
@@ -115,7 +119,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   themeColor: "#0d9488",
-  colorScheme: "light dark"
+  colorScheme: "light"
 }
 
 export default function RootLayout({
@@ -145,7 +149,9 @@ export default function RootLayout({
         },
         "sameAs": [
           "https://github.com/rudra496/mindwell",
-          "https://rudra496.github.io/site"
+          "https://rudra496.github.io/site",
+          "https://www.facebook.com/share/17uZeJjmBc/",
+          "https://www.linkedin.com/company/mindwell-care/"
         ]
       },
       {
@@ -203,9 +209,9 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: light)" />
-        <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
-        <link rel="apple-touch-icon" href="/icon-192.png" />
+                <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="canonical" href="https://mindwell.vercel.app" />
+        <meta name="google-site-verification" content="IEwIenAHQpzJaCrgF1uZVcNtRJ31I4Luu-09Tiz7xLI" />
         
         {/* Structured Data */}
         <Script
@@ -234,7 +240,7 @@ export default function RootLayout({
             <GlobalNavigation />
             
             <div className="flex flex-col min-h-screen">
-              <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
+              <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 transition-colors duration-300">
                 {/* Breadcrumbs for page hierarchy */}
                 <div className="container mx-auto px-4">
                   <Breadcrumbs />

@@ -27,9 +27,9 @@ import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
 import { ContactUsContent } from "@/components/homepage/ContactUsContent"
 import { DonateContent } from "@/components/homepage/DonateContent"
 import { NavigationBar } from "@/components/NavigationBar"
-import { Footer } from "@/components/Footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import Image from "next/image"
 import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
 import { GamesModal } from "@/components/GamesModal"
@@ -60,7 +60,7 @@ export default function HomePage() {
       {/* Navigation Bar - Keep Emergency Number */}
       <NavigationBar onNavigate={handleNavigate} />
 
-      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
+      <div id="home" className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
         
         {/* Crisis Banner - Always Visible */}
         <div className="mb-6 sm:mb-8 rounded-lg bg-red-50 dark:bg-red-950/30 border-2 border-red-500 dark:border-red-700 p-3 sm:p-4 transition-colors">
@@ -81,9 +81,9 @@ export default function HomePage() {
 
         {/* Welcome Message */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-teal-600 to-indigo-600 dark:from-teal-400 dark:to-indigo-400 bg-clip-text text-transparent mb-4">
-            Welcome to MindWell
-          </h1>
+          <div className="flex justify-center mb-4">
+            <Image src="/images/Mindwell.jpg" alt="MindWell logo" width={240} height={120} className="h-auto w-48 sm:w-60 rounded-xl shadow-md" priority />
+          </div>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             World's Largest Free Mental Health Support Platform
           </p>
@@ -98,7 +98,7 @@ export default function HomePage() {
             title="Emergency Support"
             icon={AlertCircle}
             iconColor="text-red-600 dark:text-red-400"
-            stockPhotoUrl="/images/stock/emergency-support.jpg"
+            stockPhotoUrl="/images/stock/emergency-support.svg"
             stockPhotoAlt="Mental health emergency support"
             bgGradient="from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20"
           >
@@ -111,7 +111,7 @@ export default function HomePage() {
             title="Who We Are"
             icon={Heart}
             iconColor="text-pink-600 dark:text-pink-400"
-            stockPhotoUrl="/images/stock/team-support.jpg"
+            stockPhotoUrl="/images/stock/team-support.svg"
             stockPhotoAlt="Team collaboration and support"
             bgGradient="from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20"
           >
@@ -124,7 +124,7 @@ export default function HomePage() {
             title="Our Services"
             icon={Briefcase}
             iconColor="text-teal-600 dark:text-teal-400"
-            stockPhotoUrl="/images/stock/services.jpg"
+            stockPhotoUrl="/images/stock/services.svg"
             stockPhotoAlt="Mental health services"
             bgGradient="from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20"
           >
@@ -182,7 +182,7 @@ export default function HomePage() {
             title="Mental Health Assessment"
             icon={ClipboardList}
             iconColor="text-indigo-600 dark:text-indigo-400"
-            stockPhotoUrl="/images/stock/assessment.jpg"
+            stockPhotoUrl="/images/stock/assessment.svg"
             stockPhotoAlt="Mental health assessment"
             bgGradient="from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20"
           >
@@ -220,7 +220,7 @@ export default function HomePage() {
             title="Blog Posts & Articles"
             icon={FileText}
             iconColor="text-blue-600 dark:text-blue-400"
-            stockPhotoUrl="/images/stock/reading.jpg"
+            stockPhotoUrl="/images/stock/reading.svg"
             stockPhotoAlt="Reading and education"
             bgGradient="from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
           >
@@ -234,7 +234,7 @@ export default function HomePage() {
                 </p>
                 <div className="flex justify-center mt-4">
                   <Button
-                    onClick={() => window.open('https://www.facebook.com/profile.php?id=61571354720793', '_blank')}
+                    onClick={() => window.open('https://www.facebook.com/share/17uZeJjmBc/', '_blank')}
                     className="bg-blue-600 hover:bg-blue-700"
                   >
                     Visit Our Facebook Page
@@ -250,7 +250,7 @@ export default function HomePage() {
             title="Our SDG Goals"
             icon={Target}
             iconColor="text-green-600 dark:text-green-400"
-            stockPhotoUrl="/images/stock/sdg.jpg"
+            stockPhotoUrl="/images/stock/sdg.svg"
             stockPhotoAlt="UN Sustainable Development Goals"
             bgGradient="from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
           >
@@ -263,7 +263,7 @@ export default function HomePage() {
             title="Education Resources"
             icon={GraduationCap}
             iconColor="text-orange-600 dark:text-orange-400"
-            stockPhotoUrl="/images/stock/learning.jpg"
+            stockPhotoUrl="/images/stock/learning.svg"
             stockPhotoAlt="Learning and education"
             bgGradient="from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20"
           >
@@ -288,7 +288,7 @@ export default function HomePage() {
             title="Community"
             icon={Users}
             iconColor="text-purple-600 dark:text-purple-400"
-            stockPhotoUrl="/images/stock/community.jpg"
+            stockPhotoUrl="/images/stock/community.svg"
             stockPhotoAlt="Community support"
             bgGradient="from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
           >
@@ -313,7 +313,7 @@ export default function HomePage() {
             title="Free Mental Health Support in Bangladesh"
             icon={MapPin}
             iconColor="text-green-700 dark:text-green-400"
-            stockPhotoUrl="/images/stock/bangladesh.jpg"
+            stockPhotoUrl="/images/stock/bangladesh.svg"
             stockPhotoAlt="Bangladesh mental health support"
             bgGradient="from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20"
           >
@@ -326,7 +326,7 @@ export default function HomePage() {
             title="Global Crisis Resources"
             icon={Globe}
             iconColor="text-red-600 dark:text-red-400"
-            stockPhotoUrl="/images/stock/global-support.jpg"
+            stockPhotoUrl="/images/stock/global-support.svg"
             stockPhotoAlt="Global crisis support"
             bgGradient="from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20"
           >
@@ -351,7 +351,7 @@ export default function HomePage() {
             title="Mood Tracker"
             icon={BarChart3}
             iconColor="text-cyan-600 dark:text-cyan-400"
-            stockPhotoUrl="/images/stock/mood-tracking.jpg"
+            stockPhotoUrl="/images/stock/mood-tracking.svg"
             stockPhotoAlt="Mood tracking"
             bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
           >
@@ -364,7 +364,7 @@ export default function HomePage() {
             title="Want to Donate or Provide Funding?"
             icon={DollarSign}
             iconColor="text-emerald-600 dark:text-emerald-400"
-            stockPhotoUrl="/images/stock/donation.jpg"
+            stockPhotoUrl="/images/stock/donation.svg"
             stockPhotoAlt="Donation and funding"
             bgGradient="from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20"
           >
@@ -377,18 +377,13 @@ export default function HomePage() {
             title="Contact Us"
             icon={Mail}
             iconColor="text-blue-600 dark:text-blue-400"
-            stockPhotoUrl="/images/stock/contact.jpg"
+            stockPhotoUrl="/images/stock/contact.svg"
             stockPhotoAlt="Contact and communication"
             bgGradient="from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20"
           >
             <ContactUsContent />
           </MinimalSection>
 
-        </div>
-
-        {/* Footer - Updated with proper ordering */}
-        <div className="mt-12">
-          <Footer />
         </div>
       </div>
 
