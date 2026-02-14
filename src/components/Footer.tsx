@@ -30,9 +30,9 @@ export function Footer() {
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 break-words mb-3">
               {mounted 
                 ? (language === 'en'
-                    ? "World's largest open-source mental health platform providing comprehensive, scientifically-backed, free mental health support to everyone, everywhere."
+                    ? "MindWell – Open Source Mental Health Platform. Free access to mental health resources, with limited free psychologist sessions based on availability."
                     : "বিশ্বের বৃহত্তম ওপেন-সোর্স মানসিক স্বাস্থ্য প্ল্যাটফর্ম সবার জন্য ব্যাপক, বৈজ্ঞানিকভাবে সমর্থিত, বিনামূল্যে মানসিক স্বাস্থ্য সহায়তা প্রদান করে।")
-                : "World's largest open-source mental health platform providing comprehensive, scientifically-backed, free mental health support to everyone, everywhere."}
+                : "MindWell – Open Source Mental Health Platform. Free access to mental health resources, with limited free psychologist sessions based on availability."}
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               {mounted

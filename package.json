@@ -1,7 +1,7 @@
 {
   "name": "mindwell",
   "version": "1.0.0",
-  "description": "World's Largest Open-Source Mental Health Platform",
+  "description": "MindWell \u2013 Open Source Mental Health Platform",
   "private": true,
   "scripts": {
     "dev": "next dev",

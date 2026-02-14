@@ -22,7 +22,7 @@ export default function FAQPage() {
     },
     {
       question: 'What should I do in a crisis?',
-      answer: 'IF YOU ARE IN CRISIS OR HAVING THOUGHTS OF SUICIDE, CALL EMERGENCY SERVICES IMMEDIATELY.\n\n🚨 United States: Call or text 988 (Suicide & Crisis Lifeline)\n🚨 Crisis Text Line (US): Text HELLO to 741741\n🚨 Bangladesh: Call 09678 676 789 (Kaan Pete Roi)\n\nMindWell is NOT a crisis intervention service. Always contact emergency services or professional crisis hotlines.'
+      answer: 'IF YOU ARE IN CRISIS OR HAVING THOUGHTS OF SUICIDE, CALL EMERGENCY SERVICES IMMEDIATELY.\n\n🚨 United States: Call or text 988 (Suicide & Crisis Lifeline)\n🚨 Bangladesh: Call 09678 676 777 (Kaan Pete Roi)\n\nMindWell is NOT a crisis intervention service. Always contact emergency services or professional crisis hotlines.'
     },
     {
       question: 'Is my data private and secure?',
@@ -34,7 +34,7 @@ export default function FAQPage() {
     },
     {
       question: 'Is MindWell really free?',
-      answer: 'Yes. MindWell is 100% free and open source. We believe mental health support should be accessible to everyone. There are no hidden fees, subscriptions, or premium features.'
+      answer: 'MindWell provides free access to mental health resources, with limited free psychologist sessions based on availability. MindWell is open source and focused on ethical, accessible support.'
     },
     {
       question: 'Where does the information come from?',

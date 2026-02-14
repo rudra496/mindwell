@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'About MindWell',
-  description: 'Learn about MindWell - the world\'s largest open-source mental health platform',
+  description: 'Learn about MindWell – Open Source Mental Health Platform.',
 };
 
 export default async function AboutPage() {
