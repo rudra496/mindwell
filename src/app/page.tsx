@@ -5,7 +5,6 @@ import {
   AlertCircle, 
   Heart, 
   Briefcase, 
-  Stethoscope,
   ClipboardList,
   BookOpen,
   Target,
@@ -17,6 +16,7 @@ import {
   DollarSign,
   Mail,
   Phone,
+  MessageCircle,
   Gamepad2,
   Sparkles,
   FileText
@@ -29,7 +29,6 @@ import { DonateContent } from "@/components/homepage/DonateContent"
 import { NavigationBar } from "@/components/NavigationBar"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import Image from "next/image"
 import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
 import { GamesModal } from "@/components/GamesModal"
@@ -40,6 +39,7 @@ import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { BangladeshServicesSection } from "@/components/BangladeshServicesSection"
 import { SDGSection } from "@/components/SDGSection"
 import MoodTracker from "@/components/games/MoodTracker"
+import { PsychologistsAccessSection } from "@/components/PsychologistsAccessSection"
 
 export default function HomePage() {
   // Modal states
@@ -81,9 +81,9 @@ export default function HomePage() {
 
         {/* Welcome Message */}
         <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <Image src="/images/Mindwell.jpg" alt="MindWell logo" width={240} height={120} className="h-auto w-48 sm:w-60 rounded-xl shadow-md" priority />
-          </div>
+          <h1 className="text-3xl sm:text-5xl font-bold text-teal-900 dark:text-teal-100 mb-4">
+            MindWell – Open Source Mental Health Platform
+          </h1>
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             World's Largest Free Mental Health Support Platform
           </p>
@@ -98,7 +98,7 @@ export default function HomePage() {
             title="Emergency Support"
             icon={AlertCircle}
             iconColor="text-red-600 dark:text-red-400"
-            stockPhotoUrl="/images/stock/emergency-support.svg"
+            stockPhotoUrl="/images/homepage/hero.svg"
             stockPhotoAlt="Mental health emergency support"
             bgGradient="from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20"
           >
@@ -111,7 +111,7 @@ export default function HomePage() {
             title="Who We Are"
             icon={Heart}
             iconColor="text-pink-600 dark:text-pink-400"
-            stockPhotoUrl="/images/stock/team-support.svg"
+            stockPhotoUrl="/images/homepage/therapy.svg"
             stockPhotoAlt="Team collaboration and support"
             bgGradient="from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20"
           >
@@ -124,7 +124,7 @@ export default function HomePage() {
             title="Our Services"
             icon={Briefcase}
             iconColor="text-teal-600 dark:text-teal-400"
-            stockPhotoUrl="/images/stock/services.svg"
+            stockPhotoUrl="/images/homepage/therapy.svg"
             stockPhotoAlt="Mental health services"
             bgGradient="from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20"
           >
@@ -182,7 +182,7 @@ export default function HomePage() {
             title="Mental Health Assessment"
             icon={ClipboardList}
             iconColor="text-indigo-600 dark:text-indigo-400"
-            stockPhotoUrl="/images/stock/assessment.svg"
+            stockPhotoUrl="/images/homepage/assessments.svg"
             stockPhotoAlt="Mental health assessment"
             bgGradient="from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20"
           >
@@ -220,7 +220,7 @@ export default function HomePage() {
             title="Blog Posts & Articles"
             icon={FileText}
             iconColor="text-blue-600 dark:text-blue-400"
-            stockPhotoUrl="/images/stock/reading.svg"
+            stockPhotoUrl="/images/homepage/learn.svg"
             stockPhotoAlt="Reading and education"
             bgGradient="from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
           >
@@ -250,7 +250,7 @@ export default function HomePage() {
             title="Our SDG Goals"
             icon={Target}
             iconColor="text-green-600 dark:text-green-400"
-            stockPhotoUrl="/images/stock/sdg.svg"
+            stockPhotoUrl="/images/homepage/sdg.svg"
             stockPhotoAlt="UN Sustainable Development Goals"
             bgGradient="from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20"
           >
@@ -263,7 +263,7 @@ export default function HomePage() {
             title="Education Resources"
             icon={GraduationCap}
             iconColor="text-orange-600 dark:text-orange-400"
-            stockPhotoUrl="/images/stock/learning.svg"
+            stockPhotoUrl="/images/homepage/learn.svg"
             stockPhotoAlt="Learning and education"
             bgGradient="from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20"
           >
@@ -288,7 +288,7 @@ export default function HomePage() {
             title="Community"
             icon={Users}
             iconColor="text-purple-600 dark:text-purple-400"
-            stockPhotoUrl="/images/stock/community.svg"
+            stockPhotoUrl="/images/homepage/community.svg"
             stockPhotoAlt="Community support"
             bgGradient="from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
           >
@@ -307,26 +307,39 @@ export default function HomePage() {
             </div>
           </MinimalSection>
 
-          {/* Section 9: Free Mental Health Support in Bangladesh */}
+          {/* Section 9: Psychologists */}
+          <MinimalSection
+            id="psychologists"
+            title="Psychologists"
+            icon={MessageCircle}
+            iconColor="text-teal-700 dark:text-teal-400"
+            stockPhotoUrl="/images/homepage/psychologists.svg"
+            stockPhotoAlt="Psychologists and counseling support"
+            bgGradient="from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20"
+          >
+            <PsychologistsAccessSection />
+          </MinimalSection>
+
+          {/* Section 10: Free Mental Health Support in Bangladesh */}
           <MinimalSection
             id="bangladesh-support"
             title="Free Mental Health Support in Bangladesh"
             icon={MapPin}
             iconColor="text-green-700 dark:text-green-400"
-            stockPhotoUrl="/images/stock/bangladesh.svg"
+            stockPhotoUrl="/images/homepage/bangladesh.svg"
             stockPhotoAlt="Bangladesh mental health support"
             bgGradient="from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20"
           >
             <BangladeshServicesSection />
           </MinimalSection>
 
-          {/* Section 10: Crisis Response Resources */}
+          {/* Section 11: Crisis Response Resources */}
           <MinimalSection
             id="crisis-resources"
             title="Global Crisis Resources"
             icon={Globe}
             iconColor="text-red-600 dark:text-red-400"
-            stockPhotoUrl="/images/stock/global-support.svg"
+            stockPhotoUrl="/images/homepage/crisis.svg"
             stockPhotoAlt="Global crisis support"
             bgGradient="from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20"
           >
@@ -345,39 +358,39 @@ export default function HomePage() {
             </div>
           </MinimalSection>
 
-          {/* Section 11: Mood Tracker */}
+          {/* Section 12: Mood Tracker */}
           <MinimalSection
             id="mood-tracker"
             title="Mood Tracker"
             icon={BarChart3}
             iconColor="text-cyan-600 dark:text-cyan-400"
-            stockPhotoUrl="/images/stock/mood-tracking.svg"
+            stockPhotoUrl="/images/homepage/learn.svg"
             stockPhotoAlt="Mood tracking"
             bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
           >
             <MoodTracker />
           </MinimalSection>
 
-          {/* Section 12: Donate / Provide Funding */}
+          {/* Section 13: Donate / Provide Funding */}
           <MinimalSection
             id="donate"
             title="Want to Donate or Provide Funding?"
             icon={DollarSign}
             iconColor="text-emerald-600 dark:text-emerald-400"
-            stockPhotoUrl="/images/stock/donation.svg"
+            stockPhotoUrl="/images/homepage/funding.svg"
             stockPhotoAlt="Donation and funding"
             bgGradient="from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20"
           >
             <DonateContent />
           </MinimalSection>
 
-          {/* Section 13: Contact Us */}
+          {/* Section 14: Contact Us */}
           <MinimalSection
             id="contact-us"
             title="Contact Us"
             icon={Mail}
             iconColor="text-blue-600 dark:text-blue-400"
-            stockPhotoUrl="/images/stock/contact.svg"
+            stockPhotoUrl="/images/homepage/contact.svg"
             stockPhotoAlt="Contact and communication"
             bgGradient="from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20"
           >

@@ -1,7 +1,8 @@
 "use client"
 
-import { Mail, Phone } from "lucide-react"
+import { Mail, Phone, MessageCircle } from "lucide-react"
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
 /**
  * Section 12: Donate / Provide Funding
@@ -14,61 +15,34 @@ export function DonateContent() {
       </p>
 
       <ul className="space-y-2 text-gray-600 dark:text-gray-400">
-        <li className="flex items-start gap-2">
-          <span className="text-teal-600 dark:text-teal-400 font-bold">✓</span>
-          <span>Keep all resources completely free</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-teal-600 dark:text-teal-400 font-bold">✓</span>
-          <span>Expand our mental health resource library</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-teal-600 dark:text-teal-400 font-bold">✓</span>
-          <span>Reach more people in need</span>
-        </li>
-        <li className="flex items-start gap-2">
-          <span className="text-teal-600 dark:text-teal-400 font-bold">✓</span>
-          <span>Develop new features and tools</span>
-        </li>
+        <li className="flex items-start gap-2"><span className="text-teal-600 dark:text-teal-400 font-bold">✓</span><span>Keep all resources completely free</span></li>
+        <li className="flex items-start gap-2"><span className="text-teal-600 dark:text-teal-400 font-bold">✓</span><span>Expand our mental health resource library</span></li>
+        <li className="flex items-start gap-2"><span className="text-teal-600 dark:text-teal-400 font-bold">✓</span><span>Reach more people in need</span></li>
+        <li className="flex items-start gap-2"><span className="text-teal-600 dark:text-teal-400 font-bold">✓</span><span>Develop new features and tools</span></li>
       </ul>
 
       <div className="mt-8 space-y-4">
-        <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">
-          Contact Us About Funding
-        </h4>
+        <h4 className="text-xl font-bold text-gray-900 dark:text-gray-100">Contact Us About Funding</h4>
 
         <Card className="p-6 border-2 dark:border-gray-700">
-          <div className="space-y-4">
-            {/* Email Contact */}
-            <a
-              href="mailto:contactmindwellorg@gmail.com?subject=Donation Inquiry"
-              className="flex items-center gap-3 p-4 bg-teal-50 dark:bg-teal-900/20 rounded-lg hover:bg-teal-100 dark:hover:bg-teal-900/30 transition-colors group"
-            >
-              <div className="w-12 h-12 rounded-full bg-teal-600 dark:bg-teal-500 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Mail className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-900 dark:text-gray-100">Email Us</p>
-                <p className="text-sm text-teal-600 dark:text-teal-400">contactmindwellorg@gmail.com</p>
-              </div>
-            </a>
-
-            {/* Phone Placeholder */}
-            <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg opacity-60">
-              <div className="w-12 h-12 rounded-full bg-gray-400 dark:bg-gray-600 flex items-center justify-center">
-                <Phone className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-900 dark:text-gray-100">Phone</p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">Phone number will be added soon</p>
-              </div>
-            </div>
+          <div className="space-y-3">
+            <Button asChild className="w-full justify-start bg-teal-600 hover:bg-teal-700">
+              <a href="mailto:contactmindwellorg@gmail.com?subject=Donation Inquiry">
+                <Mail className="h-5 w-5 mr-2" /> Email: contactmindwellorg@gmail.com
+              </a>
+            </Button>
+            <Button asChild variant="outline" className="w-full justify-start">
+              <a href="tel:+8801988223165">
+                <Phone className="h-5 w-5 mr-2" /> Phone: +8801988223165
+              </a>
+            </Button>
+            <Button asChild className="w-full justify-start bg-green-600 hover:bg-green-700">
+              <a href="https://wa.me/8801988223165" target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="h-5 w-5 mr-2" /> WhatsApp Funding Contact
+              </a>
+            </Button>
           </div>
         </Card>
-
-        <p className="text-sm text-gray-600 dark:text-gray-400 italic">
-          For NGOs and organizations interested in providing funding or partnership opportunities
-        </p>
       </div>
     </div>
   )

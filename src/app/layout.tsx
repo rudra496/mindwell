@@ -9,7 +9,6 @@ import { EmergencySupportBar } from "@/components/safety/EmergencySupportBar";
 import { GlobalNavigation } from "@/components/layout/GlobalNavigation";
 import { GlobalFooter } from "@/components/layout/GlobalFooter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { LegalLinksBar } from "@/components/layout/LegalLinksBar";
 import { AnalyticsPlaceholder } from "@/components/AnalyticsPlaceholder";
 import { ClientErrorLogger } from "@/components/ClientErrorLogger";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
@@ -249,9 +248,6 @@ export default function RootLayout({
                 {/* Main Content */}
                 {children}
               </main>
-              
-              {/* Legal Links Bar */}
-              <LegalLinksBar />
               
               {/* Global Footer */}
               <GlobalFooter />
