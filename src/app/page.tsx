@@ -11,19 +11,16 @@ import {
   Target,
   Users,
   Mail,
-  Phone,
+  Gamepad2,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
 import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
-import { ContactUsContent } from "@/components/homepage/ContactUsContent"
-import { DonateContent } from "@/components/homepage/DonateContent"
 import { Button } from "@/components/ui/button"
 import { DisordersModal } from "@/components/DisordersModal"
 import { AssessmentModal } from "@/components/AssessmentModal"
 import { GamesModal } from "@/components/GamesModal"
-import { CrisisModal } from "@/components/CrisisModal"
 import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
@@ -33,7 +30,6 @@ export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
   const [assessmentOpen, setAssessmentOpen] = useState(false)
   const [gamesOpen, setGamesOpen] = useState(false)
-  const [crisisOpen, setCrisisOpen] = useState(false)
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
@@ -104,7 +100,6 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
               <Button onClick={() => setTherapyTechniquesOpen(true)}>Therapy Techniques</Button>
               <Button onClick={() => setMeditationOpen(true)} variant="outline">Meditation Library</Button>
-              <Button onClick={() => setGamesOpen(true)} variant="outline">Wellness Activities</Button>
             </div>
           </MinimalSection>
 
@@ -126,6 +121,13 @@ export default function HomePage() {
             <SDGSection />
           </MinimalSection>
 
+          <MinimalSection id="wellbeing-games" title="Wellbeing Games" icon={Gamepad2}>
+            <div className="space-y-3 text-center md:text-left">
+              <p className="text-gray-700 dark:text-gray-300">Use short, guided wellbeing games to support focus, calm, and emotional regulation.</p>
+              <Button onClick={() => setGamesOpen(true)}>Open Wellbeing Games</Button>
+            </div>
+          </MinimalSection>
+
           <MinimalSection
             id="community"
             title="Community"
@@ -139,16 +141,17 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
-            id="contact-support"
-            title="Contact & Support"
+            id="funding-support"
+            title="Funding & Support"
             icon={Mail}
             stockPhotoUrl="/images/stock/one_on_one_counseling.jpg"
             stockPhotoAlt="Support contact for mental health consultations"
           >
-            <DonateContent />
-            <ContactUsContent />
-            <div className="mt-6">
-              <Button onClick={() => setCrisisOpen(true)} className="bg-red-600 hover:bg-red-700"><Phone className="h-4 w-4 mr-2" />View crisis resources by country</Button>
+            <div className="space-y-2 text-gray-700 dark:text-gray-300 text-center md:text-left">
+              <p>MindWell is sustained through responsible support and transparent collaboration.</p>
+              <p>For funding, partnerships, or support requests, contact us directly:</p>
+              <p>Email: <a href="mailto:contactmindwellorg@gmail.com" className="text-teal-700 dark:text-teal-400 hover:underline">contactmindwellorg@gmail.com</a></p>
+              <p>Phone: <a href="tel:+8801988223165" className="text-teal-700 dark:text-teal-400 hover:underline">+8801988223165</a></p>
             </div>
           </MinimalSection>
         </div>
@@ -157,7 +160,6 @@ export default function HomePage() {
       <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
       <AssessmentModal open={assessmentOpen} onOpenChange={setAssessmentOpen} />
       <GamesModal open={gamesOpen} onOpenChange={setGamesOpen} />
-      <CrisisModal open={crisisOpen} onOpenChange={setCrisisOpen} />
       <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
       <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />

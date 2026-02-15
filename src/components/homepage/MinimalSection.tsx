@@ -62,12 +62,12 @@ export function MinimalSection({
         onClick={() => setIsOpen(!isOpen)}
       >
         {stockPhotoUrl && (
-          <div className="absolute inset-0 overflow-hidden opacity-30 group-hover:opacity-40 transition-opacity">
+          <div className="absolute inset-0 overflow-hidden opacity-[0.15] group-hover:opacity-[0.22] transition-opacity">
             <Image
               src={stockPhotoUrl}
               alt={stockPhotoAlt}
               fill
-              className="object-cover"
+              className="object-cover saturate-75"
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
             />
           </div>
