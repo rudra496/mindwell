@@ -1,51 +1,21 @@
 # MindWell – Open Source Mental Health Platform
 
-MindWell is an open-source mental health platform focused on safe, educational, and accessible mental health support.
+MindWell is a Next.js + TypeScript platform for mental health education, self-reflection tools, and guided access to professional support.
 
-## Purpose
+## Homepage overview
 
-MindWell provides:
-- Educational mental health resources
-- Self-reflection tools
-- Therapy and meditation learning materials
-- Crisis and emergency support links
-- Access to psychologists with limited free sessions based on availability
+- Refined visual structure with optimized responsive imagery and lighter section backgrounds.
+- Emergency section is focused on psychologist access: **In crisis? → Consult with our Clinical Psychologists → 1st Session Free**.
+- Homepage does not list crisis hotlines; country-wise services are accessed through dedicated navigation pages (`/faq`, `/bangladesh-services`).
+- Added a dedicated **Wellbeing Games** section with direct modal access.
+- Simplified **Funding & Support** details to concise contact information.
 
-## Mission
+## Funding & support contact
 
-Our mission is to make mental health support resources more accessible through open-source collaboration and ethical design.
+- Email: [contactmindwellorg@gmail.com](mailto:contactmindwellorg@gmail.com)
+- Phone: [+8801988223165](tel:+8801988223165)
 
-## Core Service Statement
+## Credits
 
-🌍 1 Free Session for Everyone – Worldwide Access
-
-Free access to mental health resources, with limited free psychologist sessions based on availability.
-
-## Crisis Disclaimer
-
-If you are in immediate danger, call local emergency services right away.
-
-Current emergency references on MindWell include:
-- Bangladesh: Kaan Pete Roi – 09678 676 777 (24/7)
-- US: 988
-- Emergency: 999 (BD) / 911 (US)
-
-## Medical / Non-Medical Disclaimer
-
-MindWell content is educational and informational only.
-It is **not** a substitute for professional medical advice, diagnosis, or treatment.
-Always seek help from a qualified healthcare professional for medical concerns.
-
-## Contributing
-
-We welcome responsible contributions.
-
-1. Fork the repository
-2. Create a feature branch
-3. Make focused, tested changes
-4. Open a pull request with a clear summary
-
-Please review these documents before contributing:
-- `CONTRIBUTING.md`
-- `CODE_OF_CONDUCT.md`
-- `SECURITY.md`
+- Built by [Rudra Sarker](https://rudra496.github.io/site)
+- Inspired by [Dr. Farzana Hussain](https://www.linkedin.com/in/farzanahussain/)

@@ -1,8 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Heart, Shield, Users, CheckCircle, Phone, MapPin, Globe } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t } from "@/lib/i18n"
@@ -21,33 +19,33 @@ export function BangladeshServicesSection() {
   }, [])
 
   const services = [
-    { 
-      en: "All Mental Health Assessments", 
-      bn: "সমস্ত মানসিক স্বাস্থ্য মূল্যায়ন" 
-    },
-    { 
-      en: "Wellness Activities & Interactive Tools", 
-      bn: "সুস্থতা কার্যক্রম এবং ইন্টারঅ্যাক্টিভ সরঞ্জাম" 
-    },
-    { 
-      en: "Meditation & Mindfulness Guides", 
-      bn: "ধ্যান এবং মননশীলতা গাইড" 
-    },
-    { 
-      en: "Therapy Techniques & Resources", 
-      bn: "থেরাপি কৌশল এবং সম্পদ" 
-    },
-    { 
-      en: "Crisis Support Information", 
-      bn: "সংকট সহায়তা তথ্য" 
-    },
-    { 
-      en: "Community Support Forums", 
-      bn: "কমিউনিটি সহায়তা ফোরাম" 
+    {
+      en: "All Mental Health Assessments",
+      bn: "সমস্ত মানসিক স্বাস্থ্য মূল্যায়ন"
     },
     {
-      en: `Mental Health Education on ${CONTENT_COUNTS.disorders}+ Conditions`, 
-      bn: `${CONTENT_COUNTS.disorders}+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান` 
+      en: "Wellness Activities & Interactive Tools",
+      bn: "সুস্থতা কার্যক্রম এবং ইন্টারঅ্যাক্টিভ সরঞ্জাম"
+    },
+    {
+      en: "Meditation & Mindfulness Guides",
+      bn: "ধ্যান এবং মননশীলতা গাইড"
+    },
+    {
+      en: "Therapy Techniques & Resources",
+      bn: "থেরাপি কৌশল এবং সম্পদ"
+    },
+    {
+      en: "Crisis Support Information",
+      bn: "সংকট সহায়তা তথ্য"
+    },
+    {
+      en: "Community Support Forums",
+      bn: "কমিউনিটি সহায়তা ফোরাম"
+    },
+    {
+      en: `Mental Health Education on ${CONTENT_COUNTS.disorders}+ Conditions`,
+      bn: `${CONTENT_COUNTS.disorders}+ ব্যাধি সম্পর্কে শিক্ষামূলক উপাদান`
     },
     {
       en: "24/7 Kaan Pete Roi Helpline: 09678 676 777",
@@ -98,8 +96,8 @@ export function BangladeshServicesSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {services.map((service, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="flex items-center gap-3 bg-white/80 dark:bg-slate-800/80 rounded-lg p-4 border border-green-200 dark:border-green-800 hover:shadow-md transition-all"
           >
             <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0" />
@@ -115,7 +113,7 @@ export function BangladeshServicesSection() {
           <Shield className="h-6 w-6 text-green-600 dark:text-green-400 flex-shrink-0 mt-1" />
           <div>
             <h3 className="font-bold text-green-900 dark:text-green-300 mb-2">
-              {mounted 
+              {mounted
                 ? (language === 'en' ? "Commitment to Accessibility" : "অ্যাক্সেসযোগ্যতার প্রতিশ্রুতি")
                 : "Commitment to Accessibility"}
             </h3>
@@ -132,7 +130,7 @@ export function BangladeshServicesSection() {
 
       <div className="bg-white/80 dark:bg-slate-800/80 rounded-xl p-6 border border-green-200 dark:border-green-800 transition-colors">
         <h3 className="font-bold text-green-900 dark:text-green-300 mb-4 text-lg">
-          {mounted 
+          {mounted
             ? (language === 'en' ? "Bangladesh Mental Health Resources" : "বাংলাদেশ মানসিক স্বাস্থ্য সংস্থান")
             : "Bangladesh Mental Health Resources"}
         </h3>
@@ -150,25 +148,22 @@ export function BangladeshServicesSection() {
                   </p>
                 </div>
               </div>
-              
+
               <div className="space-y-2 mt-3 pl-8">
-                {/* Phone */}
-                <a 
+                <a
                   href={`tel:${resource.phone}`}
                   className="flex items-center gap-2 text-sm text-green-700 dark:text-green-400 font-medium hover:text-green-800 dark:hover:text-green-300 transition-colors"
                 >
                   <Phone className="h-4 w-4" />
                   <span>{resource.phoneDisplay}</span>
                 </a>
-                
-                {/* Location */}
+
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                   <MapPin className="h-4 w-4" />
                   <span>{mounted ? (language === 'en' ? resource.location.en : resource.location.bn) : resource.location.en}</span>
                 </div>
-                
-                {/* Website */}
-                <a 
+
+                <a
                   href={resource.website}
                   target="_blank"
                   rel="noopener noreferrer"
