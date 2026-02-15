@@ -58,7 +58,7 @@ export function MinimalSection({
       className={`border-2 overflow-hidden dark:border-gray-700 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
     >
       <div
-        className={`relative min-h-[240px] md:min-h-[320px] cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300`}
+        className={`relative min-h-[240px] md:min-h-[320px] cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300 ${!stockPhotoUrl ? "border-b border-white/50 dark:border-slate-700 shadow-inner" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {stockPhotoUrl && (
@@ -78,7 +78,7 @@ export function MinimalSection({
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
               <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${iconColor}`} />
             </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-sm text-center md:text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-sm text-center md:text-left">
               {title}
             </h2>
           </div>
@@ -97,7 +97,7 @@ export function MinimalSection({
       </div>
 
       {isOpen && (
-        <CardContent className="p-6 sm:p-8 pt-6 animate-fade-in bg-white dark:bg-slate-800">
+        <CardContent className="p-6 sm:p-8 pt-6 animate-fade-in bg-white dark:bg-slate-800 text-lg">
           {children}
         </CardContent>
       )}
