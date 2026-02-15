@@ -10,9 +10,10 @@ describe('Layout Components', () => {
     expect(skipLink).toBeInTheDocument();
   });
 
-  it('renders EmergencySupportBar with generic crisis guidance', () => {
+  it('renders EmergencySupportBar with generic crisis guidance on non-home routes', () => {
+    window.history.pushState({}, '', '/faq');
     render(<EmergencySupportBar />);
-    expect(screen.getByText(/crisis support/i)).toBeInTheDocument();
-    expect(screen.getByText(/view country-specific crisis resources/i)).toBeInTheDocument();
+    expect(screen.getByText(/crisis support resources are available/i)).toBeInTheDocument();
+    expect(screen.getByText(/view crisis resources by country/i)).toBeInTheDocument();
   });
 });
