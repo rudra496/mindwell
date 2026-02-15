@@ -6,7 +6,7 @@ MindWell is a Next.js + TypeScript platform for mental health education, self-re
 
 - Refined visual structure with optimized responsive imagery and lighter section backgrounds.
 - Emergency section is focused on psychologist access: **In crisis? → Consult with our Clinical Psychologists → 1st Session Free**.
-- Homepage does not list crisis hotlines; country-specific resources are accessed through dedicated crisis content.
+- Homepage does not list crisis hotlines; country-wise services are accessed through dedicated navigation pages (`/faq`, `/bangladesh-services`).
 - Added a dedicated **Wellbeing Games** section with direct modal access.
 - Simplified **Funding & Support** details to concise contact information.
 
