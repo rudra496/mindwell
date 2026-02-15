@@ -36,25 +36,25 @@ export default function HomePage() {
 
   return (
     <>
-      <div id="home" className="container mx-auto px-4 py-8 max-w-7xl space-y-8">
-        <section className="relative min-h-[360px] sm:min-h-[440px] rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="/images/stock/hero_group_support.jpg"
-            alt="Group counseling support session in a welcoming setting"
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 1200px"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/20" />
-          <div className="relative z-10 h-full min-h-[360px] sm:min-h-[440px] flex items-center">
-            <div className="w-full px-6 sm:px-10 py-12 text-center md:text-left">
-              <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
-              <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and psychologist access that prioritizes safety, clarity, and compassionate support.</p>
-            </div>
+      <section className="relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
+        <Image
+          src="/images/stock/hero_group_support.jpg"
+          alt="Group counseling support session in a welcoming setting"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/20" />
+        <div className="relative z-10 min-h-[360px] sm:min-h-[440px] flex items-center">
+          <div className="container mx-auto max-w-7xl px-6 sm:px-10 py-12 text-center md:text-left">
+            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
+            <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and psychologist access that prioritizes safety, clarity, and compassionate support.</p>
           </div>
-        </section>
+        </div>
+      </section>
 
+      <div id="home" className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="space-y-6">
           <MinimalSection
             id="crisis-emergency-help"
