@@ -62,7 +62,7 @@ export const translations = {
   // Hero Section
   hero: {
     title: { en: 'MindWell', bn: 'মাইন্ডওয়েল' },
-    subtitle: { en: "World's Largest Open-Source Mental Health Platform", bn: 'বিশ্বের বৃহত্তম ওপেন-সোর্স মানসিক স্বাস্থ্য প্ল্যাটফর্ম' },
+    subtitle: { en: "Open-Source Mental Health Platform", bn: 'ওপেন-সোর্স মানসিক স্বাস্থ্য প্ল্যাটফর্ম' },
     description: { 
       en: 'Comprehensive, scientifically-backed, free mental health support with 63+ disorders, 20 validated assessments, 16 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.',
       bn: '৬৩+ ব্যাধি, ২০টি যাচাইকৃত মূল্যায়ন, ১৬টি থেরাপিউটিক গেম, ১৪টি ধ্যান, ২০টি থেরাপি কৌশল এবং সংকট সংস্থান সহ ব্যাপক, বৈজ্ঞানিকভাবে সমর্থিত, বিনামূল্যে মানসিক স্বাস্থ্য সহায়তা।'
