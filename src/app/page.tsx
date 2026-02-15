@@ -84,7 +84,13 @@ export default function HomePage() {
             </div>
           </MinimalSection>
 
-          <MinimalSection id="self-reflection-tools" title="Self-Reflection Tools" icon={ClipboardList}>
+          <MinimalSection
+            id="self-reflection-tools"
+            title="Self-Reflection Tools"
+            icon={ClipboardList}
+            stockPhotoUrl="/images/section-bg/self_reflection_bg.jpg"
+            stockPhotoAlt=""
+          >
             <div className="space-y-3 text-center md:text-left">
               <p className="text-gray-700 dark:text-gray-300 text-lg">These tools are for self-reflection and education only, not diagnosis.</p>
               <Button className="text-lg px-7 py-3 h-auto" onClick={() => setAssessmentOpen(true)}>Open self-reflection assessments</Button>
@@ -119,11 +125,23 @@ export default function HomePage() {
             </div>
           </MinimalSection>
 
-          <MinimalSection id="sdg-our-mission" title="SDG & Our Mission" icon={Target}>
+          <MinimalSection
+            id="sdg-our-mission"
+            title="SDG & Our Mission"
+            icon={Target}
+            stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
+            stockPhotoAlt=""
+          >
             <SDGSection />
           </MinimalSection>
 
-          <MinimalSection id="wellbeing-games" title="Wellbeing Games" icon={Gamepad2}>
+          <MinimalSection
+            id="wellbeing-games"
+            title="Wellbeing Games"
+            icon={Gamepad2}
+            stockPhotoUrl="/images/section-bg/wellbeing_games_bg.jpg"
+            stockPhotoAlt=""
+          >
             <div className="space-y-3 text-center md:text-left">
               <p className="text-gray-700 dark:text-gray-300 text-lg">Use short, guided wellbeing games to support focus, calm, and emotional regulation.</p>
               <Button className="text-lg px-7 py-3 h-auto" onClick={() => setGamesOpen(true)}>Open Wellbeing Games</Button>
@@ -142,15 +160,13 @@ export default function HomePage() {
             <Button className="text-lg px-7 py-3 h-auto" onClick={() => setCommunityOpen(true)}>Open Community</Button>
           </MinimalSection>
 
-          <section
+          <MinimalSection
             id="publications-media"
-            aria-label="MindWell mental health publications"
-            className="rounded-2xl border-2 border-teal-200 dark:border-teal-800 bg-gradient-to-br from-teal-50 to-slate-50 dark:from-teal-900/20 dark:to-slate-900/20 p-6 sm:p-8 shadow-lg hover:shadow-xl transition-shadow transform-gpu hover:scale-[1.01] motion-reduce:hover:scale-100"
+            title="MindWell Publications & Media"
+            icon={FileText}
+            stockPhotoUrl="/images/section-bg/publications_media_bg.jpg"
+            stockPhotoAlt=""
           >
-            <div className="flex items-center gap-3 mb-4">
-              <FileText className="h-8 w-8 text-teal-700 dark:text-teal-400" />
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">MindWell Publications &amp; Media</h2>
-            </div>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
               Evidence-based mental health insights, reflections, and educational media shared by the MindWell team across trusted platforms.
             </p>
@@ -195,7 +211,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </section>
+          </MinimalSection>
 
           <MinimalSection
             id="funding-support"

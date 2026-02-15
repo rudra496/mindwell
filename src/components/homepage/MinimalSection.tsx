@@ -66,6 +66,7 @@ export function MinimalSection({
             <Image
               src={stockPhotoUrl}
               alt={stockPhotoAlt}
+              aria-hidden={stockPhotoAlt === ""}
               fill
               className="object-cover saturate-75"
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
