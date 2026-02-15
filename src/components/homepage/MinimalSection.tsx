@@ -58,11 +58,11 @@ export function MinimalSection({
       className={`border-2 overflow-hidden dark:border-gray-700 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
     >
       <div
-        className={`relative cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300`}
+        className={`relative min-h-[240px] md:min-h-[320px] cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {stockPhotoUrl && (
-          <div className="absolute inset-0 overflow-hidden opacity-[0.15] group-hover:opacity-[0.22] transition-opacity">
+          <div className="absolute inset-0 overflow-hidden opacity-[0.42] group-hover:opacity-[0.5] transition-opacity">
             <Image
               src={stockPhotoUrl}
               alt={stockPhotoAlt}
