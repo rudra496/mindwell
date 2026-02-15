@@ -55,17 +55,18 @@ export function MinimalSection({
     <Card
       ref={cardRef}
       id={id}
-      className={`border-2 overflow-hidden dark:border-gray-700 transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
+      className={`border-2 overflow-hidden dark:border-gray-700 transition-all duration-500 ${!stockPhotoUrl ? "shadow-lg hover:shadow-xl transition-shadow transform-gpu hover:scale-[1.01] motion-reduce:hover:scale-100" : ""} ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
     >
       <div
-        className={`relative cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300`}
+        className={`relative min-h-[240px] md:min-h-[320px] cursor-pointer group bg-gradient-to-br ${bgGradient} transition-all duration-300 ${!stockPhotoUrl ? "border-b border-white/50 dark:border-slate-700 shadow-inner bg-[length:200%_200%] bg-[position:0%_50%] hover:bg-[position:100%_50%] motion-reduce:hover:bg-[position:0%_50%]" : ""}`}
         onClick={() => setIsOpen(!isOpen)}
       >
         {stockPhotoUrl && (
-          <div className="absolute inset-0 overflow-hidden opacity-[0.15] group-hover:opacity-[0.22] transition-opacity">
+          <div className="absolute inset-0 overflow-hidden opacity-[0.42] group-hover:opacity-[0.5] transition-opacity">
             <Image
               src={stockPhotoUrl}
               alt={stockPhotoAlt}
+              aria-hidden={stockPhotoAlt === ""}
               fill
               className="object-cover saturate-75"
               sizes="(max-width: 640px) 100vw, (max-width: 1280px) 90vw, 1200px"
@@ -78,7 +79,7 @@ export function MinimalSection({
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
               <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${iconColor}`} />
             </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-sm text-center md:text-left">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-sm text-center md:text-left">
               {title}
             </h2>
           </div>
@@ -97,7 +98,7 @@ export function MinimalSection({
       </div>
 
       {isOpen && (
-        <CardContent className="p-6 sm:p-8 pt-6 animate-fade-in bg-white dark:bg-slate-800">
+        <CardContent className="p-6 sm:p-8 pt-6 animate-fade-in bg-white dark:bg-slate-800 text-xl [&_button]:text-lg [&_button]:px-7 [&_button]:py-3 [&_button]:h-auto">
           {children}
         </CardContent>
       )}
