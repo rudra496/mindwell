@@ -16,7 +16,7 @@ export function GlobalFooter() {
         </div>
 
         <div className="text-center space-y-2">
-          <p className="text-gray-800 dark:text-gray-200 font-medium">MindWell – Open Source Mental Health Platform</p>
+          <p className="text-gray-800 dark:text-gray-200 font-medium">MindWell Support – Open Source Mental Health Platform</p>
           <div className="max-w-3xl mx-auto rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30 p-4 text-left space-y-2">
             <p className="text-sm text-gray-700 dark:text-gray-300">MindWell is an open-source mental health education and wellbeing platform focused on awareness, self-reflection, and ethical access to support.</p>
             <p className="text-sm text-gray-700 dark:text-gray-300">It is not a diagnostic or emergency service, and is designed for global and low-resource communities.</p>
