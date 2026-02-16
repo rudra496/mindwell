@@ -24,18 +24,20 @@ export function PsychologistMiniCard({ psychologist }: PsychologistMiniCardProps
         <div className="text-left">
           <h4 className="font-semibold text-lg text-gray-900 dark:text-gray-100">{psychologist.name}</h4>
           <p className="text-sm text-gray-700 dark:text-gray-300">{psychologist.title}</p>
-          <p className="text-sm text-gray-600 dark:text-gray-400">{psychologist.education}</p>
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2">
+      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
         <a href={`tel:${psychologist.phone}`} className="inline-flex items-center justify-center rounded-md border border-input bg-background px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground">
           <Phone className="h-4 w-4 mr-2" />Call
         </a>
         <a href={psychologist.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-md bg-green-600 text-white px-3 py-2 text-sm font-medium hover:bg-green-700">
           <MessageCircle className="h-4 w-4 mr-2" />WhatsApp
         </a>
-        <Link href="/psychologists" className="inline-flex items-center justify-center rounded-md bg-teal-600 text-white px-3 py-2 text-sm font-medium hover:bg-teal-700">
+      </div>
+
+      <div className="mt-2">
+        <Link href="/psychologists" className="inline-flex w-full items-center justify-center rounded-md bg-teal-600 text-white px-3 py-2 text-sm font-medium hover:bg-teal-700">
           View Details
         </Link>
       </div>
