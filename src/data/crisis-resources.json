@@ -10,7 +10,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:46.004Z",
-    "updatedAt": "2026-01-02T03:04:46.004Z"
+    "updatedAt": "2026-01-02T03:04:46.004Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Lifeline%20Australia%2C%20Sydney%20NSW%2C%20Australia"
   },
   {
     "id": "cmjwaj8oh001zb7k3uen11y6o",
@@ -23,7 +24,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:46.002Z",
-    "updatedAt": "2026-01-02T03:04:46.002Z"
+    "updatedAt": "2026-01-02T03:04:46.002Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Centre%20for%20Addiction%20and%20Mental%20Health%20(CAMH)%2C%20Toronto%2C%20ON%2C%20Canada"
   },
   {
     "id": "cmjwaj8of001yb7k30st9l4h3",
@@ -36,7 +38,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:46.000Z",
-    "updatedAt": "2026-01-02T03:04:46.000Z"
+    "updatedAt": "2026-01-02T03:04:46.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Samaritans%20Central%20Office%2C%201a%20Hughes%20Close%2C%20Witney%2C%20UK"
   },
   {
     "id": "cmjwaj8np001pb7k3wb85ouuc",
@@ -49,7 +52,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:45.973Z",
-    "updatedAt": "2026-01-02T03:04:45.973Z"
+    "updatedAt": "2026-01-02T03:04:45.973Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Substance%20Abuse%20and%20Mental%20Health%20Services%20Administration%20(SAMHSA)%2C%20Rockville%2C%20MD%2C%20USA"
   },
   {
     "id": "cmjwaj8nr001qb7k3ntd24ebf",
@@ -62,7 +66,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:45.976Z",
-    "updatedAt": "2026-01-02T03:04:45.976Z"
+    "updatedAt": "2026-01-02T03:04:45.976Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Crisis%20Text%20Line%2C%20New%20York%2C%20NY%2C%20USA"
   },
   {
     "id": "cmjwaj8nv001rb7k36sedd1jo",
@@ -75,7 +80,8 @@
     "available": "24/7",
     "category": "Veterans",
     "createdAt": "2026-01-02T03:04:45.979Z",
-    "updatedAt": "2026-01-02T03:04:45.979Z"
+    "updatedAt": "2026-01-02T03:04:45.979Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Veterans%20Crisis%20Line%2C%20Canandaigua%2C%20NY%2C%20USA"
   },
   {
     "id": "cmjwaj8ny001sb7k3ceytl60m",
@@ -88,7 +94,8 @@
     "available": "24/7",
     "category": "LGBTQ+ Youth",
     "createdAt": "2026-01-02T03:04:45.982Z",
-    "updatedAt": "2026-01-02T03:04:45.982Z"
+    "updatedAt": "2026-01-02T03:04:45.982Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20Trevor%20Project%2C%20West%20Hollywood%2C%20CA%2C%20USA"
   },
   {
     "id": "cmjwaj8o1001tb7k3z69vcqne",
@@ -101,7 +108,8 @@
     "available": "Varies",
     "category": "LGBTQ+",
     "createdAt": "2026-01-02T03:04:45.985Z",
-    "updatedAt": "2026-01-02T03:04:45.985Z"
+    "updatedAt": "2026-01-02T03:04:45.985Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Trans%20Lifeline%2C%20San%20Francisco%2C%20CA%2C%20USA"
   },
   {
     "id": "cmjwaj8o3001ub7k3jqbpacji",
@@ -114,7 +122,8 @@
     "available": "24/7",
     "category": "General",
     "createdAt": "2026-01-02T03:04:45.988Z",
-    "updatedAt": "2026-01-02T03:04:45.988Z"
+    "updatedAt": "2026-01-02T03:04:45.988Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Substance%20Abuse%20and%20Mental%20Health%20Services%20Administration%20(SAMHSA)%2C%20Rockville%2C%20MD%2C%20USA"
   },
   {
     "id": "cmjwaj8o6001vb7k35qtlvbn4",
@@ -127,7 +136,8 @@
     "available": "Mon-Thu 9am-9pm ET, Fri 9am-5pm ET",
     "category": "Eating Disorders",
     "createdAt": "2026-01-02T03:04:45.990Z",
-    "updatedAt": "2026-01-02T03:04:45.990Z"
+    "updatedAt": "2026-01-02T03:04:45.990Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=National%20Alliance%20for%20Eating%20Disorders%2C%20West%20Palm%20Beach%2C%20FL%2C%20USA"
   },
   {
     "id": "cmjwaj8o9001wb7k3h1r4rr8t",
@@ -140,7 +150,8 @@
     "available": "24/7",
     "category": "Sexual Assault",
     "createdAt": "2026-01-02T03:04:45.994Z",
-    "updatedAt": "2026-01-02T03:04:45.994Z"
+    "updatedAt": "2026-01-02T03:04:45.994Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=RAINN%2C%20Washington%2C%20DC%2C%20USA"
   },
   {
     "id": "cmjwaj8od001xb7k3hgdbdy7c",
@@ -153,7 +164,8 @@
     "available": "24/7",
     "category": "Domestic Violence",
     "createdAt": "2026-01-02T03:04:45.997Z",
-    "updatedAt": "2026-01-02T03:04:45.997Z"
+    "updatedAt": "2026-01-02T03:04:45.997Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=The%20National%20Domestic%20Violence%20Hotline%2C%20Austin%2C%20TX%2C%20USA"
   },
   {
     "id": "bd001-nimh-dhaka",
@@ -166,7 +178,8 @@
     "available": "Government hours",
     "category": "Free & Low-Cost Services",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-11T05:45:00.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=National%20Institute%20of%20Mental%20Health%2C%20Dhaka%2C%20Bangladesh"
   },
   {
     "id": "bd002-dmch",
@@ -179,7 +192,8 @@
     "available": "Government hours",
     "category": "Free & Low-Cost Services",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-11T05:45:00.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Dhaka%20Medical%20College%20Hospital%2C%20Dhaka%2C%20Bangladesh"
   },
   {
     "id": "bd003-mitford",
@@ -192,7 +206,8 @@
     "available": "Government hours",
     "category": "Free & Low-Cost Services",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-11T05:45:00.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Sir%20Salimullah%20Medical%20College%20Mitford%20Hospital%2C%20Dhaka%2C%20Bangladesh"
   },
   {
     "id": "bd004-cmch",
@@ -205,7 +220,8 @@
     "available": "Government hours",
     "category": "Free & Low-Cost Services",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-11T05:45:00.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Chittagong%20Medical%20College%20Hospital%2C%20Chattogram%2C%20Bangladesh"
   },
   {
     "id": "bd005-pabna",
@@ -218,6 +234,7 @@
     "available": "Government hours",
     "category": "Free & Low-Cost Services",
     "createdAt": "2026-02-11T05:45:00.000Z",
-    "updatedAt": "2026-02-11T05:45:00.000Z"
+    "updatedAt": "2026-02-11T05:45:00.000Z",
+    "mapLink": "https://www.google.com/maps/search/?api=1&query=Pabna%20Mental%20Hospital%2C%20Pabna%2C%20Bangladesh"
   }
 ]

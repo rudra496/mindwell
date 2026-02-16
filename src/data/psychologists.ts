@@ -22,7 +22,7 @@ export const psychologists: PsychologistProfile[] = [
   },
   {
     name: "Kamrul Hasan",
-    title: "Clinical Psychologist",
+    title: "Assistant Clinical Psychologist",
     education: "University of Dhaka",
     experience: "2+ years of clinical experience",
     imageUrl: "/advisors/kamrul.jpg",

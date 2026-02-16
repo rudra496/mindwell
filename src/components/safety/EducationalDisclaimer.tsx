@@ -12,15 +12,15 @@ export function EducationalDisclaimer({ className = "" }: EducationalDisclaimerP
   
   const content = {
     en: {
-      title: "Educational Information",
-      text: "This information is for educational purposes only and is not a medical diagnosis. Always consult with a qualified healthcare professional for proper diagnosis and treatment."
+      title: "Caution / সতর্কতা",
+      text: "এই তথ্য গুলো শুধুমাত্র সাইকো-এডুকেশনের জন্য প্রযোজ্য। সঠিক মানসিক সমস্যা নির্ণয়, ঔষধ কিংবা সাইকোথেরাপির জন্য পেশাদার সাইকিয়াট্রিস্ট অথবা আমাদের ক্লিনিক্যাল সাইকোলোজিস্টের সাথে পরামর্শ করুন।"
     },
     bn: {
-      title: "শিক্ষামূলক তথ্য",
-      text: "এই তথ্যটি শুধুমাত্র শিক্ষামূলক উদ্দেশ্যে এবং এটি একটি চিকিৎসা নির্ণয় নয়। সঠিক নির্ণয় এবং চিকিৎসার জন্য সর্বদা একজন যোগ্য স্বাস্থ্যসেবা পেশাদারের সাথে পরামর্শ করুন।"
+      title: "Caution / সতর্কতা",
+      text: "এই তথ্য গুলো শুধুমাত্র সাইকো-এডুকেশনের জন্য প্রযোজ্য। সঠিক মানসিক সমস্যা নির্ণয়, ঔষধ কিংবা সাইকোথেরাপির জন্য পেশাদার সাইকিয়াট্রিস্ট অথবা আমাদের ক্লিনিক্যাল সাইকোলোজিস্টের সাথে পরামর্শ করুন।"
     }
   }
-  
+
   const text = content[language]
   
   return (
