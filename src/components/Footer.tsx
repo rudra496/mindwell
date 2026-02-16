@@ -58,24 +58,6 @@ export function Footer() {
                 <Mail className="h-4 w-4 flex-shrink-0" />
                 <span>{config.contact.email}</span>
               </a>
-              <a
-                href={config.contact.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
-              >
-                <Facebook className="h-4 w-4 flex-shrink-0" />
-                <span>{mounted ? (language === 'en' ? "Facebook Page" : "ফেসবুক পেজ") : "Facebook Page"}</span>
-              </a>
-              <a
-                href={config.contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 transition-colors break-words"
-              >
-                <Github className="h-4 w-4 flex-shrink-0" />
-                <span>GitHub Repository</span>
-              </a>
             </div>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-3">
               {mounted ? (language === 'en' ? "Inspired by" : "অনুপ্রাণিত") : "Inspired by"}{" "}
