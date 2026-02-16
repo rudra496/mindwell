@@ -1,4 +1,7 @@
-# MindWell – Open Source Mental Health Platform
+# MindWell
+
+**MindWell Support** is the support and crisis-assistance service of the
+MindWell open-source mental health platform.
 
 ## 📋 Project Overview
 
