@@ -13,7 +13,6 @@ export function GlobalFooter() {
           <Link href="/medical-disclaimer" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Medical Disclaimer</Link>
           <Link href="/faq" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">FAQ</Link>
           <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">About MindWell</Link>
-          <Link href="/psychologists" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Psychologists</Link>
         </div>
 
         <div className="text-center space-y-2">
