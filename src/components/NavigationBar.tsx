@@ -14,7 +14,6 @@ import {
   Mail,
   AlertCircle,
   Stethoscope,
-  FileText,
   HelpCircle,
 } from "lucide-react"
 
@@ -30,7 +29,6 @@ const navItems: NavItem[] = [
   { id: "crisis-emergency-help", label: "Emergency Support", icon: AlertCircle },
   { id: "psychologists", label: "Psychologists", icon: Stethoscope },
   { id: "community", label: "Community", icon: Users },
-  { id: "publications-media", label: "Publications & Media", icon: FileText },
   { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
   { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
   { id: "free-services-bangladesh", label: "Free Services in Bangladesh 🇧🇩", icon: MapPin, href: "/bangladesh-services" },
