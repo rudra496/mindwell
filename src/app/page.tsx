@@ -9,6 +9,7 @@ import {
   Sparkles,
   Stethoscope,
   Target,
+  BarChart3,
   Users,
   Mail,
   Gamepad2,
@@ -27,6 +28,7 @@ import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { SDGSection } from "@/components/SDGSection"
+import MoodTracker from "@/components/games/MoodTracker"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -211,6 +213,17 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
+          </MinimalSection>
+
+          <MinimalSection
+            id="track-mood"
+            title="Mood Tracker"
+            icon={BarChart3}
+            stockPhotoUrl="/images/stock/mood-tracking.jpg"
+            stockPhotoAlt="Mood tracking"
+            bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
+          >
+            <MoodTracker />
           </MinimalSection>
 
           <MinimalSection
