@@ -214,11 +214,13 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
-            id="funding-support"
-            title="Funding & Support"
-            icon={Mail}
-            bgGradient="from-slate-50 to-teal-50 dark:from-slate-900/40 dark:to-teal-900/20"
-          >
+  id="funding-support"
+  title="Funding & Support"
+  icon={Mail}
+  stockPhotoUrl="/images/section-bg/funding_support_bg.jpg"
+  stockPhotoAlt=""
+  bgGradient="from-slate-50 to-teal-50 dark:from-slate-900/40 dark:to-teal-900/20"
+>
             <div className="space-y-3 text-gray-700 dark:text-gray-300 text-center md:text-left">
               <p className="text-lg">For funding and partnership communication, please contact MindWell directly.</p>
               <p className="text-lg">Email: <a href="mailto:contactmindwellorg@gmail.com" className="text-teal-700 dark:text-teal-400 hover:underline">contactmindwellorg@gmail.com</a></p>
