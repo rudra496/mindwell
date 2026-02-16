@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MessageCircle, Phone } from "lucide-react"
@@ -12,7 +11,50 @@ interface PsychologistCardProps {
   psychologist: PsychologistProfile
 }
 
+const kamrulExpertise = [
+  "Cognitive Behavior Therapy (CBT)",
+  "Dialectical Behaviour Therapy (DBT)",
+  "Acceptance & Commitment Therapy (ACT)",
+  "Motivational Interviewing (MI)",
+  "Functional Analysis (ABC)",
+]
+
+const kamrulInterestAreas = [
+  "Personality Disorder(s) (BPD)",
+  "Suicide & Crisis Management",
+  "OCD",
+  "Panic Disorder",
+  "Social Anxiety",
+  "Specific Phobia",
+  "Exam Phobia",
+  "Stress & Trauma Management",
+  "Addiction Management",
+  "Anger Management",
+]
+
+const rifatExpertise = [
+  "Cognitive Behavior Therapy (CBT)",
+  "Dialectical Behaviour Therapy (DBT)",
+  "Acceptance & Commitment Therapy (ACT)",
+  "Motivational Interviewing (MI)",
+  "Functional Analysis (ABC)",
+]
+
+const rifatInterestAreas = [
+  "Panic Attacks",
+  "Anxiety Disorders",
+  "Adult ADHD",
+  "Emotional Regulation",
+  "Anger Management",
+  "Personality Disorders",
+  "Couple Counselling",
+]
+
 export function PsychologistCard({ psychologist }: PsychologistCardProps) {
+  const isKamrul = psychologist.name === "Kamrul Hasan"
+  const expertise = isKamrul ? kamrulExpertise : rifatExpertise
+  const interestAreas = isKamrul ? kamrulInterestAreas : rifatInterestAreas
+
   return (
     <Card className="border-2 border-teal-200 dark:border-teal-700 shadow-md h-full">
       <CardHeader className="bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-900/30 dark:to-cyan-900/20">
@@ -28,19 +70,30 @@ export function PsychologistCard({ psychologist }: PsychologistCardProps) {
           <div>
             <CardTitle className="text-xl text-teal-900 dark:text-teal-100">{psychologist.name}</CardTitle>
             <p className="text-gray-700 dark:text-gray-300 font-medium">{psychologist.title}</p>
-            <p className="text-sm text-gray-600 dark:text-gray-400">{psychologist.education}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Education: {psychologist.education}</p>
             <p className="text-sm text-gray-600 dark:text-gray-400">Experience: {psychologist.experience}</p>
           </div>
         </div>
       </CardHeader>
       <CardContent className="p-5 space-y-4">
-        <div className="flex flex-wrap gap-2">
-          {psychologist.skills.map((skill) => (
-            <Badge key={skill} variant="outline">
-              {skill}
-            </Badge>
-          ))}
+        <div>
+          <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">Expertise In:</h3>
+          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+            {expertise.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
         </div>
+
+        <div>
+          <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">Interest Areas:</h3>
+          <ul className="list-disc list-inside space-y-1 text-sm text-gray-700 dark:text-gray-300">
+            {interestAreas.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+
         <div className="space-y-2">
           <Button asChild className="w-full bg-green-600 hover:bg-green-700">
             <a href={psychologist.whatsapp} target="_blank" rel="noopener noreferrer">

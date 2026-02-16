@@ -9,6 +9,7 @@ import {
   Sparkles,
   Stethoscope,
   Target,
+  BarChart3,
   Users,
   Mail,
   Gamepad2,
@@ -27,6 +28,7 @@ import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { SDGSection } from "@/components/SDGSection"
+import MoodTracker from "@/components/games/MoodTracker"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -112,6 +114,16 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
+            id="sdg-our-mission"
+            title="SDG & Our Mission"
+            icon={Target}
+            stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
+            stockPhotoAlt=""
+          >
+            <SDGSection />
+          </MinimalSection>
+
+          <MinimalSection
             id="psychologists"
             title="Psychologists"
             icon={Stethoscope}
@@ -126,16 +138,6 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
-            id="sdg-our-mission"
-            title="SDG & Our Mission"
-            icon={Target}
-            stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
-            stockPhotoAlt=""
-          >
-            <SDGSection />
-          </MinimalSection>
-
-          <MinimalSection
             id="wellbeing-games"
             title="Wellbeing Games"
             icon={Gamepad2}
@@ -143,6 +145,7 @@ export default function HomePage() {
             stockPhotoAlt=""
           >
             <div className="space-y-3 text-center md:text-left">
+              <p className="text-sm text-gray-600 dark:text-gray-400">Mindfulness games, stress relief activities</p>
               <p className="text-gray-700 dark:text-gray-300 text-lg">Use short, guided wellbeing games to support focus, calm, and emotional regulation.</p>
               <Button className="text-lg px-7 py-3 h-auto" onClick={() => setGamesOpen(true)}>Open Wellbeing Games</Button>
             </div>
@@ -156,8 +159,21 @@ export default function HomePage() {
             stockPhotoAlt="Global peer support and inclusive mental wellness community"
             bgGradient="from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20"
           >
+            <p className="mb-2 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Peer mental health support, safe discussions</p>
             <p className="mb-4 text-gray-700 dark:text-gray-300 text-lg text-center md:text-left">Join peer support discussions with safe and respectful community standards.</p>
             <Button className="text-lg px-7 py-3 h-auto" onClick={() => setCommunityOpen(true)}>Open Community</Button>
+          </MinimalSection>
+
+          <MinimalSection
+            id="track-mood"
+            title="Mood Tracker"
+            icon={BarChart3}
+            stockPhotoUrl="/images/section-bg/mood_tracker_bg.jpg"
+            stockPhotoAlt="Mood tracking and emotional wellbeing self-reflection"
+            bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
+          >
+            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Daily mood tracking, emotional awareness, mental wellbeing</p>
+            <MoodTracker />
           </MinimalSection>
 
           <MinimalSection
@@ -167,6 +183,7 @@ export default function HomePage() {
             stockPhotoUrl="/images/section-bg/publications_media_bg.jpg"
             stockPhotoAlt=""
           >
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Mental health education, awareness articles</p>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
               Evidence-based mental health insights, reflections, and educational media shared by the MindWell team across trusted platforms.
             </p>
@@ -214,13 +231,13 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
-  id="funding-support"
-  title="Funding & Support"
-  icon={Mail}
-  stockPhotoUrl="/images/section-bg/funding_support_bg.jpg"
-  stockPhotoAlt=""
-  bgGradient="from-slate-50 to-teal-50 dark:from-slate-900/40 dark:to-teal-900/20"
->
+            id="funding-support"
+            title="Funding & Support"
+            icon={Mail}
+            stockPhotoUrl="/images/section-bg/funding_support_bg.jpg"
+            stockPhotoAlt=""
+            bgGradient="from-slate-50 to-teal-50 dark:from-slate-900/40 dark:to-teal-900/20"
+          >
             <div className="space-y-3 text-gray-700 dark:text-gray-300 text-center md:text-left">
               <p className="text-lg">For funding and partnership communication, please contact MindWell directly.</p>
               <p className="text-lg">Email: <a href="mailto:contactmindwellorg@gmail.com" className="text-teal-700 dark:text-teal-400 hover:underline">contactmindwellorg@gmail.com</a></p>
