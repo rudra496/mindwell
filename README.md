@@ -1,120 +1,329 @@
 # MindWell – Open Source Mental Health Platform
 
-## Project Overview
+## 📋 Project Overview
 
-MindWell is an open-source mental health platform built to make trusted, practical, and accessible wellbeing support available to a global audience. The project combines mental health education, self-reflection tools, wellbeing activities, and pathways to connect with psychologists.
+MindWell is an open-source mental health platform providing trusted, practical, and accessible wellbeing support to a global audience. The platform combines mental health education, self-reflection tools, wellbeing activities, and pathways to connect with psychologists. Designed with a privacy-first approach, MindWell empowers users to learn about mental health conditions, reflect on their wellbeing, and access professional support when needed.
 
-MindWell is designed with an ethical and non-diagnostic approach. It supports awareness, reflection, and informed help-seeking, while clearly avoiding clinical diagnosis claims.
+## ✨ What MindWell Is
 
-## Key Features
+- ✅ Educational mental health resource platform
+- ✅ Self-reflection and awareness tools
+- ✅ Access to verified psychologists
+- ✅ Privacy-first design
+- ✅ Free and open-source
 
-- **Emergency Support**: Prominent crisis-oriented guidance and pathways to urgent support resources.
-- **Learn & Awareness**: Educational content and awareness-focused mental health resources.
-- **Self-Reflection Tools**: Structured self-assessment experiences for personal reflection (not diagnosis).
-- **Track Mood (Mood Tracker)**: A dedicated mood logging experience to help users observe emotional patterns over time.
-- **Therapy & Meditation**: Practical therapeutic techniques and meditation resources.
-- **Psychologists**: Access to verified psychologist profiles and contact pathways.
-- **Wellbeing Games**: Short, guided interactive tools for focus, regulation, and stress relief.
-- **Community**: Peer-oriented community access with safety-centered engagement expectations.
-- **Publications & Media**: MindWell posts, educational media placeholders, and related updates.
-- **Funding & Support**: Direct channels for partnership and funding communication.
+## 🚫 What MindWell Is Not
 
-## Tech Stack
+- ❌ Not a diagnostic tool
+- ❌ Not a replacement for professional medical care
+- ❌ Not an emergency crisis service
+- ❌ Not AI-powered therapy or counseling
 
-- **Next.js (App Router)** for modern React-based application architecture.
-- **TypeScript** for safer, scalable, and maintainable code.
-- **Tailwind CSS** for consistent utility-first styling.
-- **Next.js Image Optimization** via the `next/image` pipeline.
-- **Accessibility-first design** patterns across content and interactions.
-- **SEO-friendly architecture** through semantic structure and discoverable content organization.
+## 🎯 Features
 
-## Local Development Setup
+### Mental Health Education
+
+**63 Mental Health Conditions** - Comprehensive educational content covering:
+- Anxiety Disorders (Generalized Anxiety, Panic Disorder, Social Anxiety, Phobias, etc.)
+- Mood Disorders (Major Depression, Bipolar Disorder, Dysthymia, etc.)
+- Trauma-Related Conditions (PTSD, Complex PTSD, Acute Stress Disorder)
+- Eating Disorders (Anorexia, Bulimia, Binge Eating Disorder)
+- Personality Disorders (Borderline, Narcissistic, Antisocial, etc.)
+- Psychotic Disorders (Schizophrenia, Schizoaffective Disorder)
+- Neurodevelopmental Conditions (ADHD, Autism Spectrum Disorder)
+- Substance Use Disorders
+- And many more mental health conditions
+
+### Self-Reflection Tools
+
+**20 Non-Diagnostic Assessments** - Screening tools for self-awareness and reflection:
+- PHQ-9 (Depression screening)
+- GAD-7 (Anxiety screening)
+- PCL-5 (PTSD screening)
+- AUDIT (Alcohol use screening)
+- CAGE (Substance use screening)
+- Y-BOCS (OCD symptoms)
+- MDQ (Bipolar screening)
+- ASRS (ADHD screening)
+- EAT-26 (Eating disorder screening)
+- And 11 additional specialized assessments
+
+**Important**: These assessments are for educational and self-reflection purposes only, not for diagnosis.
+
+### Therapy & Meditation
+
+- **Evidence-based therapy techniques** - Educational resources on CBT (Cognitive Behavioral Therapy), DBT (Dialectical Behavior Therapy), and ACT (Acceptance and Commitment Therapy)
+- **Guided meditation library** - Curated meditation resources with various techniques and durations
+
+### Mood Tracking
+
+- **Offline-first design** - Works without internet connection
+- **Device-only storage** - Uses browser IndexedDB
+- **No cloud sync or server storage** - Your data never leaves your device
+- **Visual charts and pattern recognition** - Track emotional patterns over time
+- **Complete privacy** - No one can access your mood data but you
+
+### Community Support
+
+- **Firewall-protected peer support** - Safe space for mental health discussions
+- **Moderation logic and community guidelines** - Ensures respectful interactions
+- **Not publicly indexed** - Protected from search engines
+- **Anonymous participation** - Share experiences without revealing identity
+
+### Clinical Support
+
+- **Access to 2 assistant clinical psychologists** - Verified mental health professionals
+- **First session free** (availability-based) - Initial consultation at no cost
+- **Direct WhatsApp and phone contact** - Easy communication channels
+- **Not intended to replace emergency or hospital care** - Complementary support only
+
+### Crisis Resources
+
+- **Bangladesh**: Kaan Pete Roi: 09678 676 777 (24/7)
+- **US**: 988 Suicide & Crisis Lifeline
+- **Global resources** organized by country
+
+### Wellbeing Games
+
+- Interactive tools for focus, stress relief, and emotional regulation
+- Mindfulness activities
+- Short guided exercises
+
+### Bilingual Support
+
+- 🇬🇧 **English** - Full support
+- 🇧🇩 **Bengali (বাংলা)** - Full support
+
+## 🔒 Privacy & Data Protection
+
+### Our Privacy Commitments:
+
+- ✅ **No server storage of mental health data** - Your sensitive information stays with you
+- ✅ **Mood data stays on your device only** - Uses browser IndexedDB, never transmitted
+- ✅ **No AI analysis or profiling** - No automated behavioral analysis
+- ✅ **No selling or sharing data** - Your data is never monetized
+- ✅ **Community posts firewall-protected** - Not publicly accessible
+- ✅ **No tracking or behavioral analytics** - Privacy-first approach
+
+### Technical Implementation:
+
+- Mood tracker uses browser IndexedDB for local storage
+- No authentication required for privacy-sensitive features
+- Static generation where possible for performance
+- Client-side rendering for sensitive features
+
+## ⚕️ Medical & Ethical Disclaimer
+
+**FOR EDUCATIONAL PURPOSES ONLY**
+
+- MindWell is **NOT** a diagnostic system
+- MindWell is **NOT** a substitute for licensed medical or psychological care
+- Self-reflection assessments are screening tools, not diagnostic instruments
+- In crisis, use emergency support: 999 (Bangladesh), 911 (US), or local emergency services
+- Always consult qualified healthcare professionals for diagnosis and treatment
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Components**: Shadcn UI
+- **Storage**: IndexedDB (client-side)
+- **Deployment**: Vercel
+- **Performance**: Lighthouse-optimized
+- **Accessibility**: WCAG AA compliant
+
+## 💻 Local Development Setup
 
 ### Prerequisites
 
-- **Node.js**: 18.18+ (recommended: latest active LTS)
-- **npm**: 9+
+- Node.js 18.18+ (recommended: latest LTS)
+- npm 9+
 
-### Install dependencies
+### Installation
 
 ```bash
+# Clone repository
+git clone https://github.com/rudra496/mindwell.git
+cd mindwell
+
+# Install dependencies
 npm install
-```
 
-### Run development server
-
-```bash
+# Run development server
 npm run dev
 ```
 
-### Build for production
+Open [http://localhost:3000](http://localhost:3000) to view the application.
+
+### Build for Production
 
 ```bash
+# Create optimized production build
 npm run build
+
+# Preview production build locally
+npm start
 ```
 
-### Run lint checks
+### Code Quality
 
 ```bash
+# Run ESLint
 npm run lint
+
+# Type checking
+npx tsc --noEmit
 ```
 
-### Folder structure overview
+### Folder Structure
 
-```text
+```
 src/
-  app/                 # Next.js App Router pages, layouts, and route-level composition
-  components/          # Shared UI blocks, homepage sections, modals, and feature components
-  lib/                 # Utility logic and browser storage helpers (e.g., IndexedDB integrations)
+├── app/              # Next.js App Router pages and layouts
+├── components/       # React components
+│   ├── homepage/     # Homepage sections
+│   ├── layout/       # Layout components
+│   ├── safety/       # Safety and crisis components
+│   └── ui/           # Shadcn UI components
+├── lib/              # Utilities and configurations
+└── data/             # Static data (psychologists, disorders, etc.)
+
 public/
-  images/              # Static media used by homepage sections and supporting content
+├── images/           # Static images
+└── manifest.json     # PWA manifest
 ```
 
-## Performance & SEO
+## 🌍 Deployment
 
-MindWell is built with web performance, accessibility, and search visibility in mind:
+### Vercel (Recommended)
 
-- Lighthouse-friendly patterns through efficient rendering and lean client interactions.
-- Optimized responsive imagery via Next.js image tooling.
-- Accessibility practices including readable hierarchy, clear content labeling, and keyboard-friendly interactions.
-- Semantic HTML structure to improve both usability and indexing.
-- Responsive, mobile-first layouts for consistent behavior across devices.
-- PWA-ready foundation suitable for progressive enhancement workflows.
+MindWell is optimized for Vercel deployment:
 
-## Ethics & Medical Disclaimer
+1. Fork this repository
+2. Import to Vercel
+3. Deploy with default settings
+4. No environment variables required for basic features
 
-MindWell is for educational and self-reflection purposes only.
+**Live Site**: https://mindwell.vercel.app
 
-- It is **not** a diagnostic system.
-- It is **not** a replacement for licensed medical or psychological care.
-- Users in crisis should use emergency support pathways and contact local emergency or crisis services immediately.
+### Other Platforms
 
-## Contribution Guidelines
+Compatible with any Next.js hosting provider:
+- Netlify
+- AWS Amplify
+- Cloudflare Pages
+- Self-hosted Node.js
 
-Contributions are welcome from developers, designers, mental health advocates, and accessibility reviewers.
+## 🎨 Performance & SEO
 
-### How contributors can help
+- ✅ Lighthouse score optimized
+- ✅ Core Web Vitals compliant
+- ✅ Responsive mobile-first design
+- ✅ PWA-ready with offline support
+- ✅ Semantic HTML for accessibility
+- ✅ Open Graph and Twitter Card metadata
 
-- Improve educational clarity and usability.
-- Expand wellbeing tools and content quality.
-- Strengthen accessibility, performance, and localization readiness.
-- Fix bugs and improve reliability.
+## 🌐 Internationalization
 
-### Code style expectations
+- 🇬🇧 **English** - Full support
+- 🇧🇩 **Bengali (বাংলা)** - Full support
 
-- Use TypeScript-first patterns and keep components focused and readable.
-- Follow existing project conventions and Tailwind utility style.
-- Preserve ethical language and non-diagnostic framing.
-- Avoid unrelated refactors in feature-specific pull requests.
+Language preference stored locally, no server required.
 
-### Pull request guidelines
+## 🤝 Contributing
 
-- Keep PR scope focused and clearly described.
-- Include rationale, testing steps, and any user-facing impact.
-- Ensure lint/build checks pass before requesting review.
-- Preserve existing UX patterns unless a change is explicitly requested.
+Contributions welcome from:
+- Developers (features, bug fixes, performance)
+- Designers (UX/UI improvements)
+- Mental health professionals (content accuracy)
+- Accessibility experts (WCAG compliance)
+- Translators (additional languages)
 
-## Credits & Inspiration
+### How to Contribute
 
-- **Creator**: Rudra Sarker
-- Inspired by academic and clinical best practices in mental health education, safety, and compassionate support design.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit changes (`git commit -m 'Add improvement'`)
+4. Push to branch (`git push origin feature/improvement`)
+5. Open a Pull Request
+
+### Contribution Guidelines
+
+- Respect privacy-first design principles
+- Maintain educational (not diagnostic) tone
+- Follow existing code style
+- Add tests for new features
+- Update documentation
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+You are free to:
+- ✅ Use commercially
+- ✅ Modify and distribute
+- ✅ Use privately
+
+Conditions:
+- Include original license and copyright notice
+
+## 📞 Contact & Support
+
+### For General Inquiries:
+- **Email**: contactmindwellorg@gmail.com
+- **Phone**: +8801988223165
+
+### For Funding & Partnerships:
+- Email: contactmindwellorg@gmail.com
+
+### Connect with MindWell:
+- **Facebook**: https://www.facebook.com/share/17uZeJjmBc/
+- **LinkedIn**: https://www.linkedin.com/in/rudra-sarker
+- **GitHub**: https://github.com/rudra496/mindwell
+
+### Developer:
+- **Rudra Sarker** - Founder & Lead Developer
+- Portfolio: https://rudra496.github.io/site
+
+### Inspired by:
+- **Dr. Farzana Hussain, Ph.D.** - Clinical Psychology Professor
+- LinkedIn: https://www.linkedin.com/in/farzanahussain/
+
+## 🌟 Acknowledgments
+
+- All mental health professionals who reviewed content
+- Open-source community contributors
+- Organizations providing crisis resources (SAMHSA, NAMI, Crisis Text Line, etc.)
+- UN Sustainable Development Goals (SDG 3: Good Health & Well-being, SDG 4: Quality Education)
+
+## 📊 Project Stats
+
+- **63** Mental health conditions documented
+- **20** Self-reflection assessments
+- **2** Assistant clinical psychologists
+- **2** Languages supported (English, Bengali)
+- **100%** Open-source
+- **0** Data collected on servers
+
+## 🚀 Roadmap
+
+- [ ] Expand psychologist network
+- [ ] Add more crisis resources by country
+- [ ] Additional language support
+- [ ] Enhanced accessibility features
+- [ ] Community moderation tools
+- [ ] Educational video content
+
+## ⚠️ Important Notes
+
+1. **Not for Emergencies**: If you're in crisis, contact local emergency services immediately
+2. **Not Diagnostic**: Assessments are for self-reflection only, not medical diagnosis
+3. **Privacy First**: Your mental health data never leaves your device
+4. **Professional Care**: Always consult licensed professionals for mental health concerns
+
+---
+
+**Made with care for mental health awareness 💚**
+
+**Aligned with UN SDG 3 (Good Health & Well-being) and SDG 4 (Quality Education)**
