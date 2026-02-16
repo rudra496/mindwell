@@ -10,10 +10,8 @@ import {
   Menu,
   Home,
   Target,
-  MapPin,
   Mail,
   AlertCircle,
-  Stethoscope,
   HelpCircle,
 } from "lucide-react"
 
@@ -27,11 +25,9 @@ type NavItem = {
 const navItems: NavItem[] = [
   { id: "home", label: "Home", icon: Home, href: "/" },
   { id: "crisis-emergency-help", label: "Emergency Support", icon: AlertCircle },
-  { id: "psychologists", label: "Psychologists", icon: Stethoscope },
   { id: "community", label: "Community", icon: Users },
   { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
   { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
-  { id: "free-services-bangladesh", label: "Free Services in Bangladesh 🇧🇩", icon: MapPin, href: "/bangladesh-services" },
   { id: "sdg-our-mission", label: "Who We Are & Our Goals", icon: Target },
   { id: "funding-support", label: "Funding & Support", icon: Mail },
 ]

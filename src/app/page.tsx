@@ -56,8 +56,6 @@ export default function HomePage() {
           <div className="container mx-auto max-w-7xl px-6 sm:px-10 py-12 text-center md:text-left">
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
             <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and psychologist access that prioritizes safety, clarity, and compassionate support.</p>
-            <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0 mt-3">আমরা শুনতে চাই আপনার কথা</p>
-            <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">We want to hear from you.</p>
           </div>
         </div>
       </section>
