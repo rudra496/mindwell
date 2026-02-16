@@ -5,16 +5,17 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import {
-  ClipboardList,
   Phone,
   Users,
   Menu,
   Home,
-  BookOpen,
-  Sparkles,
   Target,
   MapPin,
   Mail,
+  AlertCircle,
+  Stethoscope,
+  FileText,
+  HelpCircle,
 } from "lucide-react"
 
 type NavItem = {
@@ -26,13 +27,14 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { id: "home", label: "Home", icon: Home, href: "/" },
-  { id: "learn-awareness", label: "Learn & Awareness", icon: BookOpen },
-  { id: "self-reflection-tools", label: "Self-Reflection Tools", icon: ClipboardList },
-  { id: "therapy-meditation", label: "Therapy & Meditation", icon: Sparkles },
-  { id: "crisis-resources", label: "Crisis Resources by Country", icon: Phone, href: "/faq" },
-  { id: "free-services-bangladesh", label: "Free Services in Bangladesh 🇧🇩", icon: MapPin, href: "/bangladesh-services" },
-  { id: "sdg-our-mission", label: "SDG & Our Mission", icon: Target },
+  { id: "crisis-emergency-help", label: "Emergency Support", icon: AlertCircle },
+  { id: "psychologists", label: "Psychologists", icon: Stethoscope },
   { id: "community", label: "Community", icon: Users },
+  { id: "publications-media", label: "Publications & Media", icon: FileText },
+  { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
+  { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
+  { id: "free-services-bangladesh", label: "Free Services in Bangladesh 🇧🇩", icon: MapPin, href: "/bangladesh-services" },
+  { id: "sdg-our-mission", label: "Who We Are & Our Goals", icon: Target },
   { id: "funding-support", label: "Funding & Support", icon: Mail },
 ]
 

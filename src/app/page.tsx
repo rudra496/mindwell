@@ -15,6 +15,8 @@ import {
   Gamepad2,
   FileText,
   PlayCircle,
+  Facebook,
+  Linkedin,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
@@ -27,7 +29,7 @@ import { GamesModal } from "@/components/GamesModal"
 import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
-import { SDGSection } from "@/components/SDGSection"
+import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
 import MoodTracker from "@/components/games/MoodTracker"
 
 export default function HomePage() {
@@ -221,12 +223,12 @@ export default function HomePage() {
           </MinimalSection>
           <MinimalSection
             id="sdg-our-mission"
-            title="SDG & Our Mission"
+            title="Who We Are & Our Goals"
             icon={Target}
             stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
             stockPhotoAlt=""
           >
-            <SDGSection />
+            <WhoWeAreGoalsAccordion />
           </MinimalSection>
           <MinimalSection
             id="funding-support"
@@ -242,6 +244,29 @@ export default function HomePage() {
               <p className="text-lg">Phone: <a href="tel:+8801988223165" className="text-teal-700 dark:text-teal-400 hover:underline">+8801988223165</a></p>
             </div>
           </MinimalSection>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 pb-8 max-w-7xl">
+        <div className="flex items-center justify-center gap-4">
+          <a
+            href="https://www.facebook.com/share/1cCvSmWzPz/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MindWell Facebook"
+            className="inline-flex items-center justify-center rounded-full p-3 text-gray-700 hover:text-teal-700 hover:bg-teal-50 dark:text-gray-300 dark:hover:text-teal-400 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Facebook className="h-6 w-6" />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MindWell LinkedIn"
+            className="inline-flex items-center justify-center rounded-full p-3 text-gray-700 hover:text-teal-700 hover:bg-teal-50 dark:text-gray-300 dark:hover:text-teal-400 dark:hover:bg-slate-800 transition-colors"
+          >
+            <Linkedin className="h-6 w-6" />
+          </a>
         </div>
       </div>
 
