@@ -67,7 +67,6 @@ export default function HomePage() {
             stockPhotoUrl="/images/stock/one_on_one_counseling.jpg"
             stockPhotoAlt="Psychologist offering one-on-one counseling support"
             bgGradient="from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20"
-            defaultOpen
           >
             <EmergencySupportContent />
           </MinimalSection>
