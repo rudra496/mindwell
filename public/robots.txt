@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://mindwell.vercel.app/sitemap.xml
+Sitemap: https://mindwell-navy.vercel.app/sitemap.xml
 
 # Crawl-delay for respectful bots
 Crawl-delay: 1
