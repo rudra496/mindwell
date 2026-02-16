@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MessageCircle, Phone } from "lucide-react"
@@ -52,8 +51,8 @@ const rifatInterestAreas = [
 
 export function PsychologistCard({ psychologist }: PsychologistCardProps) {
   const isKamrul = psychologist.name === "Kamrul Hasan"
-  const expertise = isKamrul ? kamrulExpertise : rifatExpertise
-  const interestAreas = isKamrul ? kamrulInterestAreas : rifatInterestAreas
+  const expertise = isKamrul ? rifatExpertise : kamrulExpertise
+  const interestAreas = isKamrul ? rifatInterestAreas : kamrulInterestAreas
 
   return (
     <Card className="border-2 border-teal-200 dark:border-teal-700 shadow-md h-full">
@@ -104,9 +103,6 @@ export function PsychologistCard({ psychologist }: PsychologistCardProps) {
             <a href={`tel:${psychologist.phone}`}>
               <Phone className="h-4 w-4 mr-2" /> Call: {psychologist.phone}
             </a>
-          </Button>
-          <Button asChild variant="secondary" className="w-full">
-            <Link href="/psychologists">View Details</Link>
           </Button>
         </div>
       </CardContent>

@@ -168,9 +168,9 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               <DialogDescription className="text-xs sm:text-sm">
                 {mounted
                   ? (language === 'en' 
-                      ? "Validated screening tools to help understand your mental wellbeing"
-                      : "আপনার মানসিক সুস্থতা বুঝতে সাহায্য করার জন্য যাচাইকৃত স্ক্রীনিং সরঞ্জাম")
-                  : "Validated screening tools to help understand your mental wellbeing"}
+                      ? "Psychometric, evidence-based self-reflection tools"
+                      : "সাইকোমেট্রিক, প্রমাণ-ভিত্তিক স্ব-প্রতিফলন সরঞ্জাম")
+                  : "Psychometric, evidence-based self-reflection tools"}
               </DialogDescription>
             </DialogHeader>
 

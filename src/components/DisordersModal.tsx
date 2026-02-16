@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -53,9 +53,6 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
       <DialogContent className="max-w-4xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl break-words">Mental Health Education (Not Diagnosis)</DialogTitle>
-          <DialogDescription className="text-xs sm:text-sm">
-            Educational information on mental health conditions. This is not a diagnostic tool. Always consult a qualified healthcare professional.
-          </DialogDescription>
         </DialogHeader>
 
         {!selectedDisorder ? (
