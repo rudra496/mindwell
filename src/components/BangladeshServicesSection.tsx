@@ -88,6 +88,22 @@ export function BangladeshServicesSection() {
           ))}
         </div>
       </div>
+
+      <div className="bg-white/85 dark:bg-slate-800/80 rounded-xl p-6 border border-green-200 dark:border-green-800 transition-colors mt-6">
+        <h3 className="font-bold text-green-900 dark:text-green-300 mb-4 text-xl">
+          Map Location
+        </h3>
+        <div className="relative w-full overflow-hidden rounded-lg border border-green-100 dark:border-green-900 aspect-video">
+          <iframe
+            src="https://www.google.com/maps?q=National+Institute+of+Mental+Health,+Dhaka&output=embed"
+            title="National Institute of Mental Health, Dhaka"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="absolute inset-0 h-full w-full"
+            allowFullScreen
+          />
+        </div>
+      </div>
     </section>
   )
 }
