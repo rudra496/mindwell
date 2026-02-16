@@ -114,16 +114,6 @@ export default function HomePage() {
           </MinimalSection>
 
           <MinimalSection
-            id="sdg-our-mission"
-            title="SDG & Our Mission"
-            icon={Target}
-            stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
-            stockPhotoAlt=""
-          >
-            <SDGSection />
-          </MinimalSection>
-
-          <MinimalSection
             id="psychologists"
             title="Psychologists"
             icon={Stethoscope}
@@ -150,7 +140,17 @@ export default function HomePage() {
               <Button className="text-lg px-7 py-3 h-auto" onClick={() => setGamesOpen(true)}>Open Wellbeing Games</Button>
             </div>
           </MinimalSection>
-
+          <MinimalSection
+            id="track-mood"
+            title="Mood Tracker"
+            icon={BarChart3}
+            stockPhotoUrl="/images/section-bg/mood_tracker_bg.jpg"
+            stockPhotoAlt="Mood tracking and emotional wellbeing self-reflection"
+            bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
+          >
+            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Daily mood tracking, emotional awareness, mental wellbeing</p>
+            <MoodTracker />
+          </MinimalSection>
           <MinimalSection
             id="community"
             title="Community"
@@ -162,18 +162,6 @@ export default function HomePage() {
             <p className="mb-2 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Peer mental health support, safe discussions</p>
             <p className="mb-4 text-gray-700 dark:text-gray-300 text-lg text-center md:text-left">Join peer support discussions with safe and respectful community standards.</p>
             <Button className="text-lg px-7 py-3 h-auto" onClick={() => setCommunityOpen(true)}>Open Community</Button>
-          </MinimalSection>
-
-          <MinimalSection
-            id="track-mood"
-            title="Mood Tracker"
-            icon={BarChart3}
-            stockPhotoUrl="/images/section-bg/mood_tracker_bg.jpg"
-            stockPhotoAlt="Mood tracking and emotional wellbeing self-reflection"
-            bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
-          >
-            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Daily mood tracking, emotional awareness, mental wellbeing</p>
-            <MoodTracker />
           </MinimalSection>
 
           <MinimalSection
@@ -229,7 +217,15 @@ export default function HomePage() {
               </div>
             </div>
           </MinimalSection>
-
+          <MinimalSection
+            id="sdg-our-mission"
+            title="SDG & Our Mission"
+            icon={Target}
+            stockPhotoUrl="/images/section-bg/sdg_mission_bg.jpg"
+            stockPhotoAlt=""
+          >
+            <SDGSection />
+          </MinimalSection>
           <MinimalSection
             id="funding-support"
             title="Funding & Support"
