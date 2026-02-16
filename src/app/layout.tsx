@@ -13,7 +13,9 @@ import { ClientErrorLogger } from "@/components/ClientErrorLogger";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
 
-const description = "MindWell – Open Source Mental Health Platform. Free access to mental health resources, with limited free psychologist sessions based on availability.";
+const description = "MindWell is an open-source mental health platform.
+MindWell Support provides free, ethical mental health support,
+crisis guidance, and psychologist access worldwide.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mindwell.vercel.app"),
