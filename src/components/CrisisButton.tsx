@@ -24,11 +24,11 @@ export function CrisisButton() {
       // Simple country detection based on timezone
       if (timezone.includes("Dhaka") || locale.includes("bn")) {
         return "BD"
-      } else if (timezone.includes("London") || timezone.includes("Europe")) {
+      } else if (timezone.includes("London") || timezone === "Europe/London") {
         return "UK"
       } else if (timezone.includes("Australia")) {
         return "AU"
-      } else if (timezone.includes("Canada")) {
+      } else if (timezone.includes("Canada") || timezone.includes("Toronto") || timezone.includes("Vancouver")) {
         return "CA"
       }
       return "US"
@@ -82,7 +82,7 @@ export function CrisisButton() {
       {/* Floating Crisis Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-full shadow-2xl animate-pulse transition-all hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500/50"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-full shadow-2xl motion-safe:animate-pulse transition-all hover:scale-105 focus:outline-none focus:ring-4 focus:ring-red-500/50"
         aria-label="Need help now? Access crisis resources"
       >
         <Phone className="h-5 w-5" />
