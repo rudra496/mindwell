@@ -8,10 +8,15 @@ interface FacebookPostEmbedProps {
   postUrl: string
 }
 
+interface FacebookInitParams {
+  xfbml: number
+  version: string
+}
+
 declare global {
   interface Window {
     FB?: {
-      init: (params: any) => void
+      init: (params: FacebookInitParams) => void
       XFBML: {
         parse: () => void
       }
@@ -19,6 +24,9 @@ declare global {
     fbAsyncInit?: () => void
   }
 }
+
+const FB_SDK_VERSION = "v18.0"
+const EMBED_TIMEOUT_MS = 5000
 
 export function FacebookPostEmbed({ postUrl }: FacebookPostEmbedProps) {
   const [embedFailed, setEmbedFailed] = useState(false)
@@ -28,7 +36,7 @@ export function FacebookPostEmbed({ postUrl }: FacebookPostEmbedProps) {
     // Load Facebook SDK
     if (!window.FB) {
       const script = document.createElement("script")
-      script.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"
+      script.src = `https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=${FB_SDK_VERSION}`
       script.async = true
       script.defer = true
       script.crossOrigin = "anonymous"
@@ -59,7 +67,7 @@ export function FacebookPostEmbed({ postUrl }: FacebookPostEmbedProps) {
       if (fbPost && !fbPost.querySelector('iframe')) {
         setEmbedFailed(true)
       }
-    }, 5000)
+    }, EMBED_TIMEOUT_MS)
 
     return () => clearTimeout(timeout)
   }, [])
