@@ -7,12 +7,23 @@ interface FacebookPostEmbedProps {
   width?: number
 }
 
+// Facebook SDK type declaration
+declare global {
+  interface Window {
+    FB?: {
+      XFBML: {
+        parse: (element?: HTMLElement | null) => void
+      }
+    }
+  }
+}
+
 export function FacebookPostEmbed({ postUrl, width = 500 }: FacebookPostEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     // Load Facebook SDK if not already loaded
-    if (typeof window !== "undefined" && !(window as any).FB) {
+    if (typeof window !== "undefined" && !window.FB) {
       // Check if script already exists
       const existingScript = document.querySelector('script[src*="connect.facebook.net"]')
       if (!existingScript) {
@@ -21,18 +32,18 @@ export function FacebookPostEmbed({ postUrl, width = 500 }: FacebookPostEmbedPro
         script.async = true
         script.defer = true
         script.crossOrigin = "anonymous"
-        document.body.appendChild(script)
+        document.head.appendChild(script)
 
         script.onload = () => {
           // Parse XFBML after SDK loads
-          if ((window as any).FB) {
-            (window as any).FB.XFBML.parse()
+          if (window.FB) {
+            window.FB.XFBML.parse()
           }
         }
       }
-    } else if ((window as any).FB) {
+    } else if (window.FB) {
       // SDK already loaded, just parse the container
-      (window as any).FB.XFBML.parse(containerRef.current)
+      window.FB.XFBML.parse(containerRef.current)
     }
   }, [postUrl])
 
