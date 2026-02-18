@@ -12,7 +12,6 @@ import { AnalyticsPlaceholder } from "@/components/AnalyticsPlaceholder";
 import { ClientErrorLogger } from "@/components/ClientErrorLogger";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
-import { CrisisButton } from "@/components/CrisisButton";
 
 const description =
   "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
@@ -117,7 +116,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               </main>
               <GlobalFooter />
             </div>
-            <CrisisButton />
             <AnalyticsPlaceholder />
             <ClientErrorLogger />
             <PerformanceMonitor />
