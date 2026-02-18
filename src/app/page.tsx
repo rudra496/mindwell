@@ -29,6 +29,7 @@ import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
 import MoodTracker from "@/components/games/MoodTracker"
+import { GuidedTour } from "@/components/GuidedTour"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -249,6 +250,7 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
       <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
       <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
+      <GuidedTour />
     </>
   )
 }
