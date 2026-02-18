@@ -14,7 +14,6 @@ import {
   Mail,
   Gamepad2,
   FileText,
-  PlayCircle,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
@@ -28,6 +27,7 @@ import { CommunityModal } from "@/components/CommunityModal"
 import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
+import { FacebookPostEmbed } from "@/components/FacebookPostEmbed"
 import MoodTracker from "@/components/games/MoodTracker"
 
 export default function HomePage() {
@@ -191,28 +191,8 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
                 <p className="text-xl text-gray-700 dark:text-gray-300">Written reflections and blog publications will be listed here.</p>
 
                 <div className="ml-3 sm:ml-6 border-l-2 border-teal-200 dark:border-teal-700 pl-4 sm:pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Videos</h4>
-                  <div aria-label="Upcoming educational and meditation video library" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {["Video Series Placeholder 1", "Video Series Placeholder 2", "Video Series Placeholder 3"].map((title) => (
-                      <article key={title} className="rounded-xl border border-gray-200 dark:border-slate-700 bg-white/85 dark:bg-slate-800/70 p-4 shadow-sm">
-                        <div className="aspect-video rounded-lg border border-dashed border-teal-300 dark:border-teal-700 bg-teal-50/80 dark:bg-teal-900/10 flex items-center justify-center mb-3">
-                          <PlayCircle className="h-10 w-10 text-teal-500 dark:text-teal-400" />
-                          {/* Future YouTube embed placeholder:
-                          <iframe
-                            src=""
-                            title="MindWell educational video"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full rounded-lg"
-                          />
-                          */}
-                        </div>
-                        <h5 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h5>
-                        <p className="text-xl text-gray-700 dark:text-gray-300">Educational &amp; Meditation Video (Coming Soon)</p>
-                      </article>
-                    ))}
-                  </div>
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Recent Posts</h4>
+                  <FacebookPostEmbed postUrl="https://www.facebook.com/share/p/17wnXjS9Qo/" />
                 </div>
               </div>
             </div>
