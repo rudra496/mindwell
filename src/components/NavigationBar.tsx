@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
-import { GlobalSearch } from "@/components/GlobalSearch"
 import {
   Phone,
   Users,
@@ -70,7 +69,6 @@ export function NavigationBar() {
                   <span className="text-xs font-medium">{item.label}</span>
                 </Button>
               ))}
-              <GlobalSearch />
               <LanguageToggle />
             </div>
           </div>
@@ -85,7 +83,6 @@ export function NavigationBar() {
             </button>
 
             <div className="flex items-center gap-2">
-              <GlobalSearch />
               <LanguageToggle />
               <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
                 <Menu className="h-6 w-6" />
