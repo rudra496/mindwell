@@ -21,7 +21,6 @@ export function FacebookPostEmbed({ postUrl, width = 500 }: FacebookPostEmbedPro
         script.async = true
         script.defer = true
         script.crossOrigin = "anonymous"
-        script.nonce = "facebook-sdk"
         document.body.appendChild(script)
 
         script.onload = () => {
