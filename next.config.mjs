@@ -19,7 +19,6 @@ const nextConfig = {
     } : false,
   },
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react'],
   },
 };
