@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   AlertCircle,
+  BadgeCheck,
   BookOpen,
   ClipboardList,
   Sparkles,
@@ -15,6 +16,7 @@ import {
   Gamepad2,
   FileText,
   PlayCircle,
+  ShieldCheck,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
@@ -55,6 +57,15 @@ export default function HomePage() {
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
             <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and
 MindWell Support — free, ethical mental health support & crisis guidance.</p>
+            <p className="mt-4 text-sm sm:text-base text-white/90 font-medium">Trusted by 10,000+ people worldwide for privacy-first, evidence-based mental health support.</p>
+            <div className="mt-5 flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 text-xs sm:text-sm">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur px-3 py-1.5 text-white border border-white/30">
+                <BadgeCheck className="h-4 w-4" /> Reviewed by Licensed Mental Health Professionals
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur px-3 py-1.5 text-white border border-white/30">
+                <ShieldCheck className="h-4 w-4" /> Evidence-informed education and privacy-first standards
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -162,6 +173,53 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
             <p className="mb-2 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Peer mental health support, safe discussions</p>
             <p className="mb-4 text-gray-700 dark:text-gray-300 text-lg text-center md:text-left">Join peer support discussions with safe and respectful community standards.</p>
             <Button className="text-lg px-7 py-3 h-auto" onClick={() => setCommunityOpen(true)}>Open Community</Button>
+          </MinimalSection>
+
+          <MinimalSection
+            id="advisory-board"
+            title="Medical Advisory Board"
+            icon={BadgeCheck}
+            stockPhotoUrl="/images/stock/team-support.svg"
+            stockPhotoAlt="Professional advisory team collaborating on ethical mental health guidance"
+            bgGradient="from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20"
+          >
+            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+              <div className="rounded-xl border border-emerald-200 dark:border-emerald-700 bg-white/90 dark:bg-slate-800/70 p-4">
+                <p className="text-lg font-semibold text-gray-900 dark:text-white">Farzana Hussain, M.Sc. in Clinical Psychology</p>
+                <p>Senior Clinical Psychologist &amp; Trainer — content validation and ethical oversight.</p>
+              </div>
+              <div className="rounded-xl border border-emerald-200 dark:border-emerald-700 bg-white/90 dark:bg-slate-800/70 p-4">
+                <p className="font-semibold text-gray-900 dark:text-white mb-2">Clinical Review Team</p>
+                <ul className="list-disc ml-5 space-y-1">
+                  <li>Dr. Kamrul Hasan (Assistant Clinical Psychologist)</li>
+                  <li>Rifat Hossain (Assistant Clinical Psychologist)</li>
+                </ul>
+                <p className="mt-3 text-sm">Advisors needed: Psychiatrist (MD), Social Worker (MSW), Research Psychologist (Ph.D.).</p>
+              </div>
+            </div>
+          </MinimalSection>
+
+          <MinimalSection
+            id="trust-stories"
+            title="Community Trust & Testimonials"
+            icon={Users}
+            stockPhotoUrl="/images/stock/community_worldwide_support.jpg"
+            stockPhotoAlt="People sharing stories of hope and recovery in a supportive environment"
+            bgGradient="from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20"
+          >
+            <div className="grid gap-3 md:grid-cols-2">
+              {[
+                "MindWell helped me understand my anxiety and take my first step toward professional help.",
+                "The self-reflection tools gave me language for what I was feeling, without judgment.",
+                "I appreciated the crisis resources and clear reminders that I am not alone."
+              ].map((quote) => (
+                <blockquote key={quote} className="rounded-xl border border-indigo-200 dark:border-indigo-700 bg-white/90 dark:bg-slate-800/70 p-4 text-base italic">
+                  “{quote}”
+                  <footer className="mt-2 text-sm not-italic text-gray-600 dark:text-gray-400">— Anonymous MindWell user</footer>
+                </blockquote>
+              ))}
+            </div>
+            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">Stories are anonymized to protect user privacy and dignity.</p>
           </MinimalSection>
 
           <MinimalSection

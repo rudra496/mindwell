@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, FileText, BookOpen, HelpCircle } from 'lucide-react';
+import { Shield, FileText, BookOpen, HelpCircle, Cookie } from 'lucide-react';
 
 /**
  * Legal Links Bar Component
@@ -13,6 +13,7 @@ export function LegalLinksBar() {
     { href: '/privacy', label: 'Privacy', icon: Shield },
     { href: '/terms', label: 'Terms', icon: FileText },
     { href: '/medical-disclaimer', label: 'Disclaimer', icon: BookOpen },
+    { href: '/cookie-policy', label: 'Cookies', icon: Cookie },
     { href: '/faq', label: 'FAQ', icon: HelpCircle },
   ];
 
