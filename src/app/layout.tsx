@@ -12,6 +12,8 @@ import { AnalyticsPlaceholder } from "@/components/AnalyticsPlaceholder";
 import { ClientErrorLogger } from "@/components/ClientErrorLogger";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
+import { GuidedTour } from "@/components/GuidedTour";
+import { AccessibilityMenu } from "@/components/AccessibilityMenu";
 
 const description =
   "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
@@ -107,6 +109,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <AccessibilitySkipLink />
             <EmergencySupportBar />
             <NavigationBar />
+            <GuidedTour />
             <div className="flex flex-col min-h-screen">
               <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 transition-colors duration-300">
                 <div className="container mx-auto px-4">
@@ -119,6 +122,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <AnalyticsPlaceholder />
             <ClientErrorLogger />
             <PerformanceMonitor />
+            <AccessibilityMenu />
           </ErrorBoundary>
         </ThemeProvider>
       </body>

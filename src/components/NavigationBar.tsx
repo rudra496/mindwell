@@ -4,10 +4,13 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
+import { GlobalSearch } from "@/components/GlobalSearch"
+import { startGuidedTour } from "@/components/GuidedTour"
 import {
   Phone,
   Users,
   Menu,
+  Search,
   Home,
   Target,
   Mail,
@@ -69,6 +72,8 @@ export function NavigationBar() {
                   <span className="text-xs font-medium">{item.label}</span>
                 </Button>
               ))}
+              <GlobalSearch />
+              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs">Take a Tour</Button>
               <LanguageToggle />
             </div>
           </div>
@@ -83,6 +88,8 @@ export function NavigationBar() {
             </button>
 
             <div className="flex items-center gap-2">
+              <GlobalSearch />
+              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs">Take a Tour</Button>
               <LanguageToggle />
               <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
                 <Menu className="h-6 w-6" />
@@ -100,6 +107,23 @@ export function NavigationBar() {
               ))}
             </div>
           )}
+        </div>
+      </nav>
+
+
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md">
+        <div className="grid grid-cols-4">
+          {[navItems[0], navItems[1], navItems[2], navItems[4]].map((item) => (
+            <button
+              key={`bottom-${item.id}`}
+              onClick={() => handleNavClick(item)}
+              className="min-h-[52px] flex flex-col items-center justify-center text-[11px] text-slate-700"
+              aria-label={item.label}
+            >
+              <item.icon className="h-4 w-4 mb-0.5" />
+              <span>{item.label.split(' ')[0]}</span>
+            </button>
+          ))}
         </div>
       </nav>
     </>
