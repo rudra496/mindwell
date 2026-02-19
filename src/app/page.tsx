@@ -18,7 +18,7 @@ import {
   PlayCircle,
   ShieldCheck,
 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
 import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
@@ -31,7 +31,6 @@ import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
 import MoodTracker from "@/components/games/MoodTracker"
-import { getUserPreferences, trackVisitedPage } from "@/lib/personalization"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -40,17 +39,10 @@ export default function HomePage() {
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
-  const [isReturningUser, setIsReturningUser] = useState(false)
-
-  useEffect(() => {
-    trackVisitedPage('/')
-    const preferences = getUserPreferences()
-    setIsReturningUser(preferences.visitedPages.length > 1)
-  }, [])
 
   return (
     <>
-      <section id="hero" className="hero-section relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
+      <section className="relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
         <Image
           src="/images/stock/hero_group_support.jpg"
           alt="Group counseling support session in a welcoming setting"
@@ -74,23 +66,12 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
                 <ShieldCheck className="h-4 w-4" /> Evidence-informed education and privacy-first standards
               </span>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
-              <Button onClick={() => setDisordersOpen(true)} className="px-5 py-2 h-auto">Learn</Button>
-              <Button onClick={() => setAssessmentOpen(true)} variant="outline" className="bg-white/90 px-5 py-2 h-auto">Assess</Button>
-              <Button onClick={() => setCommunityOpen(true)} variant="secondary" className="px-5 py-2 h-auto">Connect</Button>
-            </div>
           </div>
         </div>
       </section>
 
-      <div id="home" className="container mx-auto px-4 py-8 pb-24 lg:pb-8 max-w-7xl">
+      <div id="home" className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="space-y-6">
-          {isReturningUser && (
-            <section className="rounded-xl border border-teal-200 dark:border-teal-700 bg-white/80 dark:bg-slate-800/60 p-4">
-              <h2 className="text-lg font-semibold text-slate-900 dark:text-white">Welcome back</h2>
-              <p className="text-sm text-slate-700 dark:text-slate-300 mt-1">Based on your previous activity, continue learning and self-reflection from the sections below.</p>
-            </section>
-          )}
           <MinimalSection
             id="crisis-emergency-help"
             title="Emergency Support"

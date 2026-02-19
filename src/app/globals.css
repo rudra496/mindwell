@@ -377,20 +377,3 @@ input, textarea, select {
     color: #666;
   }
 }
-
-/* Phase 2 accessibility utilities */
-.mw-high-contrast body {
-  filter: contrast(1.15);
-}
-
-.mw-dyslexia-font body {
-  font-family: "OpenDyslexic", "Comic Sans MS", "Trebuchet MS", sans-serif;
-}
-
-.mw-reduced-motion *,
-.mw-reduced-motion *::before,
-.mw-reduced-motion *::after {
-  animation: none !important;
-  transition: none !important;
-  scroll-behavior: auto !important;
-}
