@@ -39,9 +39,6 @@ export function GuidedTour() {
   const [stepIndex, setStepIndex] = useState(0)
 
   useEffect(() => {
-    const isCompleted = window.localStorage.getItem(TOUR_STORAGE_KEY)
-    if (!isCompleted) setRunTour(true)
-
     const openHandler = () => {
       setStepIndex(0)
       setRunTour(true)
@@ -69,6 +66,9 @@ export function GuidedTour() {
   return (
     <div className="fixed inset-0 z-[80] bg-black/55 p-4 sm:p-6 flex items-end sm:items-center justify-center">
       <div className="w-full max-w-lg rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-xl p-5">
+        <div className="flex justify-end">
+          <button aria-label="Close tour" className="text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white" onClick={handleClose}>✕</button>
+        </div>
         <p className="text-xs font-semibold uppercase tracking-wide text-teal-700 dark:text-teal-300">
           Guided tour • Step {stepIndex + 1} of {steps.length}
         </p>

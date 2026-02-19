@@ -10,7 +10,6 @@ import {
   Phone,
   Users,
   Menu,
-  Search,
   Home,
   Target,
   Mail,
@@ -53,27 +52,30 @@ export function NavigationBar() {
     <>
       <nav className="hidden lg:block bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-3">
             <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label="MindWell Home">
               <Logo variant="full" className="h-8" />
             </button>
 
-            <div className="flex items-center gap-1">
-              {navItems.map((item) => (
+            <div className="flex items-center gap-1 overflow-x-auto">
+              {navItems.slice(0, 5).map((item) => (
                 <Button
                   key={item.id}
                   variant="ghost"
                   size="sm"
                   onClick={() => handleNavClick(item)}
-                  className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
+                  className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50 whitespace-nowrap"
                   aria-label={item.label}
                 >
                   <item.icon className="h-4 w-4" />
                   <span className="text-xs font-medium">{item.label}</span>
                 </Button>
               ))}
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
               <GlobalSearch />
-              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs">Take a Tour</Button>
+              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs whitespace-nowrap">Take a Tour</Button>
               <LanguageToggle />
             </div>
           </div>
@@ -82,14 +84,14 @@ export function NavigationBar() {
 
       <nav className="lg:hidden bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label="Mobile navigation">
         <div className="container mx-auto px-3 py-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label="MindWell Home">
               <Logo variant="full" className="h-7" />
             </button>
 
             <div className="flex items-center gap-2">
               <GlobalSearch />
-              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs">Take a Tour</Button>
+              <Button variant="outline" size="sm" onClick={() => startGuidedTour()} className="text-xs">Tour</Button>
               <LanguageToggle />
               <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
                 <Menu className="h-6 w-6" />
@@ -110,10 +112,9 @@ export function NavigationBar() {
         </div>
       </nav>
 
-
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur-md">
-        <div className="grid grid-cols-4">
-          {[navItems[0], navItems[1], navItems[2], navItems[4]].map((item) => (
+        <div className="grid grid-cols-5">
+          {[navItems[0], navItems[1], navItems[2], navItems[3], navItems[4]].map((item) => (
             <button
               key={`bottom-${item.id}`}
               onClick={() => handleNavClick(item)}
