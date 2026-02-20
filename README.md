@@ -26,7 +26,7 @@ MindWell is an open-source mental health platform providing trusted, practical, 
 
 ### Mental Health Education
 
-**63 Mental Health Conditions** - Comprehensive educational content covering:
+**393 Mental Health Conditions** - Comprehensive educational content covering:
 - Anxiety Disorders (Generalized Anxiety, Panic Disorder, Social Anxiety, Phobias, etc.)
 - Mood Disorders (Major Depression, Bipolar Disorder, Dysthymia, etc.)
 - Trauma-Related Conditions (PTSD, Complex PTSD, Acute Stress Disorder)
@@ -302,7 +302,7 @@ Conditions:
 
 ## 📊 Project Stats
 
-- **63** Mental health conditions documented
+- **393** Mental health conditions documented
 - **20** Self-reflection assessments
 - **2** Assistant clinical psychologists
 - **2** Languages supported (English, Bengali)

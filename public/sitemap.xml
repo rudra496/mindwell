@@ -81,373 +81,2365 @@
     <priority>0.7</priority>
   </url>
   
-  <!-- 63 Mental Health Disorder Pages (Dynamic Routes) -->
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/separation-anxiety-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/illness-anxiety-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/premenstrual-dysphoric-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/disruptive-mood-dysregulation-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/cyclothymic-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/reactive-attachment-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/disinhibited-social-engagement-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/schizoaffective-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/delusional-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/brief-psychotic-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/intellectual-disability</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/tourette-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/social-communication-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/oppositional-defiant-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/conduct-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/intermittent-explosive-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/somatic-symptom-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/conversion-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/factitious-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/rumination-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/avoidant-restrictive-food-intake-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/pica</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/hypersomnolence-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/narcolepsy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/obstructive-sleep-apnea</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/restless-legs-syndrome</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/erectile-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/female-orgasmic-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/premature-ejaculation</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/female-sexual-interest-arousal-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/male-hypoactive-sexual-desire-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/generalized-anxiety-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/social-anxiety-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/panic-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
+  <!-- 393 Mental Health Disorder Pages (Dynamic Routes) -->
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/agoraphobia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/bipolar-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/generalized-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/major-depressive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/ocd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/panic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/ptsd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/selective-mutism</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/specific-phobia</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/obsessive-compulsive-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/body-dysmorphic-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/hoarding-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/trichotillomania</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/excoriation-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/major-depressive-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/persistent-depressive-disorder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/bipolar-i-disorder</loc>
+    <loc>https://mindwell-navy.vercel.app/disorders/seasonal-affective-disorder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/bipolar-ii-disorder</loc>
+    <loc>https://mindwell-navy.vercel.app/disorders/postpartum-depression</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/ptsd</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/complex-ptsd</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/acute-stress-disorder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/adjustment-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/schizophrenia</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/adhd</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/autism-spectrum-disorder</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/anorexia-nervosa</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/bulimia-nervosa</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/binge-eating-disorder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://mindwell-navy.vercel.app/disorders/insomnia-disorder</loc>
-    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/borderline-personality-disorder</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/narcissistic-personality-disorder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/antisocial-personality-disorder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/avoidant-personality-disorder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mindwell-navy.vercel.app/disorders/dependent-personality-disorder</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/body-dysmorphic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hoarding-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/trichotillomania</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/excoriation-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/schizophrenia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/schizoaffective-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/brief-psychotic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/adhd</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/autism-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/intellectual-disability</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/tourette-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-communication-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/oppositional-defiant-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/conduct-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/intermittent-explosive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/separation-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/illness-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/reactive-attachment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/disinhibited-social-engagement-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/premenstrual-dysphoric-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/disruptive-mood-dysregulation-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cyclothymic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/somatic-symptom-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/conversion-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/factitious-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/rumination-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/avoidant-restrictive-food-intake-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/insomnia-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hypersomnolence-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/narcolepsy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/obstructive-sleep-apnea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/restless-legs-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/erectile-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/female-orgasmic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/premature-ejaculation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/female-sexual-interest-arousal-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/male-hypoactive-sexual-desire-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/dissociative-identity-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/depersonalization-derealization-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/dissociative-amnesia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/prolonged-grief-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/gambling-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/kleptomania</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pyromania</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nightmare-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/gender-dysphoria</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/obsessive-compulsive-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/alcohol-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/opioid-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/stimulant-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cannabis-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sedative-hypnotic-anxiolytic-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/tobacco-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/inhalant-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hallucinogen-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/paranoid-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/schizoid-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/histrionic-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleepwalking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-terror-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/circadian-rhythm-sleep-wake-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/delayed-sleep-wake-phase-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/rapid-eye-movement-sleep-behavior-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/genito-pelvic-pain-penetration-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/delayed-ejaculation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/paraphilic-disorder-other-specified</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/caffeine-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/bipolar-ii-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/schizophreniform-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/psychotic-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/substance-medication-induced-psychotic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/depressive-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/substance-medication-induced-depressive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-feeding-or-eating-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/purging-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/night-eating-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/enuresis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/encopresis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-coordination-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/stereotypic-movement-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/language-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/speech-sound-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/childhood-onset-fluency-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/specific-learning-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/global-developmental-delay</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/non-rapid-eye-movement-sleep-arousal-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/central-sleep-apnea</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-related-hypoventilation-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/shift-work-sleep-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/jet-lag-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/voyeuristic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/exhibitionistic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/frotteuristic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sexual-masochism-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sexual-sadism-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pedophilic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fetishistic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/transvestic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/delirium</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/major-neurocognitive-disorder-due-to-alzheimers-disease</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mild-neurocognitive-disorder-due-to-alzheimers-disease</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/major-neurocognitive-disorder-with-lewy-bodies</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/major-neurocognitive-disorder-due-to-parkinsons-disease</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/frontotemporal-neurocognitive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/vascular-neurocognitive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/neurocognitive-disorder-due-to-traumatic-brain-injury</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hiv-associated-neurocognitive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/prion-disease-neurocognitive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/anxiety-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/substance-medication-induced-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-trauma-and-stressor-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-trauma-and-stressor-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-dissociative-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-dissociative-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/psychological-factors-affecting-other-medical-conditions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/caffeine-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/internet-gaming-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/bipolar-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/substance-medication-induced-bipolar-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/schizotypal-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/persistent-motor-tic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/provisional-tic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/catatonia-associated-with-another-mental-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/catatonic-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/ocd-related-disorder-due-to-another-medical-condition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/substance-medication-induced-ocd-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/body-focused-repetitive-behavior-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/orthorexia-nervosa</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/muscle-dysmorphia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/misophonia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hallucinogen-persisting-perception-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/steroid-induced-mood-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/synthetic-cannabinoid-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mdma-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/ketamine-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/phencyclidine-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/compulsive-buying-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/compulsive-sexual-behavior-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/problematic-social-media-use</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/workaholism</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/exercise-addiction</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/orthosomnia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/kleine-levin-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/idiopathic-hypersomnia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/advanced-sleep-wake-phase-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/irregular-sleep-wake-rhythm-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/non-24-hour-sleep-wake-rhythm-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-related-bruxism</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-related-eating-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/exploding-head-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/somniloquy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/functional-cognitive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mild-cognitive-impairment-amnestic</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/major-neurocognitive-disorder-due-to-huntingtons-disease</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/post-concussion-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pseudobulbar-affect</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/complex-bereavement-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/secondary-traumatic-stress</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/vicarious-trauma-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/acute-and-transient-psychotic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cycloid-psychosis</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/shared-psychotic-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/erotomanic-delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/jealous-delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/persecutory-delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/somatic-delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/grandiose-delusional-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/disruptive-impulse-control-disorder-unspecified</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-impulse-control-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/phonological-processing-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-language-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/semantic-pragmatic-communication-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/expressive-language-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mixed-receptive-expressive-language-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-dyslexia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-dyscalculia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-dysgraphia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/math-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/test-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/performance-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-media-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/emetophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/thanatophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/trypanophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/aichmophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nosophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/bathmophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/acrophobia-severe-subtype</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/alexithymia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sensory-processing-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pathological-demand-avoidance</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/rejection-sensitive-dysphoria</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/high-functioning-anxiety</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/agitated-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/atypical-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/melancholic-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/masked-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/double-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/depressive-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/passive-aggressive-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sadistic-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/masochistic-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/self-defeating-personality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cycloid-emotionality-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/chronic-irritability-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/intermittent-dysphoric-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/misophonia-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/visual-snow-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/persistent-postural-perceptual-dizziness</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/functional-seizure-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/psychogenic-nonepileptic-seizures</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/somatic-preoccupation-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/orthostatic-intolerance-anxiety-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/panic-agoraphobic-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/attachment-insecurity-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/parentification-trauma-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/chronic-shame-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cyclothymic-disorder-childhood-onset</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mixed-anxiety-and-depressive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-depressive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-depressive-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-bipolar-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-bipolar-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-schizophrenia-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-schizophrenia-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/attenuated-psychosis-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/catatonia-unspecified</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-obsessive-compulsive-and-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-obsessive-compulsive-and-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-dissociative-disorder-subtype-2</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/depersonalization-with-intermittent-derealization</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-somatic-symptom-and-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-somatic-symptom-and-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-feeding-and-eating-disorder-atypical-anorexia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-feeding-and-eating-disorder-low-frequency-bulimia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-feeding-and-eating-disorder-low-frequency-binge-eating</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-feeding-and-eating-disorder-night-eating-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-trauma-and-stressor-related-disorder-adjustment-like</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/reactive-attachment-disorder-persistent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/disinhibited-social-engagement-disorder-persistent</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-sleep-wake-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/unspecified-sleep-wake-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-related-leg-cramps-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hypnic-jerk-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-onset-association-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/behavioral-insomnia-of-childhood</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/insufficient-sleep-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/alcohol-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/alcohol-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/opioid-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/opioid-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/stimulant-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/stimulant-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cannabis-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cannabis-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/tobacco-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sedative-hypnotic-anxiolytic-withdrawal</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sedative-hypnotic-anxiolytic-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/hallucinogen-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/inhalant-intoxication</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cocaine-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/amphetamine-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/methamphetamine-use-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nicotine-withdrawal-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/other-specified-substance-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/disorder-of-written-expression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/reading-comprehension-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nonverbal-learning-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/dyspraxia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/slow-processing-speed-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/auditory-processing-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/central-auditory-processing-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/visual-processing-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/executive-function-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/developmental-topographical-disorientation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/childhood-apraxia-of-speech</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/selective-eating-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/rumination-syndrome-adult-presentation</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/pregorexia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/diabulimia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/orthorexia-athletica</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/food-neophobia-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-rhythm-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/ultra-rapid-cycling-bipolar-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mixed-features-depressive-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/anxious-distress-depressive-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/recurrent-brief-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/subsyndromal-depression</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/subthreshold-bipolar-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-missing-out-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/eco-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/climate-distress-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/health-app-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nomophobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-public-speaking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-driving-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-flying-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-choking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fear-of-contamination-spectrum-phobia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/body-image-avoidance-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/appearance-checking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/relationship-ocd-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/moral-scrupulosity-ocd-spectrum</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/harm-obsession-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sensorimotor-obsession-spectrum-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/compulsive-reassurance-seeking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/compulsive-information-seeking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/doomscrolling-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/digital-overload-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/phantom-vibration-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/online-harassment-trauma-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/cyberbullying-related-adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/workplace-burnout-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/caregiver-burnout-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/medical-trauma-related-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/acute-grief-reaction-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/delayed-grief-reaction-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/anniversary-reaction-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/relocation-stress-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/acculturative-stress-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/reverse-culture-shock-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/retirement-adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/empty-nest-adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/post-divorce-adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/career-transition-adjustment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/academic-burnout-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/entrepreneur-burnout-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/compassion-fatigue-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/decision-fatigue-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mental-exhaustion-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/chronic-worry-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/anticipatory-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/transition-related-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/financial-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/relationship-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/separation-in-adulthood-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/interpersonal-rejection-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/time-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/future-uncertainty-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-anticipation-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/weekend-oversleep-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-jetlag-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/sleep-related-procrastination-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/screen-induced-insomnia-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/chronic-daytime-fatigue-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/morning-inertia-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/circadian-misalignment-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/weeknight-sleep-deprivation-syndrome</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/fragmented-sleep-pattern-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/stress-related-binge-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/restrictive-eating-anxiety-pattern</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/emotional-overeating-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/nighttime-snacking-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/meal-skipping-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/food-guilt-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/appearance-based-self-worth-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/mirror-avoidance-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/self-comparison-distress-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/digital-body-image-distress</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/social-validation-dependence-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/notification-checking-compulsion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/inbox-anxiety-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/message-response-compulsion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/calendar-overcontrol-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mindwell-navy.vercel.app/disorders/productivity-obsession-disorder</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- 20 Therapy Technique Pages -->
   <url>
     <loc>https://mindwell-navy.vercel.app/therapy-techniques/grounding-5-4-3-2-1</loc>
