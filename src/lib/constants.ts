@@ -4,7 +4,7 @@
 
 // Mental health content counts
 export const CONTENT_COUNTS = {
-  disorders: 63,
+  disorders: 200,
   assessments: 20,
   therapeuticGames: 16,
   meditations: 14,
