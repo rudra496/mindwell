@@ -57,8 +57,8 @@ export default function HomePage() {
         <div className="relative z-10 min-h-[360px] sm:min-h-[440px] flex items-center">
           <div className="container mx-auto max-w-7xl px-6 sm:px-10 py-12 text-center md:text-left">
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
-            <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and
-MindWell Support — free, ethical mental health support & crisis guidance.</p>
+            <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted by 10000+ users worldwide.
+MindWell Support — free, ethical mental health support & crisis management.</p>
           </div>
         </div>
       </section>
