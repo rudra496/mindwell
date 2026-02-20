@@ -1,25 +1,41 @@
 {
+  "id": "/",
   "name": "MindWell - Free Mental Health Support",
   "short_name": "MindWell",
   "description": "Free mental health support platform built for Bangladesh, accessible worldwide. Evidence-based resources for anxiety, depression, and mental wellness.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d9488",
   "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
   "categories": ["health", "medical", "lifestyle"],
   "icons": [
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
   "screenshots": [
@@ -41,7 +57,7 @@
       "name": "Crisis Support",
       "short_name": "Crisis",
       "description": "Access immediate crisis resources",
-      "url": "/?crisis=true",
+      "url": "/crisis-resources",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     },
     {

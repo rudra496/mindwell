@@ -15,6 +15,7 @@ import {
   AlertCircle,
   HelpCircle,
   Search,
+  MapPin,
 } from "lucide-react"
 
 type NavItem = {
@@ -28,10 +29,10 @@ const navItems: NavItem[] = [
   { id: "home", label: "Home", icon: Home, href: "/" },
   { id: "crisis-emergency-help", label: "Emergency Support", icon: AlertCircle },
   { id: "community", label: "Community", icon: Users },
-  { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
   { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
   { id: "sdg-our-mission", label: "Who We Are & Our Goals", icon: Target },
   { id: "funding-support", label: "Funding & Support", icon: Mail },
+  { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
 ]
 
 export function NavigationBar() {
@@ -84,6 +85,16 @@ export function NavigationBar() {
                 <span className="text-xs font-medium hidden xl:inline">Search</span>
                 <kbd className="hidden xl:inline-flex text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono">⌘K</kbd>
               </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => document.dispatchEvent(new CustomEvent("mindwell:start-tour"))}
+                className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
+                aria-label="Take guided tour"
+              >
+                <MapPin className="h-4 w-4" />
+                <span className="text-xs font-medium hidden xl:inline">Tour</span>
+              </Button>
               <LanguageToggle />
             </div>
           </div>
@@ -122,6 +133,14 @@ export function NavigationBar() {
                   <span className="text-sm font-medium">{item.label}</span>
                 </Button>
               ))}
+              <Button
+                variant="ghost"
+                onClick={() => { document.dispatchEvent(new CustomEvent("mindwell:start-tour")); setMobileMenuOpen(false); }}
+                className="w-full justify-start text-gray-700 hover:text-teal-700 hover:bg-teal-50 min-h-[44px]"
+              >
+                <MapPin className="h-5 w-5 mr-3" />
+                <span className="text-sm font-medium">Take Tour</span>
+              </Button>
             </div>
           )}
         </div>

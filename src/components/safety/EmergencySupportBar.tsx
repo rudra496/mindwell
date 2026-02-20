@@ -15,7 +15,7 @@ export function EmergencySupportBar() {
       <div className="container mx-auto px-4 py-2">
         <div className="flex flex-wrap items-center justify-center gap-2 text-sm text-red-800 dark:text-red-200">
           <span className="font-semibold">Crisis support resources are available.</span>
-          <Link href="/faq" className="font-medium underline underline-offset-2">View crisis resources by country</Link>
+          <Link href="/crisis-resources" className="font-medium underline underline-offset-2">View crisis resources by country</Link>
         </div>
       </div>
     </div>

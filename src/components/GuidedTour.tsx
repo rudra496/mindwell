@@ -23,6 +23,16 @@ const steps = [
       "Take evidence-based assessments to better understand your mental health. These are for self-reflection only, not clinical diagnosis.",
   },
   {
+    title: "Wellbeing Games & Mood Tracker 🎮",
+    content:
+      "Track your mood daily with our Mood Tracker and engage with interactive wellbeing games including a Gratitude Journal. Spotting patterns in your mood helps you take better care of your mental health.",
+  },
+  {
+    title: "Global Search 🔍",
+    content:
+      "Use the search bar (Cmd+K / Ctrl+K) to instantly find any disorder, assessment, therapy technique, or meditation. Quick access to everything MindWell offers.",
+  },
+  {
     title: "Emergency Support",
     content:
       "If you or someone you know is in crisis, the Emergency Support section provides immediate helpline numbers and resources for Bangladesh and worldwide.",
@@ -34,6 +44,11 @@ export function GuidedTour() {
   const [step, setStep] = useState(0);
   const [mounted, setMounted] = useState(false);
 
+  const startTour = () => {
+    setStep(0);
+    setShow(true);
+  };
+
   useEffect(() => {
     setMounted(true);
     try {
@@ -44,6 +59,12 @@ export function GuidedTour() {
     } catch {
       // ignore localStorage errors
     }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mindwell:start-tour", startTour);
+    return () => document.removeEventListener("mindwell:start-tour", startTour);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const dismiss = () => {

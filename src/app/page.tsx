@@ -15,6 +15,7 @@ import {
   Gamepad2,
   FileText,
   PlayCircle,
+  Phone,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
@@ -32,7 +33,6 @@ import MoodTracker from "@/components/games/MoodTracker"
 import { TrustBadges } from "@/components/TrustBadges"
 import { Testimonials } from "@/components/Testimonials"
 import { NewsletterSignup } from "@/components/NewsletterSignup"
-import { GuidedTour } from "@/components/GuidedTour"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -44,7 +44,6 @@ export default function HomePage() {
 
   return (
     <>
-      <GuidedTour />
       <section className="relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
         <Image
           src="/images/stock/hero_group_support.jpg"
