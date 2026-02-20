@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -22,7 +22,7 @@ interface Assessment {
   interpretations: string
 }
 
-export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export function AssessmentModal({ open, onOpenChange, initialAssessmentSlug }: { open: boolean; onOpenChange: (open: boolean) => void; initialAssessmentSlug?: string }) {
   const [assessments, setAssessments] = useState<Assessment[]>([])
   const [selectedAssessment, setSelectedAssessment] = useState<Assessment | null>(null)
   const [currentQuestion, setCurrentQuestion] = useState(0)
@@ -53,7 +53,14 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     }
   }, [open])
 
-  const startAssessment = (assessment: Assessment) => {
+  const proceedWithAssessment = useCallback((assessment: Assessment) => {
+    setSelectedAssessment(assessment)
+    setCurrentQuestion(0)
+    setAnswers({})
+    setShowResults(false)
+  }, [])
+
+  const startAssessment = useCallback((assessment: Assessment) => {
     // Check if consent is required for this assessment
     if (featureFlags.requireConsentForAssessments && isHighRiskAssessment(assessment.slug)) {
       setPendingAssessment(assessment)
@@ -61,14 +68,17 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     } else {
       proceedWithAssessment(assessment)
     }
-  }
+  }, [proceedWithAssessment])
 
-  const proceedWithAssessment = (assessment: Assessment) => {
-    setSelectedAssessment(assessment)
-    setCurrentQuestion(0)
-    setAnswers({})
-    setShowResults(false)
-  }
+  useEffect(() => {
+    if (assessments.length > 0 && initialAssessmentSlug) {
+      const term = initialAssessmentSlug.toLowerCase()
+      const match =
+        assessments.find(a => a.slug.toLowerCase() === term) ??
+        assessments.find(a => a.slug.toLowerCase().includes(term) || a.name.toLowerCase().includes(term))
+      if (match) startAssessment(match)
+    }
+  }, [assessments, initialAssessmentSlug, startAssessment])
 
   const handleConsentGranted = () => {
     if (pendingAssessment) {

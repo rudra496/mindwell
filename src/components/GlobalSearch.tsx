@@ -19,25 +19,37 @@ type GlobalSearchProps = {
   onOpenChange?: (open: boolean) => void;
 };
 
+function openModal(modal: string, itemId: string) {
+  window.dispatchEvent(new CustomEvent("openModal", { detail: { modal, itemId } }));
+}
+
 const searchData: SearchItem[] = [
   // Disorders
-  { id: "anxiety", title: "Anxiety Disorders", description: "Learn about anxiety, panic, phobias", category: "disorder" },
-  { id: "depression", title: "Depression", description: "Understanding major depressive disorder", category: "disorder" },
-  { id: "ptsd", title: "PTSD", description: "Post-traumatic stress disorder information", category: "disorder" },
-  { id: "ocd", title: "OCD", description: "Obsessive-compulsive disorder overview", category: "disorder" },
-  { id: "bipolar", title: "Bipolar Disorder", description: "Bipolar I, II, and cyclothymia", category: "disorder" },
-  { id: "schizophrenia", title: "Schizophrenia", description: "Psychotic disorders explained", category: "disorder" },
+  { id: "anxiety", title: "Anxiety Disorders", description: "Learn about anxiety, panic, phobias", category: "disorder", action: () => openModal("disorders", "anxiety") },
+  { id: "depression", title: "Depression", description: "Understanding major depressive disorder", category: "disorder", action: () => openModal("disorders", "depression") },
+  { id: "ptsd", title: "PTSD", description: "Post-traumatic stress disorder information", category: "disorder", action: () => openModal("disorders", "ptsd") },
+  { id: "ocd", title: "OCD", description: "Obsessive-compulsive disorder overview", category: "disorder", action: () => openModal("disorders", "ocd") },
+  { id: "bipolar", title: "Bipolar Disorder", description: "Bipolar I, II, and cyclothymia", category: "disorder", action: () => openModal("disorders", "bipolar") },
+  { id: "schizophrenia", title: "Schizophrenia", description: "Psychotic disorders explained", category: "disorder", action: () => openModal("disorders", "schizophrenia") },
+  { id: "adhd", title: "ADHD", description: "Attention deficit hyperactivity disorder", category: "disorder", action: () => openModal("disorders", "adhd") },
+  { id: "eating-disorders", title: "Eating Disorders", description: "Anorexia, bulimia, binge eating", category: "disorder", action: () => openModal("disorders", "eating") },
+  { id: "borderline", title: "Borderline Personality Disorder", description: "BPD symptoms and treatment", category: "disorder", action: () => openModal("disorders", "borderline") },
+  { id: "autism", title: "Autism Spectrum Disorder", description: "ASD characteristics and support", category: "disorder", action: () => openModal("disorders", "autism") },
   // Assessments
-  { id: "phq9", title: "PHQ-9 Depression Screen", description: "Depression severity self-assessment", category: "assessment" },
-  { id: "gad7", title: "GAD-7 Anxiety Screen", description: "Anxiety severity self-assessment", category: "assessment" },
-  { id: "dass21", title: "DASS-21", description: "Depression, anxiety, stress scale", category: "assessment" },
+  { id: "phq9", title: "PHQ-9 Depression Screen", description: "Depression severity self-assessment", category: "assessment", action: () => openModal("assessment", "phq9") },
+  { id: "gad7", title: "GAD-7 Anxiety Screen", description: "Anxiety severity self-assessment", category: "assessment", action: () => openModal("assessment", "gad7") },
+  { id: "dass21", title: "DASS-21", description: "Depression, anxiety, stress scale", category: "assessment", action: () => openModal("assessment", "dass21") },
+  { id: "pcl5", title: "PCL-5 PTSD Screen", description: "Post-traumatic stress self-assessment", category: "assessment", action: () => openModal("assessment", "pcl5") },
   // Therapy
-  { id: "cbt", title: "Cognitive Behavioral Therapy", description: "Evidence-based CBT techniques", category: "therapy" },
-  { id: "dbt", title: "Dialectical Behavior Therapy", description: "DBT skills for emotion regulation", category: "therapy" },
-  { id: "mindfulness", title: "Mindfulness", description: "Mindfulness-based techniques", category: "therapy" },
-  // Meditation
-  { id: "breathing", title: "Breathing Exercises", description: "Guided relaxation breathing", category: "meditation" },
-  { id: "grounding", title: "Grounding Techniques", description: "5-4-3-2-1 and other grounding methods", category: "meditation" },
+  { id: "cbt", title: "Cognitive Behavioral Therapy", description: "Evidence-based CBT techniques", category: "therapy", action: () => openModal("therapy", "cbt") },
+  { id: "dbt", title: "Dialectical Behavior Therapy", description: "DBT skills for emotion regulation", category: "therapy", action: () => openModal("therapy", "dbt") },
+  { id: "mindfulness-therapy", title: "Mindfulness", description: "Mindfulness-based techniques", category: "therapy", action: () => openModal("therapy", "mindfulness") },
+  { id: "act", title: "Acceptance & Commitment Therapy", description: "ACT for psychological flexibility", category: "therapy", action: () => openModal("therapy", "act") },
+  // Meditation / Games
+  { id: "breathing", title: "Breathing Exercises", description: "4-7-8 guided relaxation breathing", category: "meditation", action: () => openModal("games", "breathing") },
+  { id: "grounding", title: "Grounding Techniques", description: "5-4-3-2-1 sensory grounding", category: "meditation", action: () => openModal("games", "grounding") },
+  { id: "pmr", title: "Progressive Muscle Relaxation", description: "Guided body scan to release tension", category: "meditation", action: () => openModal("games", "pmr") },
+  { id: "safe-place", title: "Safe Place Visualization", description: "Create a mental sanctuary for comfort", category: "meditation", action: () => openModal("games", "safe-place") },
 ];
 
 const fuse = new Fuse(searchData, {

@@ -141,8 +141,14 @@ const games = [
   },
 ]
 
-export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export function GamesModal({ open, onOpenChange, initialGameId }: { open: boolean; onOpenChange: (open: boolean) => void; initialGameId?: string }) {
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (open && initialGameId) {
+      setSelectedGame(initialGameId)
+    }
+  }, [open, initialGameId])
 
   // >>>>>>> ADD FOR VOICE/TTS SUPPORT
   const { settings } = useVoiceSettings()

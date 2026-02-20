@@ -31,14 +31,16 @@ interface TherapyTechnique {
 interface TherapyTechniquesModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
+  initialTechniqueSlug?: string
 }
 
-export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniquesModalProps) {
+export function TherapyTechniquesModal({ open, onOpenChange, initialTechniqueSlug }: TherapyTechniquesModalProps) {
   const [techniques, setTechniques] = useState<TherapyTechnique[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [selectedCategory, setSelectedCategory] = useState<string>("all")
   const [lastSpokenId, setLastSpokenId] = useState<string | null>(null)
+  const [openAccordionItem, setOpenAccordionItem] = useState<string | undefined>()
 
   const { settings } = useVoiceSettings()
 
@@ -47,6 +49,19 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
       fetchTechniques()
     }
   }, [open])
+
+  useEffect(() => {
+    if (techniques.length > 0 && initialTechniqueSlug) {
+      const term = initialTechniqueSlug.toLowerCase()
+      const match =
+        techniques.find(t => t.slug.toLowerCase() === term) ??
+        techniques.find(t => t.slug.toLowerCase().includes(term) || t.name.toLowerCase().includes(term))
+      if (match) {
+        setSelectedCategory("all")
+        setOpenAccordionItem(match.slug)
+      }
+    }
+  }, [techniques, initialTechniqueSlug])
 
   // Voice output on modal open
   useEffect(() => {
@@ -205,9 +220,9 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
             </Tabs>
 
             <div className="grid gap-4">
-              <Accordion type="single" collapsible className="w-full">
-                {filteredTechniques.map((technique, index) => (
-                  <AccordionItem key={technique.id} value={`item-${index}`}>
+              <Accordion type="single" collapsible className="w-full" value={openAccordionItem} onValueChange={setOpenAccordionItem}>
+                {filteredTechniques.map((technique) => (
+                  <AccordionItem key={technique.id} value={technique.slug}>
                     <AccordionTrigger
                       className="hover:no-underline"
                       onClick={async () => {

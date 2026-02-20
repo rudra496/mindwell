@@ -16,7 +16,7 @@ import {
   FileText,
   PlayCircle,
 } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
 import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
@@ -41,6 +41,31 @@ export default function HomePage() {
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
+  const [initialDisorderId, setInitialDisorderId] = useState<string | undefined>()
+  const [initialAssessmentSlug, setInitialAssessmentSlug] = useState<string | undefined>()
+  const [initialGameId, setInitialGameId] = useState<string | undefined>()
+  const [initialTechniqueSlug, setInitialTechniqueSlug] = useState<string | undefined>()
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const { modal, itemId } = (e as CustomEvent<{ modal: string; itemId: string }>).detail
+      if (modal === "disorders") {
+        setInitialDisorderId(itemId)
+        setDisordersOpen(true)
+      } else if (modal === "assessment") {
+        setInitialAssessmentSlug(itemId)
+        setAssessmentOpen(true)
+      } else if (modal === "games") {
+        setInitialGameId(itemId)
+        setGamesOpen(true)
+      } else if (modal === "therapy") {
+        setInitialTechniqueSlug(itemId)
+        setTherapyTechniquesOpen(true)
+      }
+    }
+    window.addEventListener("openModal", handler)
+    return () => window.removeEventListener("openModal", handler)
+  }, [])
 
   return (
     <>
@@ -253,12 +278,12 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
         </div>
       </div>
 
-      <DisordersModal open={disordersOpen} onOpenChange={setDisordersOpen} />
-      <AssessmentModal open={assessmentOpen} onOpenChange={setAssessmentOpen} />
-      <GamesModal open={gamesOpen} onOpenChange={setGamesOpen} />
+      <DisordersModal open={disordersOpen} onOpenChange={(o) => { setDisordersOpen(o); if (!o) setInitialDisorderId(undefined) }} initialDisorderId={initialDisorderId} />
+      <AssessmentModal open={assessmentOpen} onOpenChange={(o) => { setAssessmentOpen(o); if (!o) setInitialAssessmentSlug(undefined) }} initialAssessmentSlug={initialAssessmentSlug} />
+      <GamesModal open={gamesOpen} onOpenChange={(o) => { setGamesOpen(o); if (!o) setInitialGameId(undefined) }} initialGameId={initialGameId} />
       <CommunityModal open={communityOpen} onOpenChange={setCommunityOpen} />
       <MeditationModal open={meditationOpen} onOpenChange={setMeditationOpen} />
-      <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={setTherapyTechniquesOpen} />
+      <TherapyTechniquesModal open={therapyTechniquesOpen} onOpenChange={(o) => { setTherapyTechniquesOpen(o); if (!o) setInitialTechniqueSlug(undefined) }} initialTechniqueSlug={initialTechniqueSlug} />
     </>
   )
 }

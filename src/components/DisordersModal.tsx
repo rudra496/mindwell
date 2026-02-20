@@ -20,7 +20,7 @@ interface Disorder {
   whenToSeekHelp: string
 }
 
-export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+export function DisordersModal({ open, onOpenChange, initialDisorderId }: { open: boolean; onOpenChange: (open: boolean) => void; initialDisorderId?: string }) {
   const [disorders, setDisorders] = useState<Disorder[]>([])
   const [selectedDisorder, setSelectedDisorder] = useState<Disorder | null>(null)
   const [searchQuery, setSearchQuery] = useState("")
@@ -40,6 +40,16 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
         })
     }
   }, [open])
+
+  useEffect(() => {
+    if (disorders.length > 0 && initialDisorderId) {
+      const term = initialDisorderId.toLowerCase()
+      const match =
+        disorders.find(d => d.id.toLowerCase() === term || d.name.toLowerCase() === term) ??
+        disorders.find(d => d.id.toLowerCase().includes(term) || d.name.toLowerCase().includes(term))
+      if (match) setSelectedDisorder(match)
+    }
+  }, [disorders, initialDisorderId])
 
   const filteredDisorders = disorders.filter(d =>
     d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
