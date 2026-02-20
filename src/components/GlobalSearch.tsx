@@ -1,17 +1,20 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Command } from "cmdk";
 import Fuse from "fuse.js";
-import { Search, X, BookOpen, ClipboardList, Brain, Heart } from "lucide-react";
+import { Search, X, BookOpen, ClipboardList, Brain, Heart, Phone, HelpCircle } from "lucide-react";
+import disordersData from "@/data/disorders.json";
+import assessmentsData from "@/data/assessments.json";
+import therapyData from "@/data/therapy-techniques.json";
+import meditationsData from "@/data/meditations.json";
 
 type SearchItem = {
   id: string;
   title: string;
   description: string;
-  category: "disorder" | "assessment" | "therapy" | "meditation";
-  href?: string;
-  action?: () => void;
+  category: "disorder" | "assessment" | "therapy" | "meditation" | "crisis" | "faq";
+  href: string;
 };
 
 type GlobalSearchProps = {
@@ -19,37 +22,72 @@ type GlobalSearchProps = {
   onOpenChange?: (open: boolean) => void;
 };
 
-const searchData: SearchItem[] = [
-  // Disorders
-  { id: "anxiety", title: "Anxiety Disorders", description: "Learn about anxiety, panic, phobias", category: "disorder" },
-  { id: "depression", title: "Depression", description: "Understanding major depressive disorder", category: "disorder" },
-  { id: "ptsd", title: "PTSD", description: "Post-traumatic stress disorder information", category: "disorder" },
-  { id: "ocd", title: "OCD", description: "Obsessive-compulsive disorder overview", category: "disorder" },
-  { id: "bipolar", title: "Bipolar Disorder", description: "Bipolar I, II, and cyclothymia", category: "disorder" },
-  { id: "schizophrenia", title: "Schizophrenia", description: "Psychotic disorders explained", category: "disorder" },
-  // Assessments
-  { id: "phq9", title: "PHQ-9 Depression Screen", description: "Depression severity self-assessment", category: "assessment" },
-  { id: "gad7", title: "GAD-7 Anxiety Screen", description: "Anxiety severity self-assessment", category: "assessment" },
-  { id: "dass21", title: "DASS-21", description: "Depression, anxiety, stress scale", category: "assessment" },
-  // Therapy
-  { id: "cbt", title: "Cognitive Behavioral Therapy", description: "Evidence-based CBT techniques", category: "therapy" },
-  { id: "dbt", title: "Dialectical Behavior Therapy", description: "DBT skills for emotion regulation", category: "therapy" },
-  { id: "mindfulness", title: "Mindfulness", description: "Mindfulness-based techniques", category: "therapy" },
-  // Meditation
-  { id: "breathing", title: "Breathing Exercises", description: "Guided relaxation breathing", category: "meditation" },
-  { id: "grounding", title: "Grounding Techniques", description: "5-4-3-2-1 and other grounding methods", category: "meditation" },
-];
+type DisorderEntry = { id: string; slug: string; name: string; description: string; category: string };
+type AssessmentEntry = { id: string; slug: string; name: string; description: string };
+type TherapyEntry = { id: string; slug: string; name: string; description: string };
+type MeditationEntry = { id: string; slug: string; title: string; description: string };
 
-const fuse = new Fuse(searchData, {
-  keys: ["title", "description", "category"],
-  threshold: 0.4,
-});
+const buildSearchData = (): SearchItem[] => {
+  const items: SearchItem[] = [];
+
+  (disordersData as DisorderEntry[]).forEach((d) => {
+    items.push({
+      id: `disorder-${d.slug}`,
+      title: d.name,
+      description: d.description.slice(0, 80),
+      category: "disorder",
+      href: `/#learn-awareness`,
+    });
+  });
+
+  (assessmentsData as AssessmentEntry[]).forEach((a) => {
+    items.push({
+      id: `assessment-${a.slug}`,
+      title: a.name,
+      description: a.description.slice(0, 80),
+      category: "assessment",
+      href: `/#self-reflection-tools`,
+    });
+  });
+
+  (therapyData as TherapyEntry[]).forEach((t) => {
+    items.push({
+      id: `therapy-${t.slug}`,
+      title: t.name,
+      description: t.description.slice(0, 80),
+      category: "therapy",
+      href: `/#wellbeing-games`,
+    });
+  });
+
+  (meditationsData as MeditationEntry[]).forEach((m) => {
+    items.push({
+      id: `meditation-${m.slug}`,
+      title: m.title,
+      description: m.description.slice(0, 80),
+      category: "meditation",
+      href: `/#wellbeing-games`,
+    });
+  });
+
+  items.push(
+    { id: "crisis-bd", title: "Bangladesh Crisis Helpline", description: "Kaan Pete Roi: 01779-554391", category: "crisis", href: "/crisis-resources" },
+    { id: "crisis-global", title: "Global Crisis Resources", description: "Crisis hotlines for 50+ countries", category: "crisis", href: "/crisis-resources" },
+    { id: "faq-main", title: "Frequently Asked Questions", description: "Common questions about MindWell", category: "faq", href: "/faq" },
+  );
+
+  return items;
+};
+
+const searchData = buildSearchData();
 
 const categoryIcons: Record<SearchItem["category"], React.ReactNode> = {
   disorder: <BookOpen className="h-4 w-4 text-blue-500" />,
   assessment: <ClipboardList className="h-4 w-4 text-green-500" />,
   therapy: <Brain className="h-4 w-4 text-purple-500" />,
   meditation: <Heart className="h-4 w-4 text-pink-500" />,
+  crisis: <Phone className="h-4 w-4 text-red-500" />,
+  faq: <HelpCircle className="h-4 w-4 text-teal-500" />,
 };
 
 const categoryLabels: Record<SearchItem["category"], string> = {
@@ -57,6 +95,8 @@ const categoryLabels: Record<SearchItem["category"], string> = {
   assessment: "Assessment",
   therapy: "Therapy",
   meditation: "Meditation",
+  crisis: "Crisis",
+  faq: "FAQ",
 };
 
 const STORAGE_KEY = "mindwell_recent_searches";
@@ -95,7 +135,16 @@ export function GlobalSearch({ open: controlledOpen, onOpenChange }: GlobalSearc
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handleKeyDown]);
 
-  const results = query.length > 0 ? fuse.search(query).map((r) => r.item) : searchData.slice(0, 6);
+  const fuse = useMemo(() => new Fuse(searchData, {
+    keys: ["title", "description", "category"],
+    threshold: 0.35,
+    ignoreLocation: true,
+  }), []);
+
+  const results = useMemo(
+    () => query.length > 0 ? fuse.search(query).map((r) => r.item) : searchData.slice(0, 8),
+    [query, fuse]
+  );
 
   const saveSearch = (title: string) => {
     const updated = [title, ...recentSearches.filter((s) => s !== title)].slice(0, 5);
@@ -111,13 +160,7 @@ export function GlobalSearch({ open: controlledOpen, onOpenChange }: GlobalSearc
     saveSearch(item.title);
     setOpen(false);
     setQuery("");
-    if (item.action) {
-      item.action();
-    } else if (item.href) {
-      window.location.href = item.href;
-    } else {
-      window.location.href = `/#learn-awareness`;
-    }
+    window.location.href = item.href;
   };
 
   if (!open) return null;
@@ -141,7 +184,7 @@ export function GlobalSearch({ open: controlledOpen, onOpenChange }: GlobalSearc
             <Command.Input
               value={query}
               onValueChange={setQuery}
-              placeholder="Search disorders, assessments, therapy techniques…"
+              placeholder="Search disorders, assessments, therapy, meditation, crisis…"
               className="flex-1 bg-transparent outline-none text-slate-900 dark:text-slate-100 placeholder:text-slate-400 text-sm"
               aria-label="Search"
               autoFocus

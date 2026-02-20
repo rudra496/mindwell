@@ -15,6 +15,7 @@ import {
   Gamepad2,
   FileText,
   PlayCircle,
+  Phone,
 } from "lucide-react"
 import { useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
@@ -60,6 +61,14 @@ export default function HomePage() {
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
             <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and
 MindWell Support — free, ethical mental health support & crisis guidance.</p>
+            <a
+              href="tel:+8801779554391"
+              className="inline-flex items-center gap-2 mt-5 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-full shadow-lg transition-colors text-sm sm:text-base"
+              aria-label="Call Bangladesh crisis helpline Kaan Pete Roi"
+            >
+              <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
+              Bangladesh Crisis: 01779-554391 (Kaan Pete Roi)
+            </a>
           </div>
         </div>
       </section>

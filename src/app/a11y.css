@@ -3,6 +3,31 @@
  * WCAG 2.1 AA Compliance
  */
 
+/* Dynamic accessibility CSS variables (controlled by AccessibilityPanel) */
+:root {
+  --a11y-font-size: 16px;
+  --a11y-font-family: ui-sans-serif, system-ui, sans-serif;
+  --a11y-line-height: 1.5;
+  --a11y-letter-spacing: 0em;
+}
+
+body {
+  font-size: var(--a11y-font-size);
+  font-family: var(--a11y-font-family);
+  line-height: var(--a11y-line-height);
+  letter-spacing: var(--a11y-letter-spacing);
+}
+
+/* High contrast mode (toggled by AccessibilityPanel) */
+.a11y-high-contrast {
+  filter: contrast(1.5);
+}
+
+.a11y-high-contrast a,
+.a11y-high-contrast button {
+  text-decoration: underline;
+}
+
 /* Screen Reader Only - Hidden visually but accessible to screen readers */
 .sr-only {
   position: absolute;
