@@ -10,6 +10,8 @@ export function GlobalFooter() {
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm mb-6">
           <Link href="/privacy" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Privacy Policy</Link>
           <Link href="/terms" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Terms of Service</Link>
+          <Link href="/cookie-policy" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Cookie Policy</Link>
+          <Link href="/disclaimer" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Disclaimer</Link>
           <Link href="/medical-disclaimer" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">Medical Disclaimer</Link>
           <Link href="/faq" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">FAQ</Link>
           <Link href="/about" className="text-gray-700 dark:text-gray-300 hover:text-teal-600">About MindWell</Link>

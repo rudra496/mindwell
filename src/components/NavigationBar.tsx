@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
+import { GlobalSearch } from "@/components/GlobalSearch"
 import {
   Phone,
   Users,
@@ -13,6 +14,7 @@ import {
   Mail,
   AlertCircle,
   HelpCircle,
+  Search,
 } from "lucide-react"
 
 type NavItem = {
@@ -34,6 +36,7 @@ const navItems: NavItem[] = [
 
 export function NavigationBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
 
   const handleNavClick = (item: NavItem) => {
     if (item.href) {
@@ -48,6 +51,7 @@ export function NavigationBar() {
 
   return (
     <>
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <nav className="hidden lg:block bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4">
@@ -69,6 +73,17 @@ export function NavigationBar() {
                   <span className="text-xs font-medium">{item.label}</span>
                 </Button>
               ))}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSearchOpen(true)}
+                className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
+                aria-label="Search (Ctrl+K)"
+              >
+                <Search className="h-4 w-4" />
+                <span className="text-xs font-medium hidden xl:inline">Search</span>
+                <kbd className="hidden xl:inline-flex text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono">⌘K</kbd>
+              </Button>
               <LanguageToggle />
             </div>
           </div>
@@ -83,6 +98,15 @@ export function NavigationBar() {
             </button>
 
             <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setSearchOpen(true)}
+                className="p-2"
+                aria-label="Search"
+              >
+                <Search className="h-5 w-5" />
+              </Button>
               <LanguageToggle />
               <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
                 <Menu className="h-6 w-6" />
