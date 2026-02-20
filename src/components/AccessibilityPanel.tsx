@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Settings, X, Type, AlignJustify, Sun, MoveHorizontal } from "lucide-react";
+import { Settings, X, Type, AlignJustify, Sun, MoveHorizontal, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type A11ySettings = {
@@ -9,7 +9,7 @@ type A11ySettings = {
   fontFamily: "sans" | "serif" | "dyslexic";
   lineHeight: "normal" | "relaxed" | "loose";
   letterSpacing: "normal" | "wide" | "wider";
-  highContrast: boolean;
+  readMode: boolean;
 };
 
 const STORAGE_KEY = "mindwell_a11y_settings";
@@ -19,10 +19,18 @@ const defaults: A11ySettings = {
   fontFamily: "sans",
   lineHeight: "normal",
   letterSpacing: "normal",
-  highContrast: false,
+  readMode: false,
 };
 
-const fontSizeMap = { sm: "14px", md: "16px", lg: "18px", xl: "20px" };
+// Percentage-based scaling applied to the html element so rem units
+// (used by Tailwind) scale proportionally on all screen sizes.
+const fontScaleMap = {
+  sm: "87.5%",   // ~14px base
+  md: "100%",    // 16px base (browser default)
+  lg: "112.5%",  // ~18px base
+  xl: "125%",    // 20px base
+};
+
 const fontFamilyMap = {
   sans: "ui-sans-serif, system-ui, sans-serif",
   serif: "ui-serif, Georgia, serif",
@@ -33,15 +41,16 @@ const lineHeightMap = { normal: "1.5", relaxed: "1.75", loose: "2" };
 const letterSpacingMap = { normal: "0em", wide: "0.05em", wider: "0.1em" };
 
 function applySettings(s: A11ySettings) {
-  const root = document.documentElement;
-  root.style.setProperty("--a11y-font-size", fontSizeMap[s.fontSize]);
-  root.style.setProperty("--a11y-font-family", fontFamilyMap[s.fontFamily]);
-  root.style.setProperty("--a11y-line-height", lineHeightMap[s.lineHeight]);
-  root.style.setProperty("--a11y-letter-spacing", letterSpacingMap[s.letterSpacing]);
-  if (s.highContrast) {
-    root.classList.add("a11y-high-contrast");
+  const html = document.documentElement;
+  // Apply font size scale to html so rem units scale proportionally
+  html.style.fontSize = fontScaleMap[s.fontSize];
+  html.style.setProperty("--a11y-font-family", fontFamilyMap[s.fontFamily]);
+  html.style.setProperty("--a11y-line-height", lineHeightMap[s.lineHeight]);
+  html.style.setProperty("--a11y-letter-spacing", letterSpacingMap[s.letterSpacing]);
+  if (s.readMode) {
+    html.classList.add("a11y-read-mode");
   } else {
-    root.classList.remove("a11y-high-contrast");
+    html.classList.remove("a11y-read-mode");
   }
 }
 
@@ -56,8 +65,10 @@ export function AccessibilityPanel() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed: A11ySettings = JSON.parse(stored);
-        setSettings(parsed);
-        applySettings(parsed);
+        // Handle migration from old settings schema
+        const migrated: A11ySettings = { ...defaults, ...parsed, readMode: parsed.readMode ?? false };
+        setSettings(migrated);
+        applySettings(migrated);
       }
     } catch {
       // ignore
@@ -212,26 +223,35 @@ export function AccessibilityPanel() {
                 </div>
               </div>
 
-              {/* High Contrast */}
+              {/* Read Mode / Eye Care Mode */}
               <div className="flex items-center justify-between">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                  <Sun className="h-4 w-4" aria-hidden="true" /> High Contrast
+                  <BookOpen className="h-4 w-4" aria-hidden="true" />
+                  <span>
+                    Read Mode <span className="text-xs text-slate-400 font-normal">(Eye Care)</span>
+                  </span>
                 </label>
                 <button
-                  onClick={() => update({ highContrast: !settings.highContrast })}
+                  onClick={() => update({ readMode: !settings.readMode })}
                   role="switch"
-                  aria-checked={settings.highContrast}
+                  aria-checked={settings.readMode}
+                  aria-label="Toggle read mode"
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-400 ${
-                    settings.highContrast ? "bg-teal-600" : "bg-slate-200 dark:bg-slate-600"
+                    settings.readMode ? "bg-teal-600" : "bg-slate-200 dark:bg-slate-600"
                   }`}
                 >
                   <span
                     className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                      settings.highContrast ? "translate-x-6" : "translate-x-1"
+                      settings.readMode ? "translate-x-6" : "translate-x-1"
                     }`}
                   />
                 </button>
               </div>
+              {settings.readMode && (
+                <p className="text-xs text-amber-600 dark:text-amber-400 -mt-2">
+                  Warm background &amp; reduced eye strain for extended reading.
+                </p>
+              )}
 
               <Button variant="outline" size="sm" onClick={reset} className="w-full mt-2">
                 Reset to Defaults

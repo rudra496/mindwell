@@ -3,53 +3,61 @@
  * WCAG 2.1 AA Compliance
  */
 
-/* Dynamic accessibility CSS variables (controlled by AccessibilityPanel) */
+/* Dynamic accessibility CSS custom properties (controlled by AccessibilityPanel).
+   Font size is applied directly to the html element by JS (percentage-based)
+   so rem units from Tailwind scale proportionally on all screen sizes. */
 :root {
-  --a11y-font-size: 16px;
   --a11y-font-family: ui-sans-serif, system-ui, sans-serif;
   --a11y-line-height: 1.5;
   --a11y-letter-spacing: 0em;
 }
 
 body {
-  font-size: var(--a11y-font-size);
   font-family: var(--a11y-font-family);
   line-height: var(--a11y-line-height);
   letter-spacing: var(--a11y-letter-spacing);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
-/* High contrast mode (toggled by AccessibilityPanel) */
-.a11y-high-contrast body {
-  background-color: #000 !important;
-  color: #fff !important;
+/* Read Mode / Eye Care Mode – warm background to reduce eye strain.
+   Applied to <html> element by AccessibilityPanel. */
+html.a11y-read-mode {
+  background-color: #fdf8ec;
 }
 
-.a11y-high-contrast a,
-.a11y-high-contrast button {
-  text-decoration: underline;
+html.a11y-read-mode body {
+  background-color: #fdf8ec;
+  color: #3b3226;
 }
 
-.a11y-high-contrast p,
-.a11y-high-contrast h1,
-.a11y-high-contrast h2,
-.a11y-high-contrast h3,
-.a11y-high-contrast h4,
-.a11y-high-contrast h5,
-.a11y-high-contrast h6,
-.a11y-high-contrast span,
-.a11y-high-contrast label {
-  color: #fff !important;
+html.a11y-read-mode .bg-white,
+html.a11y-read-mode [class*="bg-white"] {
+  background-color: #fdf8ec !important;
 }
 
-.a11y-high-contrast .bg-white,
-.a11y-high-contrast [class*="bg-white"],
-.a11y-high-contrast [class*="bg-slate"],
-.a11y-high-contrast [class*="bg-gray"] {
-  background-color: #111 !important;
+html.a11y-read-mode [class*="bg-slate-50"],
+html.a11y-read-mode [class*="bg-gray-50"] {
+  background-color: #f9f2de !important;
 }
 
-.a11y-high-contrast [class*="border"] {
-  border-color: #fff !important;
+html.a11y-read-mode .bg-gradient-to-br {
+  background: #fdf8ec !important;
+}
+
+html.a11y-read-mode p,
+html.a11y-read-mode li,
+html.a11y-read-mode span {
+  color: #3b3226;
+}
+
+html.a11y-read-mode h1,
+html.a11y-read-mode h2,
+html.a11y-read-mode h3,
+html.a11y-read-mode h4,
+html.a11y-read-mode h5,
+html.a11y-read-mode h6 {
+  color: #2a2117;
 }
 
 /* Screen Reader Only - Hidden visually but accessible to screen readers */

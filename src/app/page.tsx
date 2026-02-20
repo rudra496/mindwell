@@ -61,17 +61,27 @@ export default function HomePage() {
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">MindWell – Open Source Mental Health Platform</h1>
             <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">Trusted mental health education, self-reflection tools, and
 MindWell Support — free, ethical mental health support & crisis guidance.</p>
-            <a
-              href="tel:+8801779554391"
-              className="inline-flex items-center gap-2 mt-5 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-full shadow-lg transition-colors text-sm sm:text-base"
-              aria-label="Call Bangladesh crisis helpline Kaan Pete Roi"
-            >
-              <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
-              Bangladesh Crisis: 01779-554391 (Kaan Pete Roi)
-            </a>
           </div>
         </div>
       </section>
+
+      {/* Bangladesh Crisis Banner – above all homepage sections */}
+      <div className="bg-red-600 text-white">
+        <div className="container mx-auto max-w-7xl px-4 py-3 flex flex-col sm:flex-row items-center justify-center gap-2 text-center sm:text-left">
+          <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
+          <span className="text-sm sm:text-base font-semibold">
+            Bangladesh Crisis Support (24/7):
+          </span>
+          <a
+            href="tel:+8801779554391"
+            className="text-base sm:text-lg font-bold underline hover:text-red-100 transition-colors"
+            aria-label="Call Kaan Pete Roi Bangladesh crisis helpline"
+          >
+            01779-554391
+          </a>
+          <span className="text-sm text-red-100 hidden sm:inline">– Kaan Pete Roi (Emotional Support &amp; Suicide Prevention)</span>
+        </div>
+      </div>
 
       <div id="home" className="container mx-auto px-4 py-8 max-w-7xl">
         <TrustBadges />

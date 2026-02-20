@@ -40,6 +40,14 @@ export const metadata: Metadata = {
     "crisis resources",
     "free mental health",
     "open source mental health",
+    "suicide prevention",
+    "mental wellness",
+    "anxiety disorder",
+    "depression treatment",
+    "PTSD",
+    "OCD",
+    "bipolar disorder",
+    "crisis helpline Bangladesh",
   ],
   authors: [{ name: "Rudra Sarker", url: "https://rudra496.github.io/site" }],
   creator: "Rudra Sarker",
@@ -48,11 +56,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mindwell.vercel.app",
+    url: "https://mindwell-navy.vercel.app",
     siteName: "MindWell",
     title: "MindWell – Open Source Mental Health Platform",
     description,
-    images: [{ url: "/images/stock/hero_group_support.jpg", width: 1600, height: 900, alt: "MindWell hero support group" }],
+    images: [{ url: "/images/stock/hero_group_support.jpg", width: 1600, height: 900, alt: "MindWell – Open Source Mental Health Platform" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -63,15 +71,21 @@ export const metadata: Metadata = {
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "https://mindwell.vercel.app" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
+  alternates: { canonical: "https://mindwell-navy.vercel.app" },
   category: "health",
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0d9488",
+  minimumScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0d9488" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

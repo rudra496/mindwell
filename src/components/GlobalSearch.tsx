@@ -36,7 +36,7 @@ const buildSearchData = (): SearchItem[] => {
       title: d.name,
       description: d.description.slice(0, 80),
       category: "disorder",
-      href: `/#learn-awareness`,
+      href: `/disorders/${d.slug}`,
     });
   });
 
@@ -46,7 +46,7 @@ const buildSearchData = (): SearchItem[] => {
       title: a.name,
       description: a.description.slice(0, 80),
       category: "assessment",
-      href: `/#self-reflection-tools`,
+      href: `/assessments/${a.slug}`,
     });
   });
 
@@ -56,7 +56,7 @@ const buildSearchData = (): SearchItem[] => {
       title: t.name,
       description: t.description.slice(0, 80),
       category: "therapy",
-      href: `/#wellbeing-games`,
+      href: `/therapy-techniques/${t.slug}`,
     });
   });
 
@@ -66,13 +66,13 @@ const buildSearchData = (): SearchItem[] => {
       title: m.title,
       description: m.description.slice(0, 80),
       category: "meditation",
-      href: `/#wellbeing-games`,
+      href: `/meditations/${m.slug}`,
     });
   });
 
   items.push(
     { id: "crisis-bd", title: "Bangladesh Crisis Helpline", description: "Kaan Pete Roi: 01779-554391", category: "crisis", href: "/crisis-resources" },
-    { id: "crisis-global", title: "Global Crisis Resources", description: "Crisis hotlines for 50+ countries", category: "crisis", href: "/crisis-resources" },
+    { id: "crisis-global", title: "Global Crisis Resources", description: "Crisis hotlines for 50+ countries", category: "crisis", href: "/verified-crisis-response" },
     { id: "faq-main", title: "Frequently Asked Questions", description: "Common questions about MindWell", category: "faq", href: "/faq" },
   );
 
