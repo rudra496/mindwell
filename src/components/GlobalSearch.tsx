@@ -65,10 +65,11 @@ export function GlobalSearch({ open: controlledOpen, onOpenChange }: GlobalSearc
   const [internalOpen, setInternalOpen] = useState(false);
   const open = controlledOpen !== undefined ? controlledOpen : internalOpen;
 
-  const setOpen = (val: boolean) => {
+  const setOpen = useCallback((val: boolean) => {
     if (onOpenChange) onOpenChange(val);
     else setInternalOpen(val);
-  };
+  }, [onOpenChange]);
+
   const [query, setQuery] = useState("");
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
@@ -87,8 +88,7 @@ export function GlobalSearch({ open: controlledOpen, onOpenChange }: GlobalSearc
       setOpen(!open);
     }
     if (e.key === "Escape") setOpen(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open]);
+  }, [open, setOpen]);
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
