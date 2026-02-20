@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://mindwell-navy.vercel.app",
+    url: "/",
     siteName: "MindWell",
     title: "MindWell – Open Source Mental Health Platform",
     description,
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
-  alternates: { canonical: "https://mindwell-navy.vercel.app" },
+  alternates: { canonical: "/" },
   category: "health",
 };
 
