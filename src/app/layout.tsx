@@ -13,6 +13,7 @@ import { ClientErrorLogger } from "@/components/ClientErrorLogger";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
 import { AccessibilityPanel } from "@/components/AccessibilityPanel";
+import { GuidedTour } from "@/components/GuidedTour";
 
 const description =
   "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
@@ -134,9 +135,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="font-sans antialiased">
         <ThemeProvider>
           <ErrorBoundary>
+            {/* Bangladesh crisis number – absolute top of every page, slim bar */}
+            <a
+              href="tel:+8801779554391"
+              className="block bg-red-700 hover:bg-red-800 text-white text-center text-xs py-1 px-2 transition-colors"
+              aria-label="Bangladesh crisis helpline (24/7) – call Kaan Pete Roi at 01779-554391"
+            >
+              Bangladesh Crisis (24/7): <strong>01779-554391</strong> – Kaan Pete Roi
+            </a>
             <AccessibilitySkipLink />
             <EmergencySupportBar />
             <NavigationBar />
+            <GuidedTour />
             <div className="flex flex-col min-h-screen">
               <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 transition-colors duration-300">
                 <div className="container mx-auto px-4">

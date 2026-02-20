@@ -33,7 +33,6 @@ import MoodTracker from "@/components/games/MoodTracker"
 import { TrustBadges } from "@/components/TrustBadges"
 import { Testimonials } from "@/components/Testimonials"
 import { NewsletterSignup } from "@/components/NewsletterSignup"
-import { GuidedTour } from "@/components/GuidedTour"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -45,7 +44,6 @@ export default function HomePage() {
 
   return (
     <>
-      <GuidedTour />
       <section className="relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
         <Image
           src="/images/stock/hero_group_support.jpg"
@@ -64,24 +62,6 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
           </div>
         </div>
       </section>
-
-      {/* Bangladesh Crisis Banner – above all homepage sections */}
-      <div className="bg-red-600 text-white">
-        <div className="container mx-auto max-w-7xl px-4 py-3 flex flex-col sm:flex-row items-center justify-center gap-2 text-center sm:text-left">
-          <Phone className="h-5 w-5 shrink-0" aria-hidden="true" />
-          <span className="text-sm sm:text-base font-semibold">
-            Bangladesh Crisis Support (24/7):
-          </span>
-          <a
-            href="tel:+8801779554391"
-            className="text-base sm:text-lg font-bold underline hover:text-red-100 transition-colors"
-            aria-label="Call Kaan Pete Roi Bangladesh crisis helpline"
-          >
-            01779-554391
-          </a>
-          <span className="text-sm text-red-100 hidden sm:inline">– Kaan Pete Roi (Emotional Support &amp; Suicide Prevention)</span>
-        </div>
-      </div>
 
       <div id="home" className="container mx-auto px-4 py-8 max-w-7xl">
         <TrustBadges />

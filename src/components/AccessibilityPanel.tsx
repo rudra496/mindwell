@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Settings, X, Type, AlignJustify, Sun, MoveHorizontal, BookOpen } from "lucide-react";
+import { Settings, X, Type, AlignJustify, MoveHorizontal, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type A11ySettings = {
@@ -115,23 +115,28 @@ export function AccessibilityPanel() {
           role="dialog"
           aria-modal="true"
           aria-label="Accessibility settings"
+          style={{ fontSize: "16px" }}
         >
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)} aria-hidden="true" />
-          <div className="relative w-full max-w-sm bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 p-6">
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-3 right-3 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400"
-              aria-label="Close accessibility settings"
-            >
-              <X className="h-4 w-4" />
-            </button>
+          {/* Panel uses px widths / max-h so it doesn't grow when the user increases html font scale */}
+          <div className="relative w-full max-w-sm bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col" style={{ maxHeight: "min(90dvh, 90vh)" }}>
+            {/* Sticky header */}
+            <div className="flex items-center justify-between px-5 pt-5 pb-3 border-b border-slate-100 dark:border-slate-700 shrink-0">
+              <h2 className="text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <Settings className="h-4 w-4 text-teal-600" aria-hidden="true" />
+                Accessibility
+              </h2>
+              <button
+                onClick={() => setOpen(false)}
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400"
+                aria-label="Close accessibility settings"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
 
-            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center gap-2">
-              <Settings className="h-5 w-5 text-teal-600" aria-hidden="true" />
-              Accessibility
-            </h2>
-
-            <div className="space-y-4">
+            {/* Scrollable body */}
+            <div className="overflow-y-auto px-5 py-4 space-y-4">
               {/* Text Size */}
               <div>
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1.5 mb-2">
@@ -142,7 +147,7 @@ export function AccessibilityPanel() {
                     <button
                       key={s}
                       onClick={() => update({ fontSize: s })}
-                      className={`flex-1 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+                      className={`flex-1 py-2 rounded-lg border text-xs font-medium transition-colors ${
                         settings.fontSize === s
                           ? "bg-teal-600 text-white border-teal-600"
                           : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
@@ -164,7 +169,7 @@ export function AccessibilityPanel() {
                     <button
                       key={f}
                       onClick={() => update({ fontFamily: f })}
-                      className={`py-1.5 px-3 rounded-lg border text-sm text-left transition-colors ${
+                      className={`py-2 px-3 rounded-lg border text-sm text-left transition-colors ${
                         settings.fontFamily === f
                           ? "bg-teal-600 text-white border-teal-600"
                           : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
@@ -187,7 +192,7 @@ export function AccessibilityPanel() {
                     <button
                       key={lh}
                       onClick={() => update({ lineHeight: lh })}
-                      className={`flex-1 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+                      className={`flex-1 py-2 rounded-lg border text-xs font-medium transition-colors ${
                         settings.lineHeight === lh
                           ? "bg-teal-600 text-white border-teal-600"
                           : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
@@ -210,7 +215,7 @@ export function AccessibilityPanel() {
                     <button
                       key={ls}
                       onClick={() => update({ letterSpacing: ls })}
-                      className={`flex-1 py-1.5 rounded-lg border text-xs font-medium transition-colors ${
+                      className={`flex-1 py-2 rounded-lg border text-xs font-medium transition-colors ${
                         settings.letterSpacing === ls
                           ? "bg-teal-600 text-white border-teal-600"
                           : "border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700"
@@ -224,7 +229,7 @@ export function AccessibilityPanel() {
               </div>
 
               {/* Read Mode / Eye Care Mode */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-3">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
                   <BookOpen className="h-4 w-4" aria-hidden="true" />
                   <span>
@@ -236,7 +241,7 @@ export function AccessibilityPanel() {
                   role="switch"
                   aria-checked={settings.readMode}
                   aria-label="Toggle read mode"
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-400 ${
+                  className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-teal-400 ${
                     settings.readMode ? "bg-teal-600" : "bg-slate-200 dark:bg-slate-600"
                   }`}
                 >
@@ -252,8 +257,11 @@ export function AccessibilityPanel() {
                   Warm background &amp; reduced eye strain for extended reading.
                 </p>
               )}
+            </div>
 
-              <Button variant="outline" size="sm" onClick={reset} className="w-full mt-2">
+            {/* Sticky footer: reset button always visible */}
+            <div className="px-5 pb-4 pt-2 border-t border-slate-100 dark:border-slate-700 shrink-0">
+              <Button variant="outline" size="sm" onClick={reset} className="w-full">
                 Reset to Defaults
               </Button>
             </div>
