@@ -26,6 +26,7 @@ const fontSizeMap = { sm: "14px", md: "16px", lg: "18px", xl: "20px" };
 const fontFamilyMap = {
   sans: "ui-sans-serif, system-ui, sans-serif",
   serif: "ui-serif, Georgia, serif",
+  // OpenDyslexic can be loaded via a CDN or bundled font; falls back to Comic Sans / Arial
   dyslexic: "'OpenDyslexic', 'Comic Sans MS', Arial, sans-serif",
 };
 const lineHeightMap = { normal: "1.5", relaxed: "1.75", loose: "2" };

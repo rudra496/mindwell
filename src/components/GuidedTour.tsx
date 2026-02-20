@@ -64,7 +64,8 @@ export function GuidedTour() {
   useEffect(() => {
     document.addEventListener("mindwell:start-tour", startTour);
     return () => document.removeEventListener("mindwell:start-tour", startTour);
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const dismiss = () => {
     setShow(false);

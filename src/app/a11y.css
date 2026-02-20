@@ -19,13 +19,37 @@ body {
 }
 
 /* High contrast mode (toggled by AccessibilityPanel) */
-.a11y-high-contrast {
-  filter: contrast(1.5);
+.a11y-high-contrast body {
+  background-color: #000 !important;
+  color: #fff !important;
 }
 
 .a11y-high-contrast a,
 .a11y-high-contrast button {
   text-decoration: underline;
+}
+
+.a11y-high-contrast p,
+.a11y-high-contrast h1,
+.a11y-high-contrast h2,
+.a11y-high-contrast h3,
+.a11y-high-contrast h4,
+.a11y-high-contrast h5,
+.a11y-high-contrast h6,
+.a11y-high-contrast span,
+.a11y-high-contrast label {
+  color: #fff !important;
+}
+
+.a11y-high-contrast .bg-white,
+.a11y-high-contrast [class*="bg-white"],
+.a11y-high-contrast [class*="bg-slate"],
+.a11y-high-contrast [class*="bg-gray"] {
+  background-color: #111 !important;
+}
+
+.a11y-high-contrast [class*="border"] {
+  border-color: #fff !important;
 }
 
 /* Screen Reader Only - Hidden visually but accessible to screen readers */
