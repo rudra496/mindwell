@@ -29,6 +29,10 @@ import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
 import MoodTracker from "@/components/games/MoodTracker"
+import { TrustBadges } from "@/components/TrustBadges"
+import { Testimonials } from "@/components/Testimonials"
+import { NewsletterSignup } from "@/components/NewsletterSignup"
+import { GuidedTour } from "@/components/GuidedTour"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -40,6 +44,7 @@ export default function HomePage() {
 
   return (
     <>
+      <GuidedTour />
       <section className="relative min-h-[360px] sm:min-h-[440px] overflow-hidden shadow-lg">
         <Image
           src="/images/stock/hero_group_support.jpg"
@@ -60,6 +65,7 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
       </section>
 
       <div id="home" className="container mx-auto px-4 py-8 max-w-7xl">
+        <TrustBadges />
         <div className="space-y-6">
           <MinimalSection
             id="crisis-emergency-help"
@@ -240,6 +246,10 @@ MindWell Support — free, ethical mental health support & crisis guidance.</p>
               <p className="text-lg">Phone: <a href="tel:+8801988223165" className="text-teal-700 dark:text-teal-400 hover:underline">+8801988223165</a></p>
             </div>
           </MinimalSection>
+        </div>
+        <div className="mt-10 space-y-10">
+          <Testimonials />
+          <NewsletterSignup />
         </div>
       </div>
 
