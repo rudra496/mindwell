@@ -19,7 +19,7 @@ export const config = {
   },
   developer: {
     name: 'Rudra Sarker',
-    linkedin: 'https://www.linkedin.com/in/rudra-sarker',
+    linkedin: 'https://www.linkedin.com/company/mindwell-care/',
     facebook: 'https://facebook.com/rudra496',
     github: 'https://github.com/rudra496',
     phone: '+880198822165',
