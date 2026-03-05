@@ -208,7 +208,7 @@ MindWell is optimized for Vercel deployment:
 3. Deploy with default settings
 4. No environment variables required for basic features
 
-**Live Site**: https://mindwell.vercel.app
+**Live Site**: https://mindwell-navy.vercel.app/
 
 ### Other Platforms
 
