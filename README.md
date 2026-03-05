@@ -282,7 +282,7 @@ Conditions:
 
 ### Connect with MindWell:
 - **Facebook**: https://www.facebook.com/share/17uZeJjmBc/
-- **LinkedIn**: https://www.linkedin.com/in/rudra-sarker
+- **LinkedIn**: https://www.linkedin.com/in/rudrasarker
 - **GitHub**: https://github.com/rudra496/mindwell
 
 ### Developer:
