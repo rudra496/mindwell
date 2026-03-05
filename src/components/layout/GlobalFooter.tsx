@@ -43,7 +43,7 @@ export function GlobalFooter() {
               <span>Facebook</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/rudra-sarker"
+              href="https://www.linkedin.com/in/rudrasarker"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="MindWell on LinkedIn"
