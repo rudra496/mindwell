@@ -1,5 +1,5 @@
 const DB_NAME = 'MindWellDB'
-const DB_VERSION = 1
+const DB_VERSION = 2
 
 export interface MoodEntry {
   id?: number
@@ -51,6 +51,13 @@ export interface CommunityReply {
   updatedAt: Date
 }
 
+
+export interface GuidanceStat {
+  id?: number
+  emotionCategory: string
+  timestamp: Date
+}
+
 export interface ChatMessage {
   id?: number
   message: string
@@ -95,6 +102,9 @@ class IndexedDBManager {
         }
         if (!db.objectStoreNames.contains('chatHistory')) {
           db.createObjectStore('chatHistory', { keyPath: 'id', autoIncrement: true })
+        }
+        if (!db.objectStoreNames.contains('guidanceStats')) {
+          db.createObjectStore('guidanceStats', { keyPath: 'id', autoIncrement: true })
         }
       }
     })
@@ -262,5 +272,15 @@ export const ChatHistory = {
   },
   async clearAll(): Promise<void> {
     return await db.clear('chatHistory')
+  }
+}
+
+
+export const GuidanceStats = {
+  async addStat(stat: Omit<GuidanceStat, 'id'>): Promise<number> {
+    return await db.add('guidanceStats', { ...stat, timestamp: new Date(stat.timestamp) }) as number
+  },
+  async getAllStats(): Promise<GuidanceStat[]> {
+    return await db.getAll<GuidanceStat>('guidanceStats')
   }
 }

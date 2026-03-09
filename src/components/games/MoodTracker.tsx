@@ -1,11 +1,16 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
+import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Smile, Meh, Frown, ThumbsUp, ThumbsDown, Heart } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Textarea } from "@/components/ui/textarea"
+import { GuidanceRecommendations } from './GuidanceRecommendations'
+import type { MoodLabel, GuidanceResult } from '@/lib/smart-guidance/guidance-engine'
+import { runGuidanceDecisionEngine } from '@/lib/smart-guidance/guidance-engine'
+import { classifyEmotion } from '@/lib/smart-guidance/emotion-classifier'
 
 interface MoodEntry {
   id: number
@@ -16,20 +21,25 @@ interface MoodEntry {
 }
 
 const moodLevels = [
-  { level: 1, label: "Very Bad", icon: ThumbsDown, color: "text-red-600" },
-  { level: 2, label: "Bad", icon: Frown, color: "text-orange-600" },
-  { level: 3, label: "Okay", icon: Meh, color: "text-yellow-600" },
-  { level: 4, label: "Good", icon: Smile, color: "text-green-600" },
-  { level: 5, label: "Great", icon: ThumbsUp, color: "text-blue-600" }
+  { level: 1, key: 'sad' as MoodLabel, label: "Sad", icon: ThumbsDown, color: "text-red-600" },
+  { level: 2, key: 'stressed' as MoodLabel, label: "Stressed", icon: Frown, color: "text-orange-600" },
+  { level: 3, key: 'overwhelmed' as MoodLabel, label: "Overwhelmed", icon: Meh, color: "text-yellow-600" },
+  { level: 4, key: 'neutral' as MoodLabel, label: "Neutral", icon: Smile, color: "text-green-600" },
+  { level: 5, key: 'good' as MoodLabel, label: "Good", icon: ThumbsUp, color: "text-blue-600" },
+  { level: 6, key: 'anxious' as MoodLabel, label: "Anxious", icon: Heart, color: "text-purple-600" }
 ]
 
 export default function MoodTracker() {
+  const router = useRouter()
   const [selectedMood, setSelectedMood] = useState<number | null>(null)
-  const [note, setNote] = useState("")
+  const [message, setMessage] = useState("")
   const [entries, setEntries] = useState<MoodEntry[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [isAnalyzing, setIsAnalyzing] = useState(false)
+  const [guidanceResult, setGuidanceResult] = useState<GuidanceResult | null>(null)
 
-  // Load entries from IndexedDB on mount
+  const selectedMoodKey = useMemo(() => moodLevels.find((mood) => mood.level === selectedMood)?.key, [selectedMood])
+
   useEffect(() => {
     const initDB = async () => {
       try {
@@ -51,14 +61,45 @@ export default function MoodTracker() {
     initDB()
   }, [])
 
+  useEffect(() => {
+    if (!selectedMoodKey) {
+      setGuidanceResult(null)
+      return
+    }
+
+    const runGuidance = async () => {
+      setIsAnalyzing(true)
+      try {
+        const classification = await classifyEmotion(message)
+        const guidance = runGuidanceDecisionEngine(selectedMoodKey, classification)
+        setGuidanceResult(guidance)
+
+        const { GuidanceStats } = await import('@/lib/indexeddb')
+        await GuidanceStats.addStat({
+          emotionCategory: guidance.pathway,
+          timestamp: new Date()
+        })
+
+        if (guidance.shouldRedirectToCrisis) {
+          router.push('/crisis-resources')
+        }
+      } catch (error) {
+        console.error('Error running smart guidance:', error)
+      } finally {
+        setIsAnalyzing(false)
+      }
+    }
+
+    void runGuidance()
+  }, [selectedMoodKey, message, router])
+
   const loadEntries = async () => {
     setIsLoading(true)
     try {
       const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
       const savedEntries = await MoodTrackerDB.getAllEntries()
-      // Convert dates and sort
       const formattedEntries = savedEntries.map((e, index) => ({
-        id: e.id || Date.now() + index, // Use unique fallback to prevent duplicate keys
+        id: e.id || Date.now() + index,
         date: new Date(e.date).toISOString().split('T')[0],
         time: new Date(e.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
         mood: e.mood,
@@ -80,19 +121,19 @@ export default function MoodTracker() {
         date: now.toISOString().split('T')[0],
         time: now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
         mood: selectedMood,
-        note: note.trim()
+        note: ''
       }
-      
+
       try {
         const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
         await MoodTrackerDB.addEntry({
           mood: selectedMood,
-          notes: note.trim(),
+          notes: '',
           date: now
         })
         setEntries([newEntry, ...entries])
         setSelectedMood(null)
-        setNote("")
+        setMessage("")
       } catch (error) {
         console.error('Error saving mood entry:', error)
       }
@@ -120,7 +161,7 @@ export default function MoodTracker() {
     const date = new Date(dateString)
     const today = new Date().toISOString().split('T')[0]
     const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0]
-    
+
     if (dateString === today) return "Today"
     if (dateString === yesterday) return "Yesterday"
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
@@ -132,10 +173,10 @@ export default function MoodTracker() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-rose-500" />
-            <CardTitle className="text-lg sm:text-xl break-words">Mood Tracker</CardTitle>
+            <CardTitle className="text-lg sm:text-xl break-words">Mood Tracker + Smart Guidance</CardTitle>
           </div>
           <CardDescription className="text-sm">
-            Track your emotional wellness and identify patterns
+            Track your emotional wellness and get supportive resource recommendations.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4 sm:space-y-6 p-4 sm:p-6">
@@ -151,15 +192,13 @@ export default function MoodTracker() {
               <Alert>
                 <Heart className="h-4 w-4" />
                 <AlertDescription>
-                  <strong>Track your moods:</strong> Regular mood tracking helps you identify triggers, 
-                  patterns, and what helps you feel better. Check in 2-3 times daily for best results.
+                  <strong>Track your moods:</strong> Select your mood to instantly trigger smart support guidance.
                 </AlertDescription>
               </Alert>
 
-              {/* Mood Selection */}
               <div className="space-y-3">
                 <h3 className="font-semibold text-sm sm:text-base">How are you feeling right now?</h3>
-                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3">
+                <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
                   {moodLevels.map((mood) => {
                     const Icon = mood.icon
                     return (
@@ -179,28 +218,29 @@ export default function MoodTracker() {
                 </div>
               </div>
 
-              {/* Optional Note */}
               {selectedMood && (
                 <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
-                  <h3 className="font-semibold text-sm">Add a note (optional)</h3>
+                  <h3 className="font-semibold text-sm">Tell us more about how you're feeling (optional)</h3>
                   <Textarea
-                    value={note}
-                    onChange={(e) => setNote(e.target.value)}
-                    placeholder="What's affecting your mood? Any activities, thoughts, or events?"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Share context for better guidance recommendations (not stored)."
                     rows={3}
                     maxLength={300}
                     className="text-sm"
                   />
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                    <p className="text-xs text-muted-foreground">{note.length}/300 characters</p>
+                    <p className="text-xs text-muted-foreground">{message.length}/300 characters</p>
                     <Button onClick={saveMood} className="w-full sm:w-auto min-h-[44px]">
                       Save Mood
                     </Button>
                   </div>
+                  {isAnalyzing && <p className="text-xs text-muted-foreground">Analyzing your input locally...</p>}
                 </div>
               )}
 
-              {/* Statistics */}
+              {guidanceResult && <GuidanceRecommendations guidanceResult={guidanceResult} />}
+
               {entries.length > 0 && (
                 <Card className="border-primary">
                   <CardContent className="pt-4 sm:pt-6 p-3 sm:p-6">
@@ -217,14 +257,13 @@ export default function MoodTracker() {
                         <p className="text-2xl sm:text-3xl font-bold text-blue-600">
                           {entries.filter(e => e.mood >= 4).length}
                         </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground">Good Days</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Stable Days</p>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
               )}
 
-              {/* Mood History */}
               {entries.length > 0 ? (
                 <div className="space-y-3">
                   <h3 className="font-semibold text-sm sm:text-base">Your Mood History</h3>
@@ -243,9 +282,6 @@ export default function MoodTracker() {
                                   {formatDate(entry.date)} at {entry.time}
                                 </span>
                               </div>
-                              {entry.note && (
-                                <p className="text-xs sm:text-sm text-muted-foreground break-words overflow-hidden">{entry.note}</p>
-                              )}
                             </div>
                           </div>
                         </CardContent>
@@ -264,14 +300,6 @@ export default function MoodTracker() {
                   </p>
                 </Card>
               )}
-
-              <Alert className="border-blue-200 bg-blue-50">
-                <Heart className="h-4 w-4 text-blue-600" />
-                <AlertDescription className="text-blue-900">
-                  <strong>Tip:</strong> Track your mood at consistent times (morning, afternoon, evening). 
-                  Look for patterns - do certain activities, people, or times of day affect your mood?
-                </AlertDescription>
-              </Alert>
             </>
           )}
         </CardContent>
