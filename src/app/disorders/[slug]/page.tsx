@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, AlertTriangle } from "lucide-react";
 import disordersData from "@/data/disorders.json";
+import { DisorderSectionNavigation } from "@/components/disorders/DisorderSectionNavigation";
 
 type Disorder = {
   id: string;
@@ -82,11 +83,7 @@ export default async function DisorderPage({ params }: { params: Promise<{ slug:
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">{disorder.description}</p>
 
-        <nav aria-label="Section navigation" className="mb-6 flex flex-wrap gap-2">
-          <a href="#symptoms-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-teal-100 text-teal-800 hover:bg-teal-200 transition-colors">Symptoms</a>
-          <a href="#risk-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors">Causes & Risk</a>
-          <a href="#therapy-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-purple-100 text-purple-800 hover:bg-purple-200 transition-colors">Treatment</a>
-        </nav>
+        <DisorderSectionNavigation />
 
 
         {disorder.prevalence && (
