@@ -14,6 +14,7 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
 import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 import { GuidedTour } from "@/components/GuidedTour";
+import { GlobalBackNavigationController } from "@/components/GlobalBackNavigationController";
 import { NavigationStackProvider } from "@/context/NavigationStackContext";
 
 const description =
@@ -136,7 +137,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="font-sans antialiased">
         <ThemeProvider>
           <NavigationStackProvider>
-          <ErrorBoundary>
+            <GlobalBackNavigationController />
+            <ErrorBoundary>
             {/* Bangladesh crisis number – absolute top of every page, slim bar */}
             <a
               href="tel:+8801779554391"
@@ -162,7 +164,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <ClientErrorLogger />
             <PerformanceMonitor />
             <AccessibilityPanel />
-          </ErrorBoundary>
+            </ErrorBoundary>
           </NavigationStackProvider>
         </ThemeProvider>
       </body>
