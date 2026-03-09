@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
+import { BackButton } from '@/components/BackButton';
 
 /**
  * Breadcrumbs Component
@@ -40,7 +41,8 @@ export function Breadcrumbs() {
   ];
 
   return (
-    <nav aria-label="Breadcrumb" className="py-4">
+    <nav aria-label="Breadcrumb" className="py-4 space-y-3">
+      <BackButton className="inline-flex items-center gap-2 rounded-md border border-teal-300 bg-white/90 px-3 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2" />
       <ol className="flex items-center gap-2 text-sm">
         {breadcrumbs.map((crumb, index) => {
           const isLast = index === breadcrumbs.length - 1;
