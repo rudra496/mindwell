@@ -21,12 +21,12 @@ interface MoodEntry {
 }
 
 const moodLevels = [
-  { level: 1, key: 'sad' as MoodLabel, label: "Sad", icon: ThumbsDown, color: "text-red-600" },
-  { level: 2, key: 'stressed' as MoodLabel, label: "Stressed", icon: Frown, color: "text-orange-600" },
-  { level: 3, key: 'overwhelmed' as MoodLabel, label: "Overwhelmed", icon: Meh, color: "text-yellow-600" },
-  { level: 4, key: 'neutral' as MoodLabel, label: "Neutral", icon: Smile, color: "text-green-600" },
-  { level: 5, key: 'good' as MoodLabel, label: "Good", icon: ThumbsUp, color: "text-blue-600" },
-  { level: 6, key: 'anxious' as MoodLabel, label: "Anxious", icon: Heart, color: "text-purple-600" }
+  { level: 1, wellbeingScore: 1, key: 'sad' as MoodLabel, label: "Sad", icon: ThumbsDown, color: "text-red-600" },
+  { level: 2, wellbeingScore: 2, key: 'overwhelmed' as MoodLabel, label: "Overwhelmed", icon: Meh, color: "text-yellow-600" },
+  { level: 3, wellbeingScore: 2, key: 'anxious' as MoodLabel, label: "Anxious", icon: Heart, color: "text-purple-600" },
+  { level: 4, wellbeingScore: 2, key: 'stressed' as MoodLabel, label: "Stressed", icon: Frown, color: "text-orange-600" },
+  { level: 5, wellbeingScore: 4, key: 'neutral' as MoodLabel, label: "Neutral", icon: Smile, color: "text-green-600" },
+  { level: 6, wellbeingScore: 5, key: 'good' as MoodLabel, label: "Good", icon: ThumbsUp, color: "text-blue-600" }
 ]
 
 export default function MoodTracker() {
@@ -73,16 +73,6 @@ export default function MoodTracker() {
         const classification = await classifyEmotion(message)
         const guidance = runGuidanceDecisionEngine(selectedMoodKey, classification)
         setGuidanceResult(guidance)
-
-        const { GuidanceStats } = await import('@/lib/indexeddb')
-        await GuidanceStats.addStat({
-          emotionCategory: guidance.pathway,
-          timestamp: new Date()
-        })
-
-        if (guidance.shouldRedirectToCrisis) {
-          router.push('/crisis-resources')
-        }
       } catch (error) {
         console.error('Error running smart guidance:', error)
       } finally {
@@ -90,8 +80,12 @@ export default function MoodTracker() {
       }
     }
 
-    void runGuidance()
-  }, [selectedMoodKey, message, router])
+    const timeoutId = window.setTimeout(() => {
+      void runGuidance()
+    }, message ? 400 : 0)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [selectedMoodKey, message])
 
   const loadEntries = async () => {
     setIsLoading(true)
@@ -125,24 +119,51 @@ export default function MoodTracker() {
       }
 
       try {
+        const selectedMoodMeta = moodLevels.find((mood) => mood.level === selectedMood)
+        const wellbeingScore = selectedMoodMeta?.wellbeingScore ?? selectedMood
+        const guidance = guidanceResult
+
         const { MoodTracker: MoodTrackerDB } = await import('@/lib/indexeddb')
         await MoodTrackerDB.addEntry({
-          mood: selectedMood,
+          mood: wellbeingScore,
           notes: '',
           date: now
         })
+
+        if (guidance) {
+          const { GuidanceStats } = await import('@/lib/indexeddb')
+          await GuidanceStats.addStat({
+            emotionCategory: guidance.pathway,
+            timestamp: now
+          })
+
+          if (guidance.shouldRedirectToCrisis) {
+            router.push('/crisis-resources')
+          }
+        }
+
+        newEntry.mood = wellbeingScore
         setEntries([newEntry, ...entries])
         setSelectedMood(null)
         setMessage("")
+        setGuidanceResult(null)
       } catch (error) {
         console.error('Error saving mood entry:', error)
       }
     }
   }
 
+  const getWellbeingScore = (level: number) => {
+    const mood = moodLevels.find((moodOption) => moodOption.level === level)
+    if (mood) return mood.wellbeingScore
+
+    // Legacy entries stored prior to smart-guidance labels used a 1-5 mood scale.
+    return Math.min(Math.max(level, 1), 5)
+  }
+
   const getAverageMood = () => {
     if (entries.length === 0) return 0
-    const sum = entries.reduce((acc, entry) => acc + entry.mood, 0)
+    const sum = entries.reduce((acc, entry) => acc + getWellbeingScore(entry.mood), 0)
     return (sum / entries.length).toFixed(1)
   }
 
@@ -255,9 +276,9 @@ export default function MoodTracker() {
                       </div>
                       <div>
                         <p className="text-2xl sm:text-3xl font-bold text-blue-600">
-                          {entries.filter(e => e.mood >= 4).length}
+                          {entries.filter(e => getWellbeingScore(e.mood) >= 4).length}
                         </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground">Stable Days</p>
+                        <p className="text-xs sm:text-sm text-muted-foreground">Balanced Days</p>
                       </div>
                     </div>
                   </CardContent>

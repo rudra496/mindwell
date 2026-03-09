@@ -153,7 +153,7 @@ MindWell Support — free, ethical mental health support & crisis management.</p
             stockPhotoAlt="Mood tracking and emotional wellbeing self-reflection"
             bgGradient="from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20"
           >
-            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Daily mood tracking, emotional awareness, mental wellbeing</p>
+            <p className="mb-3 text-sm text-gray-600 dark:text-gray-400 text-center md:text-left">Daily mood tracking, AI-powered smart guidance, emotional awareness, mental wellbeing</p>
             <MoodTracker />
           </MinimalSection>
           <MinimalSection
