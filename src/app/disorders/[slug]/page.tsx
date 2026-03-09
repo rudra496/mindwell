@@ -82,13 +82,20 @@ export default async function DisorderPage({ params }: { params: Promise<{ slug:
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">{disorder.description}</p>
 
+        <nav aria-label="Section navigation" className="mb-6 flex flex-wrap gap-2">
+          <a href="#symptoms-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-teal-100 text-teal-800 hover:bg-teal-200 transition-colors">Symptoms</a>
+          <a href="#risk-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-orange-100 text-orange-800 hover:bg-orange-200 transition-colors">Causes & Risk</a>
+          <a href="#therapy-heading" className="text-xs sm:text-sm px-3 py-1.5 rounded-full bg-purple-100 text-purple-800 hover:bg-purple-200 transition-colors">Treatment</a>
+        </nav>
+
+
         {disorder.prevalence && (
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-6 italic">Prevalence: {disorder.prevalence}</p>
         )}
 
         <div className="space-y-6">
           {symptoms.length > 0 && (
-            <section aria-labelledby="symptoms-heading">
+            <section id="symptoms" aria-labelledby="symptoms-heading">
               <h2 id="symptoms-heading" className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Common Symptoms</h2>
               <ul className="space-y-1.5" role="list">
                 {symptoms.map((s, i) => (
@@ -102,7 +109,7 @@ export default async function DisorderPage({ params }: { params: Promise<{ slug:
           )}
 
           {riskFactors.length > 0 && (
-            <section aria-labelledby="risk-heading">
+            <section id="causes" aria-labelledby="risk-heading">
               <h2 id="risk-heading" className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Risk Factors</h2>
               <ul className="space-y-1.5" role="list">
                 {riskFactors.map((r, i) => (
@@ -116,7 +123,7 @@ export default async function DisorderPage({ params }: { params: Promise<{ slug:
           )}
 
           {therapyApproaches.length > 0 && (
-            <section aria-labelledby="therapy-heading">
+            <section id="treatment" aria-labelledby="therapy-heading">
               <h2 id="therapy-heading" className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Treatment Approaches</h2>
               <ul className="space-y-1.5" role="list">
                 {therapyApproaches.map((t, i) => (
