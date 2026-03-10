@@ -496,22 +496,28 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                     {/* Voice Selection */}
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Voice</label>
-                      <Select
-                        value={selectedVoiceIndex.toString()}
-                        onValueChange={(value) => setSelectedVoiceIndex(parseInt(value))}
-                        disabled={isTTSSpeaking}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a voice" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {availableVoices.map((voice, index) => (
-                            <SelectItem key={index} value={index.toString()}>
-                              {voice.name} ({voice.lang})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      {availableVoices.length > 0 ? (
+                        <Select
+                          value={selectedVoiceIndex.toString()}
+                          onValueChange={(value) => setSelectedVoiceIndex(parseInt(value))}
+                          disabled={isTTSSpeaking}
+                        >
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a voice" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {availableVoices.map((voice, index) => (
+                              <SelectItem key={index} value={index.toString()}>
+                                {voice.name} ({voice.lang})
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      ) : (
+                        <p className="text-xs text-muted-foreground">
+                          Using device default voice (recommended for Android WebView wrappers).
+                        </p>
+                      )}
                     </div>
 
                     {/* Speech Rate */}
