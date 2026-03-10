@@ -1,23 +1,32 @@
 import {
-  collection,
   addDoc,
-  serverTimestamp,
-  query,
-  orderBy,
-  where,
-  getDocs,
-  doc,
-  updateDoc,
+  collection,
   deleteDoc,
-  onSnapshot,
+  doc,
   getDoc,
+  getDocs,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
   runTransaction,
-  writeBatch,
+  serverTimestamp,
   Timestamp,
+  updateDoc,
+  where,
+  writeBatch,
+  QueryDocumentSnapshot,
+  DocumentData,
+  startAfter,
 } from "firebase/firestore";
 
-import { db, auth } from "./firebase";
+import { auth, db } from "./firebase";
 import { generateAnonymousName } from "./anon-names";
+
+const POSTS_COLLECTION = "posts";
+const REPLIES_COLLECTION = "replies";
+const DEFAULT_POST_LIMIT = 20;
+const DEFAULT_REPLY_LIMIT = 200;
 
 export interface CommunityPost {
   id: string;
@@ -26,10 +35,11 @@ export interface CommunityPost {
   category: string;
   triggerWarnings?: string[];
   displayName: string;
-  userId: string;
+  authorId: string;
   createdAt?: Timestamp;
-  likes: number;
-  likedBy: string[];
+  updatedAt?: Timestamp;
+  lastActivityAt?: Timestamp;
+  likesCount: number;
   commentsCount: number;
   hasWarning?: boolean;
   warningText?: string | null;
@@ -38,29 +48,60 @@ export interface CommunityPost {
 export interface CommunityReply {
   id: string;
   postId: string;
-  parentReplyId?: string | null;
+  parentReplyId: string | null;
   content: string;
-  userId: string;
+  authorId: string;
   displayName: string;
   createdAt?: Timestamp;
-  likes: number;
-  likedBy: string[];
+  likesCount: number;
 }
 
-const getPostsRef = () => {
+const requireDb = () => {
   if (!db) throw new Error("Firebase not configured");
-  return collection(db, "communityPosts");
-};
-
-const getRepliesRef = () => {
-  if (!db) throw new Error("Firebase not configured");
-  return collection(db, "communityReplies");
+  return db;
 };
 
 const ensureAuthenticatedUid = () => {
   const uid = auth?.currentUser?.uid;
   if (!uid) throw new Error("Authentication required");
   return uid;
+};
+
+const postsRef = () => collection(requireDb(), POSTS_COLLECTION);
+const repliesRef = () => collection(requireDb(), REPLIES_COLLECTION);
+
+const mapPost = (snap: QueryDocumentSnapshot<DocumentData>): CommunityPost => {
+  const data = snap.data();
+  return {
+    id: snap.id,
+    title: data.title ?? "",
+    content: data.content ?? "",
+    category: data.category ?? "General Support",
+    triggerWarnings: Array.isArray(data.triggerWarnings) ? data.triggerWarnings : [],
+    displayName: data.displayName ?? "Anonymous",
+    authorId: data.authorId ?? data.userId ?? "",
+    createdAt: data.createdAt,
+    updatedAt: data.updatedAt,
+    lastActivityAt: data.lastActivityAt,
+    likesCount: typeof data.likesCount === "number" ? data.likesCount : data.likes || 0,
+    commentsCount: typeof data.commentsCount === "number" ? data.commentsCount : 0,
+    hasWarning: Boolean(data.hasWarning),
+    warningText: data.warningText ?? null,
+  };
+};
+
+const mapReply = (snap: QueryDocumentSnapshot<DocumentData>): CommunityReply => {
+  const data = snap.data();
+  return {
+    id: snap.id,
+    postId: data.postId,
+    parentReplyId: data.parentReplyId ?? null,
+    content: data.content ?? "",
+    authorId: data.authorId ?? data.userId ?? "",
+    displayName: data.displayName ?? "Anonymous",
+    createdAt: data.createdAt,
+    likesCount: typeof data.likesCount === "number" ? data.likesCount : data.likes || 0,
+  };
 };
 
 export async function postToCommunity(data: {
@@ -72,59 +113,35 @@ export async function postToCommunity(data: {
   hasCrisisLanguage?: boolean;
 }) {
   const uid = ensureAuthenticatedUid();
-  const postsRef = getPostsRef();
 
-  return await addDoc(postsRef, {
+  return addDoc(postsRef(), {
     title: data.title.trim(),
     content: data.content.trim(),
     category: data.category,
     triggerWarnings: data.triggerWarnings || [],
     displayName: generateAnonymousName(),
-    userId: uid,
+    authorId: uid,
     createdAt: serverTimestamp(),
-    likes: 0,
-    likedBy: [],
+    updatedAt: serverTimestamp(),
+    lastActivityAt: serverTimestamp(),
+    likesCount: 0,
     commentsCount: 0,
     hasWarning: !!data.warningText || !!data.hasCrisisLanguage,
     warningText: data.warningText || null,
   });
 }
 
-const mapPost = (d: any): CommunityPost => {
-  const raw = d.data();
-  const likedBy = Array.isArray(raw.likedBy) ? raw.likedBy : [];
-  return {
-    id: d.id,
-    ...raw,
-    likedBy,
-    likes: typeof raw.likes === "number" ? raw.likes : likedBy.length,
-    commentsCount: typeof raw.commentsCount === "number" ? raw.commentsCount : 0,
-  } as CommunityPost;
-};
-
-const mapReply = (d: any): CommunityReply => {
-  const raw = d.data();
-  const likedBy = Array.isArray(raw.likedBy) ? raw.likedBy : [];
-  return {
-    id: d.id,
-    ...raw,
-    likedBy,
-    likes: typeof raw.likes === "number" ? raw.likes : likedBy.length,
-    parentReplyId: raw.parentReplyId ?? null,
-  } as CommunityReply;
-};
-
-export async function getCommunityPosts(): Promise<CommunityPost[]> {
-  const q = query(getPostsRef(), orderBy("createdAt", "desc"));
-  const snap = await getDocs(q);
-  return snap.docs.map(mapPost);
-}
-
 export function subscribeToCommunityPosts(
   onData: (posts: CommunityPost[]) => void,
-  onError?: (error: Error) => void
+  onError?: (error: Error) => void,
+  pageSize: number = DEFAULT_POST_LIMIT,
+  after?: QueryDocumentSnapshot<DocumentData>
 ) {
-  const q = query(getPostsRef(), orderBy("createdAt", "desc"));
+  let q = query(postsRef(), orderBy("createdAt", "desc"), limit(pageSize));
+  if (after) {
+    q = query(postsRef(), orderBy("createdAt", "desc"), startAfter(after), limit(pageSize));
+  }
+
   return onSnapshot(
     q,
     (snap) => onData(snap.docs.map(mapPost)),
@@ -132,46 +149,19 @@ export function subscribeToCommunityPosts(
   );
 }
 
-export async function addReply(postId: string, content: string, parentReplyId: string | null = null) {
-  const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
-  const repliesRef = getRepliesRef();
-
-  const reply = await addDoc(repliesRef, {
-    postId,
-    parentReplyId,
-    content: content.trim(),
-    userId: uid,
-    displayName: generateAnonymousName(),
-    createdAt: serverTimestamp(),
-    likes: 0,
-    likedBy: [],
-  });
-
-  await runTransaction(db, async (tx) => {
-      const postRef = doc(db, "communityPosts", postId);
-      const postSnap = await tx.get(postRef);
-      if (!postSnap.exists()) throw new Error("Post not found");
-      tx.update(postRef, {
-        commentsCount: (postSnap.data().commentsCount || 0) + 1,
-      });
-    });
-
-  return reply;
-}
-
-export async function getReplies(postId: string): Promise<CommunityReply[]> {
-  const q = query(getRepliesRef(), where("postId", "==", postId), orderBy("createdAt", "asc"));
-  const snap = await getDocs(q);
-  return snap.docs.map(mapReply);
-}
-
 export function subscribeToReplies(
   postId: string,
   onData: (replies: CommunityReply[]) => void,
-  onError?: (error: Error) => void
+  onError?: (error: Error) => void,
+  pageSize: number = DEFAULT_REPLY_LIMIT
 ) {
-  const q = query(getRepliesRef(), where("postId", "==", postId), orderBy("createdAt", "asc"));
+  const q = query(
+    repliesRef(),
+    where("postId", "==", postId),
+    orderBy("createdAt", "asc"),
+    limit(pageSize)
+  );
+
   return onSnapshot(
     q,
     (snap) => onData(snap.docs.map(mapReply)),
@@ -179,121 +169,198 @@ export function subscribeToReplies(
   );
 }
 
-export async function togglePostLike(postId: string) {
+export async function addReply(postId: string, content: string, parentReplyId: string | null = null) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  return runTransaction(db, async (tx) => {
-    const postRef = doc(db, "communityPosts", postId);
-    const snap = await tx.get(postRef);
-    if (!snap.exists()) throw new Error("Post not found");
+  return runTransaction(client, async (tx) => {
+    const postRef = doc(client, POSTS_COLLECTION, postId);
+    const postSnap = await tx.get(postRef);
+    if (!postSnap.exists()) throw new Error("Post not found");
 
-    const likedBy: string[] = Array.isArray(snap.data().likedBy) ? snap.data().likedBy : [];
-    const hasLiked = likedBy.includes(uid);
-    const nextLikedBy = hasLiked ? likedBy.filter((id) => id !== uid) : [...likedBy, uid];
+    const newReplyRef = doc(repliesRef());
 
-    tx.update(postRef, {
-      likedBy: nextLikedBy,
-      likes: nextLikedBy.length,
+    tx.set(newReplyRef, {
+      postId,
+      parentReplyId,
+      content: content.trim(),
+      authorId: uid,
+      displayName: generateAnonymousName(),
+      createdAt: serverTimestamp(),
+      likesCount: 0,
     });
 
-    return { liked: !hasLiked, likes: nextLikedBy.length };
+    const currentCount = Number(postSnap.data().commentsCount || 0);
+    tx.update(postRef, {
+      commentsCount: currentCount + 1,
+      lastActivityAt: serverTimestamp(),
+      updatedAt: serverTimestamp(),
+    });
+
+    return newReplyRef;
+  });
+}
+
+export async function hasUserLikedPost(postId: string, userId: string) {
+  const likeRef = doc(requireDb(), POSTS_COLLECTION, postId, "likes", userId);
+  const likeSnap = await getDoc(likeRef);
+  return likeSnap.exists();
+}
+
+export async function hasUserLikedReply(replyId: string, userId: string) {
+  const likeRef = doc(requireDb(), REPLIES_COLLECTION, replyId, "likes", userId);
+  const likeSnap = await getDoc(likeRef);
+  return likeSnap.exists();
+}
+
+export async function togglePostLike(postId: string) {
+  const uid = ensureAuthenticatedUid();
+  const client = requireDb();
+
+  return runTransaction(client, async (tx) => {
+    const postRef = doc(client, POSTS_COLLECTION, postId);
+    const likeRef = doc(client, POSTS_COLLECTION, postId, "likes", uid);
+
+    const [postSnap, likeSnap] = await Promise.all([tx.get(postRef), tx.get(likeRef)]);
+    if (!postSnap.exists()) throw new Error("Post not found");
+
+    const likesCount = Number(postSnap.data().likesCount || 0);
+
+    if (likeSnap.exists()) {
+      tx.delete(likeRef);
+      tx.update(postRef, {
+        likesCount: Math.max(0, likesCount - 1),
+        updatedAt: serverTimestamp(),
+      });
+      return { liked: false, likesCount: Math.max(0, likesCount - 1) };
+    }
+
+    tx.set(likeRef, {
+      userId: uid,
+      createdAt: serverTimestamp(),
+    });
+    tx.update(postRef, {
+      likesCount: likesCount + 1,
+      updatedAt: serverTimestamp(),
+      lastActivityAt: serverTimestamp(),
+    });
+    return { liked: true, likesCount: likesCount + 1 };
   });
 }
 
 export async function toggleReplyLike(replyId: string) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  return runTransaction(db, async (tx) => {
-    const replyRef = doc(db, "communityReplies", replyId);
-    const snap = await tx.get(replyRef);
-    if (!snap.exists()) throw new Error("Reply not found");
+  return runTransaction(client, async (tx) => {
+    const replyRef = doc(client, REPLIES_COLLECTION, replyId);
+    const likeRef = doc(client, REPLIES_COLLECTION, replyId, "likes", uid);
 
-    const likedBy: string[] = Array.isArray(snap.data().likedBy) ? snap.data().likedBy : [];
-    const hasLiked = likedBy.includes(uid);
-    const nextLikedBy = hasLiked ? likedBy.filter((id) => id !== uid) : [...likedBy, uid];
+    const [replySnap, likeSnap] = await Promise.all([tx.get(replyRef), tx.get(likeRef)]);
+    if (!replySnap.exists()) throw new Error("Reply not found");
 
-    tx.update(replyRef, {
-      likedBy: nextLikedBy,
-      likes: nextLikedBy.length,
+    const likesCount = Number(replySnap.data().likesCount || 0);
+
+    if (likeSnap.exists()) {
+      tx.delete(likeRef);
+      tx.update(replyRef, { likesCount: Math.max(0, likesCount - 1) });
+      return { liked: false, likesCount: Math.max(0, likesCount - 1) };
+    }
+
+    tx.set(likeRef, {
+      userId: uid,
+      createdAt: serverTimestamp(),
     });
+    tx.update(replyRef, { likesCount: likesCount + 1 });
 
-    return { liked: !hasLiked, likes: nextLikedBy.length };
+    return { liked: true, likesCount: likesCount + 1 };
   });
 }
 
 export async function editReply(replyId: string, content: string) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  const replyRef = doc(db, "communityReplies", replyId);
+  const replyRef = doc(client, REPLIES_COLLECTION, replyId);
   const snap = await getDoc(replyRef);
   if (!snap.exists()) throw new Error("Reply not found");
-  if (snap.data().userId !== uid) throw new Error("Unauthorized");
+  if ((snap.data().authorId ?? snap.data().userId) !== uid) throw new Error("Unauthorized");
 
-  return await updateDoc(replyRef, {
+  return updateDoc(replyRef, {
     content: content.trim(),
   });
 }
 
 export async function deleteReply(replyId: string) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  const replyRef = doc(db, "communityReplies", replyId);
-  const snap = await getDoc(replyRef);
-  if (!snap.exists()) throw new Error("Reply not found");
-  if (snap.data().userId !== uid) throw new Error("Unauthorized");
+  const replyRef = doc(client, REPLIES_COLLECTION, replyId);
+  const replySnap = await getDoc(replyRef);
+  if (!replySnap.exists()) throw new Error("Reply not found");
 
-  const postId = snap.data().postId as string;
-  const postReplies = await getReplies(postId);
+  const authorId = replySnap.data().authorId ?? replySnap.data().userId;
+  if (authorId !== uid) throw new Error("Unauthorized");
 
-  const children = postReplies.filter((r) => r.parentReplyId === replyId);
-  const toDelete = [replyId, ...children.map((c) => c.id)];
+  const postId = replySnap.data().postId as string;
 
-  const batch = writeBatch(db);
-  toDelete.forEach((id) => batch.delete(doc(db, "communityReplies", id)));
+  const childRepliesSnap = await getDocs(
+    query(repliesRef(), where("parentReplyId", "==", replyId), limit(100))
+  );
 
-  const postRef = doc(db, "communityPosts", postId);
+  const batch = writeBatch(client);
+  batch.delete(replyRef);
+
+  const allDeletedReplyIds = [replyId];
+  childRepliesSnap.docs.forEach((childDoc) => {
+    allDeletedReplyIds.push(childDoc.id);
+    batch.delete(doc(client, REPLIES_COLLECTION, childDoc.id));
+  });
+
+  const postRef = doc(client, POSTS_COLLECTION, postId);
   const postSnap = await getDoc(postRef);
-  const currentCount = (postSnap.data()?.commentsCount || 0) as number;
-  batch.update(postRef, { commentsCount: Math.max(0, currentCount - toDelete.length) });
+  if (postSnap.exists()) {
+    const currentCount = Number(postSnap.data().commentsCount || 0);
+    batch.update(postRef, {
+      commentsCount: Math.max(0, currentCount - allDeletedReplyIds.length),
+      updatedAt: serverTimestamp(),
+    });
+  }
 
   await batch.commit();
 }
 
 export async function editPost(postId: string, data: { title: string; content: string }) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  const postRef = doc(db, "communityPosts", postId);
+  const postRef = doc(client, POSTS_COLLECTION, postId);
   const snap = await getDoc(postRef);
   if (!snap.exists()) throw new Error("Post not found");
-  if (snap.data().userId !== uid) throw new Error("Unauthorized");
+  if ((snap.data().authorId ?? snap.data().userId) !== uid) throw new Error("Unauthorized");
 
-  return await updateDoc(postRef, {
+  return updateDoc(postRef, {
     title: data.title.trim(),
     content: data.content.trim(),
+    updatedAt: serverTimestamp(),
+    lastActivityAt: serverTimestamp(),
   });
 }
 
 export async function deletePost(postId: string) {
   const uid = ensureAuthenticatedUid();
-  if (!db) throw new Error("Firebase not configured");
+  const client = requireDb();
 
-  const postRef = doc(db, "communityPosts", postId);
+  const postRef = doc(client, POSTS_COLLECTION, postId);
   const snap = await getDoc(postRef);
   if (!snap.exists()) throw new Error("Post not found");
-  if (snap.data().userId !== uid) throw new Error("Unauthorized");
+  if ((snap.data().authorId ?? snap.data().userId) !== uid) throw new Error("Unauthorized");
 
-  const repliesSnap = await getDocs(query(getRepliesRef(), where("postId", "==", postId)));
+  const relatedReplies = await getDocs(query(repliesRef(), where("postId", "==", postId), limit(500)));
 
-  const batch = writeBatch(db);
+  const batch = writeBatch(client);
   batch.delete(postRef);
-  repliesSnap.docs.forEach((replyDoc) => {
-    batch.delete(doc(db, "communityReplies", replyDoc.id));
-  });
+  relatedReplies.docs.forEach((replyDoc) => batch.delete(doc(client, REPLIES_COLLECTION, replyDoc.id)));
 
   await batch.commit();
 }

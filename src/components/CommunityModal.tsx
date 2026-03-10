@@ -258,7 +258,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                     <p className="line-clamp-3">{post.content}</p>
 
                     <div className="flex gap-4 text-sm mt-2 text-muted-foreground">
-                      <ThumbsUp className="h-4 w-4" /> {post.likes || 0}
+                      <ThumbsUp className="h-4 w-4" /> {post.likesCount || 0}
                       <span className="flex items-center gap-1">
                         <MessageCircle className="h-4 w-4" /> {post.commentsCount || 0}
                       </span>
