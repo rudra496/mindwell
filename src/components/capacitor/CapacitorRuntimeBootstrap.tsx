@@ -1,11 +1,13 @@
 "use client"
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { completeRedirectSignIn } from '@/lib/firebase'
 
 type CapacitorPluginBag = {
   App?: {
     addListener?: (eventName: string, callback: (...args: any[]) => void) => Promise<{ remove: () => void }> | { remove: () => void }
     exitApp?: () => void
+    openUrl?: (options: { url: string }) => Promise<void>
   }
   Network?: {
     getStatus?: () => Promise<{ connected: boolean }>
@@ -42,11 +44,17 @@ const isCapacitorNative = (): boolean => {
   return false
 }
 
+const reloadCooldownMs = 10000
+
 export function CapacitorRuntimeBootstrap() {
   const [isOffline, setIsOffline] = useState(false)
   const [showExitHint, setShowExitHint] = useState(false)
+  const [isAuthResolving, setIsAuthResolving] = useState(false)
 
   const nativeRuntime = useMemo(() => isCapacitorNative(), [])
+  const wasOfflineRef = useRef(false)
+  const reloadTriggeredRef = useRef(false)
+  const lastBackPressRef = useRef(0)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -54,10 +62,6 @@ export function CapacitorRuntimeBootstrap() {
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
       navigator.serviceWorker.register('/sw.js').catch((error) => {
         console.warn('Service worker registration failed:', error)
-      })
-
-      navigator.serviceWorker.addEventListener('controllerchange', () => {
-        console.log('Service worker updated and controlling the page.')
       })
     }
   }, [])
@@ -85,18 +89,40 @@ export function CapacitorRuntimeBootstrap() {
     const plugins = getPlugins()
     let networkRemove: (() => void) | null = null
 
-    const setFromNavigator = () => setIsOffline(!navigator.onLine)
+    const updateOfflineState = (connected: boolean) => {
+      const offline = !connected
+      setIsOffline(offline)
+
+      if (offline) {
+        wasOfflineRef.current = true
+        reloadTriggeredRef.current = false
+        return
+      }
+
+      const canReload = wasOfflineRef.current && !reloadTriggeredRef.current
+      if (!canReload) return
+
+      const previousReload = Number(window.sessionStorage.getItem('mindwell:last-reload-on-online') ?? '0')
+      const now = Date.now()
+      if (now - previousReload < reloadCooldownMs) return
+
+      reloadTriggeredRef.current = true
+      window.sessionStorage.setItem('mindwell:last-reload-on-online', String(now))
+      window.location.reload()
+    }
+
+    const setFromNavigator = () => updateOfflineState(navigator.onLine)
 
     setFromNavigator()
     window.addEventListener('online', setFromNavigator)
     window.addEventListener('offline', setFromNavigator)
 
     plugins.Network?.getStatus?.()
-      .then((status) => setIsOffline(!status.connected))
+      .then((status) => updateOfflineState(status.connected))
       .catch(() => undefined)
 
     const networkListener = plugins.Network?.addListener?.('networkStatusChange', (status) => {
-      setIsOffline(!status.connected)
+      updateOfflineState(status.connected)
     })
 
     Promise.resolve(networkListener)
@@ -119,16 +145,21 @@ export function CapacitorRuntimeBootstrap() {
     let removeBackHandler: (() => void) | null = null
 
     const listenerResult = plugins.App?.addListener?.('backButton', () => {
-      if (window.history.length > 1) {
+      const atRoot = window.location.pathname === '/' && !window.location.hash
+      if (!atRoot && window.history.length > 1) {
         window.history.back()
         return
       }
 
+      const now = Date.now()
+      if (now - lastBackPressRef.current < 1300) {
+        plugins.App?.exitApp?.()
+        return
+      }
+
+      lastBackPressRef.current = now
       setShowExitHint(true)
       plugins.Haptics?.impact?.({ style: 'LIGHT' }).catch(() => undefined)
-      window.setTimeout(() => {
-        plugins.App?.exitApp?.()
-      }, 1200)
     })
 
     Promise.resolve(listenerResult)
@@ -143,16 +174,74 @@ export function CapacitorRuntimeBootstrap() {
   }, [nativeRuntime])
 
   useEffect(() => {
+    if (!nativeRuntime) return
+
+    const plugins = getPlugins()
+    let removeUrlOpen: (() => void) | null = null
+
+    const listenerResult = plugins.App?.addListener?.('appUrlOpen', (event: { url?: string }) => {
+      const incomingUrl = event?.url
+      if (!incomingUrl) return
+
+      const current = new URL(window.location.href)
+      let target: URL | null = null
+
+      try {
+        target = new URL(incomingUrl)
+      } catch {
+        return
+      }
+
+      if (target.origin !== current.origin) return
+
+      if (target.searchParams.has('state') || target.searchParams.has('code') || target.hash.includes('access_token')) {
+        window.location.assign(target.toString())
+      }
+    })
+
+    Promise.resolve(listenerResult)
+      .then((listener) => {
+        removeUrlOpen = listener?.remove ?? null
+      })
+      .catch(() => undefined)
+
+    return () => {
+      removeUrlOpen?.()
+    }
+  }, [nativeRuntime])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    setIsAuthResolving(true)
+    completeRedirectSignIn()
+      .catch(() => undefined)
+      .finally(() => setIsAuthResolving(false))
+  }, [])
+
+  useEffect(() => {
     if (!showExitHint) return
     const timer = window.setTimeout(() => setShowExitHint(false), 1400)
     return () => window.clearTimeout(timer)
   }, [showExitHint])
 
+  const handleOpenNetworkSettings = () => {
+    const app = getPlugins().App
+    app?.openUrl?.({ url: 'android.settings.WIFI_SETTINGS' }).catch(() => undefined)
+  }
+
   return (
     <>
       {isOffline ? (
-        <div className="fixed bottom-4 left-1/2 z-[120] -translate-x-1/2 rounded-full bg-red-700 px-4 py-2 text-xs font-medium text-white shadow-lg" role="status" aria-live="polite">
-          You are offline. Cached content is available; live data may be unavailable.
+        <div className="fixed bottom-4 left-1/2 z-[120] w-[min(92vw,540px)] -translate-x-1/2 rounded-xl bg-red-700 px-4 py-3 text-xs font-medium text-white shadow-lg" role="status" aria-live="assertive">
+          <div className="flex items-center justify-between gap-3">
+            <span>You are offline. Please reconnect to continue synced features.</span>
+            {nativeRuntime ? (
+              <button className="rounded-md bg-white/20 px-2 py-1 text-[11px] font-semibold" onClick={handleOpenNetworkSettings}>
+                Open network settings
+              </button>
+            ) : null}
+          </div>
         </div>
       ) : null}
 
@@ -160,6 +249,10 @@ export function CapacitorRuntimeBootstrap() {
         <div className="fixed bottom-16 left-1/2 z-[120] -translate-x-1/2 rounded-full bg-slate-900 px-4 py-2 text-xs font-medium text-white shadow-lg" role="status" aria-live="assertive">
           Press back again to exit MindWell.
         </div>
+      ) : null}
+
+      {isAuthResolving ? (
+        <div className="sr-only" aria-live="polite">Completing sign-in…</div>
       ) : null}
     </>
   )

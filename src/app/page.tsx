@@ -17,7 +17,7 @@ import {
   PlayCircle,
   Phone,
 } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
 import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
@@ -33,6 +33,7 @@ import MoodTracker from "@/components/games/MoodTracker"
 import { TrustBadges } from "@/components/TrustBadges"
 import { Testimonials } from "@/components/Testimonials"
 import { NewsletterSignup } from "@/components/NewsletterSignup"
+import { consumeCommunityReopenFlag } from "@/lib/firebase"
 
 export default function HomePage() {
   const [disordersOpen, setDisordersOpen] = useState(false)
@@ -41,6 +42,11 @@ export default function HomePage() {
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
+
+  useEffect(() => {
+    if (!consumeCommunityReopenFlag()) return
+    setCommunityOpen(true)
+  }, [])
 
   return (
     <>

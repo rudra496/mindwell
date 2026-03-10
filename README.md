@@ -343,3 +343,37 @@ Conditions:
 **Made with care for mental health awareness 💚**
 
 **Aligned with UN SDG 3 (Good Health & Well-being) and SDG 4 (Quality Education)**
+
+
+## 📱 Capacitor Android Wrapper Workflow
+
+MindWell supports Capacitor hosted URL mode for Android WebView packaging without changing the web architecture.
+
+### Wrapper commands
+
+```bash
+npm install
+npx cap add android
+npm run cap:sync:android
+npm run cap:open:android
+```
+
+### Authentication behavior
+
+- Browser runtime uses Firebase `signInWithPopup`.
+- Capacitor native runtime uses Firebase `signInWithRedirect`.
+- Redirect completion is handled on app startup and via Capacitor `appUrlOpen` events.
+- After successful login, community context is restored automatically.
+
+### Android testing steps
+
+1. Start wrapper and tap **Open Community**.
+2. Trigger Google sign-in and complete account selection.
+3. Confirm app returns and community is reopened.
+4. Disable network and verify offline banner appears.
+5. Tap **Open network settings** and reconnect.
+6. Confirm app refreshes once internet returns.
+7. Test back button on nested route (goes back).
+8. Test back button at root (double-press exits).
+9. Start meditation playback and confirm TTS audio output.
+

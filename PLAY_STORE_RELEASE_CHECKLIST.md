@@ -1,37 +1,38 @@
-# Play Store Release Checklist (MindWell Wrapper)
+# Play Store Release Checklist (MindWell Capacitor Wrapper)
 
 ## App identity
 
-- [ ] Finalize package name (e.g., `org.mindwell.app`)
+- [ ] Finalize package name (`org.mindwell.app`)
 - [ ] Increment `versionCode` and `versionName`
-- [ ] Create signed release keystore and secure backup
-
-## Store listing assets
-
-- [ ] 512x512 app icon
-- [ ] Feature graphic (1024x500)
-- [ ] At least 2 phone screenshots
-- [ ] Short + full descriptions
+- [ ] Create and backup release keystore
 
 ## Policy and legal
 
-- [ ] Privacy Policy URL published and accessible
-- [ ] Data Safety form completed accurately
-- [ ] Ads declaration configured (if applicable)
-- [ ] Sensitive health disclaimers verified in-app
+- [ ] Publish Privacy Policy URL
+- [ ] Complete Data Safety form
+- [ ] Verify mental-health disclaimers are visible in-app
 
-## Technical QA
+## Wrapper-specific QA
 
 - [ ] Cold start and resume tested on Android 10+
-- [ ] Offline behavior tested (banner + cached routes)
-- [ ] Back button behavior validated on root and nested routes
-- [ ] Deep links / external links open expected destinations
-- [ ] Push permission flow tested (if enabled)
+- [ ] Firebase Google login works in WebView (redirect mode)
+- [ ] Redirect returns to running app via intent filter
+- [ ] Community section reopens after successful login
+- [ ] Offline banner appears when disconnected
+- [ ] “Open network settings” button launches Android settings
+- [ ] Auto-refresh occurs once network is restored (no reload loop)
+- [ ] Back button behavior verified (history back + double-press exit)
+- [ ] Meditation TTS works on Android devices
 
-## Security hardening
+## Security verification
 
 - [ ] HTTPS-only `server.url`
 - [ ] Mixed content disabled
-- [ ] Navigation allowlist restricted
-- [ ] CSP and security headers validated in production
+- [ ] `allowNavigation` restricted to trusted hosts
+- [ ] CSP/headers validated in production response
 
+## Release build
+
+- [ ] `npm run build` succeeds
+- [ ] `npm run cap:sync:android` succeeds
+- [ ] Generate signed AAB/APK from Android Studio
