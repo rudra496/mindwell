@@ -100,6 +100,7 @@ export function CommunityPostDetail({
     if (!newReply.trim()) return;
 
     if (!auth?.currentUser) await signInWithGoogle();
+    if (!auth?.currentUser) return;
 
     setIsSubmitting(true);
 

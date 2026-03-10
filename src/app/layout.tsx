@@ -14,6 +14,7 @@ import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
 import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 import { GuidedTour } from "@/components/GuidedTour";
+import { CapacitorRuntimeBootstrap } from "@/components/capacitor/CapacitorRuntimeBootstrap";
 
 const description =
   "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
@@ -160,6 +161,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <ClientErrorLogger />
             <PerformanceMonitor />
             <AccessibilityPanel />
+            <CapacitorRuntimeBootstrap />
           </ErrorBoundary>
         </ThemeProvider>
       </body>

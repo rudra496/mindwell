@@ -218,6 +218,19 @@ Compatible with any Next.js hosting provider:
 - Cloudflare Pages
 - Self-hosted Node.js
 
+## 📱 Capacitor Android Wrapper (Hosted URL mode)
+
+This repository includes Capacitor configuration for wrapping the hosted web app in an Android shell.
+
+- Config file: `capacitor.config.ts`
+- Runtime bootstrap: `src/components/capacitor/CapacitorRuntimeBootstrap.tsx`
+- Scripts:
+  - `npm run cap:sync`
+  - `npm run cap:sync:android`
+  - `npm run cap:open:android`
+
+See `CAPACITOR_ANDROID_SETUP.md` for full setup, hardening, login return-to-app flow, offline auto-refresh behavior, and release guidance.
+
 ## 🎨 Performance & SEO
 
 - ✅ Lighthouse score optimized

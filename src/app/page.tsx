@@ -17,7 +17,8 @@ import {
   PlayCircle,
   Phone,
 } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { consumePendingCommunityOpen } from "@/lib/firebase"
 import { MinimalSection } from "@/components/homepage/MinimalSection"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
 import { WhoWeAreContent } from "@/components/homepage/WhoWeAreContent"
@@ -41,6 +42,18 @@ export default function HomePage() {
   const [communityOpen, setCommunityOpen] = useState(false)
   const [meditationOpen, setMeditationOpen] = useState(false)
   const [therapyTechniquesOpen, setTherapyTechniquesOpen] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const hasCommunityQuery = new URLSearchParams(window.location.search).get("community") === "1"
+    const hasCommunityHash = window.location.hash === "#community"
+    const pendingAfterAuth = consumePendingCommunityOpen()
+
+    if (hasCommunityQuery || hasCommunityHash || pendingAfterAuth) {
+      setCommunityOpen(true)
+    }
+  }, [])
 
   return (
     <>
