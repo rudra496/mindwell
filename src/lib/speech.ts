@@ -11,14 +11,65 @@ export interface SpeechOptions {
   voice?: SpeechSynthesisVoice | null // Specific voice to use
 }
 
+type CapacitorTextToSpeechPlugin = {
+  speak?: (options: {
+    text: string
+    lang?: string
+    rate?: number
+    pitch?: number
+    volume?: number
+  }) => Promise<void>
+  stop?: () => Promise<void>
+}
+
+type AndroidBridgeTTS = {
+  speak?: (text: string, lang?: string, rate?: number, pitch?: number, volume?: number) => void
+  stop?: () => void
+}
+
+const getCapacitorTTSPlugin = (): CapacitorTextToSpeechPlugin | null => {
+  if (typeof window === 'undefined') return null
+  const plugins = (window as any)?.Capacitor?.Plugins
+  return plugins?.TextToSpeech ?? plugins?.TTS ?? null
+}
+
+const getAndroidBridgeTTS = (): AndroidBridgeTTS | null => {
+  if (typeof window === 'undefined') return null
+  return (window as any)?.AndroidTTS ?? null
+}
+
+const isCapacitorNativeRuntime = (): boolean => {
+  if (typeof window === 'undefined') return false
+  const capacitor = (window as any)?.Capacitor
+  if (!capacitor) return false
+
+  if (typeof capacitor.isNativePlatform === 'function') {
+    return Boolean(capacitor.isNativePlatform())
+  }
+
+  if (typeof capacitor.getPlatform === 'function') {
+    return capacitor.getPlatform() !== 'web'
+  }
+
+  return false
+}
+
+const isCapacitorTTSSupported = (): boolean => {
+  return isCapacitorNativeRuntime() && !!getCapacitorTTSPlugin()?.speak
+}
+
+const isAndroidBridgeTTSSupported = (): boolean => {
+  return !!getAndroidBridgeTTS()?.speak
+}
+
 // Check if browser supports speech synthesis
 export const isSpeechSynthesisSupported = (): boolean => {
-  return typeof window !== 'undefined' && 'speechSynthesis' in window
+  return (typeof window !== 'undefined' && 'speechSynthesis' in window) || isCapacitorTTSSupported() || isAndroidBridgeTTSSupported()
 }
 
 // Get available voices
 export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
-  if (!isSpeechSynthesisSupported()) return []
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return []
   return window.speechSynthesis.getVoices()
 }
 
@@ -26,6 +77,11 @@ export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
 export const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
   return new Promise((resolve) => {
     if (!isSpeechSynthesisSupported()) {
+      resolve([])
+      return
+    }
+
+    if (!('speechSynthesis' in window)) {
       resolve([])
       return
     }
@@ -76,8 +132,46 @@ export const speak = async (
 ): Promise<void> => {
   return new Promise(async (resolve, reject) => {
     if (!isSpeechSynthesisSupported()) {
-      console.warn('Speech synthesis not supported in this browser')
+      console.warn('Speech synthesis not supported in this browser or runtime')
       resolve() // Don't reject, just silently skip
+      return
+    }
+
+    if (!('speechSynthesis' in window) && isCapacitorTTSSupported()) {
+      try {
+        const plugin = getCapacitorTTSPlugin()
+        await plugin?.stop?.()
+        await plugin?.speak?.({
+          text,
+          lang: options.lang ?? 'en-US',
+          rate: options.rate ?? 0.8,
+          pitch: options.pitch ?? 1.0,
+          volume: options.volume ?? 1.0
+        })
+        resolve()
+      } catch (error) {
+        console.error('Capacitor TTS error:', error)
+        reject(error)
+      }
+      return
+    }
+
+    if (!('speechSynthesis' in window) && isAndroidBridgeTTSSupported()) {
+      try {
+        const bridge = getAndroidBridgeTTS()
+        bridge?.stop?.()
+        bridge?.speak?.(
+          text,
+          options.lang ?? 'en-US',
+          options.rate ?? 0.8,
+          options.pitch ?? 1.0,
+          options.volume ?? 1.0
+        )
+        resolve()
+      } catch (error) {
+        console.error('Android bridge TTS error:', error)
+        reject(error)
+      }
       return
     }
 
@@ -140,7 +234,14 @@ export const speakWithPauses = async (
  */
 export const stopSpeaking = (): void => {
   if (!isSpeechSynthesisSupported()) return
-  window.speechSynthesis.cancel()
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel()
+    return
+  }
+
+  const plugin = getCapacitorTTSPlugin()
+  plugin?.stop?.().catch(() => undefined)
+  getAndroidBridgeTTS()?.stop?.()
 }
 
 /**
@@ -148,7 +249,9 @@ export const stopSpeaking = (): void => {
  */
 export const pauseSpeaking = (): void => {
   if (!isSpeechSynthesisSupported()) return
-  window.speechSynthesis.pause()
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.pause()
+  }
 }
 
 /**
@@ -156,7 +259,9 @@ export const pauseSpeaking = (): void => {
  */
 export const resumeSpeaking = (): void => {
   if (!isSpeechSynthesisSupported()) return
-  window.speechSynthesis.resume()
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.resume()
+  }
 }
 
 /**
@@ -164,7 +269,10 @@ export const resumeSpeaking = (): void => {
  */
 export const isSpeaking = (): boolean => {
   if (!isSpeechSynthesisSupported()) return false
-  return window.speechSynthesis.speaking
+  if ('speechSynthesis' in window) {
+    return window.speechSynthesis.speaking
+  }
+  return false
 }
 
 /**
@@ -172,5 +280,8 @@ export const isSpeaking = (): boolean => {
  */
 export const isPaused = (): boolean => {
   if (!isSpeechSynthesisSupported()) return false
-  return window.speechSynthesis.paused
+  if ('speechSynthesis' in window) {
+    return window.speechSynthesis.paused
+  }
+  return false
 }
