@@ -1,71 +1,58 @@
-# Capacitor Android Setup (Option A: Hosted Next.js URL)
+# Capacitor Android Setup (Hosted URL Mode)
 
-This setup wraps the hosted MindWell site in a native Android app shell.
+This setup wraps the hosted MindWell web app in a native Android shell while preserving normal browser behavior.
 
 ## Included in this repository
 
-- `capacitor.config.ts` with hosted `server.url` configuration.
-- Capacitor npm scripts in `package.json`.
+- `capacitor.config.ts` configured for hosted HTTPS `server.url` mode.
 - Runtime bootstrap for:
-  - service worker registration
-  - network offline banner
-  - Android back-button handling
+  - production-only service worker registration
+  - offline detection + reconnect auto-refresh
+  - Android back-button exit flow
+  - Firebase redirect deep-link handling (`appUrlOpen`)
   - status bar + splash coordination
+- Web/native Firebase auth split:
+  - browser: popup login
+  - Capacitor native: redirect login
 
-## 1) Install dependencies
+## 1) Install and sync
 
 ```bash
 npm install
-```
-
-If your environment blocks npm registry access, run the command in a network-enabled CI or local machine.
-
-## 2) Add Android platform
-
-```bash
 npx cap add android
-```
-
-## 3) Sync web + native changes
-
-```bash
 npm run cap:sync:android
-```
-
-## 4) Open Android Studio
-
-```bash
 npm run cap:open:android
 ```
 
-## 5) Verify critical wrapper behavior
+## 2) Firebase auth + deep-link return setup (required)
+
+Add an Android intent filter in `android/app/src/main/AndroidManifest.xml` for your hosted domain so redirect returns to the running app:
+
+```xml
+<intent-filter android:autoVerify="true">
+  <action android:name="android.intent.action.VIEW" />
+  <category android:name="android.intent.category.DEFAULT" />
+  <category android:name="android.intent.category.BROWSABLE" />
+  <data android:scheme="https" android:host="mindwell-navy.vercel.app" />
+</intent-filter>
+```
+
+Also ensure your Firebase Authentication Authorized Domains include:
+
+- `mindwell-navy.vercel.app`
+
+## 3) Android wrapper behavior checklist
 
 - App starts from `https://mindwell-navy.vercel.app`
-- No mixed-content warnings
-- Back button navigates in-app and supports exit flow at root
-- Offline banner appears when network is unavailable
-- Status bar color/style matches brand theme
+- Google auth completes and returns to app
+- Community modal reopens after successful sign-in
+- Offline banner appears with “Open network settings” button
+- App auto-refreshes once network is restored
+- Back button navigates history; at root requires double-press to exit
+- Meditation TTS works with Web Speech and native fallback plugin
 
-## 6) Recommended plugin usage
+## 4) Text-to-speech native fallback
 
-Included dependencies:
+The runtime supports native TTS fallback when a Capacitor TextToSpeech plugin is exposed in the wrapper (`Capacitor.Plugins.TextToSpeech`).
 
-- `@capacitor/app`
-- `@capacitor/network`
-- `@capacitor/status-bar`
-- `@capacitor/splash-screen`
-- `@capacitor/keyboard`
-- `@capacitor/haptics`
-- `@capacitor/push-notifications`
-
-## Security defaults
-
-- `allowMixedContent: false`
-- HTTPS-only server URL
-- Restricted `allowNavigation`
-- CSP and security headers in `next.config.mjs`
-
-## Backend strategy
-
-This wrapper uses hosted URL mode, so Next.js API routes continue to run on the deployed server without forcing static export.
-
+If your Android WebView has unreliable `speechSynthesis`, add a compatible TextToSpeech Capacitor plugin in the native shell and sync again.

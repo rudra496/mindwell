@@ -33,6 +33,7 @@ import {
   Users,
 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 import { CommunityCreatePost } from "./CommunityCreatePost";
 import { CommunityPostDetail } from "./CommunityPostDetail";
@@ -51,6 +52,8 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
   const [error, setError] = useState<string | null>(null);
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [selectedPost, setSelectedPost] = useState<any | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(auth?.currentUser ?? null);
+  const [isAuthBusy, setIsAuthBusy] = useState(false);
 
   const categories = [
     "General Support",
@@ -87,6 +90,16 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
   }
 
   useEffect(() => {
+    if (!auth) return;
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setIsAuthBusy(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
     if (open && !showCreatePost && !selectedPost) fetchPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, showCreatePost, selectedPost, filteredCategory]);
@@ -94,6 +107,16 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
   const handlePostCreated = () => {
     setShowCreatePost(false);
     fetchPosts();
+  };
+
+  const handleGoogleSignIn = async () => {
+    setIsAuthBusy(true);
+    try {
+      await signInWithGoogle();
+    } catch {
+      setIsAuthBusy(false);
+      setError("Sign-in failed. Please try again.");
+    }
   };
 
   if (showCreatePost)
@@ -131,8 +154,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </DialogDescription>
         </DialogHeader>
 
-        {/* SIGN IN ALERT – FIXED LAYOUT */}
-        {!auth?.currentUser && (
+        {!currentUser && (
           <div className="w-full">
             <Alert className="border-orange-200 bg-orange-50">
               <AlertDescription className="flex flex-col gap-3">
@@ -143,8 +165,10 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                 <Button
                   className="w-full sm:w-auto"
                   size="sm"
-                  onClick={signInWithGoogle}
+                  onClick={handleGoogleSignIn}
+                  disabled={isAuthBusy}
                 >
+                  {isAuthBusy ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : null}
                   Sign in with Google
                 </Button>
               </AlertDescription>
@@ -152,7 +176,6 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </div>
         )}
 
-        {/* GUIDELINES */}
         <Alert className="border-blue-200 bg-blue-50 mt-2">
           <AlertTriangle className="h-4 w-4 text-blue-600" />
           <AlertDescription className="text-sm">
@@ -160,7 +183,6 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </AlertDescription>
         </Alert>
 
-        {/* FILTER AND CREATE POST BAR */}
         <div className="flex flex-col sm:flex-row gap-4 mt-4">
           <Select
             value={filteredCategory}
@@ -180,7 +202,7 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </Select>
 
           <Button
-            disabled={!auth?.currentUser}
+            disabled={!currentUser || isAuthBusy}
             className="w-full sm:w-auto"
             onClick={() => setShowCreatePost(true)}
           >
@@ -189,21 +211,18 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
           </Button>
         </div>
 
-        {/* LOADING */}
         {isLoading && (
           <div className="flex justify-center items-center py-12">
             <Loader2 className="h-8 w-8 animate-spin" />
           </div>
         )}
 
-        {/* ERROR */}
         {error && (
           <Alert variant="destructive">
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
 
-        {/* POSTS */}
         {!isLoading && !error && (
           <div className="space-y-4 mt-4">
             {posts.length === 0 ? (

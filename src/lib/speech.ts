@@ -137,7 +137,7 @@ export const speak = async (
       return
     }
 
-    if (!('speechSynthesis' in window) && isCapacitorTTSSupported()) {
+    if (isCapacitorTTSSupported()) {
       try {
         const plugin = getCapacitorTTSPlugin()
         await plugin?.stop?.()
@@ -156,7 +156,7 @@ export const speak = async (
       return
     }
 
-    if (!('speechSynthesis' in window) && isAndroidBridgeTTSSupported()) {
+    if (isAndroidBridgeTTSSupported()) {
       try {
         const bridge = getAndroidBridgeTTS()
         bridge?.stop?.()
