@@ -20,7 +20,8 @@
     "cap:sync:android": "npx cap sync android",
     "cap:copy": "npx cap copy",
     "cap:open:android": "npx cap open android",
-    "cap:run:android": "npx cap run android"
+    "cap:run:android": "npx cap run android",
+    "validate:translations": "node scripts/validate-translations.mjs"
   },
   "dependencies": {
     "@capacitor/app": "^7.1.0",

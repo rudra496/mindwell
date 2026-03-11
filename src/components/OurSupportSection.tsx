@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Heart, Lightbulb, Stethoscope, Users } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
-import { translations, t } from "@/lib/i18n"
+import { translations, t, tKey } from "@/lib/i18n"
 
 /**
  * Our Support Section - Explains emotional support, self-help, professional guidance, community care
@@ -52,9 +52,7 @@ export function OurSupportSection() {
         </h2>
         <p className="text-gray-600 max-w-2xl mx-auto px-4">
           {mounted 
-            ? (language === 'en' 
-                ? "We provide comprehensive support through four key pillars" 
-                : "আমরা চারটি মূল স্তম্ভের মাধ্যমে ব্যাপক সহায়তা প্রদান করি")
+            ? tKey('support.subtitle', language)
             : "We provide comprehensive support through four key pillars"}
         </p>
       </div>

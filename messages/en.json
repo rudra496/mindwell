@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "home": "Home",
+    "selfHelpTools": "Self-Help Tools",
+    "therapyMeditation": "Therapy & Meditation",
+    "psychologists": "Psychologists",
+    "crisisHelp": "Crisis & Emergency Help",
+    "bangladeshServices": "Free Services in Bangladesh 🇧🇩",
+    "sdgMission": "SDG & Our Mission",
+    "about": "About Us",
+    "contact": "Contact & Support"
+  },
+  "hero": {
+    "title": "MindWell",
+    "subtitle": "Open-Source Mental Health Platform",
+    "description": "Comprehensive, scientifically-backed, free mental health support with 393 disorders, 20 validated assessments, 16 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.",
+    "getSupportBtn": "Get Support",
+    "emergencyHelpBtn": "Emergency Help",
+    "headline": "Your Mental Health Matters",
+    "trustBadge1": "Limited Free Sessions",
+    "trustBadge2": "Evidence-Based",
+    "trustBadge3": "Open-Source",
+    "trustBadge4": "Accessible 24/7"
+  },
+  "support": {
+    "title": "Our Support",
+    "emotional": "Emotional Support",
+    "emotionalDesc": "Compassionate resources for managing emotions and mental health challenges",
+    "selfHelp": "Self-Help Resources",
+    "selfHelpDesc": "Evidence-based tools and techniques for personal growth and wellness",
+    "professional": "Professional Guidance",
+    "professionalDesc": "Access to qualified psychologists and mental health professionals",
+    "community": "Community Care",
+    "communityDesc": "Safe peer support spaces for sharing experiences and finding connection",
+    "subtitle": "We provide comprehensive support through four key pillars"
+  },
+  "features": {
+    "title": "What MindWell Offers",
+    "disorders": "Disorders Database",
+    "assessments": "Self-Assessments",
+    "games": "Therapeutic Games",
+    "chatbot": "AI Support Chatbot",
+    "community": "Community Forum",
+    "therapy": "Therapy Library",
+    "meditation": "Meditation Library",
+    "crisis": "Crisis Resources"
+  },
+  "bangladesh": {
+    "title": "Free Services in Bangladesh 🇧🇩",
+    "description": "All MindWell services are completely free for users in Bangladesh. We are committed to making mental health support accessible to everyone."
+  },
+  "sdg": {
+    "title": "SDG 3: Good Health & Well-Being",
+    "description": "MindWell contributes to the United Nations Sustainable Development Goal 3 by providing accessible mental health resources and support to communities worldwide.",
+    "impactNote": "As a non-profit, open-source initiative, MindWell demonstrates how technology can advance public health goals and contribute to national and global well-being."
+  },
+  "psychologists": {
+    "title": "Access to Psychologists",
+    "description": "Connect with qualified psychologists who can provide professional guidance and support.",
+    "requestBtn": "Request Support"
+  },
+  "crisis": {
+    "title": "IN CRISIS? GET HELP NOW",
+    "us": "US",
+    "emergency": "Emergency"
+  },
+  "disclaimer": {
+    "title": "Medical Disclaimer",
+    "text": "FOR EDUCATIONAL PURPOSES ONLY. This platform is NOT a substitute for professional medical advice, diagnosis, or treatment. ALWAYS consult licensed mental health professionals. Assessments are screening tools, NOT diagnostic instruments."
+  },
+  "buttons": {
+    "explore": "Explore",
+    "start": "Start",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "learnMore": "Learn More",
+    "getHelp": "Get Help Now"
+  },
+  "common": {
+    "inspiredBy": "Inspired by Prof. Farzana Hussain, Ph.D."
+  },
+  "voice": {
+    "play": "Play",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop"
+  },
+  "footer": {
+    "about": "About MindWell",
+    "contact": "Contact",
+    "important": "Important",
+    "copyright": "MindWell. Open-source mental health platform."
+  },
+  "languageToggle": {
+    "switchTo": "Switch to English",
+    "switchToBangla": "Switch to Bangla",
+    "english": "English",
+    "bangla": "বাংলা"
+  },
+  "assessmentModal": {
+    "title": "Mental Health Self-Reflection Tools",
+    "description": "Psychometric, evidence-based self-reflection tools",
+    "loading": "Loading assessments..."
+  },
+  "contactForm": {
+    "errors": {
+      "required": "Please fill in all required fields.",
+      "email": "Please enter a valid email address.",
+      "sendFailed": "Failed to send message. Please try again.",
+      "generic": "An error occurred. Please try again later."
+    },
+    "title": "Contact Us",
+    "description": "Request services, talk to psychologists, or reach out for general inquiries",
+    "name": "Name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "reason": "Reason for Contact",
+    "reasonPlaceholder": "Select a reason",
+    "reasonOptions": {
+      "psychologist": "Talk to Psychologist",
+      "serviceRequest": "Request Services",
+      "generalInquiry": "General Inquiry",
+      "feedback": "Feedback/Suggestions",
+      "partnership": "Partnership/Collaboration",
+      "other": "Other"
+    },
+    "preferredTime": "Preferred Contact Time (Optional)",
+    "preferredTimePlaceholder": "e.g., Weekdays 2-5 PM",
+    "message": "Message",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "success": "Thank you! Your message has been sent successfully. We will get back to you soon.",
+    "sending": "Sending...",
+    "submit": "Send Message",
+    "privacyNote": "Your information will be kept confidential and used only to respond to your inquiry."
+  },
+  "footerLegacy": {
+    "aboutDescription": "MindWell – Open Source Mental Health Platform. Free access to mental health resources, with limited free psychologist sessions based on availability.",
+    "createdWith": "Created with",
+    "awareness": "for mental health awareness",
+    "quickLinks": "Quick Links",
+    "disclaimer": "Disclaimer",
+    "privacy": "Privacy Policy",
+    "faq": "FAQ",
+    "ethics": "Ethics & Safety",
+    "terms": "Terms of Service",
+    "crisisSupport": "🚨 Crisis Support",
+    "developedBy": "Developed & Founded by",
+    "educational": "For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.",
+    "inspiredBy": "Inspired by"
+  }
+}

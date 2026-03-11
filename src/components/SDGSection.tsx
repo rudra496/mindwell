@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Target, Globe, Heart, TrendingUp } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
-import { translations, t } from "@/lib/i18n"
+import { translations, t, tKey } from "@/lib/i18n"
 
 /**
  * SDG 3 (Good Health & Well-Being) Section
@@ -88,9 +88,7 @@ export function SDGSection() {
               <div className="mt-6 bg-blue-100/50 rounded-lg p-4 border-l-4 border-blue-600">
                 <p className="text-sm text-blue-900">
                   {mounted
-                    ? (language === 'en'
-                        ? "As a non-profit, open-source initiative, MindWell demonstrates how technology can advance public health goals and contribute to national and global well-being."
-                        : "একটি অলাভজনক, ওপেন-সোর্স উদ্যোগ হিসাবে, মাইন্ডওয়েল প্রদর্শন করে কীভাবে প্রযুক্তি জনস্বাস্থ্য লক্ষ্যগুলিকে অগ্রসর করতে এবং জাতীয় ও বৈশ্বিক কল্যাণে অবদান রাখতে পারে।")
+                    ? tKey('sdg.impactNote', language)
                     : "As a non-profit, open-source initiative, MindWell demonstrates how technology can advance public health goals and contribute to national and global well-being."}
                 </p>
               </div>

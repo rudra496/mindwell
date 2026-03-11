@@ -14,6 +14,7 @@ export function useLanguage() {
     setIsClient(true)
     const currentLang = getCurrentLanguage()
     setLanguage(currentLang)
+    document.documentElement.lang = currentLang
     
     // Restore scroll position after language change refresh
     const savedScrollPosition = sessionStorage.getItem('mindwell_scroll_position')
@@ -29,6 +30,7 @@ export function useLanguage() {
   const changeLanguage = (newLang: Language) => {
     setLanguage(newLang)
     setCurrentLanguage(newLang)
+    document.documentElement.lang = newLang
     
     // Trigger a custom event for other components to listen to
     if (typeof window !== 'undefined') {

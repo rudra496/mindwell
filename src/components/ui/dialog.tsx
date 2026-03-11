@@ -5,6 +5,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { ArrowLeft } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { getCurrentLanguage, tKey } from "@/lib/i18n"
 
 const Dialog = DialogPrimitive.Root
 
@@ -38,16 +39,15 @@ const DialogContent = React.forwardRef<
 
   React.useEffect(() => {
     setMounted(true)
-    // Get language from localStorage
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('mindwell_language')
+      const stored = getCurrentLanguage()
       if (stored === 'en' || stored === 'bn') {
         setLanguage(stored)
       }
     }
   }, [])
 
-  const backText = mounted ? (language === 'en' ? 'Back' : 'পিছনে') : 'Back'
+  const backText = mounted ? tKey('buttons.back', language) : 'Back'
 
   return (
     <DialogPortal>
