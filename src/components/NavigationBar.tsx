@@ -16,6 +16,7 @@ import {
   HelpCircle,
   Search,
   MapPin,
+  Newspaper,
 } from "lucide-react"
 
 type NavItem = {
@@ -32,6 +33,7 @@ const navItems: NavItem[] = [
   { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
   { id: "sdg-our-mission", label: "Who We Are & Our Goals", icon: Target },
   { id: "funding-support", label: "Funding & Support", icon: Mail },
+  { id: "blog", label: "Blog", icon: Newspaper, href: "/blog" },
   { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
 ]
 

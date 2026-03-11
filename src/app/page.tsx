@@ -14,7 +14,6 @@ import {
   Mail,
   Gamepad2,
   FileText,
-  PlayCircle,
   Phone,
 } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -176,56 +175,26 @@ MindWell Support — free, ethical mental health support & crisis management.</p
           </MinimalSection>
 
           <MinimalSection
-            id="publications-media"
-            title="MindWell Publications & Media"
+            id="mindwell-blog"
+            title="MindWell Blog"
             icon={FileText}
             stockPhotoUrl="/images/section-bg/publications_media_bg.jpg"
-            stockPhotoAlt=""
+            stockPhotoAlt="MindWell blog and publication highlights"
           >
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Mental health education, awareness articles</p>
             <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-              Evidence-based mental health insights, reflections, and educational media shared by the MindWell team across trusted platforms.
+              Mental health education, awareness articles, reflections, and evidence-based insights published by the MindWell team.
             </p>
-
             <div className="rounded-xl border border-teal-200 dark:border-teal-700 bg-white/85 dark:bg-slate-800/70 p-5 mb-6 shadow-sm">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Posts</h3>
-              <div className="space-y-4">
-                <a
-                  href="https://www.facebook.com/share/1cCvSmWzPz/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="MindWell Support Facebook mental health publications and updates"
-                  className="block text-xl font-medium text-teal-700 dark:text-teal-400 hover:underline"
-                >
-                  MindWell Support on Facebook – Mental Health Awareness &amp; Updates
-                </a>
-                <p className="text-xl text-gray-700 dark:text-gray-300">Written reflections and blog publications will be listed here.</p>
-
-                <div className="ml-3 sm:ml-6 border-l-2 border-teal-200 dark:border-teal-700 pl-4 sm:pl-6">
-                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Videos</h4>
-                  <div aria-label="Upcoming educational and meditation video library" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {["Video Series Placeholder 1", "Video Series Placeholder 2", "Video Series Placeholder 3"].map((title) => (
-                      <article key={title} className="rounded-xl border border-gray-200 dark:border-slate-700 bg-white/85 dark:bg-slate-800/70 p-4 shadow-sm">
-                        <div className="aspect-video rounded-lg border border-dashed border-teal-300 dark:border-teal-700 bg-teal-50/80 dark:bg-teal-900/10 flex items-center justify-center mb-3">
-                          <PlayCircle className="h-10 w-10 text-teal-500 dark:text-teal-400" />
-                          {/* Future YouTube embed placeholder:
-                          <iframe
-                            src=""
-                            title="MindWell educational video"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full h-full rounded-lg"
-                          />
-                          */}
-                        </div>
-                        <h5 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">{title}</h5>
-                        <p className="text-xl text-gray-700 dark:text-gray-300">Educational &amp; Meditation Video (Coming Soon)</p>
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">Read the latest posts</h3>
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
+                Explore a clean, searchable publishing experience for long-form mental health articles.
+              </p>
+              <Link
+                href="/blog"
+                className="inline-flex items-center rounded-lg bg-teal-600 px-5 py-3 font-semibold text-white hover:bg-teal-700"
+              >
+                Visit MindWell Blog
+              </Link>
             </div>
           </MinimalSection>
           <MinimalSection

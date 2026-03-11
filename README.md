@@ -159,6 +159,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
+### Troubleshooting dependency installation
+
+If you see registry or package resolution issues (for example `next: not found` after install attempts), set npm registry explicitly and reinstall:
+
+```bash
+npm config set registry https://registry.npmjs.org/
+npm install
+```
+
+Then start development:
+
+```bash
+npm run dev
+```
+
 ### Build for Production
 
 ```bash
