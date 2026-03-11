@@ -1,8 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
-
 import { convertMarkdownToHTML } from "@/lib/markdown-to-html"
-
 import type {
   BlogPost,
   BlogPostFrontmatter,
@@ -10,10 +8,6 @@ import type {
 } from "@/types/blog"
 
 const BLOG_POSTS_PATH = path.join(process.cwd(), "content", "blog", "posts")
-
-/* ---------------------------------------------------------- */
-/* Utilities */
-/* ---------------------------------------------------------- */
 
 function calculateReadingTime(content: string): number {
   const words = content.trim().split(/\s+/).length
@@ -38,18 +32,12 @@ function parseListValue(value: string): string[] {
     .filter(Boolean)
 }
 
-/* ---------------------------------------------------------- */
-/* Frontmatter parsing */
-/* ---------------------------------------------------------- */
-
 function parseFrontmatter(frontmatterRaw: string): BlogPostFrontmatter {
   const lines = frontmatterRaw.split("\n")
-
   const data: Record<string, string> = {}
 
   for (const line of lines) {
     const separatorIndex = line.indexOf(":")
-
     if (separatorIndex === -1) continue
 
     const key = line.slice(0, separatorIndex).trim()
@@ -77,10 +65,6 @@ function parseFrontmatter(frontmatterRaw: string): BlogPostFrontmatter {
   }
 }
 
-/* ---------------------------------------------------------- */
-/* Markdown parser */
-/* ---------------------------------------------------------- */
-
 function parseMarkdownFile(fileContents: string): BlogPost | null {
   const frontmatterMatch = fileContents.match(
     /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/
@@ -92,7 +76,6 @@ function parseMarkdownFile(fileContents: string): BlogPost | null {
   }
 
   const [, frontmatterRaw, contentRaw] = frontmatterMatch
-
   const frontmatter = parseFrontmatter(frontmatterRaw)
 
   return {
@@ -100,10 +83,6 @@ function parseMarkdownFile(fileContents: string): BlogPost | null {
     content: contentRaw.trim()
   }
 }
-
-/* ---------------------------------------------------------- */
-/* Computed fields */
-/* ---------------------------------------------------------- */
 
 function withComputedFields(
   post: BlogPost
@@ -115,10 +94,6 @@ function withComputedFields(
   }
 }
 
-/* ---------------------------------------------------------- */
-/* Main loaders */
-/* ---------------------------------------------------------- */
-
 export async function getAllBlogPosts(): Promise<
   BlogPostWithComputedFields[]
 > {
@@ -129,7 +104,6 @@ export async function getAllBlogPosts(): Promise<
   const posts = await Promise.all(
     markdownFiles.map(async (fileName) => {
       const fullPath = path.join(BLOG_POSTS_PATH, fileName)
-
       const fileContents = await fs.readFile(fullPath, "utf8")
 
       const parsed = parseMarkdownFile(fileContents)
@@ -150,27 +124,17 @@ export async function getAllBlogPosts(): Promise<
     )
 }
 
-/* ---------------------------------------------------------- */
-/* Get post by slug */
-/* ---------------------------------------------------------- */
-
 export async function getBlogPostBySlug(
   slug: string
 ): Promise<BlogPostWithComputedFields | null> {
   const posts = await getAllBlogPosts()
-
-  return posts.find((post) => post.slug === normalizeSlug(slug)) ?? null
+  return posts.find((post) => post.slug === slug) ?? null
 }
-
-/* ---------------------------------------------------------- */
-/* Tag filter */
-/* ---------------------------------------------------------- */
 
 export async function getPostsByTag(
   tag: string
 ): Promise<BlogPostWithComputedFields[]> {
   const posts = await getAllBlogPosts()
-
   const normalizedTag = normalizeSlug(tag)
 
   return posts.filter((post) =>
@@ -180,32 +144,23 @@ export async function getPostsByTag(
   )
 }
 
-/* ---------------------------------------------------------- */
-/* Category filter */
-/* ---------------------------------------------------------- */
-
 export async function getPostsByCategory(
   category: string
 ): Promise<BlogPostWithComputedFields[]> {
   const posts = await getAllBlogPosts()
-
   const normalizedCategory = normalizeSlug(category)
 
   return posts.filter(
-    (post) => normalizeSlug(post.category) === normalizedCategory
+    (post) =>
+      normalizeSlug(post.category) === normalizedCategory
   )
 }
-
-/* ---------------------------------------------------------- */
-/* Related posts */
-/* ---------------------------------------------------------- */
 
 export function getRelatedPosts(
   currentPost: BlogPostWithComputedFields,
   allPosts: BlogPostWithComputedFields[],
   limit = 4
 ): BlogPostWithComputedFields[] {
-
   const currentTags = new Set(
     currentPost.tags.map(normalizeSlug)
   )
@@ -215,29 +170,25 @@ export function getRelatedPosts(
   return allPosts
     .filter((post) => post.slug !== currentPost.slug)
     .map((post) => {
-
       const tagMatches = post.tags
         .map(normalizeSlug)
         .filter((tag) => currentTags.has(tag)).length
 
       const categoryMatch =
-        normalizeSlug(post.category) === currentCategory ? 1 : 0
+        normalizeSlug(post.category) === currentCategory
+          ? 1
+          : 0
 
       return {
         post,
         score: tagMatches * 2 + categoryMatch
       }
-
     })
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
     .map((item) => item.post)
 }
-
-/* ---------------------------------------------------------- */
-/* Slug helper */
-/* ---------------------------------------------------------- */
 
 export function slugify(value: string): string {
   return normalizeSlug(value)
