@@ -1,49 +1,58 @@
 {
   "compilerOptions": {
+    "target": "ES2017",
+
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+
     "noEmit": true,
+
     "esModuleInterop": true,
+
     "module": "esnext",
     "moduleResolution": "bundler",
+
     "resolveJsonModule": true,
     "isolatedModules": true,
+
     "jsx": "preserve",
+
     "incremental": true,
-    "target": "ES2017",
+
+    "baseUrl": ".",
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
 
     "plugins": [
       {
         "name": "next"
       }
-    ],
-
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+    ]
   },
 
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".next/types/**/*.ts"
   ],
 
   "exclude": [
     "node_modules",
-    "android",
     ".next",
-    "vitest.config.ts",
+    "android",
+    "android/**",
     "android/app/build",
-    "android/app/src/main/assets"
+    "android/app/src/main/assets",
+    "vitest.config.ts"
   ]
 }

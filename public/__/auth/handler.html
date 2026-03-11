@@ -1,27 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <title>Firebase Auth Handler</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+
+  <!-- Firebase SDK required for OAuth redirect handling -->
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
 
   <script>
     function completeAuth() {
       try {
-        if (window.opener) {
+
+        // If OAuth opened a popup
+        if (window.opener && !window.opener.closed) {
           window.close();
           return;
         }
-        window.location.replace("/");
-      } catch (e) {
-        console.error("Auth handler error", e);
+
+        // If opened inside Capacitor or normal browser redirect
+        if (window.location) {
+          window.location.replace("/");
+          return;
+        }
+
+      } catch (error) {
+        console.error("Firebase Auth handler error:", error);
         window.location.replace("/");
       }
     }
 
-    window.onload = completeAuth;
+    // Run after page loads
+    window.addEventListener("load", completeAuth);
   </script>
 </head>
 

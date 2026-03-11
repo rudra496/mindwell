@@ -1,30 +1,53 @@
 ---
-title: "Understanding Anxiety Disorder"
-date: "2026-03-10"
-author: "MindWell Team"
-coverImage: "/images/stock/mental_health_awareness.jpg"
-excerpt: "Anxiety disorders are among the most common mental health conditions."
-tags: ["anxiety", "mental health", "education"]
-category: "mental health education"
-slug: "understanding-anxiety-disorder"
+title: Understanding Anxiety Disorder
+date: 2026-03-10
+author: MindWell Team
+coverImage: /images/stock/mental_health_awareness.jpg
+excerpt: Anxiety disorders are among the most common mental health conditions.
+tags: [anxiety, mental health, education]
+category: mental-health-education
+slug: understanding-anxiety-disorder
 ---
 
 Anxiety is a normal human emotion, but anxiety disorders go beyond occasional worry. They can create intense, persistent fear that interferes with daily life, relationships, and sleep.
 
-## Common signs
+## Common Signs
 
-- Restlessness
-- Racing thoughts
-- Muscle tension
-- Poor concentration
-- Avoiding places or situations linked to fear
+People experiencing anxiety disorders may notice symptoms such as:
 
-Physical symptoms can include a fast heartbeat, sweating, dizziness, and shortness of breath.
+- Restlessness  
+- Racing thoughts  
+- Muscle tension  
+- Poor concentration  
+- Avoiding places or situations linked to fear  
 
-## Evidence-based care
+Physical symptoms can include:
 
-Evidence-based care can make a major difference. Cognitive behavioral therapy (CBT), exposure-based approaches, mindfulness skills, and in some cases medication are all effective options.
+- Rapid heartbeat  
+- Sweating  
+- Dizziness  
+- Shortness of breath  
 
-Self-care can support treatment: keep a regular sleep schedule, reduce caffeine, move your body consistently, and practice breathing or grounding exercises during stressful moments.
+## Evidence-Based Care
 
-If anxiety is affecting work, relationships, or safety, seek professional help early. Recovery is possible, and support works best when it is compassionate, structured, and consistent.
+Evidence-based care can make a major difference in managing anxiety disorders. Effective approaches include:
+
+- Cognitive Behavioral Therapy (CBT)
+- Exposure-based therapy
+- Mindfulness and grounding techniques
+- Medication when recommended by a clinician
+
+## Supporting Yourself
+
+Self-care strategies can support treatment and recovery:
+
+- Maintain a regular sleep schedule
+- Reduce caffeine intake
+- Engage in consistent physical activity
+- Practice breathing or grounding exercises during stressful moments
+
+## When to Seek Professional Help
+
+If anxiety begins to interfere with work, relationships, sleep, or daily functioning, professional support can help.
+
+Recovery is possible, and many people experience significant improvement when care is compassionate, structured, and consistent.
