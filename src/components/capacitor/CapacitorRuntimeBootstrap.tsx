@@ -7,18 +7,21 @@ import { App } from "@capacitor/app"
 type CapacitorPluginBag = {
 Network?: {
 getStatus?: () => Promise<{ connected: boolean }>
-addListener?: (eventName: string, callback: (status: { connected: boolean }) => void) => Promise<{ remove: () => void }> | { remove: () => void }
+addListener?: (
+eventName: string,
+callback: (status: { connected: boolean }) => void
+) => Promise<{ remove: () => void }> | { remove: () => void }
 }
 StatusBar?: {
-setStyle?: (options: { style: "DARK" | "LIGHT" }) => Promise<void>
-setBackgroundColor?: (options: { color: string }) => Promise<void>
-setOverlaysWebView?: (options: { overlay: boolean }) => Promise<void>
+setStyle?: (options: { style: "DARK" | "LIGHT" }) => Promise
+setBackgroundColor?: (options: { color: string }) => Promise
+setOverlaysWebView?: (options: { overlay: boolean }) => Promise
 }
 SplashScreen?: {
-hide?: () => Promise<void>
+hide?: () => Promise
 }
 Haptics?: {
-impact?: (options: { style: "LIGHT" | "MEDIUM" | "HEAVY" }) => Promise<void>
+impact?: (options: { style: "LIGHT" | "MEDIUM" | "HEAVY" }) => Promise
 }
 }
 
@@ -29,6 +32,7 @@ return ((window as any).Capacitor?.Plugins ?? {}) as CapacitorPluginBag
 
 const isCapacitorNative = (): boolean => {
 if (typeof window === "undefined") return false
+
 const capacitor = (window as any).Capacitor
 if (!capacitor) return false
 
@@ -55,27 +59,20 @@ const wasOfflineRef = useRef(false)
 const reloadTriggeredRef = useRef(false)
 const lastBackPressRef = useRef(0)
 
-/* ---------------------------
-Service Worker
---------------------------- */
+/* Service Worker */
 useEffect(() => {
 if (typeof window === "undefined") return
 
-```
 if ("serviceWorker" in navigator && process.env.NODE_ENV === "production") {
   navigator.serviceWorker.register("/sw.js").catch(() => undefined)
 }
-```
 
 }, [])
 
-/* ---------------------------
-Status bar & splash
---------------------------- */
+/* Status bar + splash */
 useEffect(() => {
 if (!nativeRuntime) return
 
-```
 const plugins = getPlugins()
 
 plugins.StatusBar?.setOverlaysWebView?.({ overlay: false }).catch(() => undefined)
@@ -87,17 +84,13 @@ const hideSplash = window.setTimeout(() => {
 }, 450)
 
 return () => window.clearTimeout(hideSplash)
-```
 
 }, [nativeRuntime])
 
-/* ---------------------------
-Network state detection
---------------------------- */
+/* Network detection */
 useEffect(() => {
 if (typeof window === "undefined") return
 
-```
 const plugins = getPlugins()
 let networkRemove: (() => void) | null = null
 
@@ -114,9 +107,11 @@ const updateOfflineState = (connected: boolean) => {
   const canReload = wasOfflineRef.current && !reloadTriggeredRef.current
   if (!canReload) return
 
-  const previousReload = Number(window.sessionStorage.getItem("mindwell:last-reload-on-online") ?? "0")
-  const now = Date.now()
+  const previousReload = Number(
+    window.sessionStorage.getItem("mindwell:last-reload-on-online") ?? "0"
+  )
 
+  const now = Date.now()
   if (now - previousReload < reloadCooldownMs) return
 
   reloadTriggeredRef.current = true
@@ -135,9 +130,10 @@ plugins.Network?.getStatus?.()
   .then((status) => updateOfflineState(status.connected))
   .catch(() => undefined)
 
-const networkListener = plugins.Network?.addListener?.("networkStatusChange", (status) => {
-  updateOfflineState(status.connected)
-})
+const networkListener = plugins.Network?.addListener?.(
+  "networkStatusChange",
+  (status) => updateOfflineState(status.connected)
+)
 
 Promise.resolve(networkListener)
   .then((listener) => {
@@ -150,17 +146,13 @@ return () => {
   window.removeEventListener("offline", setFromNavigator)
   networkRemove?.()
 }
-```
 
 }, [])
 
-/* ---------------------------
-Android back button
---------------------------- */
+/* Android back button */
 useEffect(() => {
 if (!nativeRuntime) return
 
-```
 const plugins = getPlugins()
 let removeBackHandler: (() => void) | null = null
 
@@ -191,17 +183,13 @@ Promise.resolve(listenerResult)
   .catch(() => undefined)
 
 return () => removeBackHandler?.()
-```
 
 }, [nativeRuntime])
 
-/* ---------------------------
-🔑 Deep-link login fix
---------------------------- */
+/* Deep link handler */
 useEffect(() => {
 if (!nativeRuntime) return
 
-```
 let removeUrlOpen: (() => void) | null = null
 
 const listenerResult = App.addListener("appUrlOpen", (event) => {
@@ -214,8 +202,8 @@ const listenerResult = App.addListener("appUrlOpen", (event) => {
     if (url.hostname === "mindwell-navy.vercel.app") {
       window.location.href = url.pathname + url.search + url.hash
     }
-  } catch {
-    console.warn("Invalid deep link")
+  } catch (error) {
+    console.warn("Invalid deep link", error)
   }
 })
 
@@ -226,46 +214,38 @@ Promise.resolve(listenerResult)
   .catch(() => undefined)
 
 return () => removeUrlOpen?.()
-```
 
 }, [nativeRuntime])
 
-/* ---------------------------
-Firebase redirect login
---------------------------- */
+/* Firebase redirect login */
 useEffect(() => {
 if (typeof window === "undefined") return
 
-```
 setIsAuthResolving(true)
 
 completeRedirectSignIn()
   .catch(() => undefined)
   .finally(() => setIsAuthResolving(false))
-```
 
 }, [])
 
-/* ---------------------------
-Exit hint timer
---------------------------- */
+/* Exit hint timer */
 useEffect(() => {
 if (!showExitHint) return
 
-```
 const timer = window.setTimeout(() => setShowExitHint(false), 1400)
 return () => window.clearTimeout(timer)
-```
 
 }, [showExitHint])
 
 return (
 <>
-{isOffline && ( <div className="fixed bottom-4 left-1/2 z-[120] w-[min(92vw,540px)] -translate-x-1/2 rounded-xl bg-red-700 px-4 py-3 text-xs font-medium text-white shadow-lg">
-You are offline. Please reconnect. </div>
+{isOffline && (
+
+You are offline. Please reconnect.
+
 )}
 
-```
   {showExitHint && (
     <div className="fixed bottom-16 left-1/2 z-[120] -translate-x-1/2 rounded-full bg-slate-900 px-4 py-2 text-xs text-white shadow-lg">
       Press back again to exit MindWell.
@@ -276,7 +256,6 @@ You are offline. Please reconnect. </div>
     <div className="sr-only">Completing sign-in…</div>
   )}
 </>
-```
 
 )
 }
