@@ -1,107 +1,98 @@
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-  Auth,
-  UserCredential,
+getAuth,
+GoogleAuthProvider,
+signInWithCredential,
+Auth,
+UserCredential,
+onAuthStateChanged
 } from "firebase/auth";
 import { getFirestore, Firestore } from "firebase/firestore";
+import { Browser } from "@capacitor/browser";
+import { App as CapacitorApp } from "@capacitor/app";
 
-const COMMUNITY_AUTH_RETURN_KEY = "mindwell:community:return";
 const COMMUNITY_AUTH_OPEN_KEY = "mindwell:community:open";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
-
-const isFirebaseConfigured = firebaseConfig.apiKey && firebaseConfig.projectId;
 
 let app: FirebaseApp | undefined;
 let auth: Auth | undefined;
 let db: Firestore | undefined;
 
-if (isFirebaseConfigured) {
-  app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-  auth = getAuth(app);
-  db = getFirestore(app);
+if (firebaseConfig.apiKey && firebaseConfig.projectId) {
+app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+auth = getAuth(app);
+db = getFirestore(app);
 }
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
-const isCapacitorNativeRuntime = (): boolean => {
-  if (typeof window === "undefined") return false;
-  const capacitor = (window as any)?.Capacitor;
-  if (!capacitor) return false;
+export async function signInWithGoogle() {
+if (!auth) {
+console.warn("Firebase not configured");
+return;
+}
 
-  if (typeof capacitor.isNativePlatform === "function") {
-    return Boolean(capacitor.isNativePlatform());
+const loginUrl =
+"https://mindwell-navy.vercel.app/api/auth/google";
+
+await Browser.open({
+url: loginUrl,
+windowName: "_self",
+});
+}
+
+export function setupCapacitorAuthRedirectHandler() {
+CapacitorApp.addListener("appUrlOpen", async (event) => {
+const incomingUrl = event.url;
+
+```
+if (!incomingUrl) return;
+
+try {
+  const url = new URL(incomingUrl);
+
+  if (url.hostname === "mindwell-navy.vercel.app") {
+    await Browser.close();
+
+    if (typeof window !== "undefined") {
+      window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1");
+      window.location.href = url.pathname + url.search + url.hash;
+    }
   }
+} catch (err) {
+  console.error("Invalid redirect URL", err);
+}
+```
 
-  if (typeof capacitor.getPlatform === "function") {
-    return capacitor.getPlatform() !== "web";
-  }
-
-  return false;
-};
-
-const markCommunityReturn = () => {
-  if (typeof window === "undefined") return;
-  window.sessionStorage.setItem(COMMUNITY_AUTH_RETURN_KEY, "1");
-};
+});
+}
 
 export const shouldReopenCommunityAfterAuth = (): boolean => {
-  if (typeof window === "undefined") return false;
-  return window.sessionStorage.getItem(COMMUNITY_AUTH_OPEN_KEY) === "1";
+if (typeof window === "undefined") return false;
+return window.sessionStorage.getItem(COMMUNITY_AUTH_OPEN_KEY) === "1";
 };
 
 export const consumeCommunityReopenFlag = (): boolean => {
-  if (!shouldReopenCommunityAfterAuth() || typeof window === "undefined") return false;
-  window.sessionStorage.removeItem(COMMUNITY_AUTH_OPEN_KEY);
-  return true;
+if (typeof window === "undefined") return false;
+
+const flag = window.sessionStorage.getItem(COMMUNITY_AUTH_OPEN_KEY) === "1";
+window.sessionStorage.removeItem(COMMUNITY_AUTH_OPEN_KEY);
+return flag;
 };
 
-export async function signInWithGoogle() {
-  if (!auth) {
-    console.warn("Firebase not configured. Sign-in unavailable.");
-    return;
-  }
-
-  markCommunityReturn();
-
-  if (isCapacitorNativeRuntime()) {
-    await signInWithRedirect(auth, provider);
-    return;
-  }
-
-  await signInWithPopup(auth, provider);
-  if (typeof window !== "undefined") {
-    window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1");
-  }
-}
-
-export async function completeRedirectSignIn(): Promise<UserCredential | null> {
-  if (!auth || typeof window === "undefined") return null;
-
-  const result = await getRedirectResult(auth);
-
-  if (result?.user) {
-    if (window.sessionStorage.getItem(COMMUNITY_AUTH_RETURN_KEY) === "1") {
-      window.sessionStorage.removeItem(COMMUNITY_AUTH_RETURN_KEY);
-      window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1");
-    }
-  }
-
-  return result;
+export function watchAuthState(callback: (user: any) => void) {
+if (!auth) return;
+return onAuthStateChanged(auth, callback);
 }
 
 export { auth, db };
