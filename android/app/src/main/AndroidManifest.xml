@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.mindwell.app">
 
+    <!-- Internet required for web + Firebase -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,30 +23,36 @@
 
             <!-- App launcher -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
-            <!-- Deep link for OAuth return -->
-            <intent-filter android:autoVerify="false">
+            <!-- Deep link for entire website -->
+            <intent-filter android:autoVerify="true">
 
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
-                <!-- General site -->
                 <data
                     android:scheme="https"
                     android:host="mindwell-navy.vercel.app"
-                    android:pathPrefix="/" />
+                    android:pathPrefix="/"/>
+            </intent-filter>
 
-                <!-- Firebase / Google auth redirect -->
+            <!-- OAuth redirect handler -->
+            <intent-filter android:autoVerify="true">
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
                 <data
                     android:scheme="https"
                     android:host="mindwell-navy.vercel.app"
-                    android:pathPrefix="/__/auth" />
-
+                    android:pathPrefix="/__/auth"/>
             </intent-filter>
 
         </activity>
@@ -58,9 +66,10 @@
 
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+                android:resource="@xml/file_paths"/>
 
         </provider>
 
     </application>
+
 </manifest>

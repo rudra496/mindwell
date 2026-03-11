@@ -1,11 +1,17 @@
 import { App as CapacitorApp } from "@capacitor/app"
 import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app"
 import {
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
   getAuth,
-  GoogleAuthProvider,
-  signInWithRedirect,
   getRedirectResult,
+  GoogleAuthProvider,
+  indexedDBLocalPersistence,
+  initializeAuth,
   onAuthStateChanged,
+  setPersistence,
+  signInWithPopup,
+  signInWithRedirect,
   type Auth,
   type UserCredential,
 } from "firebase/auth"
@@ -29,12 +35,38 @@ let db: Firestore | undefined
 
 if (firebaseConfig.apiKey && firebaseConfig.projectId) {
   app = getApps().length ? getApp() : initializeApp(firebaseConfig)
-  auth = getAuth(app)
+
+  try {
+    auth = initializeAuth(app, {
+      persistence: [indexedDBLocalPersistence, browserLocalPersistence],
+      popupRedirectResolver: browserPopupRedirectResolver,
+    })
+  } catch {
+    auth = getAuth(app)
+  }
+
   db = getFirestore(app)
 }
 
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: "select_account" })
+
+
+const isNativeCapacitorRuntime = (): boolean => {
+  if (typeof window === "undefined") return false
+  const capacitor = (window as any)?.Capacitor
+  if (!capacitor) return false
+
+  if (typeof capacitor.isNativePlatform === "function") {
+    return Boolean(capacitor.isNativePlatform())
+  }
+
+  if (typeof capacitor.getPlatform === "function") {
+    return capacitor.getPlatform() !== "web"
+  }
+
+  return false
+}
 
 /*
 --------------------------------------------------
@@ -46,6 +78,23 @@ export async function signInWithGoogle() {
   if (!auth) {
     console.warn("Firebase not configured")
     return
+  }
+
+  try {
+    await setPersistence(auth, browserLocalPersistence)
+  } catch (error) {
+    console.warn("Failed to set auth persistence", error)
+  }
+
+  const shouldUseRedirect = isNativeCapacitorRuntime()
+
+  if (!shouldUseRedirect) {
+    try {
+      await signInWithPopup(auth, provider)
+      return
+    } catch (error) {
+      console.warn("Popup sign-in failed; falling back to redirect", error)
+    }
   }
 
   await signInWithRedirect(auth, provider)
