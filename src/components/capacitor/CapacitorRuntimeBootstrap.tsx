@@ -58,6 +58,13 @@ export function CapacitorRuntimeBootstrap() {
   const wasOfflineRef = useRef(false)
   const reloadTriggeredRef = useRef(false)
   const lastBackPressRef = useRef(0)
+  const resolveAuthRedirect = () => {
+    setIsAuthResolving(true)
+    completeRedirectSignIn()
+      .catch(() => undefined)
+      .finally(() => setIsAuthResolving(false))
+  }
+
 
 /* Service Worker */
   useEffect(() => {
@@ -201,6 +208,7 @@ export function CapacitorRuntimeBootstrap() {
 
     if (url.hostname === "mindwell-navy.vercel.app") {
       window.location.href = url.pathname + url.search + url.hash
+      window.setTimeout(() => resolveAuthRedirect(), 250)
     }
   } catch (error) {
     console.warn("Invalid deep link", error)
@@ -221,13 +229,31 @@ export function CapacitorRuntimeBootstrap() {
   useEffect(() => {
     if (typeof window === "undefined") return
 
-    setIsAuthResolving(true)
-
-    completeRedirectSignIn()
-      .catch(() => undefined)
-      .finally(() => setIsAuthResolving(false))
+    resolveAuthRedirect()
 
   }, [])
+
+/* Re-check auth when app becomes active */
+  useEffect(() => {
+    if (!nativeRuntime) return
+
+    let removeStateListener: (() => void) | null = null
+
+    const listenerResult = App.addListener("appStateChange", ({ isActive }) => {
+      if (isActive) {
+        window.setTimeout(() => resolveAuthRedirect(), 200)
+      }
+    })
+
+    Promise.resolve(listenerResult)
+      .then((listener) => {
+        removeStateListener = listener?.remove ?? null
+      })
+      .catch(() => undefined)
+
+    return () => removeStateListener?.()
+
+  }, [nativeRuntime])
 
 /* Exit hint timer */
   useEffect(() => {
