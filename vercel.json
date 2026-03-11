@@ -1,15 +1,21 @@
 {
   "$schema": "https://vercel.com/schema/project-configuration.json",
-  "buildCommand": "prisma generate && npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
+
   "framework": "nextjs",
+
+  "buildCommand": "prisma generate && npm run build",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+
   "outputDirectory": ".next",
+
   "regions": ["iad1"],
+
   "env": {
     "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD": "1",
     "SKIP_PLAYWRIGHT_INSTALL": "1"
   },
+
   "headers": [
     {
       "source": "/(.*)",
@@ -37,6 +43,7 @@
       ]
     }
   ],
+
   "redirects": [
     {
       "source": "/home",
@@ -44,7 +51,12 @@
       "permanent": true
     }
   ],
+
   "rewrites": [
+    {
+      "source": "/__/auth/handler",
+      "destination": "/__/auth/handler.html"
+    },
     {
       "source": "/sitemap.xml",
       "destination": "/sitemap.xml"
