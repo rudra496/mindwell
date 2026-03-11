@@ -10,7 +10,7 @@ interface AssessmentDisclaimerProps {
 export function AssessmentDisclaimer({ className = "" }: AssessmentDisclaimerProps) {
   const { language } = useLanguage()
   
-  const content = {
+  const content: Record<'en' | 'bn', any> = {
     en: {
       title: "",
       text: "This self-reflection tool is for educational purposes only. Results are not a diagnosis. If you have concerns about your mental health, please consult with a mental health expert."
@@ -21,7 +21,7 @@ export function AssessmentDisclaimer({ className = "" }: AssessmentDisclaimerPro
     }
   }
   
-  const text = content[language]
+  const text = content[language as keyof typeof content] ?? content.en
   
   return (
     <div className={`rounded-lg bg-blue-50 border-2 border-blue-300 p-4 ${className}`}>

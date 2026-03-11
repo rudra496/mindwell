@@ -46,7 +46,7 @@ export function ConsentModal({
     setCrisisAware(false)
   }
   
-  const content = {
+  const content: Record<'en' | 'bn', any> = {
     en: {
       title: "Before You Continue",
       description: isHighRisk 
@@ -79,7 +79,7 @@ export function ConsentModal({
     }
   }
   
-  const text = content[language]
+  const text = content[language as keyof typeof content] ?? content.en
   const canContinue = understood && canExit && (!isHighRisk || crisisAware)
   
   return (

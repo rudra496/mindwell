@@ -11,7 +11,7 @@ interface MedicalDisclaimerProps {
 export function MedicalDisclaimer({ variant = "full", className = "" }: MedicalDisclaimerProps) {
   const { language } = useLanguage()
   
-  const content = {
+  const content: Record<'en' | 'bn', any> = {
     en: {
       title: "⚕️ Medical Disclaimer",
       full: "MindWell provides educational information and guidance only. We are not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of qualified healthcare providers with questions about mental health conditions.",
@@ -24,7 +24,7 @@ export function MedicalDisclaimer({ variant = "full", className = "" }: MedicalD
     }
   }
   
-  const text = content[language]
+  const text = content[language as keyof typeof content] ?? content.en
   const message = variant === "full" ? text.full : text.compact
   
   return (
