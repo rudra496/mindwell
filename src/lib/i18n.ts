@@ -16,40 +16,47 @@ export interface Translation {
   [key: string]: string
 }
 
-type MessageNode = string | Record<string, MessageNode>
+export interface MessageTree {
+  [key: string]: string | MessageTree
+}
 
 // Language persistence key
 const LANGUAGE_KEY = 'mindwell_language'
 
-const messagesByLanguage: Record<SupportedLanguage, Record<string, MessageNode>> = {
-  en: enMessages,
-  bn: bnMessages,
+const messagesByLanguage: Record<SupportedLanguage, MessageTree> = {
+  en: enMessages as MessageTree,
+  bn: bnMessages as MessageTree,
 }
 
-const supportedLanguages = SUPPORTED_LANGUAGES
+export const availableLanguages = SUPPORTED_LANGUAGES
+
+export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage)
+}
 
 function resolveLanguage(lang?: string): SupportedLanguage {
   if (lang && isSupportedLanguage(lang)) return lang
   return 'en'
 }
 
+function resolveMessage(tree: MessageTree, key: string): string | undefined {
+  const parts = key.split('.')
+  let cursor: string | MessageTree | undefined = tree
 
-export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
-  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage)
-}
+  for (const part of parts) {
+    if (!cursor || typeof cursor === 'string') {
+      return undefined
+    }
 
-function getNestedValue(source: Record<string, MessageNode>, path: string): string | undefined {
-  const value = path.split('.').reduce<MessageNode | undefined>((acc, key) => {
-    if (!acc || typeof acc === 'string') return undefined
-    return acc[key]
-  }, source)
+    cursor = cursor[part]
+  }
 
-  return typeof value === 'string' ? value : undefined
+  return typeof cursor === 'string' ? cursor : undefined
 }
 
 function buildLegacyTranslationsTree(
-  enNode: Record<string, MessageNode>,
-  bnNode: Record<string, MessageNode>
+  enNode: MessageTree,
+  bnNode: MessageTree
 ): Record<string, Translation | Record<string, unknown>> {
   const keys = new Set([...Object.keys(enNode), ...Object.keys(bnNode)])
   const output: Record<string, Translation | Record<string, unknown>> = {}
@@ -67,8 +74,8 @@ function buildLegacyTranslationsTree(
     }
 
     output[key] = buildLegacyTranslationsTree(
-      (enValue as Record<string, MessageNode>) || {},
-      (bnValue as Record<string, MessageNode>) || {}
+      (enValue as MessageTree) || {},
+      (bnValue as MessageTree) || {}
     )
   }
 
@@ -78,7 +85,7 @@ function buildLegacyTranslationsTree(
 /**
  * Get the current language from localStorage or default to English
  */
-export function getCurrentLanguage(): Language {
+export function getCurrentLanguage(): SupportedLanguage {
   if (typeof window === 'undefined') return 'en'
 
   const stored = localStorage.getItem(LANGUAGE_KEY)
@@ -110,11 +117,11 @@ export function t(translation: Translation, lang?: Language): string {
  */
 export function tKey(key: string, lang?: Language): string {
   const currentLang = resolveLanguage(lang || getCurrentLanguage())
-  const localized = getNestedValue(messagesByLanguage[currentLang], key)
 
+  const localized = resolveMessage(messagesByLanguage[currentLang], key)
   if (localized) return localized
 
-  const englishFallback = getNestedValue(messagesByLanguage.en, key)
+  const englishFallback = resolveMessage(messagesByLanguage.en, key)
   if (englishFallback) {
     if (process.env.NODE_ENV === 'development' && currentLang !== 'en') {
       console.warn('Missing translation:', key)
@@ -129,10 +136,8 @@ export function tKey(key: string, lang?: Language): string {
   return key
 }
 
-export const availableLanguages = supportedLanguages
-
 /**
  * Core translations for backward compatibility with existing usages like:
  * t(translations.hero.description, language)
  */
-export const translations = buildLegacyTranslationsTree(enMessages, bnMessages) as Record<string, any>
+export const translations = buildLegacyTranslationsTree(messagesByLanguage.en, messagesByLanguage.bn) as Record<string, any>
