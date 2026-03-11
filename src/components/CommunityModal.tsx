@@ -37,7 +37,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 
 import { CommunityCreatePost } from "./CommunityCreatePost";
 import { CommunityPostDetail } from "./CommunityPostDetail";
-import { getCommunityPosts } from "@/lib/community-firebase";
+import { subscribeToCommunityPosts, CommunityPost } from "@/lib/community-firebase";
 import { auth, signInWithGoogle } from "@/lib/firebase";
 
 interface CommunityModalProps {
@@ -46,7 +46,7 @@ interface CommunityModalProps {
 }
 
 export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<CommunityPost[]>([]);
   const [filteredCategory, setFilteredCategory] = useState<string>("all");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,24 +70,29 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     "Coping Strategies",
   ];
 
-  async function fetchPosts() {
+  useEffect(() => {
+    if (!open || showCreatePost || selectedPost) return;
     setIsLoading(true);
     setError(null);
-    try {
-      const allPosts = await getCommunityPosts();
 
-      const filtered =
-        filteredCategory === "all"
-          ? allPosts
-          : allPosts.filter((p: any) => p.category === filteredCategory);
+    const unsubscribe = subscribeToCommunityPosts(
+      (allPosts) => {
+        const filtered =
+          filteredCategory === "all"
+            ? allPosts
+            : allPosts.filter((p) => p.category === filteredCategory);
 
-      setPosts(filtered);
-    } catch {
-      setError("Failed to load community posts. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  }
+        setPosts(filtered);
+        setIsLoading(false);
+      },
+      () => {
+        setError("Failed to load community posts. Please try again.");
+        setIsLoading(false);
+      }
+    );
+
+    return () => unsubscribe();
+  }, [open, showCreatePost, selectedPost, filteredCategory]);
 
   useEffect(() => {
     if (!auth) return;
@@ -99,14 +104,8 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    if (open && !showCreatePost && !selectedPost) fetchPosts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, showCreatePost, selectedPost, filteredCategory]);
-
   const handlePostCreated = () => {
     setShowCreatePost(false);
-    fetchPosts();
   };
 
   const handleGoogleSignIn = async () => {
@@ -132,12 +131,12 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
 
   if (selectedPost)
     return (
-      <CommunityPostDetail
+        <CommunityPostDetail
         open={open}
         onOpenChange={onOpenChange}
         post={selectedPost}
         onBack={() => setSelectedPost(null)}
-        onPostUpdate={fetchPosts}
+        onPostUpdate={() => undefined}
       />
     );
 
@@ -259,7 +258,10 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                     <p className="line-clamp-3">{post.content}</p>
 
                     <div className="flex gap-4 text-sm mt-2 text-muted-foreground">
-                      <ThumbsUp className="h-4 w-4" /> {post.likes || 0}
+                      <ThumbsUp className="h-4 w-4" /> {post.likesCount || 0}
+                      <span className="flex items-center gap-1">
+                        <MessageCircle className="h-4 w-4" /> {post.commentsCount || 0}
+                      </span>
                     </div>
                   </CardContent>
                 </Card>
