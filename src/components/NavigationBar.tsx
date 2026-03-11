@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
 import { GlobalSearch } from "@/components/GlobalSearch"
+import { useLanguage } from "@/lib/useLanguage"
+import { tKey } from "@/lib/i18n"
 import {
   Phone,
   Users,
@@ -21,25 +23,26 @@ import {
 
 type NavItem = {
   id: string
-  label: string
+  labelKey: string
   icon: React.ComponentType<{ className?: string }>
   href?: string
 }
 
 const navItems: NavItem[] = [
-  { id: "home", label: "Home", icon: Home, href: "/" },
-  { id: "crisis-emergency-help", label: "Emergency Support", icon: AlertCircle },
-  { id: "community", label: "Community", icon: Users },
-  { id: "crisis-resources", label: "Crisis Resources", icon: Phone, href: "/crisis-resources" },
-  { id: "sdg-our-mission", label: "Who We Are & Our Goals", icon: Target },
-  { id: "funding-support", label: "Funding & Support", icon: Mail },
-  { id: "blog", label: "Blog", icon: Newspaper, href: "/blog" },
-  { id: "faq", label: "FAQ", icon: HelpCircle, href: "/faq" },
+  { id: "home", labelKey: "navBar.home", icon: Home, href: "/" },
+  { id: "crisis-emergency-help", labelKey: "navBar.emergencySupport", icon: AlertCircle },
+  { id: "community", labelKey: "navBar.community", icon: Users },
+  { id: "crisis-resources", labelKey: "navBar.crisisResources", icon: Phone, href: "/crisis-resources" },
+  { id: "sdg-our-mission", labelKey: "navBar.whoWeAre", icon: Target },
+  { id: "funding-support", labelKey: "navBar.fundingSupport", icon: Mail },
+  { id: "blog", labelKey: "navBar.blog", icon: Newspaper, href: "/blog" },
+  { id: "faq", labelKey: "navBar.faq", icon: HelpCircle, href: "/faq" },
 ]
 
 export function NavigationBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
+  const { language } = useLanguage()
 
   const handleNavClick = (item: NavItem) => {
     if (item.href) {
@@ -55,10 +58,10 @@ export function NavigationBar() {
   return (
     <>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-      <nav className="hidden lg:block bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label="Main navigation">
+      <nav className="hidden lg:block bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label={tKey('navBar.mainNavigation', language)}>
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between gap-4">
-            <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label="MindWell Home">
+            <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label={tKey('navBar.homeAria', language)}>
               <Logo variant="full" className="h-8" />
             </button>
 
@@ -70,10 +73,10 @@ export function NavigationBar() {
                   size="sm"
                   onClick={() => handleNavClick(item)}
                   className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
-                  aria-label={item.label}
+                  aria-label={tKey(item.labelKey, language)}
                 >
                   <item.icon className="h-4 w-4" />
-                  <span className="text-xs font-medium">{item.label}</span>
+                  <span className="text-xs font-medium">{tKey(item.labelKey, language)}</span>
                 </Button>
               ))}
               <Button
@@ -81,10 +84,10 @@ export function NavigationBar() {
                 size="sm"
                 onClick={() => setSearchOpen(true)}
                 className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
-                aria-label="Search (Ctrl+K)"
+                aria-label={tKey('navBar.searchAria', language)}
               >
                 <Search className="h-4 w-4" />
-                <span className="text-xs font-medium hidden xl:inline">Search</span>
+                <span className="text-xs font-medium hidden xl:inline">{tKey('navBar.search', language)}</span>
                 <kbd className="hidden xl:inline-flex text-xs bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono">⌘K</kbd>
               </Button>
               <Button
@@ -92,10 +95,10 @@ export function NavigationBar() {
                 size="sm"
                 onClick={() => document.dispatchEvent(new CustomEvent("mindwell:start-tour"))}
                 className="flex items-center gap-1 text-gray-700 hover:text-teal-700 hover:bg-teal-50"
-                aria-label="Take guided tour"
+                aria-label={tKey('navBar.tourAria', language)}
               >
                 <MapPin className="h-4 w-4" />
-                <span className="text-xs font-medium hidden xl:inline">Tour</span>
+                <span className="text-xs font-medium hidden xl:inline">{tKey('navBar.tour', language)}</span>
               </Button>
               <LanguageToggle />
             </div>
@@ -103,10 +106,10 @@ export function NavigationBar() {
         </div>
       </nav>
 
-      <nav className="lg:hidden bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label="Mobile navigation">
+      <nav className="lg:hidden bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label={tKey('navBar.mobileNavigation', language)}>
         <div className="container mx-auto px-3 py-3">
           <div className="flex items-center justify-between">
-            <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label="MindWell Home">
+            <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label={tKey('navBar.homeAria', language)}>
               <Logo variant="full" className="h-7" />
             </button>
 
@@ -116,12 +119,12 @@ export function NavigationBar() {
                 size="sm"
                 onClick={() => setSearchOpen(true)}
                 className="p-2"
-                aria-label="Search"
+                aria-label={tKey('navBar.search', language)}
               >
                 <Search className="h-5 w-5" />
               </Button>
               <LanguageToggle />
-              <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}>
+              <Button variant="ghost" size="sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2" aria-label={mobileMenuOpen ? tKey('navBar.closeMenu', language) : tKey('navBar.openMenu', language)}>
                 <Menu className="h-6 w-6" />
               </Button>
             </div>
@@ -132,7 +135,7 @@ export function NavigationBar() {
               {navItems.map((item) => (
                 <Button key={item.id} variant="ghost" onClick={() => handleNavClick(item)} className="w-full justify-start text-gray-700 hover:text-teal-700 hover:bg-teal-50 min-h-[44px]">
                   <item.icon className="h-5 w-5 mr-3" />
-                  <span className="text-sm font-medium">{item.label}</span>
+                  <span className="text-sm font-medium">{tKey(item.labelKey, language)}</span>
                 </Button>
               ))}
               <Button
@@ -141,7 +144,7 @@ export function NavigationBar() {
                 className="w-full justify-start text-gray-700 hover:text-teal-700 hover:bg-teal-50 min-h-[44px]"
               >
                 <MapPin className="h-5 w-5 mr-3" />
-                <span className="text-sm font-medium">Take Tour</span>
+                <span className="text-sm font-medium">{tKey('navBar.takeTour', language)}</span>
               </Button>
             </div>
           )}

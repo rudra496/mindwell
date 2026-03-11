@@ -6,7 +6,7 @@ import { AnimatedBackground } from "@/components/AnimatedBackground"
 import { Logo } from "@/components/Logo"
 import { Phone, Heart } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
-import { translations, t } from "@/lib/i18n"
+import { translations, t, tKey } from "@/lib/i18n"
 
 interface HeroSectionProps {
   onGetSupport?: () => void
@@ -39,9 +39,7 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         {/* Headline */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white">
           {mounted
-            ? (language === 'en'
-                ? "Your Mental Health Matters"
-                : "আপনার মানসিক স্বাস্থ্য গুরুত্বপূর্ণ")
+            ? tKey('hero.headline', language)
             : "Your Mental Health Matters"}
         </h1>
         
@@ -78,19 +76,19 @@ export function HeroSection({ onGetSupport, onEmergencyHelp }: HeroSectionProps)
         <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-700 dark:text-gray-300">
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-green-500 dark:bg-green-400 rounded-full"></div>
-            <span>{mounted ? (language === 'en' ? "Limited Free Sessions" : "১০০% বিনামূল্যে") : "Limited Free Sessions"}</span>
+            <span>{mounted ? tKey('hero.trustBadge1', language) : "Limited Free Sessions"}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full"></div>
-            <span>{mounted ? (language === 'en' ? "Evidence-Based" : "প্রমাণ-ভিত্তিক") : "Evidence-Based"}</span>
+            <span>{mounted ? tKey('hero.trustBadge2', language) : "Evidence-Based"}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-purple-500 dark:bg-purple-400 rounded-full"></div>
-            <span>{mounted ? (language === 'en' ? "Open-Source" : "ওপেন-সোর্স") : "Open-Source"}</span>
+            <span>{mounted ? tKey('hero.trustBadge3', language) : "Open-Source"}</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-2 h-2 bg-pink-500 dark:bg-pink-400 rounded-full"></div>
-            <span>{mounted ? (language === 'en' ? "Accessible 24/7" : "২৪/৭ অ্যাক্সেসযোগ্য") : "Accessible 24/7"}</span>
+            <span>{mounted ? tKey('hero.trustBadge4', language) : "Accessible 24/7"}</span>
           </div>
         </div>
       </div>

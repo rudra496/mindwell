@@ -2,6 +2,7 @@
 
 import { AlertOctagon } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
+import type { SupportedLanguage } from "@/lib/i18n"
 
 interface FeaturePausedNoticeProps {
   featureName?: string
@@ -11,7 +12,7 @@ interface FeaturePausedNoticeProps {
 export function FeaturePausedNotice({ featureName = "This feature", className = "" }: FeaturePausedNoticeProps) {
   const { language } = useLanguage()
   
-  const content = {
+  const content: Record<SupportedLanguage, any> = {
     en: {
       title: "Temporarily Paused for Safety Review",
       message: "This feature is currently paused to ensure ethical, clinical, and user safety standards. We're committed to providing the highest quality mental health support.",
@@ -26,7 +27,7 @@ export function FeaturePausedNotice({ featureName = "This feature", className = 
     }
   }
   
-  const text = content[language]
+  const text = content[language as keyof typeof content] ?? content.en
   
   return (
     <div className={`rounded-lg bg-orange-50 border-2 border-orange-400 p-6 ${className}`}>

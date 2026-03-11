@@ -11,6 +11,7 @@ import { featureFlags, isHighRiskAssessment } from "@/lib/featureFlags"
 import { ConsentModal } from "@/components/gating/ConsentModal"
 import { AssessmentDisclaimer } from "@/components/safety/AssessmentDisclaimer"
 import { useLanguage } from "@/lib/useLanguage"
+import { tKey } from "@/lib/i18n"
 
 interface Assessment {
   id: string
@@ -162,14 +163,12 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
             <DialogHeader>
               <DialogTitle className="text-xl sm:text-2xl break-words">
                 {mounted 
-                  ? (language === 'en' ? "Mental Health Self-Reflection Tools" : "মানসিক স্বাস্থ্য স্ব-প্রতিফলন সরঞ্জাম")
+                  ? tKey('assessmentModal.title', language)
                   : "Mental Health Self-Reflection Tools"}
               </DialogTitle>
               <DialogDescription className="text-xs sm:text-sm">
                 {mounted
-                  ? (language === 'en' 
-                      ? "Psychometric, evidence-based self-reflection tools"
-                      : "সাইকোমেট্রিক, প্রমাণ-ভিত্তিক স্ব-প্রতিফলন সরঞ্জাম")
+                  ? tKey('assessmentModal.description', language)
                   : "Psychometric, evidence-based self-reflection tools"}
               </DialogDescription>
             </DialogHeader>
@@ -180,7 +179,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
               {loading ? (
                 <div className="text-center py-8 text-sm sm:text-base">
                   {mounted
-                    ? (language === 'en' ? "Loading assessments..." : "মূল্যায়ন লোড হচ্ছে...")
+                    ? tKey('assessmentModal.loading', language)
                     : "Loading assessments..."}
                 </div>
               ) : (

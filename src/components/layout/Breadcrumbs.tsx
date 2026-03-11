@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
+import { useLanguage } from '@/lib/useLanguage';
+import { tKey } from '@/lib/i18n';
 
 /**
  * Breadcrumbs Component
@@ -11,6 +13,7 @@ import { ChevronRight } from 'lucide-react';
  */
 export function Breadcrumbs() {
   const pathname = usePathname();
+  const { language } = useLanguage();
   
   // Don't show on home page
   if (pathname === '/') {
@@ -22,17 +25,17 @@ export function Breadcrumbs() {
   
   // Map of path segments to human-readable labels
   const labelMap: Record<string, string> = {
-    'privacy': 'Privacy Policy',
-    'terms': 'Terms of Service',
-    'medical-disclaimer': 'Medical Disclaimer',
-    'about': 'About',
-    'ethics': 'Ethics & Safety',
-    'transparency': 'Data Sources',
-    'faq': 'FAQ',
+    'privacy': tKey('breadcrumbs.privacy', language),
+    'terms': tKey('breadcrumbs.terms', language),
+    'medical-disclaimer': tKey('breadcrumbs.medical', language),
+    'about': tKey('breadcrumbs.about', language),
+    'ethics': tKey('breadcrumbs.ethics', language),
+    'transparency': tKey('breadcrumbs.transparency', language),
+    'faq': tKey('breadcrumbs.faq', language),
   };
 
   const breadcrumbs = [
-    { href: '/', label: 'Home' },
+    { href: '/', label: tKey('breadcrumbs.home', language) },
     ...pathSegments.map((segment, index) => ({
       href: '/' + pathSegments.slice(0, index + 1).join('/'),
       label: labelMap[segment] || segment.charAt(0).toUpperCase() + segment.slice(1),
@@ -40,7 +43,7 @@ export function Breadcrumbs() {
   ];
 
   return (
-    <nav aria-label="Breadcrumb" className="py-4">
+    <nav aria-label={tKey('breadcrumbs.aria', language)} className="py-4">
       <ol className="flex items-center gap-2 text-sm">
         {breadcrumbs.map((crumb, index) => {
           const isLast = index === breadcrumbs.length - 1;

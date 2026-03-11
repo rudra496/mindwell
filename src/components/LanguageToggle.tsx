@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/lib/useLanguage'
+import { tKey } from '@/lib/i18n'
 import { Globe } from 'lucide-react'
 
 /**
@@ -24,10 +25,10 @@ export function LanguageToggle() {
       variant="outline"
       size="sm"
       className="min-h-[44px] flex items-center gap-2"
-      aria-label={`Switch to ${language === 'en' ? 'Bangla' : 'English'}`}
+      aria-label={language === 'en' ? tKey('languageToggle.switchToBangla', language) : tKey('languageToggle.switchTo', language)}
     >
       <Globe className="h-4 w-4" />
-      <span className="font-medium">{language === 'en' ? 'বাংলা' : 'English'}</span>
+      <span className="font-medium">{language === 'en' ? tKey('languageToggle.bangla', language) : tKey('languageToggle.english', language)}</span>
     </Button>
   )
 }

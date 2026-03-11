@@ -1,0 +1,235 @@
+{
+  "nav": {
+    "home": "Home",
+    "selfHelpTools": "Self-Help Tools",
+    "therapyMeditation": "Therapy & Meditation",
+    "psychologists": "Psychologists",
+    "crisisHelp": "Crisis & Emergency Help",
+    "bangladeshServices": "Free Services in Bangladesh 🇧🇩",
+    "sdgMission": "SDG & Our Mission",
+    "about": "About Us",
+    "contact": "Contact & Support"
+  },
+  "hero": {
+    "title": "MindWell",
+    "subtitle": "Open-Source Mental Health Platform",
+    "description": "Comprehensive, scientifically-backed, free mental health support with 393 disorders, 20 validated assessments, 16 therapeutic games, 14 meditations, 20 therapy techniques, and crisis resources.",
+    "getSupportBtn": "Get Support",
+    "emergencyHelpBtn": "Emergency Help",
+    "headline": "Your Mental Health Matters",
+    "trustBadge1": "Limited Free Sessions",
+    "trustBadge2": "Evidence-Based",
+    "trustBadge3": "Open-Source",
+    "trustBadge4": "Accessible 24/7"
+  },
+  "support": {
+    "title": "Our Support",
+    "emotional": "Emotional Support",
+    "emotionalDesc": "Compassionate resources for managing emotions and mental health challenges",
+    "selfHelp": "Self-Help Resources",
+    "selfHelpDesc": "Evidence-based tools and techniques for personal growth and wellness",
+    "professional": "Professional Guidance",
+    "professionalDesc": "Access to qualified psychologists and mental health professionals",
+    "community": "Community Care",
+    "communityDesc": "Safe peer support spaces for sharing experiences and finding connection",
+    "subtitle": "We provide comprehensive support through four key pillars"
+  },
+  "features": {
+    "title": "What MindWell Offers",
+    "disorders": "Disorders Database",
+    "assessments": "Self-Assessments",
+    "games": "Therapeutic Games",
+    "chatbot": "AI Support Chatbot",
+    "community": "Community Forum",
+    "therapy": "Therapy Library",
+    "meditation": "Meditation Library",
+    "crisis": "Crisis Resources"
+  },
+  "bangladesh": {
+    "title": "Free Services in Bangladesh 🇧🇩",
+    "description": "All MindWell services are completely free for users in Bangladesh. We are committed to making mental health support accessible to everyone."
+  },
+  "sdg": {
+    "title": "SDG 3: Good Health & Well-Being",
+    "description": "MindWell contributes to the United Nations Sustainable Development Goal 3 by providing accessible mental health resources and support to communities worldwide.",
+    "impactNote": "As a non-profit, open-source initiative, MindWell demonstrates how technology can advance public health goals and contribute to national and global well-being."
+  },
+  "psychologists": {
+    "title": "Access to Psychologists",
+    "description": "Connect with qualified psychologists who can provide professional guidance and support.",
+    "requestBtn": "Request Support"
+  },
+  "crisis": {
+    "title": "IN CRISIS? GET HELP NOW",
+    "us": "US",
+    "emergency": "Emergency"
+  },
+  "disclaimer": {
+    "title": "Medical Disclaimer",
+    "text": "FOR EDUCATIONAL PURPOSES ONLY. This platform is NOT a substitute for professional medical advice, diagnosis, or treatment. ALWAYS consult licensed mental health professionals. Assessments are screening tools, NOT diagnostic instruments."
+  },
+  "buttons": {
+    "explore": "Explore",
+    "start": "Start",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "learnMore": "Learn More",
+    "getHelp": "Get Help Now"
+  },
+  "common": {
+    "inspiredBy": "Inspired by Prof. Farzana Hussain, Ph.D."
+  },
+  "voice": {
+    "play": "Play",
+    "pause": "Pause",
+    "resume": "Resume",
+    "stop": "Stop"
+  },
+  "footer": {
+    "about": "About MindWell",
+    "contact": "Contact",
+    "important": "Important",
+    "copyright": "MindWell. Open-source mental health platform."
+  },
+  "languageToggle": {
+    "switchTo": "Switch to English",
+    "switchToBangla": "Switch to Bangla",
+    "english": "English",
+    "bangla": "বাংলা"
+  },
+  "assessmentModal": {
+    "title": "Mental Health Self-Reflection Tools",
+    "description": "Psychometric, evidence-based self-reflection tools",
+    "loading": "Loading assessments..."
+  },
+  "contactForm": {
+    "errors": {
+      "required": "Please fill in all required fields.",
+      "email": "Please enter a valid email address.",
+      "sendFailed": "Failed to send message. Please try again.",
+      "generic": "An error occurred. Please try again later."
+    },
+    "title": "Contact Us",
+    "description": "Request services, talk to psychologists, or reach out for general inquiries",
+    "name": "Name",
+    "namePlaceholder": "Enter your full name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "reason": "Reason for Contact",
+    "reasonPlaceholder": "Select a reason",
+    "reasonOptions": {
+      "psychologist": "Talk to Psychologist",
+      "serviceRequest": "Request Services",
+      "generalInquiry": "General Inquiry",
+      "feedback": "Feedback/Suggestions",
+      "partnership": "Partnership/Collaboration",
+      "other": "Other"
+    },
+    "preferredTime": "Preferred Contact Time (Optional)",
+    "preferredTimePlaceholder": "e.g., Weekdays 2-5 PM",
+    "message": "Message",
+    "messagePlaceholder": "Tell us more about your inquiry...",
+    "success": "Thank you! Your message has been sent successfully. We will get back to you soon.",
+    "sending": "Sending...",
+    "submit": "Send Message",
+    "privacyNote": "Your information will be kept confidential and used only to respond to your inquiry."
+  },
+  "footerLegacy": {
+    "aboutDescription": "MindWell – Open Source Mental Health Platform. Free access to mental health resources, with limited free psychologist sessions based on availability.",
+    "createdWith": "Created with",
+    "awareness": "for mental health awareness",
+    "quickLinks": "Quick Links",
+    "disclaimer": "Disclaimer",
+    "privacy": "Privacy Policy",
+    "faq": "FAQ",
+    "ethics": "Ethics & Safety",
+    "terms": "Terms of Service",
+    "crisisSupport": "🚨 Crisis Support",
+    "developedBy": "Developed & Founded by",
+    "educational": "For educational purposes only. Not a substitute for professional medical advice, diagnosis, or treatment.",
+    "inspiredBy": "Inspired by"
+  },
+  "navBar": {
+    "home": "Home",
+    "emergencySupport": "Emergency Support",
+    "community": "Community",
+    "crisisResources": "Crisis Resources",
+    "whoWeAre": "Who We Are & Our Goals",
+    "fundingSupport": "Funding & Support",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "search": "Search",
+    "searchAria": "Search (Ctrl+K)",
+    "tour": "Tour",
+    "tourAria": "Take guided tour",
+    "takeTour": "Take Tour",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation",
+    "homeAria": "MindWell Home",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "globalFooter": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookie": "Cookie Policy",
+    "disclaimer": "Disclaimer",
+    "medical": "Medical Disclaimer",
+    "faq": "FAQ",
+    "about": "About MindWell",
+    "title": "MindWell Support – Open Source Mental Health Platform",
+    "desc1": "MindWell is an open-source mental health education and wellbeing platform focused on awareness, self-reflection, and ethical access to support.",
+    "desc2": "It is not a diagnostic or emergency service, and is designed for global and low-resource communities.",
+    "desc3": "Aligned with SDG 3 (Good Health & Well-being) and SDG 4 (Quality Education).",
+    "desc4": "Clinical support is available through assistant clinical psychologists. Currently, two psychologists are available, with more being added gradually. The first consultation session is free and is not intended to replace emergency or hospital care.",
+    "madeBy": "Made with care by",
+    "inspiredBy": "Inspired by",
+    "github": "Open-source on GitHub"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "medical": "Medical Disclaimer",
+    "about": "About",
+    "ethics": "Ethics & Safety",
+    "transparency": "Data Sources",
+    "faq": "FAQ",
+    "aria": "Breadcrumb"
+  },
+  "homePage": {
+    "heroTitle": "MindWell – Open Source Mental Health Platform",
+    "heroDesc": "Trusted by 10000+ users worldwide.\nMindWell Support — free, ethical mental health support & crisis management.",
+    "learnTitle": "Learn & Awareness",
+    "openEducation": "Open educational resources",
+    "selfToolsTitle": "Self-Reflection Tools",
+    "selfToolsDesc": "These tools are for self-reflection and education only, not diagnosis.",
+    "openAssessments": "Open self-reflection assessments",
+    "therapyTitle": "Therapy & Meditation",
+    "therapyBtn": "Therapy Techniques",
+    "meditationBtn": "Meditation Library",
+    "psychTitle": "Psychologists",
+    "psychDesc": "Explore verified psychologist profiles and connect using direct call or WhatsApp links through our dedicated psychologists page.",
+    "psychBtn": "View all psychologists",
+    "gamesTitle": "Wellbeing Games",
+    "gamesTag": "Mindfulness games, stress relief activities",
+    "gamesDesc": "Use short, guided wellbeing games to support focus, calm, and emotional regulation.",
+    "gamesBtn": "Open Wellbeing Games",
+    "moodTitle": "Mood Tracker",
+    "moodTag": "Daily mood tracking, emotional awareness, mental wellbeing",
+    "communityTitle": "Community",
+    "communityTag": "Peer mental health support, safe discussions",
+    "communityDesc": "Join peer support discussions with safe and respectful community standards.",
+    "communityBtn": "Open Community",
+    "blogTitle": "MindWell Blog",
+    "blogDesc": "Mental health education, awareness articles, reflections, and evidence-based insights published by the MindWell team.",
+    "blogReadTitle": "Read the latest posts",
+    "blogReadDesc": "Explore a clean, searchable publishing experience for long-form mental health articles.",
+    "blogBtn": "Visit MindWell Blog",
+    "goalsTitle": "Who We Are & Our Goals",
+    "fundTitle": "Funding & Support",
+    "fundDesc": "For funding and partnership communication, please contact MindWell directly."
+  }
+}

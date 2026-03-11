@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { AlertTriangle, Phone, X } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
+import type { SupportedLanguage } from "@/lib/i18n"
 
 interface ConsentModalProps {
   open: boolean
@@ -46,7 +47,7 @@ export function ConsentModal({
     setCrisisAware(false)
   }
   
-  const content = {
+  const content: Record<SupportedLanguage, any> = {
     en: {
       title: "Before You Continue",
       description: isHighRisk 
@@ -79,7 +80,7 @@ export function ConsentModal({
     }
   }
   
-  const text = content[language]
+  const text = content[language as keyof typeof content] ?? content.en
   const canContinue = understood && canExit && (!isHighRisk || crisisAware)
   
   return (
