@@ -10,6 +10,7 @@ import {
   initializeAuth,
   onAuthStateChanged,
   setPersistence,
+  signInWithPopup,
   signInWithRedirect,
   type Auth,
   type UserCredential,
@@ -50,6 +51,23 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: "select_account" })
 
+
+const isNativeCapacitorRuntime = (): boolean => {
+  if (typeof window === "undefined") return false
+  const capacitor = (window as any)?.Capacitor
+  if (!capacitor) return false
+
+  if (typeof capacitor.isNativePlatform === "function") {
+    return Boolean(capacitor.isNativePlatform())
+  }
+
+  if (typeof capacitor.getPlatform === "function") {
+    return capacitor.getPlatform() !== "web"
+  }
+
+  return false
+}
+
 /*
 --------------------------------------------------
 Google Login
@@ -66,6 +84,17 @@ export async function signInWithGoogle() {
     await setPersistence(auth, browserLocalPersistence)
   } catch (error) {
     console.warn("Failed to set auth persistence", error)
+  }
+
+  const shouldUseRedirect = isNativeCapacitorRuntime()
+
+  if (!shouldUseRedirect) {
+    try {
+      await signInWithPopup(auth, provider)
+      return
+    } catch (error) {
+      console.warn("Popup sign-in failed; falling back to redirect", error)
+    }
   }
 
   await signInWithRedirect(auth, provider)
