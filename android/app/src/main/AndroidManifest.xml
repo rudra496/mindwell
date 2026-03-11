@@ -28,7 +28,7 @@
             </intent-filter>
 
             <!-- Deep link for entire website -->
-            <intent-filter android:autoVerify="false">
+            <intent-filter android:autoVerify="true">
 
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -37,11 +37,12 @@
 
                 <data
                     android:scheme="https"
-                    android:host="mindwell-navy.vercel.app"/>
+                    android:host="mindwell-navy.vercel.app"
+                    android:pathPrefix="/"/>
             </intent-filter>
 
             <!-- OAuth redirect handler -->
-            <intent-filter android:autoVerify="false">
+            <intent-filter android:autoVerify="true">
 
                 <action android:name="android.intent.action.VIEW"/>
 

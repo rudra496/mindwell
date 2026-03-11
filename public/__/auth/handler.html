@@ -22,15 +22,17 @@
           return;
         }
 
-        // If opened inside Capacitor or normal browser redirect
+        const appReturnUrl = "https://mindwell-navy.vercel.app/?authReturn=1";
+
+        // Prefer a full https app-link return so Android can route back to app wrapper
         if (window.location) {
-          window.location.replace("/");
+          window.location.replace(appReturnUrl);
           return;
         }
 
       } catch (error) {
         console.error("Firebase Auth handler error:", error);
-        window.location.replace("/");
+        window.location.replace("https://mindwell-navy.vercel.app/");
       }
     }
 
