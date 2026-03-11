@@ -88,11 +88,6 @@ export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
 
 export const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
   return new Promise((resolve) => {
-    if (typeof window === "undefined") {
-      resolve([])
-      return
-    }
-
     if (!("speechSynthesis" in window)) {
       resolve([])
       return
@@ -105,16 +100,15 @@ export const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
       return
     }
 
-    const handleVoicesChanged = () => {
-      resolve(window.speechSynthesis.getVoices())
-    }
-
-    window.speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged, {
-      once: true,
-    })
+    window.speechSynthesis.addEventListener(
+      "voiceschanged",
+      () => {
+        resolve(window.speechSynthesis.getVoices())
+      },
+      { once: true }
+    )
 
     setTimeout(() => {
-      window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged)
       resolve(window.speechSynthesis.getVoices())
     }, 3000)
   })
@@ -259,8 +253,6 @@ export const speakWithPauses = async (
 /* ------------------------------- */
 
 export const stopSpeaking = (): void => {
-  if (typeof window === "undefined") return
-
   if ("speechSynthesis" in window) {
     window.speechSynthesis.cancel()
   }
@@ -272,24 +264,18 @@ export const stopSpeaking = (): void => {
 }
 
 export const pauseSpeaking = (): void => {
-  if (typeof window === "undefined") return
-
   if ("speechSynthesis" in window) {
     window.speechSynthesis.pause()
   }
 }
 
 export const resumeSpeaking = (): void => {
-  if (typeof window === "undefined") return
-
   if ("speechSynthesis" in window) {
     window.speechSynthesis.resume()
   }
 }
 
 export const isSpeaking = (): boolean => {
-  if (typeof window === "undefined") return false
-
   if ("speechSynthesis" in window) {
     return window.speechSynthesis.speaking
   }
@@ -297,8 +283,6 @@ export const isSpeaking = (): boolean => {
 }
 
 export const isPaused = (): boolean => {
-  if (typeof window === "undefined") return false
-
   if ("speechSynthesis" in window) {
     return window.speechSynthesis.paused
   }
