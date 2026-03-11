@@ -5,7 +5,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { ArrowLeft } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { getCurrentLanguage, tKey } from "@/lib/i18n"
+import { SupportedLanguage, getCurrentLanguage, isSupportedLanguage, tKey } from "@/lib/i18n"
 
 const Dialog = DialogPrimitive.Root
 
@@ -35,13 +35,13 @@ const DialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
   const [mounted, setMounted] = React.useState(false)
-  const [language, setLanguage] = React.useState<'en' | 'bn'>('en')
+  const [language, setLanguage] = React.useState<SupportedLanguage>('en')
 
   React.useEffect(() => {
     setMounted(true)
     if (typeof window !== 'undefined') {
       const stored = getCurrentLanguage()
-      if (stored === 'en' || stored === 'bn') {
+      if (isSupportedLanguage(stored)) {
         setLanguage(stored)
       }
     }

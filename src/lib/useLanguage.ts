@@ -1,20 +1,25 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { Language, getCurrentLanguage, setCurrentLanguage } from './i18n'
+import { Language, SupportedLanguage, getCurrentLanguage, isSupportedLanguage, setCurrentLanguage } from './i18n'
 
 /**
  * Hook for managing language state across the application
  */
 export function useLanguage() {
-  const [language, setLanguage] = useState<Language>('en')
+  const [language, setLanguage] = useState<SupportedLanguage>('en')
   const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
     const currentLang = getCurrentLanguage()
-    setLanguage(currentLang)
-    document.documentElement.lang = currentLang
+    if (isSupportedLanguage(currentLang)) {
+      setLanguage(currentLang)
+      document.documentElement.lang = currentLang
+    } else {
+      setLanguage('en')
+      document.documentElement.lang = 'en'
+    }
     
     // Restore scroll position after language change refresh
     const savedScrollPosition = sessionStorage.getItem('mindwell_scroll_position')
@@ -28,13 +33,15 @@ export function useLanguage() {
   }, [])
 
   const changeLanguage = (newLang: Language) => {
-    setLanguage(newLang)
-    setCurrentLanguage(newLang)
-    document.documentElement.lang = newLang
+    const normalizedLang: SupportedLanguage = isSupportedLanguage(newLang) ? newLang : 'en'
+
+    setLanguage(normalizedLang)
+    setCurrentLanguage(normalizedLang)
+    document.documentElement.lang = normalizedLang
     
     // Trigger a custom event for other components to listen to
     if (typeof window !== 'undefined') {
-      window.dispatchEvent(new CustomEvent('languageChange', { detail: newLang }))
+      window.dispatchEvent(new CustomEvent('languageChange', { detail: normalizedLang }))
       
       // Auto-refresh the page after language change
       // Save current scroll position to restore after refresh

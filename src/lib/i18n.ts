@@ -6,7 +6,9 @@
 import enMessages from '../../messages/en.json'
 import bnMessages from '../../messages/bn.json'
 
-export type Language = 'en' | 'bn' | (string & {})
+export const SUPPORTED_LANGUAGES = ['en', 'bn'] as const
+export type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number]
+export type Language = SupportedLanguage | (string & {})
 
 export interface Translation {
   en: string
@@ -19,16 +21,21 @@ type MessageNode = string | Record<string, MessageNode>
 // Language persistence key
 const LANGUAGE_KEY = 'mindwell_language'
 
-const messagesByLanguage: Record<string, Record<string, MessageNode>> = {
+const messagesByLanguage: Record<SupportedLanguage, Record<string, MessageNode>> = {
   en: enMessages,
   bn: bnMessages,
 }
 
-const supportedLanguages = Object.keys(messagesByLanguage)
+const supportedLanguages = SUPPORTED_LANGUAGES
 
-function resolveLanguage(lang?: string): string {
-  if (lang && messagesByLanguage[lang]) return lang
+function resolveLanguage(lang?: string): SupportedLanguage {
+  if (lang && isSupportedLanguage(lang)) return lang
   return 'en'
+}
+
+
+export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
+  return SUPPORTED_LANGUAGES.includes(lang as SupportedLanguage)
 }
 
 function getNestedValue(source: Record<string, MessageNode>, path: string): string | undefined {
@@ -75,7 +82,7 @@ export function getCurrentLanguage(): Language {
   if (typeof window === 'undefined') return 'en'
 
   const stored = localStorage.getItem(LANGUAGE_KEY)
-  if (stored && messagesByLanguage[stored]) {
+  if (stored && isSupportedLanguage(stored)) {
     return stored
   }
   return 'en'
@@ -122,7 +129,7 @@ export function tKey(key: string, lang?: Language): string {
   return key
 }
 
-export const availableLanguages = supportedLanguages as Language[]
+export const availableLanguages = supportedLanguages
 
 /**
  * Core translations for backward compatibility with existing usages like:

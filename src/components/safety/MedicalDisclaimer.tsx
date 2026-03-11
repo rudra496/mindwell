@@ -2,6 +2,7 @@
 
 import { AlertTriangle } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
+import type { SupportedLanguage } from "@/lib/i18n"
 
 interface MedicalDisclaimerProps {
   variant?: "full" | "compact"
@@ -11,7 +12,7 @@ interface MedicalDisclaimerProps {
 export function MedicalDisclaimer({ variant = "full", className = "" }: MedicalDisclaimerProps) {
   const { language } = useLanguage()
   
-  const content: Record<'en' | 'bn', any> = {
+  const content: Record<SupportedLanguage, any> = {
     en: {
       title: "⚕️ Medical Disclaimer",
       full: "MindWell provides educational information and guidance only. We are not a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of qualified healthcare providers with questions about mental health conditions.",

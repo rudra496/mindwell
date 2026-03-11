@@ -2,6 +2,7 @@
 
 import { Info } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
+import type { SupportedLanguage } from "@/lib/i18n"
 
 interface AssessmentDisclaimerProps {
   className?: string
@@ -10,7 +11,7 @@ interface AssessmentDisclaimerProps {
 export function AssessmentDisclaimer({ className = "" }: AssessmentDisclaimerProps) {
   const { language } = useLanguage()
   
-  const content: Record<'en' | 'bn', any> = {
+  const content: Record<SupportedLanguage, any> = {
     en: {
       title: "",
       text: "This self-reflection tool is for educational purposes only. Results are not a diagnosis. If you have concerns about your mental health, please consult with a mental health expert."
