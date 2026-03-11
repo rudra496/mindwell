@@ -1,6 +1,5 @@
 {
   "$schema": "https://vercel.com/schema/project-configuration.json",
-
   "framework": "nextjs",
 
   "buildCommand": "prisma generate && npm run build",
@@ -8,7 +7,6 @@
   "devCommand": "npm run dev",
 
   "outputDirectory": ".next",
-
   "regions": ["iad1"],
 
   "env": {
@@ -17,6 +15,19 @@
   },
 
   "headers": [
+    {
+      "source": "/.well-known/assetlinks.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
+    },
     {
       "source": "/(.*)",
       "headers": [
