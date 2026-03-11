@@ -16,26 +16,34 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "target": "ES2017",
+
     "plugins": [
       {
         "name": "next"
       }
     ],
+
     "paths": {
       "@/*": [
         "./src/*"
       ]
-    },
-    "target": "ES2017"
+    }
   },
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
+
   "exclude": [
     "node_modules",
-    "vitest.config.ts"
+    "android",
+    ".next",
+    "vitest.config.ts",
+    "android/app/build",
+    "android/app/src/main/assets"
   ]
 }
