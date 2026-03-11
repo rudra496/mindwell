@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Firebase Auth Handler</title>
+
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+  <script>
+    function completeAuth() {
+      try {
+        if (window.opener) {
+          window.close();
+          return;
+        }
+        window.location.replace("/");
+      } catch (e) {
+        console.error("Auth handler error", e);
+        window.location.replace("/");
+      }
+    }
+
+    window.onload = completeAuth;
+  </script>
+</head>
+
+<body>
+</body>
+</html>
