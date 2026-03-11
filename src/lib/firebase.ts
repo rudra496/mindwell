@@ -3,18 +3,15 @@ import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app"
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithCredential,
+  signInWithRedirect,
+  getRedirectResult,
+  onAuthStateChanged,
   type Auth,
   type UserCredential,
-  onAuthStateChanged,
 } from "firebase/auth"
 import { getFirestore, type Firestore } from "firebase/firestore"
 
 const COMMUNITY_AUTH_OPEN_KEY = "mindwell:community:open"
-const AUTH_PROVIDER_KEY = "provider"
-const AUTH_ID_TOKEN_KEY = "id_token"
-const AUTH_ACCESS_TOKEN_KEY = "access_token"
-const AUTH_ERROR_KEY = "error"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -39,60 +36,11 @@ if (firebaseConfig.apiKey && firebaseConfig.projectId) {
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: "select_account" })
 
-function getCapacitorBrowserPlugin(): {
-  open?: (options: { url: string; windowName?: string }) => Promise<void>
-  close?: () => Promise<void>
-} | null {
-  if (typeof window === "undefined") return null
-
-  return (
-    ((window as typeof window & { Capacitor?: { Plugins?: { Browser?: unknown } } }).Capacitor
-      ?.Plugins?.Browser as {
-      open?: (options: { url: string; windowName?: string }) => Promise<void>
-      close?: () => Promise<void>
-    } | undefined) ?? null
-  )
-}
-
-async function openExternalAuth(url: string): Promise<void> {
-  const browser = getCapacitorBrowserPlugin()
-
-  if (browser?.open) {
-    await browser.open({ url, windowName: "_self" })
-    return
-  }
-
-  if (typeof window !== "undefined") {
-    window.location.assign(url)
-  }
-}
-
-async function closeExternalAuth(): Promise<void> {
-  const browser = getCapacitorBrowserPlugin()
-  if (!browser?.close) return
-
-  await browser.close().catch(() => undefined)
-}
-
-function extractAuthParamsFromLocation(): URLSearchParams | null {
-  if (typeof window === "undefined") return null
-
-  const fromSearch = new URLSearchParams(window.location.search)
-  if (fromSearch.has(AUTH_ID_TOKEN_KEY) || fromSearch.has(AUTH_ERROR_KEY)) {
-    return fromSearch
-  }
-
-  const hash = window.location.hash.startsWith("#")
-    ? window.location.hash.slice(1)
-    : window.location.hash
-  const fromHash = new URLSearchParams(hash)
-
-  if (fromHash.has(AUTH_ID_TOKEN_KEY) || fromHash.has(AUTH_ERROR_KEY)) {
-    return fromHash
-  }
-
-  return null
-}
+/*
+--------------------------------------------------
+Google Login
+--------------------------------------------------
+*/
 
 export async function signInWithGoogle() {
   if (!auth) {
@@ -100,12 +48,40 @@ export async function signInWithGoogle() {
     return
   }
 
-  const loginUrl = "https://mindwell-navy.vercel.app/api/auth/google"
-  await openExternalAuth(loginUrl)
+  await signInWithRedirect(auth, provider)
 }
 
+/*
+--------------------------------------------------
+Handle Firebase redirect after login
+--------------------------------------------------
+*/
+
+export async function completeRedirectSignIn(): Promise<UserCredential | null> {
+  if (!auth || typeof window === "undefined") return null
+
+  try {
+    const result = await getRedirectResult(auth)
+
+    if (result?.user) {
+      window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1")
+    }
+
+    return result
+  } catch (error) {
+    console.error("Redirect sign-in failed", error)
+    return null
+  }
+}
+
+/*
+--------------------------------------------------
+Capacitor deep-link handler
+--------------------------------------------------
+*/
+
 export function setupCapacitorAuthRedirectHandler() {
-  CapacitorApp.addListener("appUrlOpen", async (event) => {
+  CapacitorApp.addListener("appUrlOpen", (event) => {
     const incomingUrl = event.url
     if (!incomingUrl) return
 
@@ -113,12 +89,7 @@ export function setupCapacitorAuthRedirectHandler() {
       const url = new URL(incomingUrl)
 
       if (url.hostname === "mindwell-navy.vercel.app") {
-        await closeExternalAuth()
-
-        if (typeof window !== "undefined") {
-          window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1")
-          window.location.href = url.pathname + url.search + url.hash
-        }
+        window.location.href = url.pathname + url.search + url.hash
       }
     } catch (err) {
       console.error("Invalid redirect URL", err)
@@ -126,29 +97,11 @@ export function setupCapacitorAuthRedirectHandler() {
   })
 }
 
-export async function completeRedirectSignIn(): Promise<UserCredential | null> {
-  if (!auth || typeof window === "undefined") return null
-
-  const params = extractAuthParamsFromLocation()
-  if (!params) return null
-
-  const authError = params.get(AUTH_ERROR_KEY)
-  if (authError) {
-    console.error("OAuth redirect error", authError)
-    return null
-  }
-
-  const authProvider = params.get(AUTH_PROVIDER_KEY)
-  if (authProvider && authProvider !== "google") return null
-
-  const idToken = params.get(AUTH_ID_TOKEN_KEY)
-  if (!idToken) return null
-
-  const accessToken = params.get(AUTH_ACCESS_TOKEN_KEY) ?? undefined
-
-  const credential = GoogleAuthProvider.credential(idToken, accessToken)
-  return signInWithCredential(auth, credential)
-}
+/*
+--------------------------------------------------
+Community reopen helpers
+--------------------------------------------------
+*/
 
 export const shouldReopenCommunityAfterAuth = (): boolean => {
   if (typeof window === "undefined") return false
@@ -162,6 +115,12 @@ export const consumeCommunityReopenFlag = (): boolean => {
   window.sessionStorage.removeItem(COMMUNITY_AUTH_OPEN_KEY)
   return flag
 }
+
+/*
+--------------------------------------------------
+Auth state listener
+--------------------------------------------------
+*/
 
 export function watchAuthState(callback: (user: unknown) => void) {
   if (!auth) return
