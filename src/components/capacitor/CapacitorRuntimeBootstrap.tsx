@@ -239,23 +239,21 @@ return () => window.clearTimeout(timer)
 }, [showExitHint])
 
 return (
-<>
-{isOffline && (
+  <>
+    {isOffline ? (
+      <div className="fixed bottom-4 left-1/2 z-[120] w-[min(92vw,540px)] -translate-x-1/2 rounded-xl bg-red-700 px-4 py-3 text-xs font-medium text-white shadow-lg">
+        You are offline. Please reconnect.
+      </div>
+    ) : null}
 
-You are offline. Please reconnect.
+    {showExitHint ? (
+      <div className="fixed bottom-16 left-1/2 z-[120] -translate-x-1/2 rounded-full bg-slate-900 px-4 py-2 text-xs text-white shadow-lg">
+        Press back again to exit MindWell.
+      </div>
+    ) : null}
 
-)}
-
-  {showExitHint && (
-    <div className="fixed bottom-16 left-1/2 z-[120] -translate-x-1/2 rounded-full bg-slate-900 px-4 py-2 text-xs text-white shadow-lg">
-      Press back again to exit MindWell.
-    </div>
-  )}
-
-  {isAuthResolving && (
-    <div className="sr-only">Completing sign-in…</div>
-  )}
-</>
-
+    {isAuthResolving ? (
+      <div className="sr-only">Completing sign-in…</div>
+    ) : null}
+  </>
 )
-}
