@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -35,6 +35,27 @@ interface MeditationModalProps {
   onOpenChange: (open: boolean) => void
 }
 
+
+const getPreferredEnglishVoiceIndex = (voices: SpeechSynthesisVoice[]): number => {
+  if (voices.length === 0) return 0
+
+  const preferredIndex = voices.findIndex((voice) =>
+    voice.lang.toLowerCase() === 'en-us' &&
+    (voice.name.toLowerCase().includes('google') || voice.name.toLowerCase().includes('english'))
+  )
+
+  if (preferredIndex !== -1) return preferredIndex
+
+  const enUsIndex = voices.findIndex((voice) => voice.lang.toLowerCase() === 'en-us')
+  if (enUsIndex !== -1) return enUsIndex
+
+  const englishIndex = voices.findIndex((voice) => voice.lang.toLowerCase().startsWith('en'))
+  if (englishIndex !== -1) return englishIndex
+
+  const defaultIndex = voices.findIndex((voice) => voice.default)
+  return defaultIndex !== -1 ? defaultIndex : 0
+}
+
 export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   const [meditations, setMeditations] = useState<Meditation[]>([])
   const [selectedMeditation, setSelectedMeditation] = useState<Meditation | null>(null)
@@ -65,24 +86,20 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   const [isMuted, setIsMuted] = useState(false)
   const [volume, setVolume] = useState(1.0)
 
+  const loadVoices = useCallback(async () => {
+    if (!isSpeechSynthesisSupported()) return
+    const voices = await initializeSpeechSynthesis()
+    setAvailableVoices(voices)
+    const defaultIndex = getPreferredEnglishVoiceIndex(voices)
+    setSelectedVoiceIndex(defaultIndex)
+  }, [])
+
   useEffect(() => {
     if (open) {
       fetchMeditations()
       loadVoices()
     }
-  }, [open])
-
-  // Load available TTS voices
-  const loadVoices = async () => {
-    if (!isSpeechSynthesisSupported()) return
-    const voices = await initializeSpeechSynthesis()
-    setAvailableVoices(voices)
-    // Try to find a good default voice
-    const defaultIndex = voices.findIndex(v => v.lang === 'en-US' && v.name.includes('Google'))
-    if (defaultIndex !== -1) {
-      setSelectedVoiceIndex(defaultIndex)
-    }
-  }
+  }, [open, loadVoices])
 
   // Cleanup timer on unmount or when meditation changes
   useEffect(() => {
@@ -158,6 +175,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
     }
   }
 
+
   const startTimer = (meditation: Meditation) => {
     const seconds = meditation.duration * 60
     setTotalTime(seconds)
@@ -222,10 +240,12 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
         setTTSProgress(`Speaking paragraph ${paragraphIndex + 1} of ${paragraphs.length}...`)
 
         try {
+          const selectedVoice = availableVoices[selectedVoiceIndex] ?? availableVoices[getPreferredEnglishVoiceIndex(availableVoices)] ?? null
+
           await speak(paragraphs[paragraphIndex], {
             rate: speechRate,
-            voice: availableVoices[selectedVoiceIndex] || null,
-            lang: availableVoices[selectedVoiceIndex]?.lang,
+            voice: selectedVoice,
+            lang: selectedVoice?.lang ?? 'en-US',
             volume,
           })
         } catch (error) {
