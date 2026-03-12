@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="OCD Awareness illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43cea2"/>
+      <stop offset="100%" style="stop-color:#185a9d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Loop cycle diagram -->
+  <path d="M500,280 Q600,200 700,280 Q800,360 700,400 Q600,440 500,400 Q400,360 500,280Z" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-dasharray="10,5"/>
+  <circle cx="600" cy="315" r="80" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.40)" stroke-width="3"/>
+  <!-- Break in the loop (hope) -->
+  <line x1="640" y1="240" x2="680" y2="220" stroke="rgba(255,220,80,0.80)" stroke-width="5" stroke-linecap="round"/>
+  <text x="600" y="325" font-family="system-ui, sans-serif" font-size="20" fill="rgba(255,255,255,0.80)" text-anchor="middle">Break the</text>
+  <text x="600" y="352" font-family="system-ui, sans-serif" font-size="20" fill="rgba(255,255,255,0.80)" text-anchor="middle">cycle</text>
+  <text x="600" y="490" font-family="system-ui, sans-serif" font-size="50" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">OCD Awareness</text>
+  <text x="600" y="545" font-family="system-ui, sans-serif" font-size="22" fill="rgba(220,255,240,0.80)" text-anchor="middle">Understanding obsessions, compulsions, and support</text>
+  <text x="600" y="600" font-family="system-ui, sans-serif" font-size="18" fill="rgba(220,255,240,0.45)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

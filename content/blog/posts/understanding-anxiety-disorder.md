@@ -2,11 +2,16 @@
 title: Understanding Anxiety Disorder
 date: 2026-03-10
 author: MindWell Team
-coverImage: /images/stock/mental_health_awareness.jpg
+coverImage: /images/blog/anxiety-disorder.svg
+imageAlt: Illustration of the brain showing anxiety patterns, waves, and pathways to calm
 excerpt: Anxiety disorders are among the most common mental health conditions.
 tags: [anxiety, mental health, education]
 category: mental-health-education
 slug: understanding-anxiety-disorder
+locale: en
+translatedSlug: udweger-roga-bojha
+translatedLocale: bn
+lastModified: 2026-03-12
 ---
 
 Anxiety is a normal human emotion, but anxiety disorders go beyond occasional worry. They can create intense, persistent fear that interferes with daily life, relationships, and sleep.

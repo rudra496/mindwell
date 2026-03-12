@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Sleep Hygiene illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a4e"/>
+      <stop offset="50%" style="stop-color:#2d1b69"/>
+      <stop offset="100%" style="stop-color:#0d3b66"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Stars -->
+  <circle cx="150" cy="80" r="3" fill="rgba(255,255,200,0.9)"/>
+  <circle cx="300" cy="50" r="2" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="450" cy="100" r="4" fill="rgba(255,255,200,0.8)"/>
+  <circle cx="700" cy="60" r="2" fill="rgba(255,255,200,0.9)"/>
+  <circle cx="900" cy="90" r="3" fill="rgba(255,255,200,0.6)"/>
+  <circle cx="1050" cy="40" r="2" fill="rgba(255,255,200,0.8)"/>
+  <circle cx="1150" cy="120" r="3" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="80" cy="200" r="2" fill="rgba(255,255,200,0.5)"/>
+  <circle cx="550" cy="150" r="2" fill="rgba(255,255,200,0.7)"/>
+  <circle cx="820" cy="30" r="3" fill="rgba(255,255,200,0.8)"/>
+  <!-- Moon -->
+  <path d="M920,120 Q870,160 870,200 Q870,270 930,300 Q860,290 820,240 Q790,190 820,140 Q850,90 920,120Z" fill="rgba(255,240,150,0.85)"/>
+  <!-- Zzz letters -->
+  <text x="320" y="280" font-family="system-ui, sans-serif" font-size="80" fill="rgba(255,255,255,0.12)" font-weight="700">Z</text>
+  <text x="380" y="230" font-family="system-ui, sans-serif" font-size="60" fill="rgba(255,255,255,0.10)" font-weight="700">z</text>
+  <text x="430" y="195" font-family="system-ui, sans-serif" font-size="40" fill="rgba(255,255,255,0.08)" font-weight="700">z</text>
+  <!-- Text -->
+  <text x="600" y="360" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Sleep Hygiene</text>
+  <text x="600" y="415" font-family="system-ui, sans-serif" font-size="24" fill="rgba(200,220,255,0.80)" text-anchor="middle">Build habits for restorative, healthy sleep</text>
+  <text x="600" y="570" font-family="system-ui, sans-serif" font-size="18" fill="rgba(200,220,255,0.50)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

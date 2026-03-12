@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Burnout and Depression awareness illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#2d4a7a;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0f2540;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a90d9;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#2d5f9e;stop-opacity:0.3"/>
+    </linearGradient>
+    <linearGradient id="warmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e07b54;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:0.2"/>
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Ambient light blobs -->
+  <circle cx="200" cy="150" r="200" fill="url(#circleGrad)" filter="url(#blur1)" opacity="0.5"/>
+  <circle cx="1000" cy="500" r="250" fill="url(#warmGrad)" filter="url(#blur1)" opacity="0.4"/>
+  <circle cx="600" cy="337" r="180" fill="#3a6fa8" filter="url(#blur2)" opacity="0.15"/>
+
+  <!-- Person silhouette – seated, head down (burnout posture) -->
+  <g transform="translate(560,170)">
+    <!-- Head -->
+    <circle cx="80" cy="30" r="38" fill="#d4a574" opacity="0.9"/>
+    <!-- Neck -->
+    <rect x="68" y="60" width="24" height="20" fill="#c49a6c" opacity="0.9"/>
+    <!-- Torso leaning forward -->
+    <path d="M30,80 Q80,78 130,82 L120,200 Q80,210 40,200 Z" fill="#2d5a9e" opacity="0.85"/>
+    <!-- Arms resting on knees -->
+    <path d="M30,100 Q0,150 20,200" stroke="#c49a6c" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.9"/>
+    <path d="M130,100 Q160,150 140,200" stroke="#c49a6c" stroke-width="20" fill="none" stroke-linecap="round" opacity="0.9"/>
+    <!-- Legs / seated -->
+    <path d="M40,200 Q35,260 60,270" stroke="#2d5a9e" stroke-width="28" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M120,200 Q125,260 100,270" stroke="#2d5a9e" stroke-width="28" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <!-- Feet -->
+    <ellipse cx="58" cy="273" rx="20" ry="10" fill="#1a3d6e" opacity="0.8"/>
+    <ellipse cx="102" cy="273" rx="20" ry="10" fill="#1a3d6e" opacity="0.8"/>
+  </g>
+
+  <!-- Falling dots / energy drain motif -->
+  <circle cx="650" cy="230" r="5" fill="#4a90d9" opacity="0.7"/>
+  <circle cx="665" cy="260" r="4" fill="#4a90d9" opacity="0.5"/>
+  <circle cx="655" cy="290" r="3" fill="#4a90d9" opacity="0.3"/>
+  <circle cx="640" cy="155" r="6" fill="#e07b54" opacity="0.6"/>
+  <circle cx="628" cy="178" r="4" fill="#e07b54" opacity="0.4"/>
+  <circle cx="618" cy="205" r="3" fill="#e07b54" opacity="0.25"/>
+
+  <!-- Sunrise / hope arc on the right -->
+  <path d="M850,400 Q950,300 1050,400" stroke="#4a90d9" stroke-width="3" fill="none" opacity="0.5" stroke-dasharray="8 6"/>
+  <circle cx="950" cy="320" r="40" fill="#f5c842" opacity="0.15" filter="url(#blur2)"/>
+  <circle cx="950" cy="320" r="22" fill="#f5c842" opacity="0.25"/>
+
+  <!-- Light rays from sun -->
+  <line x1="950" y1="290" x2="950" y2="265" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="970" y1="296" x2="985" y2="275" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="930" y1="296" x2="915" y2="275" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="980" y1="315" x2="1005" y2="305" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+  <line x1="920" y1="315" x2="895" y2="305" stroke="#f5c842" stroke-width="2" opacity="0.4"/>
+
+  <!-- Text -->
+  <text x="600" y="540" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="bold" fill="white" opacity="0.95">Burnout vs Depression</text>
+  <text x="600" y="585" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#a8c8f0" opacity="0.85">Understanding the difference — and the path forward</text>
+
+  <!-- MindWell brand -->
+  <text x="600" y="628" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#6aaad4" opacity="0.7">MindWell · Mental Health Education</text>
+</svg>

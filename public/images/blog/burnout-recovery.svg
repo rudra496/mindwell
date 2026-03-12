@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Burnout Recovery illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f7971e"/>
+      <stop offset="100%" style="stop-color:#ffd200"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Battery icon showing recharge -->
+  <rect x="475" y="150" width="250" height="160" rx="12" fill="rgba(255,255,255,0.20)" stroke="rgba(255,255,255,0.60)" stroke-width="4"/>
+  <rect x="725" y="190" width="30" height="80" rx="6" fill="rgba(255,255,255,0.60)"/>
+  <!-- Battery fill (charging) -->
+  <rect x="485" y="160" width="200" height="140" rx="8" fill="rgba(255,255,255,0.15)"/>
+  <rect x="485" y="220" width="200" height="80" rx="8" fill="rgba(255,255,255,0.40)"/>
+  <!-- Lightning bolt inside -->
+  <polygon points="600,175 575,225 600,225 580,265 625,210 598,210 620,175" fill="rgba(80,50,0,0.55)"/>
+  <text x="600" y="410" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="rgba(80,50,0,0.90)" text-anchor="middle">Burnout Recovery</text>
+  <text x="600" y="465" font-family="system-ui, sans-serif" font-size="22" fill="rgba(80,50,0,0.70)" text-anchor="middle">Rest, restore, and rebuild your energy</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(80,50,0,0.45)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Mental Health Education in Bengali illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#006a4e"/>
+      <stop offset="50%" style="stop-color:#0a5c38"/>
+      <stop offset="100%" style="stop-color:#1a237e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Bangladesh flag colors subtly -->
+  <circle cx="600" cy="280" r="160" fill="rgba(240,50,50,0.15)" stroke="rgba(240,50,50,0.20)" stroke-width="2"/>
+  <circle cx="600" cy="280" r="110" fill="rgba(240,50,50,0.12)"/>
+  <!-- Heart with mind symbol -->
+  <path d="M600,350 Q560,310 540,280 Q520,250 550,230 Q575,210 600,240 Q625,210 650,230 Q680,250 660,280 Q640,310 600,350Z" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.60)" stroke-width="2"/>
+  <text x="600" y="430" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">মানসিক স্বাস্থ্য শিক্ষা</text>
+  <text x="600" y="490" font-family="system-ui, sans-serif" font-size="24" fill="rgba(200,255,220,0.80)" text-anchor="middle">Mental Health Education in Bengali</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(200,255,220,0.50)" text-anchor="middle">MindWell · মানসিক স্বাস্থ্য শিক্ষা</text>
+</svg>
