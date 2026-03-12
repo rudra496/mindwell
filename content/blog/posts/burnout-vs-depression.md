@@ -2,11 +2,16 @@
 title: Burnout vs Depression
 date: 2026-03-09
 author: MindWell Editorial
-coverImage: /images/stock/hero_group_support.jpg
+coverImage: /images/blog/burnout-depression.svg
+imageAlt: Illustration comparing burnout and depression, showing a person seeking rest and renewal
 excerpt: Burnout and depression can look similar, but they are not the same condition.
 tags: [burnout, depression, stress]
 category: mental-health-insights
 slug: burnout-vs-depression
+locale: en
+translatedSlug: burnout-depression-bangla
+translatedLocale: bn
+lastModified: 2026-03-12
 ---
 
 Burnout is often linked to chronic stress in a specific area, such as work or caregiving. Depression typically affects mood and functioning across many areas of life.

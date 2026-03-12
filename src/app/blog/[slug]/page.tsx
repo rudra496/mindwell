@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import Script from "next/script"
 import { BlogPost } from "@/components/blog/BlogPost"
+import { BlogTranslationRedirect } from "@/components/blog/BlogTranslationRedirect"
 import { RelatedPosts } from "@/components/blog/RelatedPosts"
 import { getAllBlogPosts, getBlogPostBySlug, getRelatedPosts } from "@/lib/blog"
 import { siteUrl } from "@/lib/site"
@@ -98,6 +99,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   return (
     <div className="container mx-auto px-4">
       <Script id={`blog-post-${post.slug}-jsonld`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <BlogTranslationRedirect
+        currentLocale={post.locale ?? "en"}
+        translatedSlug={post.translatedSlug}
+        translatedLocale={post.translatedLocale}
+      />
       <BlogPost post={post} />
       <RelatedPosts posts={relatedPosts} />
     </div>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Understanding Anxiety Disorder illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a3a4a;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#0d6e6e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a2d3d;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d9488;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.3"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.2"/>
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur stdDeviation="25"/>
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Background orbs -->
+  <circle cx="150" cy="200" r="220" fill="url(#tealGrad)" filter="url(#blur1)" opacity="0.6"/>
+  <circle cx="1050" cy="450" r="240" fill="url(#purpleGrad)" filter="url(#blur1)" opacity="0.5"/>
+  <circle cx="600" cy="337" r="200" fill="#0d9488" filter="url(#blur2)" opacity="0.1"/>
+
+  <!-- Brain outline (simplified) -->
+  <g transform="translate(460, 90)" opacity="0.8">
+    <path d="M140,60 C160,20 220,10 240,50 C260,25 310,20 320,70 C360,65 380,110 355,140
+             C385,160 380,210 340,220 C345,255 310,275 280,260 C265,290 225,290 210,265
+             C185,285 145,275 140,248 C100,255 70,225 80,190 C45,175 40,130 75,115
+             C55,85 90,55 140,60 Z"
+          fill="none" stroke="#0d9488" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Brain sulci lines -->
+    <path d="M140,100 Q180,80 220,105" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M220,105 Q250,125 240,160" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M130,160 Q170,150 200,175" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M200,175 Q230,190 220,220" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M260,130 Q290,120 310,145" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+    <path d="M155,200 Q175,215 165,240" stroke="#0d9488" stroke-width="2.5" fill="none" opacity="0.6"/>
+  </g>
+
+  <!-- Ripple / pulse rings around brain -->
+  <circle cx="600" cy="250" r="130" fill="none" stroke="#0d9488" stroke-width="1.5" opacity="0.3" stroke-dasharray="6 4"/>
+  <circle cx="600" cy="250" r="170" fill="none" stroke="#0d9488" stroke-width="1" opacity="0.2" stroke-dasharray="4 6"/>
+  <circle cx="600" cy="250" r="210" fill="none" stroke="#0d9488" stroke-width="0.8" opacity="0.12" stroke-dasharray="3 7"/>
+
+  <!-- Anxiety wave visualization (left) -->
+  <path d="M80,280 Q110,220 140,280 Q170,340 200,280 Q230,220 260,280 Q290,340 320,280"
+        stroke="#06b6d4" stroke-width="3" fill="none" opacity="0.6"/>
+  <text x="200" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#06b6d4" opacity="0.7">racing thoughts</text>
+
+  <!-- Calm wave visualization (right) -->
+  <path d="M880,280 Q910,260 940,280 Q970,300 1000,280 Q1030,260 1060,280 Q1090,300 1120,280"
+        stroke="#10b981" stroke-width="3" fill="none" opacity="0.6"/>
+  <text x="1000" y="360" text-anchor="middle" font-family="Georgia, serif" font-size="15" fill="#10b981" opacity="0.7">calm breathing</text>
+
+  <!-- Arrow: anxiety → calm -->
+  <path d="M340,337 Q600,420 860,337" stroke="white" stroke-width="1.5" fill="none" opacity="0.2" stroke-dasharray="5 5" marker-end="url(#arrow)"/>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="white" opacity="0.3"/>
+    </marker>
+  </defs>
+
+  <!-- Text labels: key symptoms (scattered around brain) -->
+  <text x="340" y="140" font-family="Georgia, serif" font-size="14" fill="#a7f3d0" opacity="0.75">worry</text>
+  <text x="820" y="155" font-family="Georgia, serif" font-size="14" fill="#a7f3d0" opacity="0.75">tension</text>
+  <text x="290" y="200" font-family="Georgia, serif" font-size="13" fill="#6ee7b7" opacity="0.6">avoidance</text>
+  <text x="850" y="210" font-family="Georgia, serif" font-size="13" fill="#6ee7b7" opacity="0.6">irritability</text>
+  <text x="360" y="260" font-family="Georgia, serif" font-size="13" fill="#34d399" opacity="0.55">fatigue</text>
+  <text x="790" y="270" font-family="Georgia, serif" font-size="13" fill="#34d399" opacity="0.55">insomnia</text>
+
+  <!-- Title -->
+  <text x="600" y="535" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="bold" fill="white" opacity="0.95">Understanding Anxiety Disorder</text>
+  <text x="600" y="580" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#6ee7b7" opacity="0.85">Recognising the signs and finding support</text>
+
+  <!-- MindWell brand -->
+  <text x="600" y="625" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#34d399" opacity="0.65">MindWell · Mental Health Education</text>
+</svg>
