@@ -1,12 +1,7 @@
 "use client"
 
 import React from "react"
-import { SpeechOptions } from "./speech"
-
-/**
- * Global voice settings and state management for MindWell
- * Stores preferences for meditation and guided exercises
- */
+import { getPreferredVoice, SpeechOptions } from "./speech"
 
 export interface VoiceSettings {
   enabled: boolean
@@ -14,6 +9,7 @@ export interface VoiceSettings {
   pitch: number
   volume: number
   voice: string | null
+  lang: string
 }
 
 const DEFAULT_SETTINGS: VoiceSettings = {
@@ -21,149 +17,117 @@ const DEFAULT_SETTINGS: VoiceSettings = {
   rate: 0.9,
   pitch: 1.0,
   volume: 1.0,
-  voice: null
+  voice: null,
+  lang: "en-US",
 }
 
 const STORAGE_KEY = "mindwell-voice-settings"
+const VOICE_SETTINGS_EVENT = "voiceSettingsChanged"
 
-/* -------------------------- */
-/* LOAD SETTINGS */
-/* -------------------------- */
+const sanitizeSettings = (value: unknown): VoiceSettings => {
+  if (!value || typeof value !== "object") {
+    return DEFAULT_SETTINGS
+  }
+
+  const next = value as Partial<VoiceSettings>
+
+  return {
+    enabled: Boolean(next.enabled),
+    rate: typeof next.rate === "number" ? Math.min(Math.max(next.rate, 0.5), 2) : DEFAULT_SETTINGS.rate,
+    pitch: typeof next.pitch === "number" ? Math.min(Math.max(next.pitch, 0.5), 2) : DEFAULT_SETTINGS.pitch,
+    volume: typeof next.volume === "number" ? Math.min(Math.max(next.volume, 0), 1) : DEFAULT_SETTINGS.volume,
+    voice: typeof next.voice === "string" && next.voice.length > 0 ? next.voice : null,
+    lang: typeof next.lang === "string" && next.lang.length > 0 ? next.lang : DEFAULT_SETTINGS.lang,
+  }
+}
 
 export const loadVoiceSettings = (): VoiceSettings => {
   if (typeof window === "undefined") return DEFAULT_SETTINGS
 
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-
-    if (stored) {
-      const parsed = JSON.parse(stored)
-      return { ...DEFAULT_SETTINGS, ...parsed }
-    }
-  } catch (err) {
-    console.error("Voice settings load error:", err)
+    if (!stored) return DEFAULT_SETTINGS
+    return sanitizeSettings(JSON.parse(stored))
+  } catch (error) {
+    console.error("[voiceSettings] Failed to load settings", error)
+    return DEFAULT_SETTINGS
   }
-
-  return DEFAULT_SETTINGS
 }
-
-/* -------------------------- */
-/* SAVE SETTINGS */
-/* -------------------------- */
 
 export const saveVoiceSettings = (settings: VoiceSettings): void => {
   if (typeof window === "undefined") return
 
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings))
+  const normalized = sanitizeSettings(settings)
 
-    window.dispatchEvent(
-      new CustomEvent("voiceSettingsChanged", { detail: settings })
-    )
-  } catch (err) {
-    console.error("Voice settings save error:", err)
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(normalized))
+    window.dispatchEvent(new CustomEvent<VoiceSettings>(VOICE_SETTINGS_EVENT, { detail: normalized }))
+  } catch (error) {
+    console.error("[voiceSettings] Failed to save settings", error)
   }
 }
 
-/* -------------------------- */
-/* CONVERT TO SPEECH OPTIONS */
-/* -------------------------- */
-
-export const toSpeechOptions = (settings: VoiceSettings): SpeechOptions => {
+export const toSpeechOptions = async (settings: VoiceSettings): Promise<SpeechOptions> => {
   const options: SpeechOptions = {
     rate: settings.rate,
     pitch: settings.pitch,
-    volume: settings.volume
+    volume: settings.volume,
+    lang: settings.lang,
   }
 
-  if (
-    settings.voice &&
-    typeof window !== "undefined" &&
-    "speechSynthesis" in window
-  ) {
-    const voices = window.speechSynthesis.getVoices()
-
-    const selectedVoice = voices.find((v) => v.name === settings.voice)
-
-    if (selectedVoice) {
-      options.voice = selectedVoice
-    }
+  const selectedVoice = await getPreferredVoice(settings.voice, settings.lang)
+  if (selectedVoice) {
+    options.voice = selectedVoice
+    options.lang = selectedVoice.lang
   }
 
   return options
 }
 
-/* -------------------------- */
-/* REACT HOOK */
-/* -------------------------- */
-
 export const useVoiceSettings = () => {
-  const [settings, setSettings] = React.useState<VoiceSettings>(
-    loadVoiceSettings()
-  )
+  const [settings, setSettings] = React.useState<VoiceSettings>(DEFAULT_SETTINGS)
 
   React.useEffect(() => {
-    const handleChange = (event: Event) => {
+    setSettings(loadVoiceSettings())
+
+    const handleSettingsChange = (event: Event) => {
       const customEvent = event as CustomEvent<VoiceSettings>
-      setSettings(customEvent.detail)
+      setSettings(sanitizeSettings(customEvent.detail))
     }
 
-    window.addEventListener("voiceSettingsChanged", handleChange)
+    window.addEventListener(VOICE_SETTINGS_EVENT, handleSettingsChange)
 
-    return () =>
-      window.removeEventListener("voiceSettingsChanged", handleChange)
+    return () => {
+      window.removeEventListener(VOICE_SETTINGS_EVENT, handleSettingsChange)
+    }
   }, [])
 
-  const updateSettings = React.useCallback(
-    (newSettings: Partial<VoiceSettings>) => {
-      const updated = { ...settings, ...newSettings }
-
-      setSettings(updated)
+  const updateSettings = React.useCallback((newSettings: Partial<VoiceSettings>) => {
+    setSettings((previous) => {
+      const updated = sanitizeSettings({ ...previous, ...newSettings })
       saveVoiceSettings(updated)
-    },
-    [settings]
-  )
+      return updated
+    })
+  }, [])
 
   return { settings, updateSettings }
 }
-
-/* -------------------------- */
-/* NON-REACT HELPERS */
-/* -------------------------- */
 
 export const getVoiceSettings = (): VoiceSettings => {
   return loadVoiceSettings()
 }
 
 export const setVoiceSettings = (settings: Partial<VoiceSettings>): void => {
-  const current = loadVoiceSettings()
-  const updated = { ...current, ...settings }
-
+  const updated = sanitizeSettings({ ...loadVoiceSettings(), ...settings })
   saveVoiceSettings(updated)
 }
-
-/* -------------------------- */
-/* QUICK TOGGLE */
-/* -------------------------- */
 
 export const toggleVoice = (): boolean => {
   const settings = loadVoiceSettings()
-
-  const newEnabled = !settings.enabled
-
-  const updated = {
-    ...settings,
-    enabled: newEnabled
-  }
-
+  const updated = { ...settings, enabled: !settings.enabled }
   saveVoiceSettings(updated)
-
-  return newEnabled
+  return updated.enabled
 }
-
-/* -------------------------- */
-/* CHECK STATUS */
-/* -------------------------- */
 
 export const isVoiceEnabled = (): boolean => {
   return loadVoiceSettings().enabled

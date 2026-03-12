@@ -15,6 +15,7 @@ import { NavigationBar } from "@/components/NavigationBar";
 import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 import { GuidedTour } from "@/components/GuidedTour";
 import { CapacitorRuntimeBootstrap } from "@/components/capacitor/CapacitorRuntimeBootstrap";
+import { OfflineGuard } from "@/components/OfflineGuard";
 
 const description =
   "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
@@ -135,6 +136,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
+          <OfflineGuard>
           <ErrorBoundary>
             {/* Bangladesh crisis number – absolute top of every page, slim bar */}
             <a
@@ -163,6 +165,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <AccessibilityPanel />
             <CapacitorRuntimeBootstrap />
           </ErrorBoundary>
+          </OfflineGuard>
         </ThemeProvider>
       </body>
     </html>
