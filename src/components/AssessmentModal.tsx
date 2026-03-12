@@ -27,7 +27,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
   const [assessments, setAssessments] = useState<Assessment[]>([])
   const [selectedAssessment, setSelectedAssessment] = useState<Assessment | null>(null)
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, number>>({})
+  const [answers, setAnswers] = useState<Record<number, string>>({})
   const [showResults, setShowResults] = useState(false)
   const [loading, setLoading] = useState(true)
   const [showConsentModal, setShowConsentModal] = useState(false)
@@ -78,12 +78,24 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     }
   }
 
-  const handleAnswer = (questionId: number, value: number) => {
+  const handleAnswer = (questionId: number, value: string) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }))
   }
 
+  const getScoreFromAnswerToken = (token: string) => {
+    const parts = token.split(':')
+    const score = Number(parts[parts.length - 1])
+    return Number.isNaN(score) ? 0 : score
+  }
+
+  const getNumericAnswers = () => {
+    return Object.fromEntries(
+      Object.entries(answers).map(([questionId, token]) => [Number(questionId), getScoreFromAnswerToken(token)])
+    )
+  }
+
   const calculateScore = () => {
-    return Object.values(answers).reduce((sum, val) => sum + val, 0)
+    return Object.values(answers).reduce((sum, val) => sum + getScoreFromAnswerToken(val), 0)
   }
 
   const getInterpretation = (score: number, assessment: Assessment) => {
@@ -110,7 +122,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
       await Assessments.saveResult({
         assessmentId: selectedAssessment.id,
         assessmentName: selectedAssessment.name,
-        answers,
+        answers: getNumericAnswers(),
         score,
         severity: interpretation.severity,
         date: new Date()
@@ -326,17 +338,21 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
             <RadioGroup
               key={`question-${currentQuestion}-${question.id}`}
-              value={answers[question.id]?.toString() || ""}
-              onValueChange={(value) => handleAnswer(question.id, parseInt(value))}
+              value={answers[question.id] || ""}
+              onValueChange={(value) => handleAnswer(question.id, value)}
             >
-              {question.options.map((option: { value: number; label: string }) => (
-                <div key={`${question.id}-${option.value}`} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px] sm:min-h-[48px] cursor-pointer transition-colors">
-                  <RadioGroupItem value={option.value.toString()} id={`q${question.id}-${option.value}`} className="cursor-pointer" />
-                  <Label htmlFor={`q${question.id}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words leading-relaxed">
-                    {option.label}
-                  </Label>
-                </div>
-              ))}
+              {question.options.map((option: { value: number; label: string }, optionIndex: number) => {
+                const optionToken = `${question.id}:${optionIndex}:${option.value}`
+
+                return (
+                  <div key={`${question.id}-${optionIndex}-${option.value}`} className="flex items-center space-x-2 p-2 sm:p-3 border rounded-lg hover:bg-gray-50 min-h-[44px] sm:min-h-[48px] cursor-pointer transition-colors">
+                    <RadioGroupItem value={optionToken} id={`q${question.id}-${optionIndex}-${option.value}`} className="cursor-pointer" />
+                    <Label htmlFor={`q${question.id}-${optionIndex}-${option.value}`} className="flex-1 cursor-pointer text-xs sm:text-sm break-words leading-relaxed">
+                      {option.label}
+                    </Label>
+                  </div>
+                )
+              })}
             </RadioGroup>
           </div>
 
