@@ -51,10 +51,13 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
   // Voice output on modal open
   useEffect(() => {
     if (open && settings.enabled) {
-      speak(
-        "Evidence-based therapy techniques. Learn practical techniques from CBT, DBT, ACT, and other proven therapies.",
-        toSpeechOptions(settings)
-      )
+      ;(async () => {
+        const speechOptions = await toSpeechOptions(settings)
+        await speak(
+          "Evidence-based therapy techniques. Learn practical techniques from CBT, DBT, ACT, and other proven therapies.",
+          speechOptions
+        )
+      })()
     }
   }, [open, settings])
 
@@ -78,7 +81,8 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
           ? ["Benefits:", ...technique.benefits]
           : []
       ]
-      await speakWithPauses(narration, toSpeechOptions(settings), 700)
+      const speechOptions = await toSpeechOptions(settings)
+      await speakWithPauses(narration, speechOptions, 700)
     },
     [settings]
   )

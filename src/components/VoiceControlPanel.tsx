@@ -1,17 +1,11 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
-import { Volume2, VolumeX, Settings } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Slider } from '@/components/ui/slider'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
+import React, { useEffect, useMemo, useState } from "react"
+import { Volume2, VolumeX, Settings } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Slider } from "@/components/ui/slider"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import {
   Dialog,
   DialogContent,
@@ -19,9 +13,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog'
-import { useVoiceSettings } from '@/lib/voiceSettings'
-import { waitForVoices, speak, stopSpeaking } from '@/lib/speech'
+} from "@/components/ui/dialog"
+import { useVoiceSettings } from "@/lib/voiceSettings"
+import { getAvailableVoices, initializeSpeechSynthesis, speak, stopSpeaking } from "@/lib/speech"
 
 export function VoiceControlPanel() {
   const { settings, updateSettings } = useVoiceSettings()
@@ -29,32 +23,67 @@ export function VoiceControlPanel() {
   const [settingsOpen, setSettingsOpen] = useState(false)
 
   useEffect(() => {
-    // Load available voices
-    const loadVoices = async () => {
-      const availableVoices = await waitForVoices()
-      setVoices(availableVoices)
+    let cancelled = false
+
+    const syncVoices = async () => {
+      const loadedVoices = await initializeSpeechSynthesis()
+      if (cancelled) return
+      setVoices(loadedVoices)
     }
-    loadVoices()
+
+    syncVoices()
+
+    const handleVoicesChanged = () => {
+      const latest = getAvailableVoices()
+      setVoices(latest)
+      console.info("[voice-panel] Voices changed", { count: latest.length })
+    }
+
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.addEventListener("voiceschanged", handleVoicesChanged)
+    }
+
+    return () => {
+      cancelled = true
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.removeEventListener("voiceschanged", handleVoicesChanged)
+      }
+    }
   }, [])
+
+  const voiceChoices = useMemo(() => {
+    if (voices.length === 0) {
+      return [{ label: "System default voice", value: "default" }]
+    }
+
+    return [
+      { label: "System default voice", value: "default" },
+      ...voices.map((voice) => ({
+        label: `${voice.name} (${voice.lang})`,
+        value: voice.name,
+      })),
+    ]
+  }, [voices])
+
+  const selectedVoiceValue = settings.voice ?? "default"
 
   const handleToggle = () => {
     updateSettings({ enabled: !settings.enabled })
   }
 
   const handleTestVoice = async () => {
-    await speak('This is a test of the text to speech system.', {
+    const selectedVoice = voices.find((voice) => voice.name === settings.voice) ?? null
+    await speak("This is a test of the text to speech system.", {
       rate: settings.rate,
       pitch: settings.pitch,
       volume: settings.volume,
-      voice: voices.find(v => v.name === settings.voice) || null
+      lang: settings.lang,
+      voice: selectedVoice,
     })
   }
 
-  const englishVoices = voices.filter(v => v.lang.startsWith('en-'))
-
   return (
     <div className="flex items-center gap-2">
-      {/* Quick Toggle Button */}
       <Button
         onClick={handleToggle}
         variant={settings.enabled ? "default" : "outline"}
@@ -64,18 +93,17 @@ export function VoiceControlPanel() {
       >
         {settings.enabled ? (
           <>
-            <Volume2 className="h-4 w-4 mr-2" />
+            <Volume2 className="mr-2 h-4 w-4" />
             <span className="hidden sm:inline">Voice On</span>
           </>
         ) : (
           <>
-            <VolumeX className="h-4 w-4 mr-2" />
+            <VolumeX className="mr-2 h-4 w-4" />
             <span className="hidden sm:inline">Voice Off</span>
           </>
         )}
       </Button>
 
-      {/* Settings Dialog */}
       <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
         <DialogTrigger asChild>
           <Button variant="outline" size="sm" className="min-h-[44px]" aria-label="Voice settings">
@@ -85,34 +113,30 @@ export function VoiceControlPanel() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Voice Settings</DialogTitle>
-            <DialogDescription>
-              Customize text-to-speech for reading content aloud
-            </DialogDescription>
+            <DialogDescription>Customize text-to-speech for reading content aloud.</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-6 py-4">
-            {/* Voice Selection */}
             <div className="space-y-2">
               <Label htmlFor="voice-select">Voice</Label>
               <Select
-                value={settings.voice || undefined}
-                onValueChange={(value) => updateSettings({ voice: value })}
+                value={selectedVoiceValue}
+                onValueChange={(value) => updateSettings({ voice: value === "default" ? null : value })}
               >
                 <SelectTrigger id="voice-select" className="min-h-[44px]">
-                  <SelectValue placeholder="Default voice" />
+                  <SelectValue placeholder="Select voice" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="default">Default voice</SelectItem>
-                  {englishVoices.map((voice) => (
-                    <SelectItem key={voice.name} value={voice.name}>
-                      {voice.name} ({voice.lang})
+                  {voiceChoices.map((voice) => (
+                    <SelectItem key={voice.value} value={voice.value}>
+                      {voice.label}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+              <p className="text-xs text-gray-500">Available voices: {voices.length || 1}</p>
             </div>
 
-            {/* Speed Control */}
             <div className="space-y-2">
               <div className="flex justify-between">
                 <Label htmlFor="speed-slider">Speed</Label>
@@ -127,13 +151,8 @@ export function VoiceControlPanel() {
                 onValueChange={(value) => updateSettings({ rate: value[0] })}
                 className="py-2"
               />
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>Slower</span>
-                <span>Faster</span>
-              </div>
             </div>
 
-            {/* Pitch Control */}
             <div className="space-y-2">
               <div className="flex justify-between">
                 <Label htmlFor="pitch-slider">Pitch</Label>
@@ -148,13 +167,8 @@ export function VoiceControlPanel() {
                 onValueChange={(value) => updateSettings({ pitch: value[0] })}
                 className="py-2"
               />
-              <div className="flex justify-between text-xs text-gray-500">
-                <span>Lower</span>
-                <span>Higher</span>
-              </div>
             </div>
 
-            {/* Volume Control */}
             <div className="space-y-2">
               <div className="flex justify-between">
                 <Label htmlFor="volume-slider">Volume</Label>
@@ -171,15 +185,12 @@ export function VoiceControlPanel() {
               />
             </div>
 
-            {/* Test Button */}
             <Button onClick={handleTestVoice} className="w-full min-h-[44px]">
               Test Voice
             </Button>
-
-            {/* Info */}
-            <p className="text-xs text-gray-500 text-center">
-              Voice will read aloud assessments, disorders, games, and therapy content when enabled.
-            </p>
+            <Button variant="outline" onClick={stopSpeaking} className="w-full min-h-[44px]">
+              Stop
+            </Button>
           </div>
         </DialogContent>
       </Dialog>

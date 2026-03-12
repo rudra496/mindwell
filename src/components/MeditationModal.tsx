@@ -18,7 +18,7 @@ import {
   resumeSpeaking,
   isSpeaking,
   isPaused,
-  waitForVoices,
+  initializeSpeechSynthesis,
   isSpeechSynthesisSupported
 } from "@/lib/speech"
 import { playSound, muteSounds, unmuteSounds, isSoundMuted } from "@/lib/sounds"
@@ -74,7 +74,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   // Load available TTS voices
   const loadVoices = async () => {
     if (!isSpeechSynthesisSupported()) return
-    const voices = await waitForVoices()
+    const voices = await initializeSpeechSynthesis()
     setAvailableVoices(voices)
     // Try to find a good default voice
     const defaultIndex = voices.findIndex(v => v.lang === 'en-US' && v.name.includes('Google'))
@@ -496,28 +496,34 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                     {/* Voice Selection */}
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Voice</label>
-                      {availableVoices.length > 0 ? (
-                        <Select
-                          value={selectedVoiceIndex.toString()}
-                          onValueChange={(value) => setSelectedVoiceIndex(parseInt(value))}
-                          disabled={isTTSSpeaking}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a voice" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {availableVoices.map((voice, index) => (
-                              <SelectItem key={index} value={index.toString()}>
-                                {voice.name} ({voice.lang})
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      ) : (
-                        <p className="text-xs text-muted-foreground">
-                          Using device default voice (recommended for Android WebView wrappers).
-                        </p>
-                      )}
+                      <Select
+                        value={availableVoices.length > 0 ? selectedVoiceIndex.toString() : "default"}
+                        onValueChange={(value) => {
+                          if (value === "default") {
+                            setSelectedVoiceIndex(0)
+                            return
+                          }
+                          setSelectedVoiceIndex(parseInt(value))
+                        }}
+                        disabled={isTTSSpeaking}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a voice" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="default">System default voice</SelectItem>
+                          {availableVoices.map((voice, index) => (
+                            <SelectItem key={index} value={index.toString()}>
+                              {voice.name} ({voice.lang})
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <p className="text-xs text-muted-foreground">
+                        {availableVoices.length > 0
+                          ? `${availableVoices.length} voice option(s) available on this device.`
+                          : "Using device default voice (Android WebView may expose voices after warm-up)."}
+                      </p>
                     </div>
 
                     {/* Speech Rate */}

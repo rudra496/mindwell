@@ -1,7 +1,6 @@
 /**
- * Text-to-Speech (TTS) Engine for MindWell
- * Uses Web Speech API first (for multiple voices),
- * then falls back to Capacitor native TTS if needed.
+ * Cross-platform Text-to-Speech engine.
+ * Web Speech API is always primary, with native fallbacks.
  */
 
 export interface SpeechOptions {
@@ -32,6 +31,14 @@ type AndroidBridgeTTS = {
     volume?: number
   ) => void
   stop?: () => void
+}
+
+let voiceLoadPromise: Promise<SpeechSynthesisVoice[]> | null = null
+let lastKnownVoices: SpeechSynthesisVoice[] = []
+let forcedWarmupDone = false
+
+const hasWebSpeech = (): boolean => {
+  return typeof window !== "undefined" && "speechSynthesis" in window
 }
 
 const getCapacitorTTSPlugin = (): CapacitorTextToSpeechPlugin | null => {
@@ -70,221 +77,235 @@ const isAndroidBridgeTTSSupported = (): boolean => {
 }
 
 export const isSpeechSynthesisSupported = (): boolean => {
-  return (
-    (typeof window !== "undefined" && "speechSynthesis" in window) ||
-    isCapacitorTTSSupported() ||
-    isAndroidBridgeTTSSupported()
-  )
+  return hasWebSpeech() || isCapacitorTTSSupported() || isAndroidBridgeTTSSupported()
 }
 
-/* ------------------------------- */
-/* VOICE UTILITIES */
-/* ------------------------------- */
+const dedupeVoices = (voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice[] => {
+  const map = new Map<string, SpeechSynthesisVoice>()
+  for (const voice of voices) {
+    const key = `${voice.name}|${voice.lang}|${voice.voiceURI}`
+    map.set(key, voice)
+  }
+  return [...map.values()]
+}
+
+const normalizeVoiceList = (voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice[] => {
+  const deduped = dedupeVoices(voices)
+  deduped.sort((a, b) => {
+    if (a.default && !b.default) return -1
+    if (!a.default && b.default) return 1
+    return a.name.localeCompare(b.name)
+  })
+  return deduped
+}
+
+const forceWarmupIfNeeded = () => {
+  if (!hasWebSpeech() || forcedWarmupDone) return
+
+  forcedWarmupDone = true
+
+  try {
+    const warmupUtterance = new SpeechSynthesisUtterance("")
+    warmupUtterance.volume = 0
+    warmupUtterance.rate = 1
+    warmupUtterance.pitch = 1
+    window.speechSynthesis.speak(warmupUtterance)
+    window.speechSynthesis.cancel()
+    console.info("[speech] Warmup utterance sent to initialize Android/WebView voices")
+  } catch (error) {
+    console.warn("[speech] Failed to warm up speech synthesis", error)
+  }
+}
+
+export const initializeSpeechSynthesis = async (): Promise<SpeechSynthesisVoice[]> => {
+  if (!hasWebSpeech()) return []
+
+  forceWarmupIfNeeded()
+  const voices = await waitForVoices()
+  console.info("[speech] Voice initialization complete", {
+    count: voices.length,
+    voices: voices.map((voice) => `${voice.name} (${voice.lang})`),
+  })
+  return voices
+}
 
 export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
-  if (typeof window === "undefined" || !("speechSynthesis" in window)) return []
-  return window.speechSynthesis.getVoices()
+  if (!hasWebSpeech()) return []
+  const voices = normalizeVoiceList(window.speechSynthesis.getVoices())
+  if (voices.length > 0) {
+    lastKnownVoices = voices
+  }
+  return voices.length > 0 ? voices : lastKnownVoices
 }
 
-export const waitForVoices = (): Promise<SpeechSynthesisVoice[]> => {
-  return new Promise((resolve) => {
-    if (!("speechSynthesis" in window)) {
-      resolve([])
-      return
-    }
+export const waitForVoices = async (timeoutMs = 5000): Promise<SpeechSynthesisVoice[]> => {
+  if (!hasWebSpeech()) return []
 
-    const voices = window.speechSynthesis.getVoices()
+  if (voiceLoadPromise) {
+    return voiceLoadPromise
+  }
 
-    if (voices.length > 0) {
+  voiceLoadPromise = new Promise<SpeechSynthesisVoice[]>((resolve) => {
+    const startedAt = Date.now()
+    let settled = false
+
+    const complete = () => {
+      if (settled) return
+      settled = true
+
+      window.speechSynthesis.removeEventListener("voiceschanged", onVoicesChanged)
+      window.clearInterval(pollId)
+      window.clearTimeout(timeoutId)
+
+      const voices = getAvailableVoices()
+      console.info("[speech] Voice discovery settled", {
+        elapsedMs: Date.now() - startedAt,
+        count: voices.length,
+      })
       resolve(voices)
-      return
     }
 
-    window.speechSynthesis.addEventListener(
-      "voiceschanged",
-      () => {
-        resolve(window.speechSynthesis.getVoices())
-      },
-      { once: true }
-    )
+    const onVoicesChanged = () => {
+      const voices = getAvailableVoices()
+      console.info("[speech] voiceschanged event", { count: voices.length })
+      if (voices.length > 0) complete()
+    }
 
-    setTimeout(() => {
-      resolve(window.speechSynthesis.getVoices())
-    }, 3000)
+    window.speechSynthesis.addEventListener("voiceschanged", onVoicesChanged)
+
+    const pollId = window.setInterval(() => {
+      const voices = getAvailableVoices()
+      if (voices.length > 0) complete()
+    }, 250)
+
+    const timeoutId = window.setTimeout(() => complete(), timeoutMs)
+
+    const initialVoices = getAvailableVoices()
+    if (initialVoices.length > 0) complete()
+  }).finally(() => {
+    voiceLoadPromise = null
   })
+
+  return voiceLoadPromise
 }
 
-export const getPreferredVoice = async (): Promise<SpeechSynthesisVoice | null> => {
+export const getPreferredVoice = async (
+  requestedVoiceName?: string | null,
+  requestedLang = "en-US"
+): Promise<SpeechSynthesisVoice | null> => {
   const voices = await waitForVoices()
+  if (voices.length === 0) return null
 
-  const preferred = [
-    voices.find((v) => v.name.includes("Google") && v.lang === "en-US"),
-    voices.find((v) => v.lang === "en-US" && v.name.includes("Natural")),
-    voices.find((v) => v.lang === "en-US"),
-    voices.find((v) => v.lang.startsWith("en")),
+  const lowerRequested = requestedVoiceName?.toLowerCase()
+  const lowerRequestedLang = requestedLang.toLowerCase()
+
+  const candidates: Array<SpeechSynthesisVoice | undefined> = [
+    voices.find((voice) => lowerRequested && voice.name.toLowerCase() === lowerRequested),
+    voices.find((voice) => voice.default && voice.lang.toLowerCase() === lowerRequestedLang),
+    voices.find((voice) => voice.lang.toLowerCase() === lowerRequestedLang),
+    voices.find((voice) => voice.lang.toLowerCase().startsWith(lowerRequestedLang.split("-")[0])),
+    voices.find((voice) => voice.default),
     voices[0],
-  ].find((v) => v !== undefined)
+  ]
 
-  return preferred || null
+  return candidates.find(Boolean) ?? null
 }
 
-/* ------------------------------- */
-/* SPEAK FUNCTION */
-/* ------------------------------- */
+export const speak = async (text: string, options: SpeechOptions = {}): Promise<void> => {
+  if (!text.trim() || !isSpeechSynthesisSupported()) return
 
-export const speak = async (
-  text: string,
-  options: SpeechOptions = {}
-): Promise<void> => {
-  return new Promise(async (resolve, reject) => {
-    if (!isSpeechSynthesisSupported()) {
-      resolve()
-      return
-    }
+  if (hasWebSpeech()) {
+    try {
+      await waitForVoices()
+      window.speechSynthesis.cancel()
 
-    /* -------------------------------- */
-    /* FIRST: Web Speech API (MULTI VOICE) */
-    /* -------------------------------- */
+      const utterance = new SpeechSynthesisUtterance(text)
+      utterance.rate = options.rate ?? 0.9
+      utterance.pitch = options.pitch ?? 1.0
+      utterance.volume = options.volume ?? 1.0
+      utterance.lang = options.lang ?? "en-US"
 
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      try {
-        window.speechSynthesis.cancel()
+      if (options.voice) {
+        utterance.voice = options.voice
+      } else {
+        const fallbackVoice = await getPreferredVoice(null, utterance.lang)
+        if (fallbackVoice) utterance.voice = fallbackVoice
+      }
 
-        const utterance = new SpeechSynthesisUtterance(text)
-
-        utterance.rate = options.rate ?? 0.8
-        utterance.pitch = options.pitch ?? 1.0
-        utterance.volume = options.volume ?? 1.0
-        utterance.lang = options.lang ?? "en-US"
-
-        if (options.voice) {
-          utterance.voice = options.voice
-        } else {
-          const preferredVoice = await getPreferredVoice()
-          if (preferredVoice) {
-            utterance.voice = preferredVoice
-          }
-        }
-
+      await new Promise<void>((resolve, reject) => {
         utterance.onend = () => resolve()
         utterance.onerror = (event) => reject(event)
-
         window.speechSynthesis.speak(utterance)
-        return
-      } catch (error) {
-        console.warn("Web speech failed, trying fallback", error)
-      }
+      })
+      return
+    } catch (error) {
+      console.warn("[speech] Web Speech API failed, trying native fallback", error)
     }
+  }
 
-    /* -------------------------------- */
-    /* SECOND: Capacitor Native TTS */
-    /* -------------------------------- */
+  if (isCapacitorTTSSupported()) {
+    const plugin = getCapacitorTTSPlugin()
+    await plugin?.stop?.()
+    await plugin?.speak?.({
+      text,
+      lang: options.lang ?? "en-US",
+      rate: options.rate ?? 0.9,
+      pitch: options.pitch ?? 1,
+      volume: options.volume ?? 1,
+    })
+    return
+  }
 
-    if (isCapacitorTTSSupported()) {
-      try {
-        const plugin = getCapacitorTTSPlugin()
-
-        await plugin?.stop?.()
-
-        await plugin?.speak?.({
-          text,
-          lang: options.lang ?? "en-US",
-          rate: options.rate ?? 0.8,
-          pitch: options.pitch ?? 1.0,
-          volume: options.volume ?? 1.0,
-        })
-
-        resolve()
-        return
-      } catch (error) {
-        reject(error)
-      }
-    }
-
-    /* -------------------------------- */
-    /* THIRD: Android Bridge fallback */
-    /* -------------------------------- */
-
-    if (isAndroidBridgeTTSSupported()) {
-      try {
-        const bridge = getAndroidBridgeTTS()
-
-        bridge?.stop?.()
-
-        bridge?.speak?.(
-          text,
-          options.lang ?? "en-US",
-          options.rate ?? 0.8,
-          options.pitch ?? 1.0,
-          options.volume ?? 1.0
-        )
-
-        resolve()
-        return
-      } catch (error) {
-        reject(error)
-      }
-    }
-
-    resolve()
-  })
+  if (isAndroidBridgeTTSSupported()) {
+    const bridge = getAndroidBridgeTTS()
+    bridge?.stop?.()
+    bridge?.speak?.(
+      text,
+      options.lang ?? "en-US",
+      options.rate ?? 0.9,
+      options.pitch ?? 1,
+      options.volume ?? 1
+    )
+  }
 }
-
-/* ------------------------------- */
-/* MULTI PARAGRAPH SPEECH */
-/* ------------------------------- */
 
 export const speakWithPauses = async (
   paragraphs: string[],
   options: SpeechOptions = {},
   pauseBetween = 1000
 ): Promise<void> => {
-  for (let i = 0; i < paragraphs.length; i++) {
+  for (let i = 0; i < paragraphs.length; i += 1) {
     await speak(paragraphs[i], options)
-
     if (i < paragraphs.length - 1) {
       await new Promise((resolve) => setTimeout(resolve, pauseBetween))
     }
   }
 }
 
-/* ------------------------------- */
-/* CONTROL FUNCTIONS */
-/* ------------------------------- */
-
 export const stopSpeaking = (): void => {
-  if ("speechSynthesis" in window) {
+  if (hasWebSpeech()) {
     window.speechSynthesis.cancel()
   }
-
-  const plugin = getCapacitorTTSPlugin()
-  plugin?.stop?.().catch(() => undefined)
-
+  getCapacitorTTSPlugin()?.stop?.().catch(() => undefined)
   getAndroidBridgeTTS()?.stop?.()
 }
 
 export const pauseSpeaking = (): void => {
-  if ("speechSynthesis" in window) {
+  if (hasWebSpeech()) {
     window.speechSynthesis.pause()
   }
 }
 
 export const resumeSpeaking = (): void => {
-  if ("speechSynthesis" in window) {
+  if (hasWebSpeech()) {
     window.speechSynthesis.resume()
   }
 }
 
 export const isSpeaking = (): boolean => {
-  if ("speechSynthesis" in window) {
-    return window.speechSynthesis.speaking
-  }
-  return false
+  return hasWebSpeech() ? window.speechSynthesis.speaking : false
 }
 
 export const isPaused = (): boolean => {
-  if ("speechSynthesis" in window) {
-    return window.speechSynthesis.paused
-  }
-  return false
+  return hasWebSpeech() ? window.speechSynthesis.paused : false
 }
