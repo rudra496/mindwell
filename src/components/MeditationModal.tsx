@@ -14,10 +14,6 @@ import { Slider } from "@/components/ui/slider"
 import {
   speak,
   stopSpeaking,
-  pauseSpeaking,
-  resumeSpeaking,
-  isSpeaking,
-  isPaused,
   initializeSpeechSynthesis,
   isSpeechSynthesisSupported
 } from "@/lib/speech"
@@ -62,6 +58,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   const ttsSessionRef = useRef(0)
   const ttsStopRequestedRef = useRef(false)
   const ttsPauseRequestedRef = useRef(false)
+  const ttsParagraphsRef = useRef<string[]>([])
+  const ttsCurrentParagraphRef = useRef(0)
 
   // Audio state
   const [isMuted, setIsMuted] = useState(false)
@@ -177,11 +175,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
   const resetTimer = () => {
     setIsTimerRunning(false)
-    if (selectedMeditation) {
-      const seconds = selectedMeditation.duration * 60
-      setTimeRemaining(seconds)
-      setTotalTime(seconds)
-    }
+    setTimeRemaining(0)
+    setTotalTime(0)
   }
 
   // TTS functions
@@ -206,13 +201,91 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
     return true
   }
 
+  const runTTSPlayback = async (sessionId: number) => {
+    const paragraphs = ttsParagraphsRef.current
+
+    try {
+      while (ttsCurrentParagraphRef.current < paragraphs.length) {
+        const paragraphIndex = ttsCurrentParagraphRef.current
+
+        if (ttsStopRequestedRef.current || ttsSessionRef.current !== sessionId) {
+          setTTSProgress("Playback stopped")
+          setIsTTSSpeaking(false)
+          return
+        }
+
+        if (ttsPauseRequestedRef.current) {
+          setIsTTSSpeaking(false)
+          return
+        }
+
+        setTTSProgress(`Speaking paragraph ${paragraphIndex + 1} of ${paragraphs.length}...`)
+
+        try {
+          await speak(paragraphs[paragraphIndex], {
+            rate: speechRate,
+            voice: availableVoices[selectedVoiceIndex] || null,
+            lang: availableVoices[selectedVoiceIndex]?.lang,
+            volume,
+          })
+        } catch (error) {
+          if (ttsPauseRequestedRef.current) {
+            setIsTTSSpeaking(false)
+            return
+          }
+
+          if (ttsStopRequestedRef.current || ttsSessionRef.current !== sessionId) {
+            setTTSProgress("Playback stopped")
+            setIsTTSSpeaking(false)
+            return
+          }
+
+          throw error
+        }
+
+        ttsCurrentParagraphRef.current += 1
+
+        if (ttsCurrentParagraphRef.current < paragraphs.length) {
+          const canContinue = await waitWithTTSControls(sessionId, PARAGRAPH_PAUSE_MS)
+          if (!canContinue) {
+            setTTSProgress("Playback stopped")
+            setIsTTSSpeaking(false)
+            return
+          }
+        }
+      }
+
+      setTTSProgress("Meditation complete")
+      setIsTTSSpeaking(false)
+      setIsTTSPaused(false)
+
+      if (!isMuted) {
+        try {
+          await playSound('chime', volume)
+        } catch (error) {
+          console.warn('Failed to play completion chime:', error)
+        }
+      }
+    } catch (error) {
+      console.error('TTS error:', error)
+      setTTSProgress("Playback stopped")
+      setIsTTSSpeaking(false)
+      setIsTTSPaused(false)
+    }
+  }
+
   const startTTS = async () => {
     if (!selectedMeditation || !isSpeechSynthesisSupported()) return
 
     ttsSessionRef.current += 1
-    const sessionId = ttsSessionRef.current
+    ttsCurrentParagraphRef.current = 0
     ttsStopRequestedRef.current = false
     ttsPauseRequestedRef.current = false
+    ttsParagraphsRef.current = selectedMeditation.script
+      .split('\n\n')
+      .filter((paragraph) => paragraph.trim().length > 0)
+
+    const sessionId = ttsSessionRef.current
 
     setIsTTSSpeaking(true)
     setIsTTSPaused(false)
@@ -226,75 +299,32 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
       }
     }
 
-    const paragraphs = selectedMeditation.script
-      .split('\n\n')
-      .filter(p => p.trim().length > 0)
-
-    try {
-      for (let i = 0; i < paragraphs.length; i++) {
-        if (ttsStopRequestedRef.current || ttsSessionRef.current !== sessionId) {
-          setTTSProgress("Playback stopped")
-          return
-        }
-
-        while (ttsPauseRequestedRef.current) {
-          const canContinue = await waitWithTTSControls(sessionId, 120)
-          if (!canContinue) {
-            setTTSProgress("Playback stopped")
-            return
-          }
-        }
-
-        setTTSProgress(`Speaking paragraph ${i + 1} of ${paragraphs.length}...`)
-
-        await speak(paragraphs[i], {
-          rate: speechRate,
-          voice: availableVoices[selectedVoiceIndex] || null,
-          volume: volume,
-        })
-
-        if (i < paragraphs.length - 1) {
-          const canContinue = await waitWithTTSControls(sessionId, PARAGRAPH_PAUSE_MS)
-          if (!canContinue) {
-            setTTSProgress("Playback stopped")
-            return
-          }
-        }
-      }
-
-      setTTSProgress("Meditation complete")
-
-      if (!isMuted) {
-        try {
-          await playSound('chime', volume)
-        } catch (error) {
-          console.warn('Failed to play completion chime:', error)
-        }
-      }
-    } catch (error) {
-      console.error('TTS error:', error)
-      setTTSProgress("Playback stopped")
-    } finally {
-      if (ttsSessionRef.current === sessionId) {
-        setIsTTSSpeaking(false)
-        setIsTTSPaused(false)
-        ttsPauseRequestedRef.current = false
-      }
-    }
+    await runTTSPlayback(sessionId)
   }
 
   const pauseTTS = () => {
+    if (!isTTSSpeaking) return
+
     ttsPauseRequestedRef.current = true
-    pauseSpeaking()
+    stopSpeaking()
+    setIsTTSSpeaking(false)
     setIsTTSPaused(true)
     setTTSProgress("Paused")
   }
 
-  const resumeTTS = () => {
+  const resumeTTS = async () => {
+    if (!isTTSPaused || ttsParagraphsRef.current.length === 0) return
+
     ttsPauseRequestedRef.current = false
-    resumeSpeaking()
+    ttsStopRequestedRef.current = false
+
+    const sessionId = ttsSessionRef.current
+
+    setIsTTSSpeaking(true)
     setIsTTSPaused(false)
-    setTTSProgress("Speaking...")
+    setTTSProgress("Resuming...")
+
+    await runTTSPlayback(sessionId)
   }
 
   const stopTTS = () => {
@@ -308,10 +338,10 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
   }
 
   useEffect(() => {
-    if (!open && isTTSSpeaking) {
+    if (!open && (isTTSSpeaking || isTTSPaused)) {
       stopTTS()
     }
-  }, [open, isTTSSpeaking])
+  }, [open, isTTSSpeaking, isTTSPaused])
 
   const toggleMute = () => {
     const newMuted = !isMuted
@@ -451,6 +481,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
               onClick={() => {
                 setSelectedMeditation(null)
                 resetTimer()
+                stopTTS()
               }}
               className="mb-4"
             >
@@ -491,7 +522,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                   </div>
                   
                   <div className="flex flex-wrap gap-2 justify-center">
-                    {!isTimerRunning && timeRemaining === 0 && (
+                    {!isTimerRunning && (timeRemaining === 0 || (totalTime > 0 && timeRemaining === totalTime)) && (
                       <Button onClick={() => startTimer(selectedMeditation)} className="gap-2 min-h-[44px]">
                         <Play className="h-4 w-4" />
                         <span className="text-sm sm:text-base">Start Timer</span>
@@ -631,7 +662,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
                     {/* TTS Controls */}
                     <div className="flex flex-col sm:flex-row gap-2 justify-center">
-                      {!isTTSSpeaking && (
+                      {!isTTSSpeaking && !isTTSPaused && (
                         <Button onClick={startTTS} className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Play className="h-4 w-4" />
                           <span className="text-sm sm:text-base">Play Meditation</span>
@@ -645,14 +676,14 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                         </Button>
                       )}
                       
-                      {isTTSSpeaking && isTTSPaused && (
+                      {isTTSPaused && (
                         <Button onClick={resumeTTS} className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Play className="h-4 w-4" />
                           <span className="text-sm sm:text-base">Resume</span>
                         </Button>
                       )}
                       
-                      {isTTSSpeaking && (
+                      {(isTTSSpeaking || isTTSPaused) && (
                         <Button onClick={stopTTS} variant="destructive" className="gap-2 min-h-[44px] w-full sm:w-auto">
                           <Square className="h-4 w-4" />
                           <span className="text-sm sm:text-base">Stop</span>

@@ -246,6 +246,27 @@ export const getPreferredVoice = async (
   return candidates.find(Boolean) ?? null
 }
 
+const resolveVoiceFromOptions = async (
+  options: SpeechOptions,
+  fallbackLang: string
+): Promise<SpeechSynthesisVoice | null> => {
+  const voices = await waitForVoices()
+  if (voices.length === 0) return null
+
+  const byOptionVoice = options.voice
+    ? voices.find(
+        (voice) =>
+          (options.voice?.voiceURI && voice.voiceURI === options.voice.voiceURI) ||
+          voice.name === options.voice?.name
+      )
+    : null
+
+  if (byOptionVoice) return byOptionVoice
+
+  const requestedLang = options.voice?.lang ?? options.lang ?? fallbackLang
+  return getPreferredVoice(options.voice?.name ?? null, requestedLang)
+}
+
 export const speak = async (text: string, options: SpeechOptions = {}): Promise<void> => {
   if (!text.trim() || !isSpeechSynthesisSupported()) return
 
@@ -260,11 +281,10 @@ export const speak = async (text: string, options: SpeechOptions = {}): Promise<
       utterance.volume = options.volume ?? 1.0
       utterance.lang = options.lang ?? "en-US"
 
-      if (options.voice) {
-        utterance.voice = options.voice
-      } else {
-        const fallbackVoice = await getPreferredVoice(null, utterance.lang)
-        if (fallbackVoice) utterance.voice = fallbackVoice
+      const resolvedVoice = await resolveVoiceFromOptions(options, utterance.lang)
+      if (resolvedVoice) {
+        utterance.voice = resolvedVoice
+        utterance.lang = resolvedVoice.lang
       }
 
       await new Promise<void>((resolve, reject) => {
