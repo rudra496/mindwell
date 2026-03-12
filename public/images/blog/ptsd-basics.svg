@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Understanding PTSD illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#536976"/>
+      <stop offset="100%" style="stop-color:#292e49"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Path from dark to light -->
+  <path d="M0,400 Q300,350 600,300 Q900,250 1200,150" fill="none" stroke="rgba(255,255,255,0.20)" stroke-width="4" stroke-dasharray="12,6"/>
+  <circle cx="100" cy="395" r="40" fill="rgba(255,255,255,0.08)"/>
+  <circle cx="400" cy="352" r="45" fill="rgba(255,255,255,0.10)"/>
+  <circle cx="700" cy="302" r="50" fill="rgba(255,255,255,0.13)"/>
+  <circle cx="1000" cy="220" r="60" fill="rgba(255,255,255,0.16)"/>
+  <!-- Star of hope at end -->
+  <path d="M1100,180 L1115,155 L1130,180 L1155,165 L1140,190 L1165,195 L1140,205 L1150,230 L1125,215 L1110,238 L1095,215 L1070,230 L1080,205 L1055,195 L1080,190 L1065,165Z" fill="rgba(255,220,100,0.60)"/>
+  <text x="600" y="480" font-family="system-ui, sans-serif" font-size="50" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Understanding PTSD</text>
+  <text x="600" y="535" font-family="system-ui, sans-serif" font-size="22" fill="rgba(200,220,255,0.80)" text-anchor="middle">Trauma, healing, and the path forward</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(200,220,255,0.45)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Depression Awareness illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2b5876"/>
+      <stop offset="100%" style="stop-color:#4e4376"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Rising sun metaphor -->
+  <circle cx="600" cy="490" r="200" fill="rgba(255,200,80,0.12)"/>
+  <circle cx="600" cy="490" r="150" fill="rgba(255,200,80,0.15)"/>
+  <circle cx="600" cy="490" r="100" fill="rgba(255,200,80,0.20)"/>
+  <!-- Sun rays -->
+  <line x1="600" y1="290" x2="600" y2="230" stroke="rgba(255,200,80,0.45)" stroke-width="4" stroke-linecap="round"/>
+  <line x1="700" y1="316" x2="740" y2="266" stroke="rgba(255,200,80,0.40)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="760" y1="400" x2="820" y2="380" stroke="rgba(255,200,80,0.35)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="500" y1="316" x2="460" y2="266" stroke="rgba(255,200,80,0.40)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="440" y1="400" x2="380" y2="380" stroke="rgba(255,200,80,0.35)" stroke-width="3" stroke-linecap="round"/>
+  <!-- Ground line -->
+  <line x1="0" y1="490" x2="1200" y2="490" stroke="rgba(255,255,255,0.10)" stroke-width="2"/>
+  <text x="600" y="180" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Depression Awareness</text>
+  <text x="600" y="235" font-family="system-ui, sans-serif" font-size="22" fill="rgba(200,220,255,0.80)" text-anchor="middle">Understanding, compassion, and pathways to recovery</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(200,220,255,0.45)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Anxiety Management illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(255,255,255,0.15)"/>
+      <stop offset="100%" style="stop-color:rgba(255,255,255,0.05)"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="180" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="1100" cy="530" r="220" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="600" cy="315" r="280" fill="rgba(255,255,255,0.04)"/>
+  <!-- Brain/mind icon -->
+  <g transform="translate(500,180)">
+    <ellipse cx="100" cy="80" rx="85" ry="70" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4"/>
+    <path d="M60,60 Q80,30 100,50 Q120,30 140,60" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="3"/>
+    <path d="M30,90 Q50,70 70,90 Q90,110 110,90 Q130,70 150,90" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3"/>
+    <path d="M50,120 Q80,100 100,120 Q120,140 150,120" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="3"/>
+  </g>
+  <!-- Breathing wave -->
+  <path d="M200,420 Q300,380 400,420 Q500,460 600,420 Q700,380 800,420 Q900,460 1000,420" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+  <path d="M150,450 Q300,410 450,450 Q600,490 750,450 Q900,410 1050,450" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+  <!-- Text -->
+  <text x="600" y="340" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Anxiety Management</text>
+  <text x="600" y="395" font-family="system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.80)" text-anchor="middle">Evidence-based strategies for everyday calm</text>
+  <text x="600" y="560" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.55)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

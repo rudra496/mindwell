@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Crisis Help Seeking illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c94b4b"/>
+      <stop offset="100%" style="stop-color:#4b134f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Phone icon -->
+  <rect x="530" y="140" width="140" height="220" rx="18" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
+  <circle cx="600" cy="330" r="12" fill="rgba(255,255,255,0.55)"/>
+  <rect x="570" y="155" width="60" height="8" rx="4" fill="rgba(255,255,255,0.40)"/>
+  <!-- Phone waves -->
+  <path d="M450,200 Q480,180 510,200" fill="none" stroke="rgba(255,255,255,0.40)" stroke-width="3"/>
+  <path d="M400,175 Q450,145 500,175" fill="none" stroke="rgba(255,255,255,0.30)" stroke-width="3"/>
+  <path d="M690,200 Q720,180 750,200" fill="none" stroke="rgba(255,255,255,0.40)" stroke-width="3"/>
+  <path d="M700,175 Q750,145 800,175" fill="none" stroke="rgba(255,255,255,0.30)" stroke-width="3"/>
+  <text x="600" y="460" font-family="system-ui, sans-serif" font-size="46" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">When to Seek Crisis Help</text>
+  <text x="600" y="515" font-family="system-ui, sans-serif" font-size="22" fill="rgba(255,200,200,0.85)" text-anchor="middle">Recognising when to reach out — and how</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,200,200,0.50)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

@@ -61,7 +61,12 @@ function parseFrontmatter(frontmatterRaw: string): BlogPostFrontmatter {
       data.coverImage || "/images/stock/mental_health_awareness.jpg",
     excerpt: data.excerpt || "",
     tags: parseListValue(data.tags || ""),
-    category: data.category || "general"
+    category: data.category || "general",
+    locale: data.locale || "en",
+    translatedSlug: data.translatedSlug || undefined,
+    translatedLocale: data.translatedLocale || undefined,
+    lastModified: data.lastModified || undefined,
+    imageAlt: data.imageAlt || undefined,
   }
 }
 

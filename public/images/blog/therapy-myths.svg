@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Therapy Myths vs Facts illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#11998e"/>
+      <stop offset="100%" style="stop-color:#38ef7d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="100" cy="630" r="250" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="1100" cy="0" r="200" fill="rgba(255,255,255,0.05)"/>
+  <!-- Two columns: MYTH vs FACT -->
+  <rect x="80" y="160" width="470" height="280" rx="16" fill="rgba(255,100,100,0.18)" stroke="rgba(255,150,150,0.4)" stroke-width="2"/>
+  <rect x="650" y="160" width="470" height="280" rx="16" fill="rgba(100,255,150,0.18)" stroke="rgba(150,255,180,0.4)" stroke-width="2"/>
+  <text x="315" y="220" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="rgba(255,180,180,0.9)" text-anchor="middle">✗ MYTH</text>
+  <text x="885" y="220" font-family="system-ui, sans-serif" font-size="30" font-weight="700" fill="rgba(180,255,210,0.9)" text-anchor="middle">✓ FACT</text>
+  <text x="315" y="270" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Only severe cases need therapy"</text>
+  <text x="885" y="270" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Anyone can benefit from support"</text>
+  <text x="315" y="320" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Therapy is a sign of weakness"</text>
+  <text x="885" y="320" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Seeking help shows courage"</text>
+  <text x="315" y="370" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Therapy takes years to work"</text>
+  <text x="885" y="370" font-family="system-ui, sans-serif" font-size="17" fill="rgba(255,255,255,0.75)" text-anchor="middle">"Many people see progress quickly"</text>
+  <text x="600" y="520" font-family="system-ui, sans-serif" font-size="44" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Therapy: Myths vs Facts</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.50)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

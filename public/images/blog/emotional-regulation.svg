@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Emotional Regulation illustration">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a18cd1"/>
+      <stop offset="100%" style="stop-color:#fbc2eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Emotion faces row -->
+  <g transform="translate(180,200)">
+    <circle cx="0" cy="0" r="55" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <path d="M-20,15 Q0,30 20,15" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="-15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(420,200)">
+    <circle cx="0" cy="0" r="55" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <line x1="-20" y1="18" x2="20" y2="18" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="-15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(660,200)">
+    <circle cx="0" cy="0" r="55" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+    <path d="M-20,25 Q0,10 20,25" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="-15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="15" cy="-10" r="5" fill="rgba(255,255,255,0.8)"/>
+  </g>
+  <g transform="translate(900,200)">
+    <circle cx="0" cy="0" r="55" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.7)" stroke-width="3"/>
+    <path d="M-20,15 Q0,35 20,15" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="-15" cy="-10" r="5" fill="rgba(255,255,255,0.9)"/>
+    <circle cx="15" cy="-10" r="5" fill="rgba(255,255,255,0.9)"/>
+  </g>
+  <!-- Arrow connecting them -->
+  <path d="M250,200 Q420,160 580,200 Q740,240 860,200" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="3" stroke-dasharray="10,6"/>
+  <text x="600" y="400" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="white" text-anchor="middle" opacity="0.95">Emotional Regulation</text>
+  <text x="600" y="455" font-family="system-ui, sans-serif" font-size="22" fill="rgba(255,255,255,0.80)" text-anchor="middle">Skills to navigate difficult feelings</text>
+  <text x="600" y="590" font-family="system-ui, sans-serif" font-size="18" fill="rgba(255,255,255,0.50)" text-anchor="middle">MindWell · Mental Health Education</text>
+</svg>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, siteUrl } from "@/lib/site";
 import "./globals.css";
 import "./a11y.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -17,14 +18,13 @@ import { GuidedTour } from "@/components/GuidedTour";
 import { CapacitorRuntimeBootstrap } from "@/components/capacitor/CapacitorRuntimeBootstrap";
 import { OfflineGuard } from "@/components/OfflineGuard";
 
-const description =
-  "MindWell is an open-source mental health platform. MindWell Support provides free, ethical mental health support, crisis guidance, and psychologist access worldwide.";
+const description = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mindwell-navy.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "MindWell – Open Source Mental Health Platform",
-    template: "%s | MindWell",
+    default: `${SITE_NAME} – Open Source Mental Health Platform`,
+    template: `%s | ${SITE_NAME}`,
   },
   description,
   applicationName: "MindWell",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "MindWell",
     title: "MindWell – Open Source Mental Health Platform",
     description,
-    images: [{ url: "/images/stock/hero_group_support.jpg", width: 1600, height: 900, alt: "MindWell – Open Source Mental Health Platform" }],
+    images: [{ url: "/images/stock/hero_group_support.jpg", width: 1600, height: 900, alt: `${SITE_NAME} – Open Source Mental Health Platform` }],
   },
   twitter: {
     card: "summary_large_image",
@@ -97,10 +97,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://mindwell.vercel.app/#organization",
-        name: "MindWell",
-        url: "https://mindwell.vercel.app",
-        description: "MindWell – Open Source Mental Health Platform",
+        "@id": `${SITE_URL}/#organization`,
+        name: SITE_NAME,
+        url: SITE_URL,
+        description: `${SITE_NAME} – Open Source Mental Health Platform`,
         contactPoint: {
           "@type": "ContactPoint",
           email: "contactmindwellorg@gmail.com",
@@ -110,17 +110,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       },
       {
         "@type": "WebSite",
-        "@id": "https://mindwell.vercel.app/#website",
-        url: "https://mindwell.vercel.app",
-        name: "MindWell",
+        "@id": `${SITE_URL}/#website`,
+        url: SITE_URL,
+        name: SITE_NAME,
         description,
-        publisher: { "@id": "https://mindwell.vercel.app/#organization" },
+        publisher: { "@id": `${SITE_URL}/#organization` },
       },
       {
         "@type": "WebApplication",
-        "@id": "https://mindwell.vercel.app/#webapp",
-        name: "MindWell",
-        url: "https://mindwell.vercel.app",
+        "@id": `${SITE_URL}/#webapp`,
+        name: SITE_NAME,
+        url: SITE_URL,
         applicationCategory: "HealthApplication",
         operatingSystem: "Any",
         description,
