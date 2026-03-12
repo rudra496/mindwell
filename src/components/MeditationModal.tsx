@@ -498,7 +498,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                       </Button>
                     )}
                     
-                    {!isTimerRunning && timeRemaining > 0 && timeRemaining < totalTime && (
+                    {!isTimerRunning && totalTime > 0 && timeRemaining > 0 && (
                       <Button onClick={resumeTimer} className="gap-2 min-h-[44px]">
                         <Play className="h-4 w-4" />
                         <span className="text-sm sm:text-base">Resume</span>
@@ -512,7 +512,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
                       </Button>
                     )}
                     
-                    {timeRemaining !== totalTime && timeRemaining !== 0 && (
+                    {totalTime > 0 && timeRemaining > 0 && (
                       <Button onClick={resetTimer} variant="outline" className="gap-2 min-h-[44px]">
                         <RotateCcw className="h-4 w-4" />
                         <span className="text-sm sm:text-base">Reset</span>

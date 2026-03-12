@@ -138,7 +138,7 @@ export const getAvailableVoices = (): SpeechSynthesisVoice[] => {
   return voices.length > 0 ? voices : lastKnownVoices
 }
 
-export const waitForVoices = async (timeoutMs = 5000): Promise<SpeechSynthesisVoice[]> => {
+export const waitForVoices = async (timeoutMs = 7000): Promise<SpeechSynthesisVoice[]> => {
   if (!hasWebSpeech()) return []
 
   if (voiceLoadPromise) {
@@ -147,7 +147,26 @@ export const waitForVoices = async (timeoutMs = 5000): Promise<SpeechSynthesisVo
 
   voiceLoadPromise = new Promise<SpeechSynthesisVoice[]>((resolve) => {
     const startedAt = Date.now()
+    const minCollectionMs = 1200
+    const settleAfterNoChangeMs = 900
     let settled = false
+    let bestVoices = getAvailableVoices()
+    let lastCount = bestVoices.length
+    let lastCountChangeAt = Date.now()
+
+    const maybeCaptureBetterVoices = () => {
+      const voices = getAvailableVoices()
+      if (voices.length > bestVoices.length) {
+        bestVoices = voices
+      }
+
+      if (voices.length !== lastCount) {
+        lastCount = voices.length
+        lastCountChangeAt = Date.now()
+      }
+
+      return voices
+    }
 
     const complete = () => {
       if (settled) return
@@ -157,7 +176,7 @@ export const waitForVoices = async (timeoutMs = 5000): Promise<SpeechSynthesisVo
       window.clearInterval(pollId)
       window.clearTimeout(timeoutId)
 
-      const voices = getAvailableVoices()
+      const voices = bestVoices.length > 0 ? bestVoices : getAvailableVoices()
       console.info("[speech] Voice discovery settled", {
         elapsedMs: Date.now() - startedAt,
         count: voices.length,
@@ -165,29 +184,45 @@ export const waitForVoices = async (timeoutMs = 5000): Promise<SpeechSynthesisVo
       resolve(voices)
     }
 
+    const maybeComplete = () => {
+      const now = Date.now()
+      maybeCaptureBetterVoices()
+
+      const elapsed = now - startedAt
+      const noCountChangeFor = now - lastCountChangeAt
+
+      if (elapsed >= timeoutMs) {
+        complete()
+        return
+      }
+
+      if (bestVoices.length > 0 && elapsed >= minCollectionMs && noCountChangeFor >= settleAfterNoChangeMs) {
+        complete()
+      }
+    }
+
     const onVoicesChanged = () => {
-      const voices = getAvailableVoices()
+      const voices = maybeCaptureBetterVoices()
       console.info("[speech] voiceschanged event", { count: voices.length })
-      if (voices.length > 0) complete()
+      maybeComplete()
     }
 
     window.speechSynthesis.addEventListener("voiceschanged", onVoicesChanged)
 
     const pollId = window.setInterval(() => {
-      const voices = getAvailableVoices()
-      if (voices.length > 0) complete()
+      maybeComplete()
     }, 250)
 
     const timeoutId = window.setTimeout(() => complete(), timeoutMs)
 
-    const initialVoices = getAvailableVoices()
-    if (initialVoices.length > 0) complete()
+    maybeComplete()
   }).finally(() => {
     voiceLoadPromise = null
   })
 
   return voiceLoadPromise
 }
+
 
 export const getPreferredVoice = async (
   requestedVoiceName?: string | null,
