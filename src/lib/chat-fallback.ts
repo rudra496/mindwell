@@ -627,6 +627,48 @@ Would you like to try one?`
     ]
   },
 
+  // AI chatbot building guidance
+  aiChatbotBuild: {
+    patterns: [
+      /create (an )?ai chat ?bot/i,
+      /build (an )?ai chat ?bot/i,
+      /chatbot.*dataset/i,
+      /without (a )?server/i,
+      /without (an )?api/i,
+      /need (a )?subscription/i,
+      /can i use it free/i,
+      /work on my website/i
+    ],
+    responses: [
+      `Yes — you can build a chatbot using your own data without paying for an API subscription.
+
+**Best practical approach (free + your data):**
+1. Use a **local open-source LLM** (for example Llama 3 8B or Mistral 7B via Ollama/llama.cpp)
+2. Build a **RAG pipeline**:
+   • Split your dataset into small chunks  
+   • Create embeddings  
+   • Store them in a local vector database (FAISS/Chroma)
+3. At chat time:
+   • Retrieve top relevant chunks from your data  
+   • Send those chunks + user question to the local model  
+   • Return grounded answer
+
+**Do you need a server/API/subscription?**
+• **API subscription:** No, if you run models locally  
+• **Large file upload to third-party:** No, keep files on your machine  
+• **Server:** Optional. For a website, you usually run a small backend on your own machine/VPS to query your local model
+
+**Can it be fully free?**
+Yes for software (open-source stack). Main cost is your hardware and electricity.
+
+**How it works on your website:**
+• Frontend chat UI -> your backend endpoint -> local model + local vector DB -> response
+• If you want no remote server at all, run everything on the same computer (good for personal/small use)
+
+If you share your dataset format (PDF, CSV, docs, DB), I can help map this into an exact step-by-step implementation plan.`
+    ]
+  },
+
   // Default/general support
   default: {
     patterns: [/.*/],
