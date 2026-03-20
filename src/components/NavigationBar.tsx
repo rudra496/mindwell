@@ -36,6 +36,7 @@ const navItems: NavItem[] = [
   { id: "sdg-our-mission", labelKey: "navBar.whoWeAre", icon: Target },
   { id: "funding-support", labelKey: "navBar.fundingSupport", icon: Mail },
   { id: "blog", labelKey: "navBar.blog", icon: Newspaper, href: "/blog" },
+  { id: "in-the-press", labelKey: "navBar.blog", icon: Newspaper, href: "/blog/media-coverage-achievements-rudra-sarker" },
   { id: "faq", labelKey: "navBar.faq", icon: HelpCircle, href: "/faq" },
 ]
 
