@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 import { getAllBlogPosts, slugify } from "@/lib/blog"
 import { SITE_URL } from "@/lib/site"
 
-const RELEASE_DATE = new Date("2026-03-12T00:00:00Z")
+const RELEASE_DATE = new Date("2026-03-20T00:00:00Z")
 
 const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] }> = [
   { path: "", priority: 1.0, changeFrequency: "weekly" },

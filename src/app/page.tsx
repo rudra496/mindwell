@@ -198,6 +198,16 @@ export default function HomePage() {
                 {tKey('homePage.blogBtn', language)}
               </Link>
             </div>
+            <div className="grid gap-3 md:grid-cols-2">
+              <Link href="/blog/media-coverage-achievements-rudra-sarker" className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 p-4 hover:border-teal-400">
+                <h3 className="font-semibold text-slate-900 dark:text-white">Media Coverage & Achievements: SignTalk Journey</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300">A roundup of press mentions, interviews, and innovation recognition.</p>
+              </Link>
+              <Link href="/blog/mindwell-open-source-mental-health-platform-update" className="rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/60 p-4 hover:border-teal-400">
+                <h3 className="font-semibold text-slate-900 dark:text-white">Building MindWell: Open-Source Lessons</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-300">A behind-the-scenes technical write-up of architecture and ethics decisions.</p>
+              </Link>
+            </div>
           </MinimalSection>
           <MinimalSection
             id="sdg-our-mission"
