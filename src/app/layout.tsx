@@ -70,6 +70,7 @@ export const metadata: Metadata = {
     title: "MindWell – Open Source Mental Health Platform",
     description,
     images: ["/images/stock/hero_group_support.jpg"],
+    creator: "@Rudra496",
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
@@ -96,6 +97,26 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "Person",
+        "@id": `${SITE_URL}/#person`,
+        name: "Rudra Sarker",
+        url: "https://rudra496.github.io/site",
+        jobTitle: "Student Innovator & Builder",
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "Shahjalal University of Science and Technology",
+        },
+        sameAs: [
+          "https://github.com/rudra496",
+          "https://www.linkedin.com/in/rudrasarker",
+          "https://www.facebook.com/rudrasarker130",
+          "https://x.com/Rudra496",
+          "https://www.researchgate.net/profile/Rudra-Sarker-3",
+          "https://youtube.com/@rudrasarker9732",
+          "https://www.instagram.com/rudrasarker/",
+        ],
+      },
+      {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
         name: SITE_NAME,
@@ -115,6 +136,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         name: SITE_NAME,
         description,
         publisher: { "@id": `${SITE_URL}/#organization` },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${SITE_URL}/blog?query={search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
       },
       {
         "@type": "WebApplication",
@@ -132,6 +158,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className="scroll-smooth">
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="me" href="https://github.com/rudra496" />
+        <link rel="me" href="https://www.linkedin.com/in/rudrasarker" />
+        <link rel="me" href="https://x.com/Rudra496" />
+        {/* Google Search Console: replace YOUR_VERIFICATION_TOKEN with the value provided by Google Search Console. */}
+        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_TOKEN" /> */}
         <Script id="structured-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} strategy="beforeInteractive" />
       </head>
       <body className="font-sans antialiased">
