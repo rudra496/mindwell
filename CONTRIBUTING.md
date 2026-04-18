@@ -4,7 +4,7 @@ Thank you for your interest in contributing to MindWell! This platform aims to b
 
 ## 🎯 Our Mission
 
-Create the most comprehensive, scientifically-backed mental health support platform. **100% Free. 100% Open Source.**
+Create the most comprehensive, scientifically-backed mental health support platform. **Free and open source.**
 
 ## 🤝 How to Contribute
 
