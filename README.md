@@ -101,7 +101,7 @@ MindWell is an open-source mental health platform providing trusted, practical, 
 
 ### Our Privacy Commitments:
 
-- ✅ **No server storage of mental health data** - Your sensitive information stays with you
+- ✅ **No persistent server storage of personal data** — mood tracking and chat history stay in your browser. Server APIs provide reference content only.
 - ✅ **Mood data stays on your device only** - Uses browser IndexedDB, never transmitted
 - ✅ **No AI analysis or profiling** - No automated behavioral analysis
 - ✅ **No selling or sharing data** - Your data is never monetized
@@ -334,7 +334,7 @@ Conditions:
 - **20** Self-reflection assessments
 - **2** Assistant clinical psychologists
 - **2** Languages supported (English, Bengali)
-- **100%** Open-source
+- **Fully** open-source
 - **0** Data collected on servers
 
 ## 🚀 Roadmap
