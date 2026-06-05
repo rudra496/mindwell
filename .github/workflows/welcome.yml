@@ -1,0 +1,26 @@
+name: Welcome New Contributors
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: >
+            Welcome to MindWell! Thanks for opening this issue.
+            We'll review it as soon as possible. Please check our
+            [contribution guidelines](CONTRIBUTING.md) for best practices.
+          pr-message: >
+            Welcome to MindWell! Thanks for your first pull request!
+            We'll review your changes soon. Please make sure all checks pass
+            and refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
