@@ -29,7 +29,7 @@
     "@capacitor/haptics": "^7.0.1",
     "@capacitor/keyboard": "^7.0.1",
     "@capacitor/network": "^7.0.1",
-    "@capacitor/push-notifications": "^7.0.1",
+    "@capacitor/push-notifications": "^8.1.1",
     "@capacitor/splash-screen": "^7.0.1",
     "@capacitor/status-bar": "^8.0.2",
     "@prisma/client": "^5.22.0",
