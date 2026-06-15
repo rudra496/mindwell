@@ -9,7 +9,7 @@ type TagPageProps = {
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
-  const tags = Array.from(new Set(posts.flatMap((post) => post.tags.map((tag) => slugify(tag)))))
+  const tags = Array.from(new Set(posts.flatMap((post) => post.tags.map((tag) => slugify(tag))))).filter(Boolean)
   return tags.map((tag) => ({ tag }))
 }
 

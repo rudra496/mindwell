@@ -9,7 +9,7 @@ type CategoryPageProps = {
 
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
-  const categories = Array.from(new Set(posts.map((post) => slugify(post.category))))
+  const categories = Array.from(new Set(posts.map((post) => slugify(post.category)))).filter(Boolean)
   return categories.map((category) => ({ category }))
 }
 
