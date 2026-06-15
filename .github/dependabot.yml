@@ -8,6 +8,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      capacitor:
+        patterns:
+          - "@capacitor/*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
