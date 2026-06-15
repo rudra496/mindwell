@@ -64,8 +64,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@capacitor/android": "^8.4.0",
-    "@capacitor/cli": "^8.4.0",
+    "@capacitor/android": "^7.1.0",
+    "@capacitor/cli": "^7.1.0",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@types/node": "^25.9.3",
