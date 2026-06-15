@@ -57,7 +57,7 @@
     "lucide-react": "^0.468.0",
     "next": "^15.5.18",
     "react": "^19.2.7",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.2.7",
     "recharts": "^3.8.1",
     "resend": "^6.12.3",
     "tailwind-merge": "^3.6.0",
