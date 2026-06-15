@@ -47,5 +47,6 @@ jobs:
             -f message="chore: re-trigger Vercel deploy (self-heal) [skip ci]" \
             -f tree="$TREE" \
             -f "parents[]=$HEAD_SHA" --jq '.sha')
-          gh api "repos/$REPO/git/refs/heads/main" -X PATCH -f sha="$NEW" -f force=false >/dev/null
+          # force defaults to false (fast-forward); never force-update main.
+          gh api "repos/$REPO/git/refs/heads/main" -X PATCH -f sha="$NEW" >/dev/null
           echo "Created empty commit $NEW — Vercel will build it next."
