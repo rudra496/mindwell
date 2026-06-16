@@ -18,6 +18,7 @@ import {
   isSpeechSynthesisSupported
 } from "@/lib/speech"
 import { playSound, muteSounds, unmuteSounds, isSoundMuted } from "@/lib/sounds"
+import meditationsJson from "@/data/meditations.json"
 
 interface Meditation {
   id: string
@@ -146,10 +147,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch("/api/meditations")
-      if (!response.ok) throw new Error("Failed to fetch meditations")
-      const data = await response.json()
-      setMeditations(data.meditations.map((m: any) => ({
+      const data = meditationsJson as any[]
+      setMeditations(data.map((m: any) => ({
         ...m,
         benefits: typeof m.benefits === 'string' ? JSON.parse(m.benefits) : m.benefits
       })))

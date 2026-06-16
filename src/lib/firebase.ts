@@ -137,7 +137,7 @@ export function setupCapacitorAuthRedirectHandler() {
     try {
       const url = new URL(incomingUrl)
 
-      if (url.hostname === "mindwell-navy.vercel.app") {
+      if (url.hostname === "rudra496.github.io") {
         window.location.href = url.pathname + url.search + url.hash
       }
     } catch (err) {

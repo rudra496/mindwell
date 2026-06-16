@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Button } from "@/components/ui/button"
 import { Phone, MessageSquare, Globe, AlertCircle, Stethoscope, MapPin } from "lucide-react"
 import { SuicidePreventionSection } from "./SuicidePreventionSection"
+import crisisResourcesJson from "@/data/crisis-resources.json"
 
 interface CrisisResource {
   id: string
@@ -33,16 +34,8 @@ export function CrisisModal({
 
   useEffect(() => {
     if (open) {
-      fetch('/api/crisis-resources')
-        .then(res => res.json())
-        .then(data => {
-          setResources(data)
-          setLoading(false)
-        })
-        .catch(err => {
-          console.error('Error fetching crisis resources:', err)
-          setLoading(false)
-        })
+      setResources(crisisResourcesJson as CrisisResource[])
+      setLoading(false)
     }
   }, [open])
 

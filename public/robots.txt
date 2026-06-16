@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /_next/
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+Sitemap: https://rudra496.github.io/mindwell/sitemap.xml

@@ -11,7 +11,7 @@ export const config = {
   },
   site: {
     name: 'MindWell',
-    url: process.env.NEXT_PUBLIC_APP_URL || 'https://mindwell.vercel.app',
+    url: process.env.NEXT_PUBLIC_APP_URL || 'https://rudra496.github.io/mindwell',
     description: 'Open-source mental health education and support platform',
   },
   advisors: {

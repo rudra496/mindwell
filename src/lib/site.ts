@@ -6,7 +6,7 @@
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://mindwell-navy.vercel.app"
+  "https://rudra496.github.io/mindwell"
 
 export const SITE_NAME = "MindWell"
 
