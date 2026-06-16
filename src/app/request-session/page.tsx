@@ -76,19 +76,17 @@ export default function RequestSessionPage() {
     setSubmitError("")
 
     try {
-      // Build mailto link for client-side session request (static deployment)
-      const concernLabels: Record<string, string> = {
-        anxiety: "Anxiety", depression: "Depression", trauma: "Trauma",
-        relationship: "Relationship Issues", academic: "Academic Stress", other: "Other"
+      const response = await fetch("/api/request-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit request")
       }
-      const formatLabels: Record<string, string> = {
-        video: "Video Call", audio: "Audio Call", text: "Text Chat"
-      }
-      const subject = encodeURIComponent(`[MindWell] Session Request from ${formData.fullName || formData.email}`)
-      const body = encodeURIComponent(
-        `Name: ${formData.fullName || "Not provided"}\nEmail: ${formData.email}\nBangladeshi Student: ${formData.isBangladeshiStudent === "yes" ? "Yes" : "No"}${formData.isBangladeshiStudent === "yes" ? `\nUniversity: ${formData.universityName}` : ""}\nPrimary Concern: ${concernLabels[formData.primaryConcern] || formData.primaryConcern}\nPreferred Format: ${formatLabels[formData.sessionFormat] || formData.sessionFormat}\n${formData.message ? `\nMessage:\n${formData.message}` : ""}`
-      )
-      window.open(`mailto:contactmindwellorg@gmail.com?subject=${subject}&body=${body}`, '_blank')
 
       setSubmitSuccess(true)
       setFormData({

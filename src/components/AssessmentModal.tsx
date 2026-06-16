@@ -12,7 +12,6 @@ import { ConsentModal } from "@/components/gating/ConsentModal"
 import { AssessmentDisclaimer } from "@/components/safety/AssessmentDisclaimer"
 import { useLanguage } from "@/lib/useLanguage"
 import { tKey } from "@/lib/i18n"
-import assessmentsJson from "@/data/assessments.json"
 
 interface Assessment {
   id: string
@@ -42,8 +41,16 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
   useEffect(() => {
     if (open) {
-      setAssessments(assessmentsJson as Assessment[])
-      setLoading(false)
+      fetch('/api/assessments')
+        .then(res => res.json())
+        .then(data => {
+          setAssessments(data)
+          setLoading(false)
+        })
+        .catch(err => {
+          console.error('Error fetching assessments:', err)
+          setLoading(false)
+        })
     }
   }, [open])
 

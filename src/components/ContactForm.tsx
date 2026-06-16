@@ -61,22 +61,31 @@ export function ContactForm() {
     }
 
     try {
-      // Build mailto link for client-side contact (static deployment)
-      const subject = encodeURIComponent(`MindWell Contact: ${formData.reason}`)
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nReason: ${formData.reason}\nPreferred Time: ${formData.preferredTime || 'Not specified'}\n\nMessage:\n${formData.message}`
-      )
-      window.open(`mailto:contactmindwellorg@gmail.com?subject=${subject}&body=${body}`, '_blank')
-
-      setStatus("success")
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        reason: "",
-        preferredTime: "",
-        message: ""
+      // Call API to send email
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setStatus("success")
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          reason: "",
+          preferredTime: "",
+          message: ""
+        })
+      } else {
+        setStatus("error")
+        setErrorMessage(data.error || tKey('contactForm.errors.sendFailed', language))
+      }
     } catch (error) {
       console.error("Error sending message:", error)
       setStatus("error")

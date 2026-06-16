@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/accordion"
 import { speak, speakWithPauses } from "@/lib/speech"
 import { useVoiceSettings, toSpeechOptions } from "@/lib/voiceSettings"
-import therapyTechniquesJson from "@/data/therapy-techniques.json"
 
 interface TherapyTechnique {
   id: string
@@ -92,8 +91,10 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
     setIsLoading(true)
     setError(null)
     try {
-      const data = therapyTechniquesJson as any[]
-      setTechniques(data.map((t: any) => ({
+      const response = await fetch("/api/therapy-techniques")
+      if (!response.ok) throw new Error("Failed to fetch therapy techniques")
+      const data = await response.json()
+      setTechniques(data.techniques.map((t: any) => ({
         ...t,
         steps: typeof t.steps === 'string' ? JSON.parse(t.steps) : t.steps,
         examples: typeof t.examples === 'string' ? JSON.parse(t.examples) : t.examples,

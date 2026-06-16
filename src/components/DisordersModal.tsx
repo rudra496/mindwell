@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Search, ExternalLink } from "lucide-react"
 import { EducationalDisclaimer } from "@/components/safety/EducationalDisclaimer"
-import disordersJson from "@/data/disorders.json"
 
 interface Disorder {
   id: string
@@ -29,8 +28,16 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
 
   useEffect(() => {
     if (open) {
-      setDisorders(disordersJson as Disorder[])
-      setLoading(false)
+      fetch('/api/disorders')
+        .then(res => res.json())
+        .then(data => {
+          setDisorders(data)
+          setLoading(false)
+        })
+        .catch(err => {
+          console.error('Error fetching disorders:', err)
+          setLoading(false)
+        })
     }
   }, [open])
 

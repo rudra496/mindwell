@@ -5,7 +5,6 @@ import Image from "next/image"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { User, Award, Briefcase, AlertTriangle } from "lucide-react"
-import advisorsJson from "@/data/advisors.json"
 
 interface Advisor {
   id: string
@@ -25,8 +24,16 @@ export function AdvisorsModal({ open, onOpenChange }: { open: boolean; onOpenCha
 
   useEffect(() => {
     if (open) {
-      setAdvisors(advisorsJson as Advisor[])
-      setLoading(false)
+      fetch('/api/advisors')
+        .then(res => res.json())
+        .then(data => {
+          setAdvisors(data)
+          setLoading(false)
+        })
+        .catch(err => {
+          console.error('Error fetching advisors:', err)
+          setLoading(false)
+        })
     }
   }, [open])
 
