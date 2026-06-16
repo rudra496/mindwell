@@ -24,13 +24,13 @@
     "validate:translations": "node scripts/validate-translations.mjs"
   },
   "dependencies": {
-    "@capacitor/app": "^7.1.0",
-    "@capacitor/core": "^7.1.0",
-    "@capacitor/haptics": "^7.0.1",
-    "@capacitor/keyboard": "^7.0.1",
-    "@capacitor/network": "^7.0.1",
+    "@capacitor/app": "^8.1.0",
+    "@capacitor/core": "^8.4.0",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/keyboard": "^8.0.5",
+    "@capacitor/network": "^8.0.1",
     "@capacitor/push-notifications": "^8.1.1",
-    "@capacitor/splash-screen": "^7.0.1",
+    "@capacitor/splash-screen": "^8.0.1",
     "@capacitor/status-bar": "^8.0.2",
     "@prisma/client": "^5.22.0",
     "@radix-ui/react-accordion": "^1.2.2",
@@ -64,8 +64,8 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@capacitor/android": "^7.1.0",
-    "@capacitor/cli": "^7.1.0",
+    "@capacitor/android": "^8.4.0",
+    "@capacitor/cli": "^8.4.0",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^25.9.3",
