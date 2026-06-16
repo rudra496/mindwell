@@ -15,12 +15,12 @@ jobs:
     steps:
       - uses: actions/first-interaction@v3
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: >
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: >
             Welcome to MindWell! Thanks for opening this issue.
             We'll review it as soon as possible. Please check our
             [contribution guidelines](CONTRIBUTING.md) for best practices.
-          pr-message: >
+          pr_message: >
             Welcome to MindWell! Thanks for your first pull request!
             We'll review your changes soon. Please make sure all checks pass
             and refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
