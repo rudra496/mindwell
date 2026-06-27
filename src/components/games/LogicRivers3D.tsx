@@ -755,7 +755,7 @@ export function LogicRivers3D() {
             {gameState === 'playing' && (
               <>
                 <Button onClick={handleAIHint} variant="outline" size="sm" className="border-slate-800 hover:bg-slate-900 text-xs">
-                  AI Hint
+                  Hint
                 </Button>
                 <Button onClick={() => generateLevel(level)} variant="outline" size="sm" className="border-slate-800 hover:bg-slate-900 text-xs">
                   Reset Level
@@ -891,7 +891,7 @@ export function LogicRivers3D() {
             {/* Hint Box */}
             {hint && (
               <div className="p-3 bg-teal-950/20 border border-teal-800/40 rounded-lg text-center text-teal-300 text-sm">
-                <span className="font-bold">AI Hint: </span>{hint}
+                <span className="font-bold">Hint: </span>{hint}
               </div>
             )}
 

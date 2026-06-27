@@ -23,7 +23,7 @@ const description = SITE_DESCRIPTION;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Free Mental Health Support Platform | AI Mood Tracking & Mindfulness`,
+    default: `${SITE_NAME} — Free Mental Health Support Platform | Mood Tracking & Mindfulness`,
     template: `%s | ${SITE_NAME}`,
   },
   description,
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
     "self-assessment",
     "therapy",
     "wellness",
-    "AI",
     "open source",
     "free",
     "mental health platform",
@@ -67,13 +66,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     siteName: "MindWell",
-    title: "MindWell — Free Mental Health Support Platform | AI Mood Tracking & Mindfulness",
+    title: "MindWell — Free Mental Health Support Platform | Mood Tracking & Mindfulness",
     description,
     images: [{ url: "/images/stock/hero_group_support.jpg", width: 1600, height: 900, alt: `${SITE_NAME} — Free Mental Health Support Platform` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MindWell — Free Mental Health Support Platform | AI Mood Tracking & Mindfulness",
+    title: "MindWell — Free Mental Health Support Platform | Mood Tracking & Mindfulness",
     description,
     images: ["/images/stock/hero_group_support.jpg"],
   },
