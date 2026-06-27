@@ -62,7 +62,7 @@ export default function DisclaimerPage() {
             <p>
               MindWell is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied. We do not warrant that
               the Platform will be uninterrupted, error-free, or free of viruses. See our{' '}
-              <Link href="/terms-of-service" className="text-teal-600 hover:underline">Terms of Service</Link> for
+              <Link href="/terms" className="text-teal-600 hover:underline">Terms of Service</Link> for
               the full limitation of liability.
             </p>
           </section>
