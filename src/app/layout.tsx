@@ -11,8 +11,6 @@ import { EmergencySupportBar } from "@/components/safety/EmergencySupportBar";
 import { GlobalFooter } from "@/components/layout/GlobalFooter";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AnalyticsPlaceholder } from "@/components/AnalyticsPlaceholder";
-import { ClientErrorLogger } from "@/components/ClientErrorLogger";
-import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { NavigationBar } from "@/components/NavigationBar";
 import { AccessibilityPanel } from "@/components/AccessibilityPanel";
 import { GuidedTour } from "@/components/GuidedTour";
@@ -166,8 +164,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <GlobalFooter />
             </div>
             <AnalyticsPlaceholder />
-            <ClientErrorLogger />
-            <PerformanceMonitor />
             <AccessibilityPanel />
             <CapacitorRuntimeBootstrap />
           </ErrorBoundary>
