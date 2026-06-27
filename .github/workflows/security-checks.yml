@@ -1,0 +1,29 @@
+name: Security Checks
+
+# Guard rails for safety-critical config. Keeps these files honest so a future
+# change can't silently remove them.
+#   - firestore.rules must exist (community writes are only safe once rules are
+#     deployed; this stops the file being deleted by accident).
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  firestore-rules-present:
+    name: Firestore rules present
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure firestore.rules exists
+        run: |
+          if [ ! -f firestore.rules ]; then
+            echo "::error::firestore.rules is missing. Community writes (posts/replies/likes) must be protected by deployed rules. See the file header for deploy steps."
+            exit 1
+          fi
+          echo "firestore.rules present."
