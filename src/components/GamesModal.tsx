@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap, Lightbulb, Calculator, Gauge, Target } from "lucide-react"
+import { Gamepad2, Wind, Eye, Brain, Heart, Sparkles, BookHeart, Clock, Zap, Lightbulb, Calculator, Gauge, Target, ArrowLeftRight } from "lucide-react"
 import { BreathingCircle } from "./games/BreathingCircle"
 import { GroundingGame } from "./games/GroundingGame"
 import AffirmationsSpinner from "./games/AffirmationsSpinner"
@@ -20,6 +20,10 @@ import SimonMemory from "./games/SimonMemory"
 import CognitiveSpeed from "./games/CognitiveSpeed"
 import FocusTracker from "./games/FocusTracker"
 import LogicPuzzle from "./games/LogicPuzzle"
+import { ZenGarden3D } from "./games/ZenGarden3D"
+import { CosmicMemoryPortal } from "./games/CosmicMemoryPortal"
+import { ThoughtSlicer } from "./games/ThoughtSlicer"
+import { LogicRivers3D } from "./games/LogicRivers3D"
 
 // >>>>>>> ADD FOR VOICE/TTS SUPPORT
 import { speak } from "@/lib/speech"
@@ -138,6 +142,34 @@ const games = [
     description: 'Create a mental sanctuary for comfort',
     icon: Heart,
     color: 'text-teal-600',
+  },
+  {
+    id: 'zen-garden-3d',
+    name: 'Zen Garden 3D',
+    description: 'Calming interactive 3D particle connector for grounding',
+    icon: Sparkles,
+    color: 'text-teal-400',
+  },
+  {
+    id: 'cosmic-memory-portal',
+    name: 'Cosmic Memory Portal',
+    description: 'Sequential 3D constellation spatial memory game',
+    icon: Brain,
+    color: 'text-blue-400',
+  },
+  {
+    id: 'thought-slicer',
+    name: 'Thought Slicer',
+    description: 'Arcade action CBT distortion-identifying thought reframer',
+    icon: Gamepad2,
+    color: 'text-emerald-400',
+  },
+  {
+    id: 'logic-rivers-3d',
+    name: 'Logic Rivers 3D',
+    description: 'Classic crossing transport logic puzzles in 3D',
+    icon: ArrowLeftRight,
+    color: 'text-sky-400',
   },
 ]
 
@@ -318,6 +350,46 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <LogicPuzzle />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'zen-garden-3d') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800">
+          <ZenGarden3D />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'cosmic-memory-portal') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800">
+          <CosmicMemoryPortal />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'thought-slicer') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800">
+          <ThoughtSlicer />
+        </DialogContent>
+      </Dialog>
+    )
+  }
+
+  if (selectedGame === 'logic-rivers-3d') {
+    return (
+      <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800">
+          <LogicRivers3D />
         </DialogContent>
       </Dialog>
     )
