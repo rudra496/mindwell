@@ -1,151 +1,152 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-// Initialize Resend with API key from environment
+/**
+ * Session-request endpoint.
+ *
+ * Sends a REAL email to the MindWell team via Resend and reports the TRUE
+ * outcome. Previously this swallowed Resend errors and returned `success`
+ * while sending from an unverified sandbox address — so a student (possibly in
+ * distress) requesting a psychologist session could be silently dropped. Now
+ * mirrors the contact endpoint: honest 503/502, verified-domain sender, and a
+ * bounded (non-leaking) best-effort rate limit.
+ */
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null
 
-// Simple in-memory rate limiting (in production, use Redis or similar)
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
+const SESSION_TO = process.env.CONTACT_EMAIL || 'contactmindwellorg@gmail.com'
+const SESSION_FROM = process.env.RESEND_FROM || 'MindWell <onboarding@resend.dev>'
 
-function checkRateLimit(email: string): boolean {
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_MESSAGE = 2_000
+
+// Best-effort, email-keyed rate limit: N requests per window per email.
+// NOTE: serverless instances are ephemeral, so this is not a hard guarantee;
+// the durable solution is Vercel Firewall / Upstash. The Map is capped to
+// avoid unbounded growth across warm requests (the old version leaked).
+const RATE_LIMIT_MAX = Number(process.env.RATE_LIMIT_MAX) || 3
+const RATE_LIMIT_WINDOW_MS = (Number(process.env.RATE_LIMIT_WINDOW) || 86400) * 1000
+const RATE_LIMIT_MAP_MAX_ENTRIES = 1000
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+
+function rateLimitAllowed(key: string): boolean {
   const now = Date.now()
-  const limit = rateLimitMap.get(email)
-  
-  if (!limit || now > limit.resetTime) {
-    // Reset or create new limit
-    rateLimitMap.set(email, { count: 1, resetTime: now + 24 * 60 * 60 * 1000 }) // 24 hours
+  if (rateLimitMap.size > RATE_LIMIT_MAP_MAX_ENTRIES) rateLimitMap.clear()
+  const entry = rateLimitMap.get(key)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
     return true
   }
-  
-  if (limit.count >= 3) {
-    return false // Rate limit exceeded
-  }
-  
-  limit.count++
-  return true
+  entry.count += 1
+  return entry.count <= RATE_LIMIT_MAX
+}
+
+function fail(message: string, status: number) {
+  return NextResponse.json({ success: false, error: message }, { status })
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { fullName, email, isBangladeshiStudent, universityName, primaryConcern, sessionFormat, message } = body
+    const contentLength = Number(request.headers.get('content-length') || '0')
+    if (contentLength > 64 * 1024) return fail('Request too large.', 413)
 
-    // Validate required fields
+    let body: unknown
+    try {
+      body = await request.json()
+    } catch {
+      return fail('Invalid request body.', 400)
+    }
+
+    const fields = (body || {}) as Record<string, string>
+    const { fullName, email, isBangladeshiStudent, universityName, primaryConcern, sessionFormat, message } = fields
+
     if (!email || !isBangladeshiStudent || !primaryConcern || !sessionFormat) {
+      return fail('Missing required fields.', 400)
+    }
+    if (typeof email !== 'string' || !EMAIL_REGEX.test(email)) {
+      return fail('Invalid email address.', 400)
+    }
+    if (message && message.length > MAX_MESSAGE) {
+      return fail('Message is too long.', 400)
+    }
+
+    if (!rateLimitAllowed(email.toLowerCase())) {
+      return fail('You have reached the request limit. Please try again later.', 429)
+    }
+
+    if (!resend) {
+      console.warn('Session request submitted but RESEND_API_KEY is not configured.')
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        {
+          success: false,
+          error: `Request delivery is not configured right now. Please email us directly at ${SESSION_TO}.`,
+        },
+        { status: 503 },
       )
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
-      )
-    }
-
-    // Check rate limit
-    if (!checkRateLimit(email)) {
-      return NextResponse.json(
-        { error: 'Rate limit exceeded. Maximum 3 requests per 24 hours per email address.' },
-        { status: 429 }
-      )
-    }
-
-    // Validate message length
-    if (message && message.length > 500) {
-      return NextResponse.json(
-        { error: 'Message must be 500 characters or less' },
-        { status: 400 }
-      )
-    }
-
-    // Format concern and session format for readability
     const concernLabels: Record<string, string> = {
-      anxiety: "Anxiety",
-      depression: "Depression",
-      trauma: "Trauma",
-      relationship: "Relationship Issues",
-      academic: "Academic Stress",
-      other: "Other"
+      anxiety: 'Anxiety',
+      depression: 'Depression',
+      trauma: 'Trauma',
+      relationship: 'Relationship Issues',
+      academic: 'Academic Stress',
+      other: 'Other',
     }
-
     const formatLabels: Record<string, string> = {
-      video: "Video Call",
-      audio: "Audio Call",
-      text: "Text Chat"
+      video: 'Video Call',
+      audio: 'Audio Call',
+      text: 'Text Chat',
     }
 
-    // Prepare email content
-    const emailSubject = `[MindWell] Session Request from ${fullName || email}`
-    const emailBody = `
-New Session Request - MindWell Platform
-========================================
+    const subject = `[MindWell] Session Request from ${fullName || email}`
+    const text = [
+      'New Session Request — MindWell Platform',
+      '========================================',
+      '',
+      `Name: ${fullName || 'Not provided'}`,
+      `Email: ${email}`,
+      '',
+      'Student Status:',
+      `Bangladeshi University Student: ${isBangladeshiStudent === 'yes' ? 'Yes' : 'No'}`,
+      ...(isBangladeshiStudent === 'yes' ? [`University: ${universityName || 'Not provided'}`] : []),
+      '',
+      'Session Details:',
+      `Primary Concern: ${concernLabels[primaryConcern] || primaryConcern}`,
+      `Preferred Format: ${formatLabels[sessionFormat] || sessionFormat}`,
+      '',
+      message ? `Additional Message:\n${message}` : 'No additional message provided.',
+      '',
+      `Submitted: ${new Date().toISOString()}`,
+      '========================================',
+      'Please respond to this request within 48 hours.',
+    ].join('\n')
 
-Contact Information:
---------------------
-Name: ${fullName || "Not provided"}
-Email: ${email}
-
-Student Status:
---------------
-Bangladeshi University Student: ${isBangladeshiStudent === "yes" ? "Yes" : "No"}
-${isBangladeshiStudent === "yes" ? `University: ${universityName}` : ""}
-
-Session Details:
-----------------
-Primary Concern: ${concernLabels[primaryConcern] || primaryConcern}
-Preferred Format: ${formatLabels[sessionFormat] || sessionFormat}
-
-${message ? `Additional Message:\n${message}` : "No additional message provided."}
-
-Request Submitted: ${new Date().toLocaleString()}
-========================================
-
-Please respond to this request within 48 hours.
-    `.trim()
-
-    // Send email using Resend (if API key is configured)
-    if (resend) {
-      try {
-        await resend.emails.send({
-          from: 'MindWell <onboarding@resend.dev>', // TODO: Change to verified domain in production (e.g., 'MindWell <noreply@mindwell.app>')
-          to: 'contactmindwellorg@gmail.com',
-          replyTo: email,
-          subject: emailSubject,
-          text: emailBody,
-        })
-      } catch (emailError) {
-        console.error('Resend email error:', emailError)
-        // Fall back to nodemailer or log for manual processing
-        // For now, log and continue to return success
-        console.log('Email would have been sent:', { emailSubject, emailBody })
+    try {
+      const { error } = await resend.emails.send({
+        from: SESSION_FROM,
+        to: SESSION_TO,
+        replyTo: email,
+        subject,
+        text,
+      })
+      if (error) {
+        console.error('Resend rejected session-request email:', error)
+        return fail('We could not send your request. Please try again later.', 502)
       }
-    } else {
-      // If no Resend API key, log the email content for manual processing
-      console.log('=== SESSION REQUEST (Email not configured) ===')
-      console.log('Subject:', emailSubject)
-      console.log('Body:', emailBody)
-      console.log('==============================================')
+    } catch (sendError) {
+      console.error('Resend send threw for session request:', sendError)
+      return fail('We could not send your request. Please try again later.', 502)
     }
 
-    // Return success response (do NOT store data in database per requirements)
     return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Your request has been sent successfully. You will receive a response within 48 hours.'
-      },
-      { status: 200 }
+      { success: true, message: 'Your request has been sent. You will receive a response within 48 hours.' },
+      { status: 200 },
     )
-
   } catch (error) {
     console.error('Error processing session request:', error)
     return NextResponse.json(
-      { error: 'Internal server error. Please try again later.' },
-      { status: 500 }
+      { success: false, error: 'Something went wrong. Please try again later.' },
+      { status: 500 },
     )
   }
 }
