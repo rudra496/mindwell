@@ -11,7 +11,7 @@ export const SITE_URL =
 export const SITE_NAME = "MindWell"
 
 export const SITE_DESCRIPTION =
-  "MindWell — Free open-source mental health support platform. AI mood tracking, self-assessment quizzes, guided mindfulness exercises & therapeutic tools. Private & accessible."
+  "MindWell — Free open-source mental health support platform. Mood tracking, self-assessment quizzes, guided mindfulness exercises & therapeutic tools. Private & accessible."
 
 /** Absolute URL helper – joins SITE_URL with a path (path must start with /). */
 export function siteUrl(path: string = "/"): string {
