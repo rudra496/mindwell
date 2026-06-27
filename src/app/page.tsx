@@ -100,8 +100,9 @@ export default function HomePage() {
             bgGradient="from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20"
           >
             <WhoWeAreContent />
-            <div className="mt-4">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <Button className="text-lg px-7 py-3 h-auto" onClick={() => setDisordersOpen(true)}><BookOpen className="h-5 w-5 mr-2" />{tKey('homePage.openEducation', language)}</Button>
+              <Link href="/disorders" className="text-sm font-medium text-teal-700 hover:underline dark:text-teal-400">Browse all conditions by category →</Link>
             </div>
           </MinimalSection>
 
