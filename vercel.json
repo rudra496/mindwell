@@ -2,7 +2,7 @@
   "$schema": "https://vercel.com/schema/project-configuration.json",
   "framework": "nextjs",
 
-  "buildCommand": "prisma generate && npm run build",
+  "buildCommand": "npm run build",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
 
