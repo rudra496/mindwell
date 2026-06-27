@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/Logo"
 import { LanguageToggle } from "@/components/LanguageToggle"
@@ -40,19 +41,18 @@ const navItems: NavItem[] = [
 ]
 
 export function NavigationBar() {
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const { language } = useLanguage()
 
   const handleNavClick = (item: NavItem) => {
+    setMobileMenuOpen(false)
     if (item.href) {
-      window.location.href = item.href
-      setMobileMenuOpen(false)
+      router.push(item.href)
       return
     }
-
-    window.location.href = `/#${item.id}`
-    setMobileMenuOpen(false)
+    router.push(`/#${item.id}`)
   }
 
   return (

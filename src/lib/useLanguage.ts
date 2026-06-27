@@ -4,7 +4,13 @@ import { useState, useEffect } from 'react'
 import { Language, SupportedLanguage, getCurrentLanguage, isSupportedLanguage, setCurrentLanguage } from './i18n'
 
 /**
- * Hook for managing language state across the application
+ * Hook for managing language state across the application.
+ *
+ * SPA-native: switching language updates localStorage, sets <html lang>, and
+ * dispatches a 'languageChange' event that every useLanguage() instance listens
+ * for — so the whole tree re-renders in the new language WITHOUT a full page
+ * reload. (The old implementation called window.location.reload(), which
+ * discarded in-progress state and refetched everything.)
  */
 export function useLanguage() {
   const [language, setLanguage] = useState<SupportedLanguage>('en')
@@ -12,44 +18,29 @@ export function useLanguage() {
 
   useEffect(() => {
     setIsClient(true)
+
+    const apply = (lang: SupportedLanguage) => {
+      setLanguage(lang)
+      if (typeof document !== 'undefined') document.documentElement.lang = lang
+    }
+
     const currentLang = getCurrentLanguage()
-    if (isSupportedLanguage(currentLang)) {
-      setLanguage(currentLang)
-      document.documentElement.lang = currentLang
-    } else {
-      setLanguage('en')
-      document.documentElement.lang = 'en'
+    apply(isSupportedLanguage(currentLang) ? currentLang : 'en')
+
+    const onLanguageChange = (e: Event) => {
+      const detail = (e as CustomEvent).detail as SupportedLanguage
+      apply(isSupportedLanguage(detail) ? detail : 'en')
     }
-    
-    // Restore scroll position after language change refresh
-    const savedScrollPosition = sessionStorage.getItem('mindwell_scroll_position')
-    if (savedScrollPosition) {
-      const scrollY = parseInt(savedScrollPosition, 10)
-      if (!isNaN(scrollY) && scrollY >= 0) {
-        window.scrollTo(0, scrollY)
-      }
-      sessionStorage.removeItem('mindwell_scroll_position')
-    }
+    window.addEventListener('languageChange', onLanguageChange)
+    return () => window.removeEventListener('languageChange', onLanguageChange)
   }, [])
 
   const changeLanguage = (newLang: Language) => {
     const normalizedLang: SupportedLanguage = isSupportedLanguage(newLang) ? newLang : 'en'
-
-    setLanguage(normalizedLang)
     setCurrentLanguage(normalizedLang)
-    document.documentElement.lang = normalizedLang
-    
-    // Trigger a custom event for other components to listen to
+    if (typeof document !== 'undefined') document.documentElement.lang = normalizedLang
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('languageChange', { detail: normalizedLang }))
-      
-      // Auto-refresh the page after language change
-      // Save current scroll position to restore after refresh
-      const scrollY = window.scrollY
-      sessionStorage.setItem('mindwell_scroll_position', scrollY.toString())
-      
-      // Refresh the page
-      window.location.reload()
     }
   }
 

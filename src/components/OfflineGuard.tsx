@@ -1,10 +1,8 @@
 "use client"
 
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { App } from "@capacitor/app"
 import { Network } from "@capacitor/network"
-
-const reloadCooldownMs = 10000
 
 const isNativeCapacitor = (): boolean => {
   if (typeof window === "undefined") return false
@@ -27,41 +25,21 @@ export function OfflineGuard({ children }: { children: React.ReactNode }) {
   const [checking, setChecking] = useState(true)
   const nativeRuntime = useMemo(() => isNativeCapacitor(), [])
 
-  const wasOfflineRef = useRef(false)
-  const reloadTriggeredRef = useRef(false)
-
   useEffect(() => {
     let unsubscribed = false
     let removeNetworkListener: (() => void) | null = null
 
     const updateConnectivity = (connected: boolean, source: string) => {
       if (unsubscribed) return
-
       const offline = !connected
       setChecking(false)
       setIsOffline(offline)
-
       console.info("[offline-guard] Connectivity update", { source, connected, offline })
-
-      if (offline) {
-        wasOfflineRef.current = true
-        reloadTriggeredRef.current = false
-        return
-      }
-
-      const canReload = wasOfflineRef.current && !reloadTriggeredRef.current
-      if (!canReload) return
-
-      const previousReload = Number(
-        window.sessionStorage.getItem("mindwell:last-reload-on-online") ?? "0"
-      )
-
-      const now = Date.now()
-      if (now - previousReload < reloadCooldownMs) return
-
-      reloadTriggeredRef.current = true
-      window.sessionStorage.setItem("mindwell:last-reload-on-online", String(now))
-      window.location.reload()
+      // NOTE: we intentionally do NOT reload on reconnect. A reload would
+      // destroy in-progress assessment answers (PHQ-9, etc.) held only in
+      // component state. The app's data is client-side (IndexedDB/localStorage)
+      // and Firestore re-queries on demand, so resuming without a reload is
+      // safe and avoids losing a user's work mid-check-in.
     }
 
     const handleBrowserStatus = () => updateConnectivity(navigator.onLine, "navigator")
