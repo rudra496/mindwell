@@ -2,71 +2,62 @@ rules_version = '2';
 
 // MindWell Firestore Security Rules
 //
-// The community feature stores posts, replies, and likes in two top-level
-// collections: `posts` and `replies`, each with a `likes` subcollection.
+// Mirrors the rules deployed in the Firebase console. Design:
+//   - Public reads (the community stays browsable without sign-in — preserves
+//     the project's existing behavior). For a members-only community, change
+//     every `allow read: if true` to `allow read: if isSignedIn()`.
+//   - Auth required to write; ownership (authorId or legacy userId) required to
+//     edit/delete, null-safe via isOwner().
+//   - create must set authorId == your uid; update may not reassign authorId.
+//   - Likes are per-user (doc id == uid); only the owner may set/unset theirs.
 //
-// Design:
-//   - Members-only: you must be signed in (request.auth != null) to read OR
-//     write. A mental-health support community's disclosures must NOT be
-//     publicly scrapable. (Relax `allow read` to `if true` only if anonymous
-//     browsing is intentionally desired.)
-//   - Ownership: create requires authorId == your uid; update/delete require
-//     the existing doc's authorId (or legacy userId) == your uid, and you may
-//     not reassign authorId to someone else on update.
-//   - Likes: the like document id is the user's uid; only that user may
-//     create/delete their own like.
-//
-// !!! THIS FILE HAS NO EFFECT UNTIL DEPLOYED !!!
-// Deploy with the Firebase CLI (one-time setup: `firebase login` + `firebase init`):
-//   firebase deploy --only firestore:rules
-// Until then the community collections are governed by the project's current
-// (likely permissive) rules — see SECURITY.md.
+// Deploy any change with: firebase deploy --only firestore:rules
 
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
     function isOwner() {
-      return request.auth != null && (
-        resource.data.authorId == request.auth.uid ||
-        resource.data.userId == request.auth.uid
-      );
+      return isSignedIn()
+        && (resource.data.authorId == request.auth.uid
+            || resource.data.userId == request.auth.uid);
     }
 
     match /posts/{postId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null
-                    && request.resource.data.authorId == request.auth.uid;
-      allow update: if request.auth != null
-                    && isOwner()
-                    && request.resource.data.authorId == resource.data.authorId;
+      allow read: if true;
+
+      allow create: if isSignedIn()
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.title is string
+        && request.resource.data.content is string;
+
+      allow update: if isOwner()
+        && request.resource.data.authorId == resource.data.authorId;
       allow delete: if isOwner();
 
       match /likes/{userId} {
-        allow read: if request.auth != null;
-        allow create, update: if request.auth != null && userId == request.auth.uid;
-        allow delete: if request.auth != null && userId == request.auth.uid;
+        allow read: if true;
+        allow create, update, delete: if isSignedIn() && request.auth.uid == userId;
       }
     }
 
     match /replies/{replyId} {
-      allow read: if request.auth != null;
-      allow create: if request.auth != null
-                    && request.resource.data.authorId == request.auth.uid;
-      allow update: if request.auth != null
-                    && isOwner()
-                    && request.resource.data.authorId == resource.data.authorId;
+      allow read: if true;
+
+      allow create: if isSignedIn()
+        && request.resource.data.authorId == request.auth.uid;
+
+      allow update: if isOwner()
+        && request.resource.data.authorId == resource.data.authorId;
       allow delete: if isOwner();
 
       match /likes/{userId} {
-        allow read: if request.auth != null;
-        allow create, update: if request.auth != null && userId == request.auth.uid;
-        allow delete: if request.auth != null && userId == request.auth.uid;
+        allow read: if true;
+        allow create, update, delete: if isSignedIn() && request.auth.uid == userId;
       }
-    }
-
-    // Default-deny everything else.
-    match /{document=**} {
-      allow read, write: if false;
     }
   }
 }
