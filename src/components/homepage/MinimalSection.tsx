@@ -79,7 +79,7 @@ export function MinimalSection({
             <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
               <Icon className={`h-7 w-7 sm:h-8 sm:w-8 ${iconColor}`} />
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 drop-shadow-sm text-center md:text-left">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 text-center md:text-left">
               {title}
             </h2>
           </div>
