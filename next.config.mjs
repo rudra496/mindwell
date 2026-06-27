@@ -17,11 +17,11 @@ const nextConfig = {
   async headers() {
     const csp = [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://apis.google.com",
+      "script-src 'self' 'unsafe-inline' https://www.gstatic.com https://apis.google.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: https:",
       "font-src 'self' data:",
-      "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.gstatic.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https:",
+      "connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.gstatic.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com",
       "media-src 'self' https:",
       "frame-src 'self' https://accounts.google.com https://*.firebaseapp.com",
       "frame-ancestors 'none'",
