@@ -20,10 +20,15 @@ import SimonMemory from "./games/SimonMemory"
 import CognitiveSpeed from "./games/CognitiveSpeed"
 import FocusTracker from "./games/FocusTracker"
 import LogicPuzzle from "./games/LogicPuzzle"
-import { ZenGarden3D } from "./games/ZenGarden3D"
-import { CosmicMemoryPortal } from "./games/CosmicMemoryPortal"
-import { ThoughtSlicer } from "./games/ThoughtSlicer"
-import { LogicRivers3D } from "./games/LogicRivers3D"
+import dynamic from "next/dynamic"
+
+// Three.js games are lazy-loaded (ssr:false) so the ~600KB `three` package only
+// downloads when a user opens a 3D game — not on every homepage load. Component
+// names are unchanged, so the JSX below works as-is.
+const ZenGarden3D = dynamic(() => import("./games/ZenGarden3D").then((m) => m.ZenGarden3D), { ssr: false })
+const CosmicMemoryPortal = dynamic(() => import("./games/CosmicMemoryPortal").then((m) => m.CosmicMemoryPortal), { ssr: false })
+const ThoughtSlicer = dynamic(() => import("./games/ThoughtSlicer").then((m) => m.ThoughtSlicer), { ssr: false })
+const LogicRivers3D = dynamic(() => import("./games/LogicRivers3D").then((m) => m.LogicRivers3D), { ssr: false })
 
 // >>>>>>> ADD FOR VOICE/TTS SUPPORT
 import { speak } from "@/lib/speech"
