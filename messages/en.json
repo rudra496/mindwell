@@ -202,6 +202,9 @@
   "homePage": {
     "heroTitle": "MindWell – Open Source Mental Health Platform",
     "heroDesc": "MindWell Support — free, ethical mental health support & crisis management.",
+    "heroCta": "Take a 2-minute check-in",
+    "heroCrisis": "In crisis? Get help now",
+    "heroNote": "MindWell is a self-reflection tool — not for emergencies or diagnosis.",
     "learnTitle": "Learn & Awareness",
     "openEducation": "Open educational resources",
     "selfToolsTitle": "Self-Reflection Tools",

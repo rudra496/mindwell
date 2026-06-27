@@ -66,6 +66,13 @@ export default function HomePage() {
           <div className="container mx-auto max-w-7xl px-6 sm:px-10 py-12 text-center md:text-left">
             <h1 className="text-3xl sm:text-5xl font-bold text-white mb-4">{tKey('homePage.heroTitle', language)}</h1>
             <p className="text-base sm:text-xl text-white/95 max-w-3xl mx-auto md:mx-0">{tKey('homePage.heroDesc', language)}</p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+              <Button size="lg" className="text-base" onClick={() => setAssessmentOpen(true)}>{tKey('homePage.heroCta', language)}</Button>
+              <Button size="lg" variant="outline" className="text-base bg-white/10 text-white border-white/40 hover:bg-white/20" asChild>
+                <Link href="/crisis-resources">{tKey('homePage.heroCrisis', language)}</Link>
+              </Button>
+            </div>
+            <p className="mt-4 text-xs text-white/80 max-w-2xl mx-auto md:mx-0">{tKey('homePage.heroNote', language)}</p>
           </div>
         </div>
       </section>
