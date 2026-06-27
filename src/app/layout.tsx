@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION, siteUrl } from "@/lib/site";
+import { CRISIS_BANGLADESH } from "@/lib/crisis-info";
 import "./globals.css";
 import "./a11y.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
@@ -145,11 +146,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <ErrorBoundary>
             {/* Bangladesh crisis number – absolute top of every page, slim bar */}
             <a
-              href="tel:+8801779554391"
+              href={CRISIS_BANGLADESH.tel}
               className="block bg-red-700 hover:bg-red-800 text-white text-center text-xs py-1 px-2 transition-colors"
-              aria-label="Bangladesh crisis helpline (24/7) – call Kaan Pete Roi at 01779-554391"
+              aria-label={`Bangladesh crisis helpline (${CRISIS_BANGLADESH.hours}) – call ${CRISIS_BANGLADESH.organization} at ${CRISIS_BANGLADESH.phone}`}
             >
-              Bangladesh Crisis (24/7): <strong>01779-554391</strong> – Kaan Pete Roi
+              Bangladesh Crisis ({CRISIS_BANGLADESH.hours}): <strong>{CRISIS_BANGLADESH.phone}</strong> – {CRISIS_BANGLADESH.organization}
             </a>
             <AccessibilitySkipLink />
             <EmergencySupportBar />

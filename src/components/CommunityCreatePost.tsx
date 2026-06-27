@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle, Loader2, Info } from "lucide-react";
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info";
 import { postToCommunity } from "@/lib/community-firebase";
 import { auth, signInWithGoogle } from "@/lib/firebase";
 
@@ -139,9 +140,9 @@ export function CommunityCreatePost({
             <AlertDescription>
               We detected language suggesting you may be in crisis.
               <div className="mt-2 space-y-1">
-                <div>Call or text 988</div>
-                <div>Text HELLO to 741741</div>
-                <div>Call emergency services if you are in immediate danger</div>
+                <div>Bangladesh: {CRISIS_BANGLADESH.organization} {CRISIS_BANGLADESH.phone} ({CRISIS_BANGLADESH.hours})</div>
+                <div>US: Call or text {CRISIS_US.phone}</div>
+                <div>Emergency: {EMERGENCY.BD} (Bangladesh) / {EMERGENCY.US} (US)</div>
               </div>
             </AlertDescription>
           </Alert>

@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { AlertTriangle, Phone, X } from "lucide-react"
 import { useLanguage } from "@/lib/useLanguage"
 import type { SupportedLanguage } from "@/lib/i18n"
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info"
 
 interface ConsentModalProps {
   open: boolean
@@ -57,8 +58,6 @@ export function ConsentModal({
       checkbox2: "I can exit at any time if I feel uncomfortable",
       checkbox3: "If I'm in crisis, I'll use emergency resources instead",
       emergencyTitle: "In Crisis? Get Immediate Help",
-      emergency988: "Call or text 988 (US Suicide & Crisis Lifeline)",
-      emergency911: "Call 911 or go to nearest emergency room",
       exitButton: "Exit to Safety",
       continueButton: "I Understand - Continue",
       notReady: "Please check all boxes to continue"
@@ -72,8 +71,6 @@ export function ConsentModal({
       checkbox2: "আমি যেকোনো সময় অস্বস্তি বোধ করলে প্রস্থান করতে পারি",
       checkbox3: "আমি সংকটে থাকলে, আমি পরিবর্তে জরুরি সম্পদ ব্যবহার করব",
       emergencyTitle: "সংকটে? অবিলম্বে সাহায্য পান",
-      emergency988: "988 কল বা টেক্সট করুন (US সুইসাইড ও ক্রাইসিস লাইফলাইন)",
-      emergency911: "911 কল করুন বা নিকটতম জরুরি কক্ষে যান",
       exitButton: "নিরাপত্তায় প্রস্থান",
       continueButton: "আমি বুঝতে পেরেছি - চালিয়ে যান",
       notReady: "চালিয়ে যেতে সব চেকবক্স চেক করুন"
@@ -160,8 +157,9 @@ export function ConsentModal({
                   {text.emergencyTitle}
                 </h4>
                 <div className="space-y-1 text-xs text-red-800">
-                  <p><strong>988:</strong> {text.emergency988}</p>
-                  <p><strong>911:</strong> {text.emergency911}</p>
+                  <p><strong>{CRISIS_BANGLADESH.country}:</strong> {CRISIS_BANGLADESH.organization} — <strong>{CRISIS_BANGLADESH.phone}</strong> ({CRISIS_BANGLADESH.hours})</p>
+                  <p><strong>{CRISIS_US.country}:</strong> call or text <strong>{CRISIS_US.phone}</strong></p>
+                  <p><strong>Emergency:</strong> <strong>{EMERGENCY.BD}</strong> (BD) / <strong>{EMERGENCY.US}</strong> (US)</p>
                 </div>
               </div>
             </div>

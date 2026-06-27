@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { Progress } from "@/components/ui/progress"
 import { AlertCircle, ArrowLeft } from "lucide-react"
 import { featureFlags, isHighRiskAssessment } from "@/lib/featureFlags"
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info"
 import { ConsentModal } from "@/components/gating/ConsentModal"
 import { AssessmentDisclaimer } from "@/components/safety/AssessmentDisclaimer"
 import { useLanguage } from "@/lib/useLanguage"
@@ -256,10 +257,10 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
                   <div>
                     <p className="font-bold text-red-900 mb-2 text-sm sm:text-base">Your responses indicate you may need immediate support</p>
                     <p className="text-xs sm:text-sm text-red-800 mb-2">
-                      If you're in crisis: Call or text <strong>988</strong> (Suicide & Crisis Lifeline) now
+                      If you're in crisis: <strong>Bangladesh</strong> — {CRISIS_BANGLADESH.organization} <strong>{CRISIS_BANGLADESH.phone}</strong> ({CRISIS_BANGLADESH.hours}). <strong>US</strong> — call or text <strong>{CRISIS_US.phone}</strong>.
                     </p>
                     <p className="text-xs sm:text-sm text-red-800">
-                      Emergency: Call <strong>911</strong> or go to nearest emergency room
+                      Emergency: <strong>{EMERGENCY.BD}</strong> (Bangladesh) / <strong>{EMERGENCY.US}</strong> (US), or go to your nearest emergency room.
                     </p>
                   </div>
                 </div>

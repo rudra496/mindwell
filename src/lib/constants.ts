@@ -14,7 +14,7 @@ export const CONTENT_COUNTS = {
 
 // Bangladesh emergency contacts
 export const BD_EMERGENCY = {
-  kaanPeteRoi: '09678 676 777',
+  kaanPeteRoi: '01779-554391',
   emergency: '999',
 } as const
 

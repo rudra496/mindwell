@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t, tKey } from "@/lib/i18n"
 import { config } from "@/lib/config"
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info"
 
 export function Footer() {
   const { language } = useLanguage()
@@ -103,9 +104,9 @@ export function Footer() {
               {mounted ? tKey('footerLegacy.crisisSupport', language) : "🚨 Crisis Support"}
             </h4>
             <div className="space-y-1 text-xs text-red-800 dark:text-red-300">
-              <p><strong>Bangladesh:</strong> Kaan Pete Roi: <strong>09678 676 777</strong> (24/7)</p>
-              <p><strong>US:</strong> Call or text <strong>988</strong> (Suicide & Crisis Lifeline)</p>
-              <p><strong>Emergency:</strong> <strong>999</strong> (Bangladesh) or <strong>911</strong> (US)</p>
+              <p><strong>Bangladesh:</strong> {CRISIS_BANGLADESH.organization}: <strong>{CRISIS_BANGLADESH.phone}</strong> ({CRISIS_BANGLADESH.hours})</p>
+              <p><strong>US:</strong> Call or text <strong>{CRISIS_US.phone}</strong> ({CRISIS_US.organization})</p>
+              <p><strong>Emergency:</strong> <strong>{EMERGENCY.BD}</strong> (Bangladesh) or <strong>{EMERGENCY.US}</strong> (US)</p>
             </div>
           </div>
         </div>

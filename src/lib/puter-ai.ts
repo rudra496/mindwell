@@ -1,4 +1,5 @@
 import { getFallbackResponse } from './chat-fallback'
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from './crisis-info'
 
 declare global {
   interface Window {
@@ -31,10 +32,10 @@ Important guidelines:
 - You use simple, clear language
 - You validate feelings while offering hope
 
-Crisis resources you should mention when needed:
-- 988 Suicide & Crisis Lifeline (call or text)
-- Crisis Text Line: Text HELLO to 741741
-- 911 for emergencies
+Crisis resources you should mention when needed (match the user's likely location):
+- Bangladesh: ${CRISIS_BANGLADESH.organization} ${CRISIS_BANGLADESH.phone} (${CRISIS_BANGLADESH.hours})
+- US: ${CRISIS_US.organization} — call or text ${CRISIS_US.phone}
+- Emergency services: ${EMERGENCY.BD} (Bangladesh) / ${EMERGENCY.US} (US)
 
 You have access to information about:
 - Mental health disorders (depression, anxiety, PTSD, OCD, bipolar, etc.)
