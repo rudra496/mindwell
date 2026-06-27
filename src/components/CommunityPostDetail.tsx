@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { ThumbsUp, MessageCircle, AlertTriangle, ArrowLeft, Loader2, Send, Edit, Trash2, Reply } from "lucide-react";
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info";
 
 import {
   addReply,
@@ -392,7 +393,7 @@ export function CommunityPostDetail({ open, onOpenChange, post, onBack, onPostUp
           </Card>
 
           {error && <Alert variant="destructive"><AlertDescription>{error}</AlertDescription></Alert>}
-          {crisis && <Alert className="border-red-500 bg-red-50"><AlertTriangle className="h-4 w-4 text-red-600" /><AlertDescription className="text-red-900">If you are in danger call emergency services now. US: 988 • Text HELLO to 741741</AlertDescription></Alert>}
+          {crisis && <Alert className="border-red-500 bg-red-50"><AlertTriangle className="h-4 w-4 text-red-600" /><AlertDescription className="text-red-900">If you are in danger call emergency services now ({EMERGENCY.BD} BD / {EMERGENCY.US} US). Bangladesh: {CRISIS_BANGLADESH.organization} {CRISIS_BANGLADESH.phone}. US: {CRISIS_US.phone}.</AlertDescription></Alert>}
 
           <DialogHeader><DialogTitle>Comments</DialogTitle></DialogHeader>
 

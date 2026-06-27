@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Search, ExternalLink } from "lucide-react"
 import { EducationalDisclaimer } from "@/components/safety/EducationalDisclaimer"
+import { CRISIS_BANGLADESH, CRISIS_US } from "@/lib/crisis-info"
 
 interface Disorder {
   id: string
@@ -159,7 +160,7 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
                 </ul>
                 <div className="mt-4 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
                   <p className="font-semibold text-red-900 mb-2 text-sm sm:text-base">Crisis Resources</p>
-                  <p className="text-xs sm:text-sm text-red-800">If you're in crisis: Call or text 988 (US) for immediate support</p>
+                  <p className="text-xs sm:text-sm text-red-800">If you're in crisis: Bangladesh — {CRISIS_BANGLADESH.organization} {CRISIS_BANGLADESH.phone} ({CRISIS_BANGLADESH.hours}); US — call or text {CRISIS_US.phone}.</p>
                 </div>
               </TabsContent>
             </Tabs>

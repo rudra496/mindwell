@@ -1,6 +1,7 @@
 "use client"
 
 import { AlertCircle, Phone, Heart } from "lucide-react"
+import { CRISIS_BANGLADESH, CRISIS_US, EMERGENCY } from "@/lib/crisis-info"
 
 export function SuicidePreventionSection() {
   return (
@@ -27,11 +28,11 @@ export function SuicidePreventionSection() {
             <div>
               <p className="font-bold text-red-900 mb-2 text-sm sm:text-base">⚠️ EMERGENCY - Get Help Immediately:</p>
               <div className="space-y-1.5 text-xs sm:text-sm text-red-800">
-                <p className="font-semibold">🚨 <strong>Call 911</strong> (US) or your local emergency number</p>
-                <p className="font-semibold">☎️ Call or text <strong>988</strong> (US Suicide & Crisis Lifeline) - Available 24/7</p>
-                <p className="font-semibold">💬 Text <strong>HELLO</strong> to <strong>741741</strong> (Crisis Text Line)</p>
+                <p className="font-semibold">🚨 Emergency: <strong>{EMERGENCY.BD}</strong> (Bangladesh) / <strong>{EMERGENCY.US}</strong> (US), or your local emergency number</p>
+                <p className="font-semibold">🇧🇩 Bangladesh: <strong>{CRISIS_BANGLADESH.organization}</strong> — <strong>{CRISIS_BANGLADESH.phone}</strong> ({CRISIS_BANGLADESH.hours})</p>
+                <p className="font-semibold">🇺🇸 US: Call or text <strong>{CRISIS_US.phone}</strong> ({CRISIS_US.organization}) — 24/7</p>
                 <p className="font-semibold">🏥 Go to the nearest emergency room or hospital</p>
-                <p className="mt-2 font-medium">🌍 <strong>Outside the US?</strong> Scroll down for international crisis resources</p>
+                <p className="mt-2 font-medium">🌍 <strong>Elsewhere?</strong> Scroll down for international crisis resources</p>
               </div>
             </div>
           </div>
@@ -120,8 +121,8 @@ export function SuicidePreventionSection() {
             <div>
               <p className="text-sm sm:text-base font-bold text-red-900 mb-2">☎️ Crisis Hotlines (Free, 24/7, Confidential):</p>
               <ul className="space-y-1 text-xs sm:text-sm text-red-800 ml-4">
-                <li>• <strong>988</strong> - Suicide & Crisis Lifeline (US, call or text)</li>
-                <li>• Text <strong>HELLO</strong> to <strong>741741</strong> - Crisis Text Line (US)</li>
+                <li>• Bangladesh: <strong>{CRISIS_BANGLADESH.organization}</strong> — <strong>{CRISIS_BANGLADESH.phone}</strong> ({CRISIS_BANGLADESH.hours})</li>
+                <li>• US: <strong>{CRISIS_US.phone}</strong> — {CRISIS_US.organization} (call or text)</li>
                 <li>• See full list of international crisis resources below</li>
               </ul>
             </div>
