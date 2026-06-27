@@ -54,6 +54,7 @@ export function ZenGarden3D() {
   const nodesRef = useRef<THREE.Mesh[]>([])
   const linesRef = useRef<THREE.Line[]>([])
   const selectedNodeRef = useRef<THREE.Mesh | null>(null)
+  const requestRef = useRef<number | null>(null)
 
   const LEVEL_CONFIGS = [
     { level: 1, nodeCount: 5, label: "Serene Orbit" },

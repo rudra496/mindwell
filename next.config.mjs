@@ -3,11 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // ESLint is skipped during build because the flat-config setup (FlatCompat
+  // + eslint-config-next) hits an upstream @eslint/eslintrc "circular
+  // structure" crash on eslint 9.x, which would fail EVERY build. Re-enable
+  // after migrating eslint.config.mjs to a native flat config. Note: TypeScript
+  // type-checking IS enforced at build time (typescript.ignoreBuildErrors removed).
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? {
