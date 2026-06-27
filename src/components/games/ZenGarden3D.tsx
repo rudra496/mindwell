@@ -228,6 +228,8 @@ export function ZenGarden3D() {
     window.addEventListener('mouseup', onMouseUp)
     renderer.domElement.addEventListener('click', onClick)
 
+    let active = true
+
     const animate = () => {
       if (!active) return
 
