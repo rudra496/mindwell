@@ -157,7 +157,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <NavigationBar />
             <GuidedTour />
             <div className="flex flex-col min-h-screen">
-              <main className="flex-1 bg-gradient-to-br from-teal-50 via-indigo-50 to-emerald-50 transition-colors duration-300">
+              <main className="flex-1 bg-background transition-colors duration-300">
                 <div className="container mx-auto px-4">
                   <Breadcrumbs />
                 </div>

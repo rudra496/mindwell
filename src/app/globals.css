@@ -56,7 +56,6 @@
   body {
     @apply bg-background text-foreground;
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background: linear-gradient(135deg, #f0fdfa 0%, #eef2ff 50%, #ecfeff 100%);
     min-height: 100vh;
   }
   
@@ -117,7 +116,7 @@
   
   /* Gradient text */
   .gradient-text {
-    @apply bg-gradient-to-r from-teal-600 via-indigo-600 to-emerald-600 bg-clip-text text-transparent;
+    @apply text-teal-700 dark:text-teal-400 font-semibold;
   }
   
   /* Button animations */
