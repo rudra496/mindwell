@@ -25,7 +25,7 @@ export function MinimalSection({
   iconColor = "text-teal-600 dark:text-teal-400",
   stockPhotoUrl,
   stockPhotoAlt = "",
-  defaultOpen = false,
+  defaultOpen = true,
   children,
   className = "",
   bgGradient = "from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20"
