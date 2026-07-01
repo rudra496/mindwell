@@ -213,7 +213,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'grounding') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <GroundingGame />
         </DialogContent>
       </Dialog>
@@ -223,7 +223,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'affirmations') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <AffirmationsSpinner />
         </DialogContent>
       </Dialog>
@@ -233,7 +233,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'gratitude') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <GratitudeJournal />
         </DialogContent>
       </Dialog>
@@ -243,7 +243,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'pmr') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <ProgressiveMuscleRelaxation />
         </DialogContent>
       </Dialog>
@@ -253,7 +253,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'safe-place') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <SafePlaceVisualization />
         </DialogContent>
       </Dialog>
@@ -263,7 +263,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'memory-match') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <MemoryMatch />
         </DialogContent>
       </Dialog>
@@ -273,7 +273,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'thought-challenger') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <ThoughtChallenger />
         </DialogContent>
       </Dialog>
@@ -283,7 +283,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'emotion-wheel') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <EmotionWheel />
         </DialogContent>
       </Dialog>
@@ -293,7 +293,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'mindfulness-timer') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <MindfulnessTimer />
         </DialogContent>
       </Dialog>
@@ -303,7 +303,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'pattern-recognition') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <PatternRecognition />
         </DialogContent>
       </Dialog>
@@ -313,7 +313,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'number-sequence') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <NumberSequence />
         </DialogContent>
       </Dialog>
@@ -323,7 +323,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'simon-memory') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <SimonMemory />
         </DialogContent>
       </Dialog>
@@ -333,7 +333,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'cognitive-speed') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <CognitiveSpeed />
         </DialogContent>
       </Dialog>
@@ -343,7 +343,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'focus-tracker') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <FocusTracker />
         </DialogContent>
       </Dialog>
@@ -353,7 +353,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'logic-puzzle') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
           <LogicPuzzle />
         </DialogContent>
       </Dialog>
@@ -363,7 +363,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'zen-garden-3d') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden">
           <ZenGarden3D />
         </DialogContent>
       </Dialog>
@@ -373,7 +373,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'cosmic-memory-portal') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden">
           <CosmicMemoryPortal />
         </DialogContent>
       </Dialog>
@@ -383,7 +383,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'thought-slicer') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden">
           <ThoughtSlicer />
         </DialogContent>
       </Dialog>
@@ -393,7 +393,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
   if (selectedGame === 'logic-rivers-3d') {
     return (
       <Dialog open={true} onOpenChange={(open) => !open && closeGame()}>
-        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden\">
+        <DialogContent className="max-w-[95vw] sm:max-w-4xl max-h-[90vh] overflow-y-auto bg-slate-950 border-slate-800 break-words whitespace-normal overflow-x-hidden">
           <LogicRivers3D />
         </DialogContent>
       </Dialog>
@@ -402,7 +402,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+      <DialogContent className="max-w-[95vw] sm:max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl flex items-center gap-2 break-words">
             <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />

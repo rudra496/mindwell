@@ -174,7 +174,7 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-6xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
+      <DialogContent className="max-w-[95vw] sm:max-w-6xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <DialogTitle className="text-3xl">Evidence-Based Therapy Techniques</DialogTitle>
           <DialogDescription>

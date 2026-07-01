@@ -383,7 +383,7 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 break-words whitespace-normal overflow-x-hidden\">
+      <DialogContent className="max-w-[95vw] sm:max-w-5xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <DialogTitle className="text-2xl sm:text-3xl break-words">Guided Meditations</DialogTitle>
           <DialogDescription className="text-sm sm:text-base">
