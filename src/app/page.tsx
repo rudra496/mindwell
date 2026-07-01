@@ -226,7 +226,7 @@ export default function HomePage() {
               imageSrc="/images/stock/psychologists_professional.jpg"
               buttonText={tKey('homePage.psychBtn', language)}
               href="/psychologists"
-              accentColor="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
             <ServiceCard
@@ -236,7 +236,7 @@ export default function HomePage() {
               imageSrc="/images/stock/one_on_one_counseling.jpg"
               buttonText={tKey('homePage.therapyBtn', language)}
               onClick={() => setTherapyTechniquesOpen(true)}
-              accentColor="bg-violet-100 text-violet-700 dark:bg-violet-900/50 dark:text-violet-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
             <ServiceCard
@@ -246,7 +246,7 @@ export default function HomePage() {
               imageSrc="/images/stock/mental_health_awareness.jpg"
               buttonText={tKey('homePage.openEducation', language)}
               onClick={() => setDisordersOpen(true)}
-              accentColor="bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
             <ServiceCard
@@ -256,7 +256,7 @@ export default function HomePage() {
               imageSrc="/images/section-bg/self_reflection_bg.jpg"
               buttonText={tKey('homePage.openAssessments', language)}
               onClick={() => setAssessmentOpen(true)}
-              accentColor="bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
             <ServiceCard
@@ -266,7 +266,7 @@ export default function HomePage() {
               imageSrc="/images/stock/community_worldwide_support.jpg"
               buttonText={tKey('homePage.communityBtn', language)}
               onClick={() => setCommunityOpen(true)}
-              accentColor="bg-pink-100 text-pink-700 dark:bg-pink-900/50 dark:text-pink-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
             <ServiceCard
@@ -276,7 +276,7 @@ export default function HomePage() {
               imageSrc="/images/section-bg/wellbeing_games_bg.jpg"
               buttonText={tKey('homePage.gamesBtn', language)}
               onClick={() => setGamesOpen(true)}
-              accentColor="bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-400"
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
           </div>
