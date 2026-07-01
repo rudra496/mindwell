@@ -58,8 +58,8 @@ export function NavigationBar() {
   return (
     <>
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-      <nav className="hidden lg:block bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label={tKey('navBar.mainNavigation', language)}>
-        <div className="container mx-auto px-4 py-3">
+      <nav className="hidden lg:block bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors" role="navigation" aria-label={tKey('navBar.mainNavigation', language)}>
+        <div className="container mx-auto px-4 lg:px-8 py-4">
           <div className="flex items-center justify-between gap-4">
             <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label={tKey('navBar.homeAria', language)}>
               <Logo variant="full" className="h-8" />
@@ -106,8 +106,8 @@ export function NavigationBar() {
         </div>
       </nav>
 
-      <nav className="lg:hidden bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 border-b border-teal-200" role="navigation" aria-label={tKey('navBar.mobileNavigation', language)}>
-        <div className="container mx-auto px-3 py-3">
+      <nav className="lg:hidden bg-white dark:bg-slate-900 shadow-sm sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 transition-colors" role="navigation" aria-label={tKey('navBar.mobileNavigation', language)}>
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <button onClick={() => handleNavClick(navItems[0])} className="flex items-center gap-2" aria-label={tKey('navBar.homeAria', language)}>
               <Logo variant="full" className="h-7" />
@@ -131,7 +131,7 @@ export function NavigationBar() {
           </div>
 
           {mobileMenuOpen && (
-            <div className="mt-3 pb-2 space-y-1 border-t border-slate-200 pt-2 bg-white/95">
+            <div className="mt-3 pb-4 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-4 bg-white dark:bg-slate-900">
               {navItems.map((item) => (
                 <Button key={item.id} variant="ghost" onClick={() => handleNavClick(item)} className="w-full justify-start text-gray-700 hover:text-teal-700 hover:bg-teal-50 min-h-[44px]">
                   <item.icon className="h-5 w-5 mr-3" />
