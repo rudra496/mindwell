@@ -150,62 +150,39 @@ export default function HomePage() {
       
       {/* 1. Clinical & Professional Hero Section */}
       <section className="relative bg-white dark:bg-slate-900 overflow-hidden border-b border-slate-200 dark:border-slate-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-16 pb-20 lg:pt-24 lg:pb-28">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl text-center">
+          <div className="py-16 sm:py-24 lg:py-32 flex flex-col items-center">
             
-            {/* Left Content */}
-            <div className="max-w-2xl animate-fade-in z-10">
+            <div className="animate-fade-in z-10 flex flex-col items-center">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 mb-6 border border-teal-100 dark:border-teal-800">
                 <ShieldCheck className="w-4 h-4" />
-                <span className="text-sm font-semibold tracking-wide uppercase">Trusted Mental Health Support</span>
+                <span className="text-sm font-semibold tracking-wide uppercase">MindWell</span>
               </div>
               
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-[1.15]">
-                Empathetic Care for a <br className="hidden sm:block" />
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
+                Ethical Care for a <br className="hidden sm:block" />
                 <span className="text-teal-600 dark:text-teal-400">Healthier Mind</span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-8 sm:mb-10 leading-relaxed max-w-xl">
-                {tKey('homePage.heroDesc', language) || "Free, ethical mental health support and crisis management for everyone."}
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed max-w-2xl">
+                {tKey('homePage.heroDesc', language) || "Free, ethical mental health support and crisis management accessible to everyone."}
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 w-full">
+              <div className="flex w-full sm:w-auto">
                 <Button 
                   size="lg" 
-                  className="h-14 px-8 text-lg rounded-xl bg-teal-600 hover:bg-teal-700 text-white shadow-md transition-all"
+                  className="w-full sm:w-auto h-14 px-8 text-lg rounded-xl bg-teal-600 hover:bg-teal-700 text-white shadow-md transition-all"
                   onClick={() => openModal(setAssessmentOpen)}
                 >
                   {tKey('homePage.heroCta', language)} <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="h-14 px-8 text-lg rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
-                  asChild
-                >
-                  <Link href="/crisis-resources">
-                    {tKey('homePage.heroCrisis', language)}
-                  </Link>
-                </Button>
               </div>
               
-              <p className="mt-6 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4" /> {tKey('homePage.heroNote', language)}
+              <p className="mt-6 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2 justify-center">
+                <AlertCircle className="w-4 h-4 flex-shrink-0" /> {tKey('homePage.heroNote', language)}
               </p>
             </div>
 
-            {/* Right Image (Clean, no messy blurs) */}
-            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl lg:transform lg:translate-x-4">
-              <Image
-                src="/images/stock/hero_group_support.jpg"
-                alt="Group counseling support session"
-                fill
-                priority
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
-            </div>
           </div>
         </div>
       </section>
