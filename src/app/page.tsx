@@ -32,7 +32,6 @@ import { MeditationModal } from "@/components/MeditationModal"
 import { TherapyTechniquesModal } from "@/components/TherapyTechniquesModal"
 import { WhoWeAreGoalsAccordion } from "@/components/homepage/WhoWeAreGoalsAccordion"
 import MoodTracker from "@/components/games/MoodTracker"
-import { TrustBadges } from "@/components/TrustBadges"
 import { Testimonials } from "@/components/Testimonials"
 import { NewsletterSignup } from "@/components/NewsletterSignup"
 import { consumeCommunityReopenFlag } from "@/lib/firebase"
@@ -45,24 +44,20 @@ function ServiceCard({
   description,
   icon: Icon,
   imageSrc,
-  buttonText,
   onClick,
   href,
   accentColor = "text-teal-600 bg-teal-50",
-  buttonVariant = "default"
 }: {
   title: string
   description: string
   icon: any
   imageSrc?: string
-  buttonText: string
   onClick?: () => void
   href?: string
   accentColor?: string
-  buttonVariant?: "default" | "outline" | "secondary" | "ghost"
 }) {
-  return (
-    <div className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300 h-full group">
+  const CardContent = (
+    <>
       {imageSrc && (
         <div className="relative h-48 sm:h-56 w-full overflow-hidden">
           <Image 
@@ -75,31 +70,43 @@ function ServiceCard({
         </div>
       )}
       <div className="p-6 sm:p-8 flex flex-col flex-grow">
-        <div className="flex items-center gap-4 mb-4">
-          <div className={`p-3 rounded-xl ${accentColor}`}>
-            <Icon className="w-6 h-6" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-4">
+            <div className={`p-3 rounded-xl ${accentColor}`}>
+              <Icon className="w-6 h-6" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+              {title}
+            </h3>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
-            {title}
-          </h3>
+          <ChevronRight className="w-6 h-6 text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
         </div>
-        <p className="text-slate-600 dark:text-slate-400 mb-8 flex-grow text-base sm:text-lg leading-relaxed">
+        <p className="text-slate-600 dark:text-slate-400 flex-grow text-base sm:text-lg leading-relaxed">
           {description}
         </p>
-        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
-          {href ? (
-            <Button variant={buttonVariant} className="w-full sm:w-auto font-semibold rounded-xl" size="lg" asChild>
-              <Link href={href}>
-                {buttonText} <ChevronRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-          ) : (
-            <Button variant={buttonVariant} className="w-full sm:w-auto font-semibold rounded-xl" size="lg" onClick={onClick}>
-              {buttonText} <ChevronRight className="ml-2 w-4 h-4" />
-            </Button>
-          )}
-        </div>
       </div>
+    </>
+  )
+
+  const className = "flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300 h-full group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-teal-500"
+
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {CardContent}
+      </Link>
+    )
+  }
+
+  return (
+    <div 
+      onClick={onClick} 
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onClick?.(); }} 
+      role="button" 
+      tabIndex={0} 
+      className={className}
+    >
+      {CardContent}
     </div>
   )
 }
@@ -115,7 +122,27 @@ export default function HomePage() {
 
   useEffect(() => {
     if (!consumeCommunityReopenFlag()) return
-    setCommunityOpen(true)
+    openModal(setCommunityOpen)
+  }, [])
+
+  const openModal = (setter: any) => {
+    // Push state so Android back button closes modal instead of exiting app
+    window.history.pushState({ modalOpen: true }, '')
+    setter(true)
+  }
+
+  useEffect(() => {
+    const handlePopState = () => {
+      // If user presses back, close all modals
+      setDisordersOpen(false)
+      setAssessmentOpen(false)
+      setGamesOpen(false)
+      setCommunityOpen(false)
+      setMeditationOpen(false)
+      setTherapyTechniquesOpen(false)
+    }
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
   }, [])
 
   return (
@@ -146,7 +173,7 @@ export default function HomePage() {
                 <Button 
                   size="lg" 
                   className="h-14 px-8 text-lg rounded-xl bg-teal-600 hover:bg-teal-700 text-white shadow-md transition-all"
-                  onClick={() => setAssessmentOpen(true)}
+                  onClick={() => openModal(setAssessmentOpen)}
                 >
                   {tKey('homePage.heroCta', language)} <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -183,12 +210,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. Trust & Recognition */}
-      <div className="bg-slate-50 dark:bg-slate-950 py-12 border-b border-slate-200 dark:border-slate-800">
-        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-           <TrustBadges />
-        </div>
-      </div>
+
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16 sm:py-24 space-y-16 sm:space-y-24">
         
@@ -224,7 +246,6 @@ export default function HomePage() {
               description={tKey('homePage.psychDesc', language)}
               icon={Stethoscope}
               imageSrc="/images/stock/psychologists_professional.jpg"
-              buttonText={tKey('homePage.psychBtn', language)}
               href="/psychologists"
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
@@ -234,8 +255,7 @@ export default function HomePage() {
               description={tKey('homePage.selfToolsDesc', language) || "Access guided mental exercises and CBT techniques."}
               icon={Sparkles}
               imageSrc="/images/stock/one_on_one_counseling.jpg"
-              buttonText={tKey('homePage.therapyBtn', language)}
-              onClick={() => setTherapyTechniquesOpen(true)}
+              onClick={() => openModal(setTherapyTechniquesOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
@@ -244,8 +264,7 @@ export default function HomePage() {
               description="Explore our clinical encyclopedia of conditions and coping strategies."
               icon={BookOpen}
               imageSrc="/images/stock/mental_health_awareness.jpg"
-              buttonText={tKey('homePage.openEducation', language)}
-              onClick={() => setDisordersOpen(true)}
+              onClick={() => openModal(setDisordersOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
@@ -254,8 +273,7 @@ export default function HomePage() {
               description="Take clinically validated self-assessment tests to better understand your current mental state."
               icon={ClipboardList}
               imageSrc="/images/section-bg/self_reflection_bg.jpg"
-              buttonText={tKey('homePage.openAssessments', language)}
-              onClick={() => setAssessmentOpen(true)}
+              onClick={() => openModal(setAssessmentOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
@@ -264,8 +282,7 @@ export default function HomePage() {
               description={tKey('homePage.communityDesc', language)}
               icon={Users}
               imageSrc="/images/stock/community_worldwide_support.jpg"
-              buttonText={tKey('homePage.communityBtn', language)}
-              onClick={() => setCommunityOpen(true)}
+              onClick={() => openModal(setCommunityOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
@@ -274,8 +291,7 @@ export default function HomePage() {
               description={tKey('homePage.gamesDesc', language)}
               icon={Gamepad2}
               imageSrc="/images/section-bg/wellbeing_games_bg.jpg"
-              buttonText={tKey('homePage.gamesBtn', language)}
-              onClick={() => setGamesOpen(true)}
+              onClick={() => openModal(setGamesOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
