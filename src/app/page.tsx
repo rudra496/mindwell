@@ -375,10 +375,10 @@ export default function HomePage() {
           {/* Contact Section */}
           <div className="bg-slate-100 dark:bg-slate-900/50 rounded-3xl p-6 sm:p-12 border border-slate-200 dark:border-slate-800">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{tKey('homePage.fundTitle', language)}</h2>
-                <p className="text-slate-600 dark:text-slate-400 text-lg mb-8">{tKey('homePage.fundDesc', language)}</p>
-                <div className="space-y-6">
+              <div className="min-w-0">
+                <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 break-words">{tKey('homePage.fundTitle', language)}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 break-words whitespace-normal">{tKey('homePage.fundDesc', language)}</p>
+                <div className="space-y-6 min-w-0">
                   <a href="mailto:contactmindwellorg@gmail.com" className="flex items-center gap-3 sm:gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
                     <div className="p-3 sm:p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow shrink-0"><Mail className="w-5 h-5 sm:w-6 sm:h-6" /></div>
                     <span className="text-sm sm:text-lg font-medium break-all">contactmindwellorg@gmail.com</span>
@@ -389,7 +389,7 @@ export default function HomePage() {
                   </a>
                 </div>
               </div>
-              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800 min-w-0">
                  <NewsletterSignup />
               </div>
             </div>
