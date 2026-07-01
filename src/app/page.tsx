@@ -228,11 +228,20 @@ export default function HomePage() {
             />
 
             <ServiceCard
-              title={tKey('homePage.therapyTitle', language)}
+              title="Therapy Techniques"
               description={tKey('homePage.selfToolsDesc', language) || "Access guided mental exercises and CBT techniques."}
               icon={Sparkles}
               imageSrc="/images/stock/one_on_one_counseling.jpg"
               onClick={() => openModal(setTherapyTechniquesOpen)}
+              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
+            />
+
+            <ServiceCard
+              title="Meditation Library"
+              description="Explore guided breathing exercises and mindfulness meditations."
+              icon={Heart}
+              imageSrc="/images/section-bg/wellbeing_games_bg.jpg"
+              onClick={() => openModal(setMeditationOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
