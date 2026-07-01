@@ -196,9 +196,9 @@ export function TherapyTechniquesModal({ open, onOpenChange }: TherapyTechniques
 
         {!isLoading && !error && (
           <div className="space-y-6">
-            <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+            <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full min-w-0">
               {/* FIX: scrollable horizontal list prevents overlapping */}
-              <TabsList className="flex gap-2 overflow-x-auto whitespace-nowrap py-1">
+              <TabsList className="flex flex-wrap gap-2 h-auto py-1 justify-start">
                 <TabsTrigger value="all">All</TabsTrigger>
                 {categories.map(category => (
                   <TabsTrigger key={category} value={category}>

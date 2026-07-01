@@ -404,8 +404,8 @@ export function MeditationModal({ open, onOpenChange }: MeditationModalProps) {
         )}
 
         {!isLoading && !error && !selectedMeditation && (
-          <Tabs defaultValue="all" className="w-full">
-            <TabsList className="flex gap-2 overflow-x-auto whitespace-nowrap py-1">
+          <Tabs defaultValue="all" className="w-full min-w-0">
+            <TabsList className="flex flex-wrap gap-2 h-auto py-1 justify-start">
               <TabsTrigger value="all" className="text-xs sm:text-sm">All</TabsTrigger>
               {categories.map(category => (
                 <TabsTrigger key={category} value={category} className="text-xs sm:text-sm">
