@@ -4,7 +4,7 @@ const badges = [
   {
     icon: ShieldCheck,
     title: "Evidence-Based",
-    description: "All content reviewed against peer-reviewed research and clinical guidelines.",
+    description: "Reviewed against clinical guidelines.",
     color: "text-teal-600 dark:text-teal-400",
     bg: "bg-teal-50 dark:bg-teal-900/20",
     border: "border-teal-200 dark:border-teal-800",
@@ -12,7 +12,7 @@ const badges = [
   {
     icon: Lock,
     title: "Privacy-First",
-    description: "No personal data sold or shared. Minimal data collection, open-source codebase.",
+    description: "No data sharing or tracking.",
     color: "text-indigo-600 dark:text-indigo-400",
     bg: "bg-indigo-50 dark:bg-indigo-900/20",
     border: "border-indigo-200 dark:border-indigo-800",
@@ -20,7 +20,7 @@ const badges = [
   {
     icon: Heart,
     title: "Free Forever",
-    description: "Core features always free. Mental health support should be accessible to everyone.",
+    description: "Support accessible to everyone.",
     color: "text-rose-600 dark:text-rose-400",
     bg: "bg-rose-50 dark:bg-rose-900/20",
     border: "border-rose-200 dark:border-rose-800",

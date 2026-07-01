@@ -138,8 +138,8 @@ export default function HomePage() {
                 <span className="text-teal-600 dark:text-teal-400">Healthier Mind</span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
-                {tKey('homePage.heroDesc', language) || "MindWell provides comprehensive mental health support, clinical tools, professional therapy guidance, and a global supportive community. Completely free and accessible to everyone."}
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-8 sm:mb-10 leading-relaxed max-w-xl">
+                {tKey('homePage.heroDesc', language) || "Free, ethical mental health support and crisis management for everyone."}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 w-full">
@@ -193,18 +193,18 @@ export default function HomePage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16 sm:py-24 space-y-16 sm:space-y-24">
         
         {/* 3. Emergency Support (High Visibility Block) */}
-        <div className="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-2xl p-6 sm:p-10 shadow-sm flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
-          <div className="flex-1 max-w-3xl">
-            <div className="flex items-center gap-3 mb-4 text-red-700 dark:text-red-400">
-              <AlertCircle className="w-8 h-8" />
-              <h2 className="text-2xl sm:text-3xl font-bold">24/7 Emergency Support</h2>
-            </div>
-            <div className="prose prose-red dark:prose-invert max-w-none text-red-900 dark:text-red-200">
-              <EmergencySupportContent />
-            </div>
+        <div className="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-2xl p-5 sm:p-8 md:p-10 shadow-sm flex flex-col gap-6 w-full max-w-full overflow-hidden">
+          <div className="flex items-center gap-3 text-red-700 dark:text-red-400">
+            <AlertCircle className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight">24/7 Emergency Support</h2>
           </div>
-          <div className="w-full md:w-auto flex-shrink-0">
-             <Button variant="destructive" size="lg" className="w-full md:w-auto text-lg px-8 h-14 rounded-xl shadow-lg" asChild>
+          
+          <div className="w-full max-w-full overflow-hidden">
+            <EmergencySupportContent />
+          </div>
+
+          <div className="w-full pt-4 border-t border-red-200 dark:border-red-800">
+             <Button variant="destructive" size="lg" className="w-full md:w-auto text-base sm:text-lg px-6 sm:px-8 h-12 sm:h-14 rounded-xl shadow-md transition-transform active:scale-95" asChild>
                 <Link href="/crisis-resources">View Emergency Hotlines</Link>
              </Button>
           </div>
@@ -231,7 +231,7 @@ export default function HomePage() {
 
             <ServiceCard
               title={tKey('homePage.therapyTitle', language)}
-              description={tKey('homePage.selfToolsDesc', language) || "Access guided cognitive behavioral therapy (CBT) techniques and structured mental exercises."}
+              description={tKey('homePage.selfToolsDesc', language) || "Access guided mental exercises and CBT techniques."}
               icon={Sparkles}
               imageSrc="/images/stock/one_on_one_counseling.jpg"
               buttonText={tKey('homePage.therapyBtn', language)}
@@ -241,7 +241,7 @@ export default function HomePage() {
 
             <ServiceCard
               title={tKey('homePage.learnTitle', language)}
-              description="Explore our detailed clinical encyclopedia of mental health conditions, symptoms, and coping strategies."
+              description="Explore our clinical encyclopedia of conditions and coping strategies."
               icon={BookOpen}
               imageSrc="/images/stock/mental_health_awareness.jpg"
               buttonText={tKey('homePage.openEducation', language)}
