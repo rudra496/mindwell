@@ -201,7 +201,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
                   <Button
                     key={assessment.id}
                     variant="outline"
-                    className="justify-start h-auto py-3 sm:py-4 px-3 sm:px-4 text-left min-h-[60px]"
+                    className="justify-start h-auto py-3 sm:py-4 px-3 sm:px-4 text-left min-h-[60px] whitespace-normal"
                     onClick={() => startAssessment(assessment)}
                   >
                     <div className="flex-1">

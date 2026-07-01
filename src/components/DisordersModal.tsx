@@ -86,7 +86,7 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
                           <Button
                             key={disorder.id}
                             variant="outline"
-                            className="justify-start h-auto py-2 sm:py-3 px-3 sm:px-4 text-left min-h-[60px]"
+                            className="justify-start h-auto py-2 sm:py-3 px-3 sm:px-4 text-left min-h-[60px] whitespace-normal"
                             onClick={() => setSelectedDisorder(disorder)}
                           >
                             <div className="w-full">
@@ -117,7 +117,7 @@ export function DisordersModal({ open, onOpenChange }: { open: boolean; onOpenCh
             </div>
 
             <Tabs defaultValue="symptoms" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 h-auto p-2">
+              <TabsList className="grid w-full grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2 h-auto p-2 whitespace-normal">
                 <TabsTrigger value="symptoms" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Symptoms</TabsTrigger>
                 <TabsTrigger value="solutions" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Solutions</TabsTrigger>
                 <TabsTrigger value="therapy" className="text-xs sm:text-sm min-h-[44px] px-2 sm:px-3">Therapy</TabsTrigger>

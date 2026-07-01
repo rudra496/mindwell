@@ -420,7 +420,7 @@ export function GamesModal({ open, onOpenChange }: { open: boolean; onOpenChange
               <Button
                 key={game.id}
                 variant="outline"
-                className="h-auto p-4 sm:p-6 flex-col items-start gap-2 sm:gap-3 hover:border-primary min-h-[100px]"
+                className="h-auto p-4 sm:p-6 flex-col items-start gap-2 sm:gap-3 hover:border-primary min-h-[100px] whitespace-normal"
                 onClick={() => setSelectedGame(game.id)}
               >
                 <Icon className={`h-6 w-6 sm:h-8 sm:w-8 ${game.color}`} />
