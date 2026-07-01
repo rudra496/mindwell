@@ -39,7 +39,7 @@ export function AdvisorsModal({ open, onOpenChange }: { open: boolean; onOpenCha
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-4xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-4xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl text-primary break-words">
             Professional Advisors (Volunteer)

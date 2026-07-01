@@ -110,7 +110,7 @@ export function VoiceControlPanel() {
             <Settings className="h-4 w-4" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md break-words whitespace-normal overflow-x-hidden">
           <DialogHeader>
             <DialogTitle>Voice Settings</DialogTitle>
             <DialogDescription>Customize text-to-speech for reading content aloud.</DialogDescription>

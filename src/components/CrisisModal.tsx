@@ -51,7 +51,7 @@ export function CrisisModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-3xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl text-red-900 break-words">Emergency Help / Crisis Resources</DialogTitle>
           <DialogDescription className="text-xs sm:text-sm">

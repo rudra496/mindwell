@@ -82,7 +82,7 @@ export function ConsentModal({
   
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
           <div className="flex items-start gap-3">
             <AlertTriangle className="h-6 w-6 text-amber-600 flex-shrink-0 mt-1" />
