@@ -227,23 +227,46 @@ export default function HomePage() {
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />
 
-            <ServiceCard
-              title="Therapy Techniques"
-              description={tKey('homePage.selfToolsDesc', language) || "Access guided mental exercises and CBT techniques."}
-              icon={Sparkles}
-              imageSrc="/images/stock/one_on_one_counseling.jpg"
-              onClick={() => openModal(setTherapyTechniquesOpen)}
-              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
-            />
-
-            <ServiceCard
-              title="Meditation Library"
-              description="Explore guided breathing exercises and mindfulness meditations."
-              icon={Heart}
-              imageSrc="/images/section-bg/wellbeing_games_bg.jpg"
-              onClick={() => openModal(setMeditationOpen)}
-              accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
-            />
+            <div className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300 h-full text-left">
+              <div className="relative h-48 sm:h-56 w-full overflow-hidden">
+                <Image 
+                  src="/images/stock/one_on_one_counseling.jpg" 
+                  alt="Therapy & Meditation" 
+                  fill 
+                  className="object-cover transition-transform duration-700 hover:scale-105" 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+              <div className="p-6 sm:p-8 flex flex-col flex-grow">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="p-3 rounded-xl bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+                    {tKey('homePage.therapyTitle', language) || "Therapy & Meditation"}
+                  </h3>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 flex-grow text-base sm:text-lg leading-relaxed mb-6">
+                  {tKey('homePage.selfToolsDesc', language) || "Access guided mental exercises and CBT techniques."}
+                </p>
+                <div className="flex flex-col gap-3">
+                  <Button 
+                    variant="outline"
+                    className="w-full justify-between h-12 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800 hover:bg-teal-50 dark:hover:bg-teal-900/30"
+                    onClick={() => openModal(setTherapyTechniquesOpen)}
+                  >
+                    Open Therapy Techniques <ChevronRight className="w-4 h-4" />
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    className="w-full justify-between h-12 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-800 hover:bg-teal-50 dark:hover:bg-teal-900/30"
+                    onClick={() => openModal(setMeditationOpen)}
+                  >
+                    Open Meditation Library <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
 
             <ServiceCard
               title={tKey('homePage.learnTitle', language)}
