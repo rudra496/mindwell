@@ -87,7 +87,7 @@ export function GroundingGame() {
 
   if (!started) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
+      <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl">5-4-3-2-1 Grounding Technique</CardTitle>
           <CardDescription>
@@ -130,7 +130,7 @@ export function GroundingGame() {
 
   if (completed) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
+      <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl">Exercise Complete! 🎉</CardTitle>
           <CardDescription>
@@ -189,7 +189,7 @@ export function GroundingGame() {
   const currentStepData = steps[currentStep]
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
       <CardHeader>
         <div className="flex items-center justify-between mb-2">
           <CardTitle className="text-2xl">

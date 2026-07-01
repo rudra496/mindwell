@@ -169,7 +169,7 @@ export default function MemoryMatch() {
 
       <div className="mt-6 space-y-4">
         {gameState === 'menu' ? (
-          <Card className="w-full max-w-md mx-auto">
+          <Card className="w-full max-w-[95vw] sm:max-w-md mx-auto">
             <CardContent className="p-6 text-center space-y-4">
               <div className="text-6xl mb-4">🧠</div>
               <h3 className="text-xl font-bold">Memory Match Pro</h3>

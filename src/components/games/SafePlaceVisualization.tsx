@@ -84,7 +84,7 @@ export default function SafePlaceVisualization() {
 
   if (!started) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
+      <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <MapPin className="h-6 w-6 text-teal-600" />
@@ -147,7 +147,7 @@ export default function SafePlaceVisualization() {
 
   if (completed) {
     return (
-      <Card className="w-full max-w-2xl mx-auto">
+      <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Heart className="h-6 w-6 text-teal-600" />
@@ -161,7 +161,7 @@ export default function SafePlaceVisualization() {
           <div className="text-center py-6 space-y-4">
             <div className="text-6xl mb-4">🌟</div>
             <h3 className="text-2xl font-semibold text-teal-600">Well Done!</h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-[95vw] sm:max-w-md mx-auto">
               Your safe place is now established in your mind. Remember, you can visit it whenever you need to feel grounded, calm, or protected.
             </p>
           </div>
@@ -220,7 +220,7 @@ export default function SafePlaceVisualization() {
   const StepIcon = guidedSteps[currentStep].icon
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <MapPin className="h-6 w-6 text-teal-600" />
@@ -245,7 +245,7 @@ export default function SafePlaceVisualization() {
           <h3 className="text-2xl font-semibold text-teal-900 dark:text-teal-100">
             {guidedSteps[currentStep].title}
           </h3>
-          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 max-w-lg">
+          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300 max-w-[95vw] sm:max-w-lg">
             {guidedSteps[currentStep].instruction}
           </p>
         </div>

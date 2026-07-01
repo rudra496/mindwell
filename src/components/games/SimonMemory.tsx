@@ -223,7 +223,7 @@ export default function SimonMemory() {
         {/* Game Board */}
         <div className="flex justify-center items-center min-h-[320px]">
           {gameState === 'idle' ? (
-            <Card className="w-full max-w-md">
+            <Card className="w-full max-w-[95vw] sm:max-w-md">
               <CardContent className="p-6 text-center space-y-4">
                 <div className="text-6xl mb-4">🧠</div>
                 <h3 className="text-xl font-bold">Simon Memory Challenge</h3>
@@ -237,7 +237,7 @@ export default function SimonMemory() {
               </CardContent>
             </Card>
           ) : (
-            <div className="grid grid-cols-2 gap-4 w-full max-w-md">
+            <div className="grid grid-cols-2 gap-4 w-full max-w-[95vw] sm:max-w-md">
               {COLORS.map((color) => (
                 <button
                   key={color.id}

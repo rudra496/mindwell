@@ -289,7 +289,7 @@ export function ZenGarden3D() {
         </div>
 
         {gameState === 'idle' ? (
-          <Card className="w-full max-w-md mx-auto bg-slate-900 border-slate-800">
+          <Card className="w-full max-w-[95vw] sm:max-w-md mx-auto bg-slate-900 border-slate-800">
             <CardContent className="p-6 text-center space-y-4">
               <div className="text-6xl mb-4 animate-pulse">🌌</div>
               <h3 className="text-xl font-bold text-teal-400">3D Particle Zen Garden</h3>
@@ -305,7 +305,7 @@ export function ZenGarden3D() {
         ) : (
           <div className="relative w-full h-[400px] bg-[#090d16] rounded-xl border border-slate-800 overflow-hidden shadow-inner flex justify-center items-center">
             {gameState === 'success' && (
-              <div className="absolute z-10 bg-slate-950/80 p-6 rounded-lg text-center border border-teal-500/30 max-w-md mx-4 animate-fade-in">
+              <div className="absolute z-10 bg-slate-950/80 p-6 rounded-lg text-center border border-teal-500/30 max-w-[95vw] sm:max-w-md mx-4 animate-fade-in">
                 <div className="text-4xl mb-2">💫</div>
                 <h4 className="font-bold text-lg text-teal-300">Garden Alignment Achieved</h4>
                 <p className="text-sm text-slate-300 mt-1">Your mind is in harmony.</p>

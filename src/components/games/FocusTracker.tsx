@@ -459,7 +459,7 @@ export default function FocusTracker() {
 
         {/* Game Board */}
         {gameState === 'idle' ? (
-          <Card className="w-full max-w-md mx-auto bg-slate-900 border-slate-800">
+          <Card className="w-full max-w-[95vw] sm:max-w-md mx-auto bg-slate-900 border-slate-800">
             <CardContent className="p-6 text-center space-y-4">
               <div className="text-6xl mb-4">👁️</div>
               <h3 className="text-xl font-bold text-teal-400">Focus Tracker</h3>

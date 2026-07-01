@@ -129,7 +129,7 @@ export default function ProgressiveMuscleRelaxation() {
   const progress = ((currentStep * 100) / muscleGroups.length) + (phase === 'release' ? (100 / muscleGroups.length) * 0.6 : 0)
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-[95vw] sm:max-w-2xl mx-auto">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Volume2 className="h-6 w-6 text-purple-600" />
@@ -201,7 +201,7 @@ export default function ProgressiveMuscleRelaxation() {
           <div className="text-center space-y-4 py-8">
             <div className="text-6xl mb-4">✨</div>
             <h3 className="text-2xl font-semibold text-purple-600">Session Complete!</h3>
-            <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+            <p className="text-gray-600 dark:text-gray-400 max-w-[95vw] sm:max-w-md mx-auto">
               Excellent work! Your body should feel more relaxed now. 
               Practice PMR regularly for best results in managing stress and anxiety.
             </p>

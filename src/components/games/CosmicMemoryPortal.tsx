@@ -319,7 +319,7 @@ export function CosmicMemoryPortal() {
         </div>
 
         {gameState === 'idle' ? (
-          <Card className="w-full max-w-md mx-auto bg-slate-900 border-slate-800">
+          <Card className="w-full max-w-[95vw] sm:max-w-md mx-auto bg-slate-900 border-slate-800">
             <CardContent className="p-6 text-center space-y-4">
               <div className="text-6xl mb-4 animate-pulse">🌌</div>
               <h3 className="text-xl font-bold text-teal-400">Cosmic Memory Portal</h3>
@@ -342,7 +342,7 @@ export function CosmicMemoryPortal() {
             )}
 
             {gameState === 'failure' && (
-              <div className="absolute z-10 bg-slate-950/85 p-6 rounded-lg text-center border border-red-500/30 max-w-sm mx-4">
+              <div className="absolute z-10 bg-slate-950/85 p-6 rounded-lg text-center border border-red-500/30 max-w-[95vw] sm:max-w-sm mx-4">
                 <p className="font-semibold text-red-400">Alignment Failed</p>
                 <p className="text-sm text-slate-400 mt-1">Level reached: {level} — Final Score: {score}</p>
                 <Button onClick={startGame} className="mt-4 bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold w-full">

@@ -230,7 +230,7 @@ export default function HomePage() {
             <div className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300 h-full text-left">
               <div className="relative h-48 sm:h-56 w-full overflow-hidden">
                 <Image 
-                  src="/images/stock/one_on_one_counseling.jpg" 
+                  src="/images/stock/mental_health_awareness.jpg" 
                   alt="Therapy & Meditation" 
                   fill 
                   className="object-cover transition-transform duration-700 hover:scale-105" 
@@ -272,7 +272,7 @@ export default function HomePage() {
               title={tKey('homePage.learnTitle', language)}
               description="Explore our clinical encyclopedia of conditions and coping strategies."
               icon={BookOpen}
-              imageSrc="/images/stock/mental_health_awareness.jpg"
+              imageSrc="/images/stock/one_on_one_counseling.jpg"
               onClick={() => openModal(setDisordersOpen)}
               accentColor="bg-slate-100 text-teal-700 dark:bg-slate-800 dark:text-teal-400"
             />

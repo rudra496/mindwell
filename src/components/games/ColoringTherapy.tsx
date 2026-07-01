@@ -200,7 +200,7 @@ export default function ColoringTherapy() {
   }, [filled, selectedMandala])
 
   return (
-    <Card className="w-full max-w-4xl mx-auto">
+    <Card className="w-full max-w-[95vw] sm:max-w-4xl mx-auto">
       <CardHeader className="p-4 sm:p-6">
         <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
           <Palette className="h-5 w-5 sm:h-6 sm:w-6 text-pink-600" />
@@ -304,7 +304,7 @@ export default function ColoringTherapy() {
             style={{ touchAction: isColoring ? 'none' : 'auto' }}
           >
             <div 
-              className="w-full max-w-md text-gray-800 dark:text-gray-200"
+              className="w-full max-w-[95vw] sm:max-w-md text-gray-800 dark:text-gray-200"
               dangerouslySetInnerHTML={{ __html: selectedMandala.svg }}
             />
           </div>

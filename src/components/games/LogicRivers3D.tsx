@@ -809,7 +809,7 @@ export function LogicRivers3D() {
 
         {/* Dashboard */}
         {gameState === 'idle' && (
-          <Card className="w-full max-w-md mx-auto bg-slate-900 border-slate-800">
+          <Card className="w-full max-w-[95vw] sm:max-w-md mx-auto bg-slate-900 border-slate-800">
             <CardContent className="p-6 text-center space-y-4">
               <div className="text-6xl mb-4 animate-bounce">⛵</div>
               <h3 className="text-xl font-bold text-teal-400">Logic Rivers Pro</h3>
@@ -899,7 +899,7 @@ export function LogicRivers3D() {
             <div className="relative w-full h-[400px] bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-inner flex justify-center items-center">
               {/* Constraint Violated display */}
               {gameState === 'failed' && (
-                <div className="absolute z-10 bg-slate-950/85 p-6 rounded-lg text-center border border-red-500/30 max-w-sm mx-4">
+                <div className="absolute z-10 bg-slate-950/85 p-6 rounded-lg text-center border border-red-500/30 max-w-[95vw] sm:max-w-sm mx-4">
                   <p className="font-bold text-red-400 text-lg">Cross Failed!</p>
                   <p className="text-sm text-slate-300 mt-2">{violationMessage}</p>
                   <Button onClick={() => generateLevel(level)} className="mt-4 bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold w-full">
@@ -910,7 +910,7 @@ export function LogicRivers3D() {
 
               {/* Victory display */}
               {gameState === 'victory' && (
-                <div className="absolute z-10 bg-slate-950/80 p-6 rounded-lg text-center border border-teal-500/30 max-w-md mx-4 animate-fade-in">
+                <div className="absolute z-10 bg-slate-950/80 p-6 rounded-lg text-center border border-teal-500/30 max-w-[95vw] sm:max-w-md mx-4 animate-fade-in">
                   <div className="text-4xl mb-2">🏆</div>
                   <h4 className="font-bold text-lg text-teal-300">Level Solved!</h4>
                   <p className="text-sm text-slate-300 mt-1">Solvability verified by algorithm solver.</p>

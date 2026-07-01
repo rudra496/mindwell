@@ -175,7 +175,7 @@ export function BreathingCircle({ open, onOpenChange }: { open: boolean; onOpenC
       if (!val) stop()
       onOpenChange(val)
     }}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 bg-slate-950 text-slate-100 border-slate-800">
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 bg-slate-950 text-slate-100 border-slate-800">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl flex items-center gap-2 break-words text-teal-400">
             <Wind className="h-5 w-5 sm:h-6 sm:w-6 text-teal-400 animate-pulse" />
