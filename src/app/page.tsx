@@ -16,7 +16,9 @@ import {
   FileText,
   Phone,
   ArrowRight,
-  Heart
+  Heart,
+  ChevronRight,
+  ShieldCheck
 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { EmergencySupportContent } from "@/components/homepage/EmergencySupportContent"
@@ -37,38 +39,65 @@ import { consumeCommunityReopenFlag } from "@/lib/firebase"
 import { useLanguage } from "@/lib/useLanguage"
 import { tKey } from "@/lib/i18n"
 
-function GlassCard({ 
-  title, 
-  icon: Icon, 
-  children, 
-  className = "", 
-  accentColor = "bg-teal-500",
-  bgImage = ""
-}: { 
-  title: string, 
-  icon: any, 
-  children: React.ReactNode, 
-  className?: string, 
-  accentColor?: string,
-  bgImage?: string
+// Clean, Accessible, NGO-style Service Card
+function ServiceCard({
+  title,
+  description,
+  icon: Icon,
+  imageSrc,
+  buttonText,
+  onClick,
+  href,
+  accentColor = "text-teal-600 bg-teal-50",
+  buttonVariant = "default"
+}: {
+  title: string
+  description: string
+  icon: any
+  imageSrc?: string
+  buttonText: string
+  onClick?: () => void
+  href?: string
+  accentColor?: string
+  buttonVariant?: "default" | "outline" | "secondary" | "ghost"
 }) {
   return (
-    <div className={`relative overflow-hidden rounded-3xl border border-white/20 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl shadow-2xl hover:shadow-teal-500/10 transition-all duration-500 hover:-translate-y-1 group ${className}`}>
-      {bgImage && (
-        <div className="absolute inset-0 z-0">
-          <Image src={bgImage} alt="" fill className="object-cover opacity-20 dark:opacity-10 group-hover:scale-105 transition-transform duration-700" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-white/50 to-transparent dark:from-slate-900/90 dark:via-slate-900/50" />
+    <div className="flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 dark:border-slate-800 transition-all duration-300 h-full group">
+      {imageSrc && (
+        <div className="relative h-48 sm:h-56 w-full overflow-hidden">
+          <Image 
+            src={imageSrc} 
+            alt={title} 
+            fill 
+            className="object-cover transition-transform duration-700 group-hover:scale-105" 
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
       )}
-      <div className="relative z-10 p-8 h-full flex flex-col">
-        <div className="flex items-center gap-4 mb-6">
-          <div className={`p-4 rounded-2xl ${accentColor} text-white shadow-lg`}>
+      <div className="p-6 sm:p-8 flex flex-col flex-grow">
+        <div className="flex items-center gap-4 mb-4">
+          <div className={`p-3 rounded-xl ${accentColor}`}>
             <Icon className="w-6 h-6" />
           </div>
-          <h3 className="text-2xl font-bold text-slate-800 dark:text-white tracking-tight">{title}</h3>
+          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-tight">
+            {title}
+          </h3>
         </div>
-        <div className="flex-1 text-slate-600 dark:text-slate-300">
-          {children}
+        <p className="text-slate-600 dark:text-slate-400 mb-8 flex-grow text-base sm:text-lg leading-relaxed">
+          {description}
+        </p>
+        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+          {href ? (
+            <Button variant={buttonVariant} className="w-full sm:w-auto font-semibold rounded-xl" size="lg" asChild>
+              <Link href={href}>
+                {buttonText} <ChevronRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+          ) : (
+            <Button variant={buttonVariant} className="w-full sm:w-auto font-semibold rounded-xl" size="lg" onClick={onClick}>
+              {buttonText} <ChevronRight className="ml-2 w-4 h-4" />
+            </Button>
+          )}
         </div>
       </div>
     </div>
@@ -90,242 +119,252 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 selection:bg-teal-500/30">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans selection:bg-teal-500/30">
       
-      {/* 1. Stunning Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-slate-50 to-emerald-50 dark:from-slate-950 dark:via-teal-950/20 dark:to-slate-950 z-0" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-400/20 rounded-full blur-[100px] animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-400/20 rounded-full blur-[100px] animate-float" />
-        
-        <div className="container relative z-10 max-w-6xl mx-auto px-6 py-20">
-          <div className="flex flex-col items-center text-center animate-fade-in">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-teal-500/20 text-teal-700 dark:text-teal-300 mb-8 shadow-sm">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-semibold tracking-wide uppercase">Your Safe Space</span>
+      {/* 1. Clinical & Professional Hero Section */}
+      <section className="relative bg-white dark:bg-slate-900 overflow-hidden border-b border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-16 pb-20 lg:pt-24 lg:pb-28">
+            
+            {/* Left Content */}
+            <div className="max-w-2xl animate-fade-in z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 mb-6 border border-teal-100 dark:border-teal-800">
+                <ShieldCheck className="w-4 h-4" />
+                <span className="text-sm font-semibold tracking-wide uppercase">Trusted Mental Health Support</span>
+              </div>
+              
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-[1.15]">
+                Empathetic Care for a <br className="hidden sm:block" />
+                <span className="text-teal-600 dark:text-teal-400">Healthier Mind</span>
+              </h1>
+              
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed">
+                {tKey('homePage.heroDesc', language) || "MindWell provides comprehensive mental health support, clinical tools, professional therapy guidance, and a global supportive community. Completely free and accessible to everyone."}
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 w-full">
+                <Button 
+                  size="lg" 
+                  className="h-14 px-8 text-lg rounded-xl bg-teal-600 hover:bg-teal-700 text-white shadow-md transition-all"
+                  onClick={() => setAssessmentOpen(true)}
+                >
+                  {tKey('homePage.heroCta', language)} <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="h-14 px-8 text-lg rounded-xl border-2 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all"
+                  asChild
+                >
+                  <Link href="/crisis-resources">
+                    {tKey('homePage.heroCrisis', language)}
+                  </Link>
+                </Button>
+              </div>
+              
+              <p className="mt-6 text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4" /> {tKey('homePage.heroNote', language)}
+              </p>
             </div>
-            
-            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-8 leading-[1.1]">
-              Find Peace in a <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-emerald-500">
-                Fast-Paced World
-              </span>
-            </h1>
-            
-            <p className="text-lg md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mb-12 leading-relaxed">
-              {tKey('homePage.heroDesc', language) || "Comprehensive mental health support, professional therapy, and engaging self-care tools. All completely free."}
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                className="h-14 px-8 text-lg rounded-2xl bg-teal-600 hover:bg-teal-700 text-white shadow-xl shadow-teal-500/25 transition-all hover:scale-105"
-                onClick={() => setAssessmentOpen(true)}
-              >
-                {tKey('homePage.heroCta', language)} <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="h-14 px-8 text-lg rounded-2xl border-2 border-red-500/20 bg-red-50/50 hover:bg-red-50 dark:bg-red-950/20 dark:hover:bg-red-900/40 text-red-600 dark:text-red-400 backdrop-blur-md transition-all hover:scale-105 hover:border-red-500/40"
-                asChild
-              >
-                <Link href="/crisis-resources">
-                  <AlertCircle className="mr-2 w-5 h-5" /> {tKey('homePage.heroCrisis', language)}
-                </Link>
-              </Button>
+
+            {/* Right Image (Clean, no messy blurs) */}
+            <div className="relative h-[400px] sm:h-[500px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl lg:transform lg:translate-x-4">
+              <Image
+                src="/images/stock/hero_group_support.jpg"
+                alt="Group counseling support session"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
             </div>
-            
-            <p className="mt-8 text-sm text-slate-500 dark:text-slate-400">
-              {tKey('homePage.heroNote', language)}
-            </p>
           </div>
         </div>
       </section>
 
-      {/* 2. Trust Badges */}
-      <div className="relative z-20 -mt-10 mb-20 px-4">
-        <div className="max-w-5xl mx-auto bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/20 rounded-3xl p-6 shadow-2xl">
+      {/* 2. Trust & Recognition */}
+      <div className="bg-slate-50 dark:bg-slate-950 py-12 border-b border-slate-200 dark:border-slate-800">
+        <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
            <TrustBadges />
         </div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-7xl pb-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-16 sm:py-24 space-y-16 sm:space-y-24">
         
-        {/* 3. Emergency & Education (Split Grid) */}
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <GlassCard 
-            title="Emergency Support" 
-            icon={AlertCircle} 
-            accentColor="bg-red-500" 
-            className="md:col-span-2 lg:col-span-1 border-red-500/10"
-            bgImage="/images/stock/one_on_one_counseling.jpg"
-          >
-            <div className="prose prose-slate dark:prose-invert max-w-none">
+        {/* 3. Emergency Support (High Visibility Block) */}
+        <div className="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-2xl p-6 sm:p-10 shadow-sm flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+          <div className="flex-1 max-w-3xl">
+            <div className="flex items-center gap-3 mb-4 text-red-700 dark:text-red-400">
+              <AlertCircle className="w-8 h-8" />
+              <h2 className="text-2xl sm:text-3xl font-bold">24/7 Emergency Support</h2>
+            </div>
+            <div className="prose prose-red dark:prose-invert max-w-none text-red-900 dark:text-red-200">
               <EmergencySupportContent />
             </div>
-          </GlassCard>
+          </div>
+          <div className="w-full md:w-auto flex-shrink-0">
+             <Button variant="destructive" size="lg" className="w-full md:w-auto text-lg px-8 h-14 rounded-xl shadow-lg" asChild>
+                <Link href="/crisis-resources">View Emergency Hotlines</Link>
+             </Button>
+          </div>
+        </div>
 
-          <GlassCard 
-            title={tKey('homePage.learnTitle', language)} 
-            icon={BookOpen} 
-            accentColor="bg-blue-500"
-            className="md:col-span-2 lg:col-span-1"
-            bgImage="/images/stock/mental_health_awareness.jpg"
-          >
-             <div className="mb-6">
+        {/* 4. Categorized Service Grid (The Core Foundation) */}
+        <div>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6">How Can We Support You Today?</h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">Navigate through our comprehensive, evidence-based tools and communities designed for every stage of your mental wellness journey.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            
+            <ServiceCard
+              title={tKey('homePage.psychTitle', language)}
+              description={tKey('homePage.psychDesc', language)}
+              icon={Stethoscope}
+              imageSrc="/images/stock/psychologists_professional.jpg"
+              buttonText={tKey('homePage.psychBtn', language)}
+              href="/psychologists"
+              accentColor="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400"
+            />
+
+            <ServiceCard
+              title={tKey('homePage.therapyTitle', language)}
+              description={tKey('homePage.selfToolsDesc', language) || "Access guided cognitive behavioral therapy (CBT) techniques and structured mental exercises."}
+              icon={Sparkles}
+              imageSrc="/images/stock/one_on_one_counseling.jpg"
+              buttonText={tKey('homePage.therapyBtn', language)}
+              onClick={() => setTherapyTechniquesOpen(true)}
+              accentColor="bg-violet-100 text-violet-700 dark:bg-violet-900/50 dark:text-violet-400"
+            />
+
+            <ServiceCard
+              title={tKey('homePage.learnTitle', language)}
+              description="Explore our detailed clinical encyclopedia of mental health conditions, symptoms, and coping strategies."
+              icon={BookOpen}
+              imageSrc="/images/stock/mental_health_awareness.jpg"
+              buttonText={tKey('homePage.openEducation', language)}
+              onClick={() => setDisordersOpen(true)}
+              accentColor="bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-400"
+            />
+
+            <ServiceCard
+              title={tKey('homePage.selfToolsTitle', language)}
+              description="Take clinically validated self-assessment tests to better understand your current mental state."
+              icon={ClipboardList}
+              imageSrc="/images/section-bg/self_reflection_bg.jpg"
+              buttonText={tKey('homePage.openAssessments', language)}
+              onClick={() => setAssessmentOpen(true)}
+              accentColor="bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-400"
+            />
+
+            <ServiceCard
+              title={tKey('homePage.communityTitle', language)}
+              description={tKey('homePage.communityDesc', language)}
+              icon={Users}
+              imageSrc="/images/stock/community_worldwide_support.jpg"
+              buttonText={tKey('homePage.communityBtn', language)}
+              onClick={() => setCommunityOpen(true)}
+              accentColor="bg-pink-100 text-pink-700 dark:bg-pink-900/50 dark:text-pink-400"
+            />
+
+            <ServiceCard
+              title={tKey('homePage.gamesTitle', language)}
+              description={tKey('homePage.gamesDesc', language)}
+              icon={Gamepad2}
+              imageSrc="/images/section-bg/wellbeing_games_bg.jpg"
+              buttonText={tKey('homePage.gamesBtn', language)}
+              onClick={() => setGamesOpen(true)}
+              accentColor="bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-400"
+            />
+
+          </div>
+        </div>
+
+        {/* 5. Mood Tracker (Full Width Clinical Tool) */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 dark:border-slate-800">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 rounded-xl bg-sky-100 text-sky-700 dark:bg-sky-900/50 dark:text-sky-400">
+              <BarChart3 className="w-8 h-8" />
+            </div>
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{tKey('homePage.moodTitle', language)}</h2>
+              <p className="text-slate-600 dark:text-slate-400 mt-1">{tKey('homePage.moodTag', language)}</p>
+            </div>
+          </div>
+          <div className="bg-slate-50 dark:bg-slate-950 rounded-2xl p-4 sm:p-8">
+             <MoodTracker />
+          </div>
+        </div>
+
+        {/* 6. Mission & Education (About Us) */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          
+          {/* Mission Accordion */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 dark:border-slate-800 h-full">
+             <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 rounded-xl bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-400">
+                  <Target className="w-6 h-6" />
+                </div>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{tKey('homePage.goalsTitle', language)}</h2>
+             </div>
+             <div className="prose prose-slate dark:prose-invert max-w-none mb-8">
                 <WhoWeAreContent />
              </div>
-             <div className="flex flex-wrap gap-4 mt-auto">
-              <Button className="rounded-xl shadow-lg" onClick={() => setDisordersOpen(true)}>
-                <BookOpen className="w-4 h-4 mr-2" /> {tKey('homePage.openEducation', language)}
-              </Button>
-              <Button variant="ghost" className="rounded-xl text-blue-600 dark:text-blue-400" asChild>
-                <Link href="/disorders">Browse all conditions →</Link>
-              </Button>
-            </div>
-          </GlassCard>
+             <WhoWeAreGoalsAccordion />
+          </div>
+
+          {/* Blog & Resources */}
+          <div className="bg-teal-900 text-white rounded-3xl p-6 sm:p-10 shadow-lg h-full flex flex-col relative overflow-hidden">
+             {/* Decorative Background */}
+             <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]" />
+             
+             <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="p-3 rounded-xl bg-teal-800 text-teal-100">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <h2 className="text-2xl font-bold">{tKey('homePage.blogTitle', language)}</h2>
+                </div>
+                
+                <p className="text-teal-100 text-lg mb-10 leading-relaxed">
+                  {tKey('homePage.blogDesc', language)}
+                </p>
+
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10 mb-auto">
+                  <h3 className="text-xl font-bold mb-3">{tKey('homePage.blogReadTitle', language)}</h3>
+                  <p className="text-teal-50 mb-6">{tKey('homePage.blogReadDesc', language)}</p>
+                  <Button className="w-full sm:w-auto bg-white text-teal-900 hover:bg-teal-50 rounded-xl font-semibold" size="lg" asChild>
+                    <Link href="/blog">{tKey('homePage.blogBtn', language)}</Link>
+                  </Button>
+                </div>
+             </div>
+          </div>
         </div>
 
-        {/* 4. Core Features Bento Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          {/* Therapy & Meditation */}
-          <GlassCard 
-            title={tKey('homePage.therapyTitle', language)} 
-            icon={Sparkles} 
-            accentColor="bg-violet-500"
-            className="md:col-span-2"
-            bgImage="/images/stock/community_worldwide_support.jpg"
-          >
-            <p className="text-lg mb-8">{tKey('homePage.selfToolsDesc', language) || "Access guided therapy techniques and mindfulness meditation sessions crafted by professionals."}</p>
-            <div className="flex flex-wrap gap-4">
-              <Button className="rounded-xl bg-violet-600 hover:bg-violet-700 shadow-lg" size="lg" onClick={() => setTherapyTechniquesOpen(true)}>
-                {tKey('homePage.therapyBtn', language)}
-              </Button>
-              <Button className="rounded-xl border-violet-200 text-violet-700 hover:bg-violet-50 dark:border-violet-800 dark:text-violet-300 dark:hover:bg-violet-900/30" variant="outline" size="lg" onClick={() => setMeditationOpen(true)}>
-                {tKey('homePage.meditationBtn', language)}
-              </Button>
-            </div>
-          </GlassCard>
-
-          {/* Psychologists */}
-          <GlassCard 
-            title={tKey('homePage.psychTitle', language)} 
-            icon={Stethoscope} 
-            accentColor="bg-emerald-500"
-            bgImage="/images/stock/psychologists_professional.jpg"
-          >
-            <p className="mb-8">{tKey('homePage.psychDesc', language)}</p>
-            <Button className="w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 shadow-lg" size="lg" asChild>
-              <Link href="/psychologists">{tKey('homePage.psychBtn', language)}</Link>
-            </Button>
-          </GlassCard>
-
-          {/* Self-Assessment */}
-          <GlassCard 
-            title={tKey('homePage.selfToolsTitle', language)} 
-            icon={ClipboardList} 
-            accentColor="bg-amber-500"
-          >
-            <p className="mb-8">{tKey('homePage.selfToolsDesc', language)}</p>
-            <Button className="w-full rounded-xl bg-amber-600 hover:bg-amber-700 shadow-lg" size="lg" onClick={() => setAssessmentOpen(true)}>
-              {tKey('homePage.openAssessments', language)}
-            </Button>
-          </GlassCard>
-
-          {/* Wellbeing Games */}
-          <GlassCard 
-            title={tKey('homePage.gamesTitle', language)} 
-            icon={Gamepad2} 
-            accentColor="bg-indigo-500"
-            bgImage="/images/section-bg/wellbeing_games_bg.jpg"
-          >
-            <p className="text-sm font-semibold text-indigo-500 mb-2 uppercase tracking-wider">{tKey('homePage.gamesTag', language)}</p>
-            <p className="mb-8">{tKey('homePage.gamesDesc', language)}</p>
-            <Button className="w-full rounded-xl bg-indigo-600 hover:bg-indigo-700 shadow-lg mt-auto" size="lg" onClick={() => setGamesOpen(true)}>
-              {tKey('homePage.gamesBtn', language)}
-            </Button>
-          </GlassCard>
-
-          {/* Community */}
-          <GlassCard 
-            title={tKey('homePage.communityTitle', language)} 
-            icon={Users} 
-            accentColor="bg-pink-500"
-          >
-            <p className="text-sm font-semibold text-pink-500 mb-2 uppercase tracking-wider">{tKey('homePage.communityTag', language)}</p>
-            <p className="mb-8">{tKey('homePage.communityDesc', language)}</p>
-            <Button className="w-full rounded-xl bg-pink-600 hover:bg-pink-700 shadow-lg mt-auto" size="lg" onClick={() => setCommunityOpen(true)}>
-              {tKey('homePage.communityBtn', language)}
-            </Button>
-          </GlassCard>
-        </div>
-
-        {/* 5. Mood Tracker Section */}
-        <div className="mb-8">
-          <GlassCard 
-            title={tKey('homePage.moodTitle', language)} 
-            icon={BarChart3} 
-            accentColor="bg-sky-500"
-          >
-            <p className="mb-6 font-medium text-sky-600 dark:text-sky-400">{tKey('homePage.moodTag', language)}</p>
-            <div className="bg-white/50 dark:bg-slate-950/50 rounded-2xl p-2 sm:p-6 shadow-inner">
-               <MoodTracker />
-            </div>
-          </GlassCard>
-        </div>
-
-        {/* 6. Blog & Mission (Split) */}
-        <div className="grid md:grid-cols-2 gap-8 mb-20">
-          <GlassCard 
-            title={tKey('homePage.blogTitle', language)} 
-            icon={FileText} 
-            accentColor="bg-teal-600"
-          >
-            <p className="text-lg mb-8">{tKey('homePage.blogDesc', language)}</p>
-            <div className="p-6 rounded-2xl bg-white/60 dark:bg-slate-800/60 border border-teal-500/20">
-              <h4 className="font-bold text-xl mb-2">{tKey('homePage.blogReadTitle', language)}</h4>
-              <p className="mb-6 text-sm">{tKey('homePage.blogReadDesc', language)}</p>
-              <Button className="w-full rounded-xl" asChild>
-                <Link href="/blog">{tKey('homePage.blogBtn', language)}</Link>
-              </Button>
-            </div>
-          </GlassCard>
-
-          <GlassCard 
-            title={tKey('homePage.goalsTitle', language)} 
-            icon={Target} 
-            accentColor="bg-emerald-600"
-          >
-            <div className="max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
-              <WhoWeAreGoalsAccordion />
-            </div>
-          </GlassCard>
-        </div>
-
-        {/* 7. Bottom Elements */}
+        {/* 7. Community Proof & Contact */}
         <div className="space-y-16">
           <Testimonials />
           
-          <div className="relative overflow-hidden rounded-3xl bg-teal-900 text-white p-10 md:p-16 shadow-2xl">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-teal-500/30 rounded-full blur-[100px]" />
-            <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+          {/* Contact Section */}
+          <div className="bg-slate-100 dark:bg-slate-900/50 rounded-3xl p-6 sm:p-12 border border-slate-200 dark:border-slate-800">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold mb-4">{tKey('homePage.fundTitle', language)}</h2>
-                <p className="text-teal-100 text-lg mb-6">{tKey('homePage.fundDesc', language)}</p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-teal-50">
-                    <div className="p-3 bg-teal-800 rounded-full"><Mail className="w-5 h-5" /></div>
-                    <a href="mailto:contactmindwellorg@gmail.com" className="hover:text-white transition-colors">contactmindwellorg@gmail.com</a>
-                  </div>
-                  <div className="flex items-center gap-4 text-teal-50">
-                    <div className="p-3 bg-teal-800 rounded-full"><Phone className="w-5 h-5" /></div>
-                    <a href="tel:+8801988223165" className="hover:text-white transition-colors">+8801988223165</a>
-                  </div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{tKey('homePage.fundTitle', language)}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-lg mb-8">{tKey('homePage.fundDesc', language)}</p>
+                <div className="space-y-6">
+                  <a href="mailto:contactmindwellorg@gmail.com" className="flex items-center gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
+                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow"><Mail className="w-6 h-6" /></div>
+                    <span className="text-lg font-medium">contactmindwellorg@gmail.com</span>
+                  </a>
+                  <a href="tel:+8801988223165" className="flex items-center gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
+                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow"><Phone className="w-6 h-6" /></div>
+                    <span className="text-lg font-medium">+8801988223165</span>
+                  </a>
                 </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800">
                  <NewsletterSignup />
               </div>
             </div>
