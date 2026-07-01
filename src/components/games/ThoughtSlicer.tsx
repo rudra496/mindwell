@@ -291,7 +291,7 @@ export function ThoughtSlicer() {
     }
   }, [gameState])
 
-  const getCoordinates = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
+  const getCoordinates = (e: any) => {
     const canvas = canvasRef.current
     if (!canvas) return { x: 0, y: 0 }
     const rect = canvas.getBoundingClientRect()
@@ -306,13 +306,13 @@ export function ThoughtSlicer() {
     return { x: clientX - rect.left, y: clientY - rect.top }
   }
 
-  const handlePointerDown = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
+  const handlePointerDown = (e: any) => {
     isMouseDownRef.current = true
     const { x, y } = getCoordinates(e)
     mouseTrailRef.current = [{ x, y }]
   }
 
-  const handlePointerMove = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
+  const handlePointerMove = (e: any) => {
     if (!isMouseDownRef.current) return
     const { x, y } = getCoordinates(e)
 
