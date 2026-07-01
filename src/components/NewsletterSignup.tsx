@@ -50,10 +50,10 @@ export function NewsletterSignup() {
           </span>
         </div>
         <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-2">
-          Stay Informed on Mental Health
+          Mental Wellness Updates
         </h2>
         <p className="text-sm text-slate-600 dark:text-slate-400 mb-5">
-          Occasional updates on mental health resources, new features, and wellbeing tips. No spam — unsubscribe anytime.
+          Occasional updates on mental health resources and platform features. No spam.
         </p>
 
         {status === "success" ? (
@@ -93,7 +93,7 @@ export function NewsletterSignup() {
         )}
 
         <p className="text-xs text-slate-400 mt-4">
-          We respect your privacy. No tracking before signup. Unsubscribe anytime from any email.
+          100% Privacy Respected. No tracking. Unsubscribe at any time.
         </p>
       </div>
     </section>

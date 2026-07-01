@@ -180,10 +180,10 @@
     "faq": "FAQ",
     "about": "About MindWell",
     "title": "MindWell Support – Open Source Mental Health Platform",
-    "desc1": "MindWell is an open-source mental health education and wellbeing platform focused on awareness, self-reflection, and ethical access to support.",
-    "desc2": "It is not a diagnostic or emergency service, and is designed for global and low-resource communities.",
-    "desc3": "Aligned with SDG 3 (Good Health & Well-being) and SDG 4 (Quality Education).",
-    "desc4": "Clinical support is available through assistant clinical psychologists. Currently, two psychologists are available, with more being added gradually. The first consultation session is free and is not intended to replace emergency or hospital care.",
+    "desc1": "MindWell is an open-source mental health platform dedicated to ethical support, awareness, and self-reflection for global and low-resource communities.",
+    "desc2": "Aligned with UN Sustainable Development Goals 3 (Good Health) & 4 (Quality Education).",
+    "desc3": "Free initial consultations are provided by our verified clinical psychologists subject to availability.",
+    "desc4": "Important: MindWell is not a diagnostic or emergency medical service. If you are in crisis, please use our 24/7 Emergency Resources.",
     "madeBy": "Made with care by",
     "inspiredBy": "Inspired by",
     "github": "Open-source on GitHub"
@@ -232,7 +232,7 @@
     "blogReadDesc": "Explore a clean, searchable publishing experience for long-form mental health articles.",
     "blogBtn": "Visit MindWell Blog",
     "goalsTitle": "Who We Are & Our Goals",
-    "fundTitle": "Funding & Support",
-    "fundDesc": "For funding and partnership communication, please contact MindWell directly."
+    "fundTitle": "Partner with MindWell",
+    "fundDesc": "MindWell relies on ethical partnerships, grants, and community support. Contact us to discuss funding, collaboration, or research opportunities."
   }
 }
