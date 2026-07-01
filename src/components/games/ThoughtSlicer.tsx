@@ -291,23 +291,30 @@ export function ThoughtSlicer() {
     }
   }, [gameState])
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    isMouseDownRef.current = true
+  const getCoordinates = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    if (!canvas) return { x: 0, y: 0 }
     const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    let clientX, clientY
+    if ('touches' in e) {
+      clientX = e.touches[0].clientX
+      clientY = e.touches[0].clientY
+    } else {
+      clientX = e.clientX
+      clientY = e.clientY
+    }
+    return { x: clientX - rect.left, y: clientY - rect.top }
+  }
+
+  const handlePointerDown = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
+    isMouseDownRef.current = true
+    const { x, y } = getCoordinates(e)
     mouseTrailRef.current = [{ x, y }]
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+  const handlePointerMove = (e: any<HTMLCanvasElement> | any<HTMLCanvasElement>) => {
     if (!isMouseDownRef.current) return
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const rect = canvas.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    const { x, y } = getCoordinates(e)
 
     const trail = mouseTrailRef.current
     trail.push({ x, y })
@@ -359,7 +366,7 @@ export function ThoughtSlicer() {
     })
   }
 
-  const handleMouseUp = () => {
+  const handlePointerUp = () => {
     isMouseDownRef.current = false
     mouseTrailRef.current = []
   }
@@ -437,10 +444,10 @@ export function ThoughtSlicer() {
 
               <canvas
                 ref={canvasRef}
-                onMouseDown={handleMouseDown}
-                onMouseMove={handleMouseMove}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseUp}
+                onMouseDown={handlePointerDown} onTouchStart={(e) => { e.preventDefault(); handlePointerDown(e); }}
+                onMouseMove={handlePointerMove} onTouchMove={(e) => { e.preventDefault(); handlePointerMove(e); }}
+                onMouseUp={handlePointerUp} onTouchEnd={handlePointerUp} onTouchCancel={handlePointerUp}
+                onMouseLeave={handlePointerUp}
                 className="absolute inset-0 w-full h-full block cursor-crosshair"
               />
             </div>

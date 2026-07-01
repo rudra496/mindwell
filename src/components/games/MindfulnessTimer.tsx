@@ -84,8 +84,8 @@ export default function MindfulnessTimer() {
           <CardContent className="p-8">
             <div className="relative">
               {/* Circular progress */}
-              <div className="relative w-64 h-64 mx-auto">
-                <svg className="transform -rotate-90 w-64 h-64">
+              <div className="relative w-48 h-48 sm:w-64 sm:h-64 mx-auto">
+                <svg viewBox="0 0 256 256" className="transform -rotate-90 w-48 h-48 sm:w-64 sm:h-64">
                   <circle
                     cx="128"
                     cy="128"
@@ -109,7 +109,7 @@ export default function MindfulnessTimer() {
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <p className="text-6xl font-bold text-teal-600">{formatTime(timeLeft)}</p>
+                  <p className="text-4xl sm:text-6xl font-bold text-teal-600">{formatTime(timeLeft)}</p>
                   {!isRunning && !isComplete && (
                     <p className="text-sm text-muted-foreground mt-2">Ready to begin</p>
                   )}
@@ -133,7 +133,7 @@ export default function MindfulnessTimer() {
           <Card>
             <CardContent className="p-6">
               <p className="font-semibold mb-3">Select Duration:</p>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 flex-wrap">
                 {[1, 3, 5, 10, 15, 20, 30, 45, 60].map((mins) => (
                   <Button
                     key={mins}

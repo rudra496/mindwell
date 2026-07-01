@@ -526,7 +526,7 @@ export function LogicRivers3D() {
 
     const container = containerRef.current
     const width = container.clientWidth || 600
-    const height = 400
+    const height = container.clientHeight || 400
 
     const scene = new THREE.Scene()
     // Dynamic Day / Night backdrop
@@ -543,6 +543,15 @@ export function LogicRivers3D() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     container.appendChild(renderer.domElement)
     rendererRef.current = renderer
+
+    const resizeObserver = new ResizeObserver(() => {
+      const w = container.clientWidth || 600
+      const h = container.clientHeight || 400
+      camera.aspect = w / h
+      camera.updateProjectionMatrix()
+      renderer.setSize(w, h)
+    })
+    resizeObserver.observe(container)
 
     // Lights
     const ambient = new THREE.AmbientLight(0xffffff, isNight ? 0.3 : 0.8)
@@ -693,6 +702,7 @@ export function LogicRivers3D() {
 
     return () => {
       active = false
+      resizeObserver.disconnect()
       if (requestRef.current) cancelAnimationFrame(requestRef.current)
       try {
         container.removeChild(renderer.domElement)
@@ -896,7 +906,7 @@ export function LogicRivers3D() {
             )}
 
             {/* Canvas/WebGL Viewport */}
-            <div className="relative w-full h-[400px] bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-inner flex justify-center items-center">
+            <div className="relative w-full h-[250px] sm:h-[400px] bg-slate-950 rounded-xl border border-slate-800 overflow-hidden shadow-inner flex justify-center items-center">
               {/* Constraint Violated display */}
               {gameState === 'failed' && (
                 <div className="absolute z-10 bg-slate-950/85 p-6 rounded-lg text-center border border-red-500/30 max-w-[95vw] sm:max-w-sm mx-4">

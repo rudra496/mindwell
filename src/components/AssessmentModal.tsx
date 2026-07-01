@@ -172,7 +172,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
         />
         
         <Dialog open={open} onOpenChange={onOpenChange}>
-          <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+          <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
             <DialogHeader>
               <DialogTitle className="text-xl sm:text-2xl break-words">
                 {mounted 
@@ -233,7 +233,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
           <DialogHeader>
             <div className="flex items-center gap-2 mb-2">
               <Button
@@ -306,7 +306,7 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden\">
         <DialogHeader>
           <div className="flex items-center gap-2 mb-2">
             <Button
