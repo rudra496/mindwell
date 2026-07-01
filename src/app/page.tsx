@@ -379,13 +379,13 @@ export default function HomePage() {
                 <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">{tKey('homePage.fundTitle', language)}</h2>
                 <p className="text-slate-600 dark:text-slate-400 text-lg mb-8">{tKey('homePage.fundDesc', language)}</p>
                 <div className="space-y-6">
-                  <a href="mailto:contactmindwellorg@gmail.com" className="flex items-center gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
-                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow"><Mail className="w-6 h-6" /></div>
-                    <span className="text-lg font-medium">contactmindwellorg@gmail.com</span>
+                  <a href="mailto:contactmindwellorg@gmail.com" className="flex items-center gap-3 sm:gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
+                    <div className="p-3 sm:p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow shrink-0"><Mail className="w-5 h-5 sm:w-6 sm:h-6" /></div>
+                    <span className="text-sm sm:text-lg font-medium break-all">contactmindwellorg@gmail.com</span>
                   </a>
-                  <a href="tel:+8801988223165" className="flex items-center gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
-                    <div className="p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow"><Phone className="w-6 h-6" /></div>
-                    <span className="text-lg font-medium">+8801988223165</span>
+                  <a href="tel:+8801988223165" className="flex items-center gap-3 sm:gap-4 text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors group">
+                    <div className="p-3 sm:p-4 bg-white dark:bg-slate-800 rounded-full shadow-sm group-hover:shadow-md transition-shadow shrink-0"><Phone className="w-5 h-5 sm:w-6 sm:h-6" /></div>
+                    <span className="text-sm sm:text-lg font-medium break-all">+8801988223165</span>
                   </a>
                 </div>
               </div>

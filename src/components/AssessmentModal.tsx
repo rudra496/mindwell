@@ -308,22 +308,6 @@ export function AssessmentModal({ open, onOpenChange }: { open: boolean; onOpenC
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[95vw] sm:max-w-2xl w-[95vw] sm:w-full max-h-[90vh] overflow-y-auto break-words whitespace-normal overflow-x-hidden">
         <DialogHeader>
-          <div className="flex items-center gap-2 mb-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => {
-                setSelectedAssessment(null)
-                setCurrentQuestion(0)
-                setAnswers({})
-                setShowResults(false)
-              }}
-              className="h-9 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm border-2 shadow-sm hover:shadow-md min-h-[44px] sm:min-h-[48px] z-50"
-            >
-              <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2 font-bold" />
-              <span className="font-medium">Back</span>
-            </Button>
-          </div>
           <DialogTitle className="text-base sm:text-lg break-words">{selectedAssessment.name}</DialogTitle>
           <DialogDescription className="text-xs sm:text-sm">
             Question {currentQuestion + 1} of {totalQuestions}
