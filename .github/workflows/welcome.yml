@@ -1,13 +1,12 @@
 name: Welcome New Contributors
-
 on:
-  pull_request_target:
-    types: [opened]
   issues:
     types: [opened]
-
+  pull_request_target:
+    types: [opened]
 jobs:
   welcome:
+    if: ${{ github.event.issue.user.type != 'Bot' && github.event.pull_request.user.type != 'Bot' }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -15,12 +14,6 @@ jobs:
     steps:
       - uses: actions/first-interaction@v3
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          issue_message: >
-            Welcome to MindWell! Thanks for opening this issue.
-            We'll review it as soon as possible. Please check our
-            [contribution guidelines](CONTRIBUTING.md) for best practices.
-          pr_message: >
-            Welcome to MindWell! Thanks for your first pull request!
-            We'll review your changes soon. Please make sure all checks pass
-            and refer to [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue_message: "Thanks for opening your first issue! We'll review it soon."
+          pr_message: "Welcome! Thanks for your first PR. A maintainer will review it shortly."
