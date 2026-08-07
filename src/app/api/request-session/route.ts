@@ -16,7 +16,8 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 const SESSION_TO = process.env.CONTACT_EMAIL || 'contactmindwellorg@gmail.com'
 const SESSION_FROM = process.env.RESEND_FROM || 'MindWell <onboarding@resend.dev>'
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_EMAIL = 254
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 const MAX_MESSAGE = 2_000
 
 // Best-effort, email-keyed rate limit: N requests per window per email.
@@ -62,7 +63,7 @@ export async function POST(request: NextRequest) {
     if (!email || !isBangladeshiStudent || !primaryConcern || !sessionFormat) {
       return fail('Missing required fields.', 400)
     }
-    if (typeof email !== 'string' || !EMAIL_REGEX.test(email)) {
+    if (typeof email !== 'string' || email.length > MAX_EMAIL || !EMAIL_REGEX.test(email)) {
       return fail('Invalid email address.', 400)
     }
     if (message && message.length > MAX_MESSAGE) {

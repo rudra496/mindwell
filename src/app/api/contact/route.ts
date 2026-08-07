@@ -42,7 +42,7 @@ const MAX_EMAIL = 254
 const MAX_PREFERRED_TIME = 200
 const MAX_MESSAGE = 5_000
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
 // --- Best-effort IP rate limiting ---------------------------------------
 // NOTE: Vercel serverless functions are ephemeral, so an in-process Map is NOT
