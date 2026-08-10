@@ -73,7 +73,7 @@
     "axe-core": "^4.8.3",
     "eslint": "^10.8.0",
     "eslint-config-next": "16.3.0",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.1",
     "postcss": "^8.5.25",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.22.4",
