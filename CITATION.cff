@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use MindWell or reference its clinical self-assessment frameworks, please cite it as below."
+title: "MindWell: Open-Source Privacy-First Mental Health Platform and Digital Wellbeing Architecture"
+authors:
+  - family-names: "Sarker"
+    given-names: "Rudra"
+    orcid: "https://orcid.org/0009-0001-4545-0932"
+abstract: "MindWell is an open-source mental health platform providing trusted, accessible wellbeing support aligned with UN SDG 3 (Good Health & Well-being) and SDG 4 (Quality Education). It integrates comprehensive educational modules for 393 mental health conditions, 20 non-diagnostic psychometric self-assessments, guided therapeutic mindfulness tools, and emergency crisis routing under a privacy-first, on-device local architecture."
+version: 1.1.0
+date-released: 2026-08-26
+license: "MIT"
+repository-code: "https://github.com/rudra496/mindwell"
+url: "https://getmindwell.us"
+keywords:
+  - "mental-health"
+  - "digital-health"
+  - "health-informatics"
+  - "psychometric-assessments"
+  - "privacy-first"
+  - "sdg3"
+  - "open-source-software"
