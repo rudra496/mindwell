@@ -1,5 +1,7 @@
 # MindWell
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22118681.svg)](https://doi.org/10.5281/zenodo.22118681)
+
 **MindWell Support** is the support and crisis-assistance service of the
 MindWell open-source mental health platform.
 
