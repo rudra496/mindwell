@@ -19,7 +19,9 @@ function normalizeSlug(value: string): string {
     .toLowerCase()
     .trim()
     .replace(/\s+/g, "-")
-    .replace(/[^a-z0-9-]/g, "")
+    // Unicode-aware so non-Latin tags (e.g. Bengali) keep a stable,
+    // non-empty slug instead of being stripped to "".
+    .replace(/[^\p{L}\p{N}\p{M}-]/gu, "")
 }
 
 function parseListValue(value: string): string[] {

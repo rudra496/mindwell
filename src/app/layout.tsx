@@ -60,6 +60,7 @@ export const metadata: Metadata = {
   creator: "Rudra Sarker",
   publisher: "MindWell",
   manifest: "/manifest.json",
+  icons: { icon: "/icon.svg" },
   openGraph: {
     type: "website",
     locale: "en_US",

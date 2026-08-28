@@ -7,6 +7,17 @@ type TagPageProps = {
   params: Promise<{ tag: string }>
 }
 
+// Route params arrive percent-encoded for non-ASCII tags (e.g. Bengali),
+// so decode before matching against post tags. Already-decoded values are
+// unaffected; malformed sequences fall back to the raw value.
+function decodeTag(tag: string): string {
+  try {
+    return decodeURIComponent(tag)
+  } catch {
+    return tag
+  }
+}
+
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
   const tags = Array.from(new Set(posts.flatMap((post) => post.tags.map((tag) => slugify(tag))))).filter(Boolean)
@@ -14,7 +25,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
-  const { tag } = await params
+  const { tag: rawTag } = await params
+  const tag = decodeTag(rawTag)
   const titleTag = tag.replace(/-/g, " ")
 
   return {
@@ -25,7 +37,8 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
 }
 
 export default async function TagPage({ params }: TagPageProps) {
-  const { tag } = await params
+  const { tag: rawTag } = await params
+  const tag = decodeTag(rawTag)
   const posts = await getPostsByTag(tag)
 
   if (posts.length === 0) {

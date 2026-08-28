@@ -137,6 +137,14 @@ export function subscribeToCommunityPosts(
   pageSize: number = DEFAULT_POST_LIMIT,
   after?: QueryDocumentSnapshot<DocumentData>
 ) {
+  // Without a configured Firebase, report through the error callback (like
+  // onSnapshot failures) instead of throwing synchronously, which would
+  // crash the Community modal via the error boundary.
+  if (!db) {
+    onError?.(new Error("Firebase not configured"));
+    return () => undefined;
+  }
+
   let q = query(postsRef(), orderBy("createdAt", "desc"), limit(pageSize));
   if (after) {
     q = query(postsRef(), orderBy("createdAt", "desc"), startAfter(after), limit(pageSize));
