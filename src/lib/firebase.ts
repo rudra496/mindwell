@@ -21,6 +21,7 @@ import {
 import { getFirestore, type Firestore } from "firebase/firestore"
 
 const COMMUNITY_AUTH_OPEN_KEY = "mindwell:community:open"
+const COMMUNITY_AUTH_LAST_ERROR = "mindwell:auth:lastError"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -98,7 +99,10 @@ export async function signInWithGoogle() {
     } catch (err) {
       const pluginErr = err as { code?: string; message?: string }
       const detail = [pluginErr?.code, pluginErr?.message].filter(Boolean).join(" — ")
-      throw new Error(detail || String(err))
+      // Devices without Credential Manager support (missing/outdated Google
+      // Play services, no GMS) cannot do native sign-in — fall back to the
+      // browser redirect flow, which returns via verified App Links.
+      console.warn("Native Google sign-in unavailable, falling back to redirect flow:", detail)
     }
   }
 
@@ -136,11 +140,30 @@ export async function completeRedirectSignIn(): Promise<UserCredential | null> {
 
     if (result?.user) {
       window.sessionStorage.setItem(COMMUNITY_AUTH_OPEN_KEY, "1")
+      window.localStorage.removeItem(COMMUNITY_AUTH_LAST_ERROR)
     }
 
     return result
   } catch (error) {
-    console.error("Redirect sign-in failed", error)
+    const message = error instanceof Error ? `${error.name}: ${error.message}` : String(error)
+    console.error("Redirect sign-in failed", message)
+    try {
+      window.localStorage.setItem(COMMUNITY_AUTH_LAST_ERROR, message)
+    } catch {
+      /* storage unavailable */
+    }
+    return null
+  }
+}
+
+/** Last redirect sign-in failure (if any), cleared on read. */
+export function consumeAuthRedirectError(): string | null {
+  if (typeof window === "undefined") return null
+  try {
+    const message = window.localStorage.getItem(COMMUNITY_AUTH_LAST_ERROR)
+    if (message) window.localStorage.removeItem(COMMUNITY_AUTH_LAST_ERROR)
+    return message
+  } catch {
     return null
   }
 }

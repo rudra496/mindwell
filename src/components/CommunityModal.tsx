@@ -38,7 +38,7 @@ import { onAuthStateChanged, User } from "firebase/auth";
 import { CommunityCreatePost } from "./CommunityCreatePost";
 import { CommunityPostDetail } from "./CommunityPostDetail";
 import { subscribeToCommunityPosts, CommunityPost } from "@/lib/community-firebase";
-import { auth, signInWithGoogle } from "@/lib/firebase";
+import { auth, signInWithGoogle, consumeAuthRedirectError } from "@/lib/firebase";
 
 interface CommunityModalProps {
   open: boolean;
@@ -102,6 +102,15 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     });
 
     return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    // Surface failures from the browser-redirect sign-in flow (the native
+    // fallback), which completes after a full page reload.
+    const redirectError = consumeAuthRedirectError();
+    if (redirectError) {
+      setError(`Sign-in (redirect) failed — ${redirectError}`);
+    }
   }, []);
 
   const handlePostCreated = () => {

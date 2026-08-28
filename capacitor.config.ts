@@ -19,7 +19,7 @@ type CapacitorConfig = {
 const config: CapacitorConfig = {
   appId: 'org.mindwell.app',
   appName: 'MindWell',
-  webDir: '.next',
+  webDir: 'www',
   server: {
     url: 'https://mindwell-navy.vercel.app',
     cleartext: false,
