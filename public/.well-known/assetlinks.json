@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "org.mindwell.app",
       "sha256_cert_fingerprints": [
-        "18:D1:7F:31:F2:2E:64:1D:3C:15:B0:4C:8E:77:75:71:B5:2F:B1:CE:3D:38:00:AE:7D:E4:C9:EB:9C:82:2E:88"
+        "18:D1:7F:31:F2:2E:64:1D:3C:15:B0:4C:8E:77:75:71:B5:2F:B1:CE:3D:38:00:AE:7D:E4:C9:EB:9C:82:2E:88",
+        "E9:14:24:CF:91:35:14:DE:9B:CC:78:33:44:29:51:98:EC:1E:AE:10:03:06:46:42:83:AA:16:EB:B6:2D:A9:AF"
       ]
     }
   }
