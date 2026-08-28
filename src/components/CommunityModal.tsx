@@ -112,9 +112,16 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
     setIsAuthBusy(true);
     try {
       await signInWithGoogle();
-    } catch {
+    } catch (err) {
       setIsAuthBusy(false);
-      setError("Sign-in failed. Please try again.");
+      // Surface the underlying code/message so device-side failures are diagnosable.
+      const detail =
+        err instanceof Error
+          ? `${err.name}: ${err.message}`
+          : typeof err === "object" && err !== null
+            ? JSON.stringify(err)
+            : String(err);
+      setError(`Sign-in failed — ${detail}`);
     }
   };
 

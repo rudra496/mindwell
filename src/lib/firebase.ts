@@ -87,13 +87,19 @@ export async function signInWithGoogle() {
   // blocks OAuth in embedded WebViews, and the browser redirect loses the
   // Firebase session state, so the redirect flow cannot complete in the app.
   if (Capacitor.isNativePlatform()) {
-    const result = await FirebaseAuthentication.signInWithGoogle()
-    const idToken = result.credential?.idToken
-    if (!idToken) {
-      throw new Error("Google sign-in returned no idToken")
+    try {
+      const result = await FirebaseAuthentication.signInWithGoogle()
+      const idToken = result.credential?.idToken
+      if (!idToken) {
+        throw new Error("Google sign-in returned no idToken")
+      }
+      await signInWithCredential(auth, GoogleAuthProvider.credential(idToken))
+      return
+    } catch (err) {
+      const pluginErr = err as { code?: string; message?: string }
+      const detail = [pluginErr?.code, pluginErr?.message].filter(Boolean).join(" — ")
+      throw new Error(detail || String(err))
     }
-    await signInWithCredential(auth, GoogleAuthProvider.credential(idToken))
-    return
   }
 
   try {
