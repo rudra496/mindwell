@@ -1,4 +1,6 @@
 import { App as CapacitorApp } from "@capacitor/app"
+import { Capacitor } from "@capacitor/core"
+import { FirebaseAuthentication } from "@capacitor-firebase/authentication"
 import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app"
 import {
   browserLocalPersistence,
@@ -10,6 +12,7 @@ import {
   initializeAuth,
   onAuthStateChanged,
   setPersistence,
+  signInWithCredential,
   signInWithPopup,
   signInWithRedirect,
   type Auth,
@@ -77,6 +80,19 @@ Google Login
 export async function signInWithGoogle() {
   if (!auth) {
     console.warn("Firebase not configured")
+    return
+  }
+
+  // Native app: use Google's native sign-in (no browser round-trip). Google
+  // blocks OAuth in embedded WebViews, and the browser redirect loses the
+  // Firebase session state, so the redirect flow cannot complete in the app.
+  if (Capacitor.isNativePlatform()) {
+    const result = await FirebaseAuthentication.signInWithGoogle()
+    const idToken = result.credential?.idToken
+    if (!idToken) {
+      throw new Error("Google sign-in returned no idToken")
+    }
+    await signInWithCredential(auth, GoogleAuthProvider.credential(idToken))
     return
   }
 
