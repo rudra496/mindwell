@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1029726525946",
+    "project_id": "mindwell-community",
+    "storage_bucket": "mindwell-community.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1029726525946:android:fe2b22e21f16f172bd6c43",
+        "android_client_info": {
+          "package_name": "org.mindwell.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1029726525946-ap1qa648g034sdtl5fab2v0lun8d3mo2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJxl_I6YYUs-LXvw5NUFuJd5THEhbk44o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1029726525946-ap1qa648g034sdtl5fab2v0lun8d3mo2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
