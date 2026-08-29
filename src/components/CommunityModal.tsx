@@ -186,6 +186,20 @@ export function CommunityModal({ open, onOpenChange }: CommunityModalProps) {
                   {isAuthBusy ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : null}
                   Sign in with Google
                 </Button>
+
+                <span className="text-xs text-slate-600 dark:text-slate-300">
+                  Tip: if sign-in doesn&apos;t complete in the app, open{" "}
+                  <a
+                    href="https://www.getmindwell.us"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-teal-700 underline dark:text-teal-300"
+                  >
+                    www.getmindwell.us
+                  </a>{" "}
+                  in your phone&apos;s browser (Chrome) and sign in there — your community
+                  account works in the browser.
+                </span>
               </AlertDescription>
             </Alert>
           </div>
