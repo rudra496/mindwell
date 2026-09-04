@@ -15,6 +15,14 @@ This setup wraps the hosted MindWell web app in a native Android shell while pre
   - browser: popup login
   - Capacitor native: redirect login
 
+## 0) `google-services.json` is NOT committed (required, local only)
+
+`android/app/google-services.json` is git-ignored because it contains a Firebase API key. After cloning:
+
+1. Copy `android/app/google-services.json.example` to `android/app/google-services.json`.
+2. Fill in the real values from the Firebase console (Project settings → Your apps → Android app → `google-services.json` download).
+3. In Google Cloud Console → APIs & Services → Credentials, keep the key **restricted** (Android app restriction: package name + SHA-1/SHA-256) so a leaked value cannot be abused.
+
 ## 1) Install and sync
 
 ```bash
