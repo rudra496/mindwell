@@ -8,6 +8,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    ignore:
+      # typescript >=7 cannot resolve here: eslint-config-next@16.3.x bundles
+      # @typescript-eslint/typescript-estree (peers <6.1.0). The 6.x line is
+      # managed directly at ~6.0.3 for the same reason.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     groups:
       capacitor:
         patterns:
