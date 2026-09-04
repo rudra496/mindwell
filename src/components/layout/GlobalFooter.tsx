@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Facebook, Github, Linkedin } from 'lucide-react';
+import { Facebook, Github, Linkedin } from '@/components/icons/BrandIcons';
 import { useLanguage } from '@/lib/useLanguage';
 import { tKey } from '@/lib/i18n';
 

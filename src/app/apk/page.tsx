@@ -3,15 +3,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { 
-  Smartphone, 
-  Download, 
-  Chrome, 
+import {
+  Smartphone,
+  Download,
   CheckCircle2,
   ExternalLink,
   Code,
   Info
 } from "lucide-react"
+import { Chrome } from "@/components/icons/BrandIcons"
 
 export default function APKGuidePage() {
   return (

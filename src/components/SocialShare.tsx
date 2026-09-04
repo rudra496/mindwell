@@ -1,6 +1,7 @@
 "use client";
 
-import { Facebook, Twitter, Linkedin, Mail, Share2 } from "lucide-react";
+import { Mail, Share2 } from "lucide-react";
+import { Facebook, Twitter, Linkedin } from "@/components/icons/BrandIcons";
 import { Button } from "@/components/ui/button";
 
 type SocialShareProps = {

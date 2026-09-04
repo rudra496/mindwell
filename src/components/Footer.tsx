@@ -1,6 +1,7 @@
 "use client"
 
-import { Heart, Mail, Globe, Github, Facebook, Linkedin } from "lucide-react"
+import { Heart, Mail, Globe } from "lucide-react"
+import { Github, Facebook, Linkedin } from "@/components/icons/BrandIcons"
 import { useEffect, useState } from "react"
 import { useLanguage } from "@/lib/useLanguage"
 import { translations, t, tKey } from "@/lib/i18n"
