@@ -14,6 +14,13 @@ updates:
       # managed directly at ~6.0.3 for the same reason.
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
+      # eslint >=10 is unsupported by eslint-plugin-react (7.37.5, the latest,
+      # peers <= ^9.7 - ESLint 10 removed context.getFilename). Dependabot
+      # merged the 9 -> 10 bump on 2026-09-04 because CI never runs lint;
+      # it crashed the toolchain again within 25 minutes. Stay on 9.x until
+      # eslint-plugin-react ships ESLint 10 support.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
     groups:
       capacitor:
         patterns:

@@ -1,7 +1,7 @@
 {
   "name": "mindwell",
   "version": "1.0.0",
-  "description": "MindWell – Open Source Mental Health Platform",
+  "description": "MindWell \u2013 Open Source Mental Health Platform",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -71,7 +71,7 @@
     "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "^6.1.1",
     "axe-core": "^4.13.0",
-    "eslint": "^10.9.1",
+    "eslint": "^9.39.5",
     "eslint-config-next": "16.3.4",
     "jsdom": "^30.0.1",
     "postcss": "^8.5.25",
@@ -84,7 +84,6 @@
     "node": ">=18.17.0"
   },
   "overrides": {
-    "postcss": "^8.5.25",
     "undici": "^7.29.0",
     "js-yaml": "^4.3.0",
     "protobufjs": "^7.6.5",
