@@ -10,7 +10,7 @@ import Script from 'next/script';
 export function AnalyticsPlaceholder() {
   // Set to empty string to disable analytics
   // Replace with your GA4 Measurement ID (e.g., 'G-XXXXXXXXXX') to enable
-  const GA_MEASUREMENT_ID = '';
+  const GA_MEASUREMENT_ID = 'G-TK3XP7E8P0';
 
   if (!GA_MEASUREMENT_ID) {
     return null;
