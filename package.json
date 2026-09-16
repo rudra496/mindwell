@@ -55,7 +55,7 @@
     "react-dom": "^19.3.0",
     "recharts": "^3.10.1",
     "resend": "^6.28.0",
-    "tailwind-merge": "^3.6.0",
+    "tailwind-merge": "^3.7.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.186.0"
   },
