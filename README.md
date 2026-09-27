@@ -1,6 +1,7 @@
 # MindWell
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22118681.svg)](https://doi.org/10.5281/zenodo.22118681)
+[![PWA Directory](https://img.shields.io/badge/PWA%20Directory-In--depth%20Review-0d9488?logo=pwa&logoColor=white)](https://pwa.directory/directory/mindwell)
 
 **MindWell Support** is the support and crisis-assistance service of the
 MindWell open-source mental health platform.
@@ -226,6 +227,7 @@ MindWell is optimized for Vercel deployment:
 4. No environment variables required for basic features
 
 **Live Site**: https://mindwell-navy.vercel.app/
+- **PWA Directory Listing**: [MindWell on PWA Directory](https://pwa.directory/directory/mindwell) (Featured In-Depth Review)
 
 ### Other Platforms
 
@@ -256,6 +258,7 @@ See `CAPACITOR_ANDROID_SETUP.md` for full setup, hardening, and release guidance
 - ✅ PWA-ready with offline support
 - ✅ Semantic HTML for accessibility
 - ✅ Open Graph and Twitter Card metadata
+- ✅ Catalogued & Reviewed on [PWA Directory](https://pwa.directory/directory/mindwell)
 
 ## 🌐 Internationalization
 
