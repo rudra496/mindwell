@@ -84,7 +84,7 @@
     "node": ">=18.17.0"
   },
   "overrides": {
-    "undici": "^7.29.0",
+    "undici": "^7.30.0",
     "js-yaml": "^4.3.0",
     "protobufjs": "^7.6.5",
     "sharp": "^0.35.4",
